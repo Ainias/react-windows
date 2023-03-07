@@ -1,6 +1,6 @@
-import { WindowDimension } from './WindowDimension';
+import { WindowContainerDimension } from './WindowContainerDimension';
 
-export function changeDimension(dimension: WindowDimension, addWidth: number, addHeight: number) {
+export function changeDimension(dimension: WindowContainerDimension, addWidth: number, addHeight: number) {
     if (dimension.right >= dimension.left) {
         dimension.right -= addWidth;
     } else {
@@ -16,10 +16,10 @@ export function changeDimension(dimension: WindowDimension, addWidth: number, ad
     return dimension;
 }
 
-export function changeDimensionWidth(dimension: WindowDimension, addWidth: number) {
+export function changeDimensionWidth(dimension: WindowContainerDimension, addWidth: number) {
     return changeDimension(dimension, addWidth, 0);
 }
 
-export function changeDimensionHeight(dimension: WindowDimension, addHeight: number) {
+export function changeDimensionHeight(dimension: WindowContainerDimension, addHeight: number) {
     return changeDimension(dimension, 0, addHeight);
 }

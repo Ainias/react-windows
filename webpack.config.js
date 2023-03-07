@@ -20,7 +20,7 @@ const banner = `
 `;
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     // devtool: 'source-map',
     entry: './reactWindows.ts',
     output: {
@@ -38,6 +38,7 @@ module.exports = {
         '@fortawesome/fontawesome-svg-core': 'commonjs2 @fortawesome/fontawesome-svg-core',
         '@fortawesome/free-solid-svg-icons': 'commonjs2 @fortawesome/free-solid-svg-icons',
         'react-beautiful-dnd': 'commonjs2 react-beautiful-dnd',
+        'react-bootstrap-mobile': 'commonjs2 react-bootstrap-mobile',
     },
     optimization: {
         minimize: false,
@@ -78,5 +79,9 @@ module.exports = {
     ],
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json'],
+        fallback: {
+            'react/jsx-runtime': 'react/jsx-runtime.js',
+            'react/jsx-dev-runtime': 'react/jsx-dev-runtime.js',
+        },
     },
 };

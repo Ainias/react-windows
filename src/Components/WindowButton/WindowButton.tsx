@@ -2,22 +2,23 @@ import * as React from 'react';
 import { MouseEvent } from 'react';
 
 import styles from './windowButton.scss';
-import type { WindowState } from './Window';
 import {
     Clickable,
     Icon,
     IconSource,
     Listener,
     RbmComponentProps,
-    useListener, withMemo,
-    WithNoChildren
-} from "react-bootstrap-mobile";
+    useListener,
+    withMemo,
+    WithNoChildren,
+} from 'react-bootstrap-mobile';
+import { ContainerState } from '../types/ContainerState';
 
 export type WindowButtonProps<OnClickData> = RbmComponentProps<
     {
         icon: IconSource;
         title?: string;
-        windowState?: WindowState;
+        containerState?: ContainerState;
         hideWhenMaximized?: boolean;
         hideWhenMinimized?: boolean;
     } & Listener<'onClick', OnClickData, MouseEvent>,
@@ -27,7 +28,7 @@ export type WindowButtonProps<OnClickData> = RbmComponentProps<
 export const WindowButton = withMemo(function WindowButton<OnClickData>({
     icon,
     title,
-    windowState,
+    containerState,
     hideWhenMaximized,
     hideWhenMinimized,
     ...listenerProps
@@ -48,10 +49,10 @@ export const WindowButton = withMemo(function WindowButton<OnClickData>({
     // Other
 
     // Render Functions
-    if (hideWhenMaximized && windowState === 'maximized') {
+    if (hideWhenMaximized && containerState === ContainerState.MAXIMIZED) {
         return null;
     }
-    if (hideWhenMinimized && windowState === 'minimized') {
+    if (hideWhenMinimized && containerState === ContainerState.MINIMIZED) {
         return null;
     }
 
@@ -60,4 +61,5 @@ export const WindowButton = withMemo(function WindowButton<OnClickData>({
             <Icon icon={icon} title={title} />
         </Clickable>
     );
-}, styles);
+},
+styles);

@@ -1,9 +1,13 @@
-import { WINDOW_MIN_HEIGHT, WINDOW_MIN_WIDTH, WindowDimension } from './WindowDimension';
+import {
+    WINDOW_CONTAINER_MIN_HEIGHT,
+    WINDOW_CONTAINER_MIN_WIDTH,
+    WindowContainerDimension,
+} from './WindowContainerDimension';
 
 export function checkWindowDimension(
-    dimension: WindowDimension,
-    minWidth = WINDOW_MIN_WIDTH,
-    minHeight = WINDOW_MIN_HEIGHT
+    dimension: WindowContainerDimension,
+    minWidth = WINDOW_CONTAINER_MIN_WIDTH,
+    minHeight = WINDOW_CONTAINER_MIN_HEIGHT
 ) {
     dimension.top = Math.max(dimension.top, 0);
     dimension.left = Math.max(dimension.left, 0);
