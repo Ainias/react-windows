@@ -35,10 +35,9 @@ import {
     WindowContext,
     withForwardRef,
 } from 'react-bootstrap-mobile';
-import { getWindowStore } from '../store/createWindowStore';
+import { getWindowStore, WindowContainerData, WindowData } from '../store/createWindowStore';
 import { shallow } from 'zustand/shallow';
 import { ContainerState } from '../types/ContainerState';
-import { selectActiveWindowForContainer } from '../store/selectActiveWindowForContainers';
 import { TitleTabBar } from './TitleTabBar';
 import { createPortal } from 'react-dom';
 
@@ -50,6 +49,12 @@ export type WindowContainerProps = {
     store?: string;
     initialTop?: number;
     initialLeft?: number;
+    containerData: WindowContainerData;
+    titleInfos: { id: string; title: string }[];
+    windowData?: WindowData;
+    isActive: boolean;
+    disabled?: boolean;
+    className?: string;
 };
 
 export type WindowContainerRef = {
@@ -63,7 +68,18 @@ export type WindowContainerRef = {
 
 export const WindowContainer = withForwardRef(
     function WindowContainer(
-        { initialTop = 200, initialLeft = 200, id, store = 'default' }: WindowContainerProps,
+        {
+            initialTop = 200,
+            initialLeft = 200,
+            id,
+            store = 'default',
+            containerData,
+            windowData,
+            titleInfos,
+            isActive,
+            disabled,
+            className,
+        }: WindowContainerProps,
         ref?: ForwardedRef<WindowContainerRef>
     ) {
         // Variables
@@ -85,9 +101,6 @@ export const WindowContainer = withForwardRef(
 
         // States
         const useStore = getWindowStore(store);
-        const containerData = useStore((s) => s.containers[id]);
-        const windowData = useStore((s) => selectActiveWindowForContainer(s, id));
-        const isActive = useStore((s) => s.activeContainerId === id);
         const [setActiveContainer, updateContainerDimension, updateContainerState] = useStore(
             (s) => [s.setActiveContainer, s.updateContainerDimension, s.updateContainerState],
             shallow
@@ -114,7 +127,9 @@ export const WindowContainer = withForwardRef(
 
         // Callbacks
         const setContainerState = useCallback(
-            (newState: Parameters<typeof updateContainerState>[1]) => updateContainerState(id, newState),
+            (newState: Parameters<typeof updateContainerState>[1]) => {
+                updateContainerState(id, newState);
+            },
             [id, updateContainerState]
         );
 
@@ -339,30 +354,38 @@ export const WindowContainer = withForwardRef(
         useImperativeHandle(
             ref,
             () => ({
-                toggleMaximize: toggleMaximized,
-                toggleMinimize: toggleMinimized,
+                toggleMaximize: () => {
+                    if (!disabled) {
+                        toggleMaximized();
+                    }
+                },
+                toggleMinimize: () => {
+                    if (!disabled) {
+                        toggleMinimized();
+                    }
+                },
                 maximize() {
-                    if (state !== ContainerState.POPUP && state !== ContainerState.MAXIMIZED) {
+                    if (!disabled && state !== ContainerState.POPUP && state !== ContainerState.MAXIMIZED) {
                         toggleMaximized();
                     }
                 },
                 minimize() {
-                    if (state !== ContainerState.POPUP && state !== ContainerState.MINIMIZED) {
+                    if (!disabled && state !== ContainerState.POPUP && state !== ContainerState.MINIMIZED) {
                         toggleMinimized();
                     }
                 },
                 openInNewWindow() {
-                    if (state !== ContainerState.POPUP) {
+                    if (!disabled && state !== ContainerState.POPUP) {
                         openInNewWindow();
                     }
                 },
                 resizeToContent() {
-                    if (state !== ContainerState.POPUP) {
+                    if (!disabled && state !== ContainerState.POPUP) {
                         resizeToContent();
                     }
                 },
             }),
-            [openInNewWindow, resizeToContent, state, toggleMaximized, toggleMinimized]
+            [disabled, openInNewWindow, resizeToContent, state, toggleMaximized, toggleMinimized]
         );
 
         const updateContainerRef = useCallback(
@@ -377,24 +400,40 @@ export const WindowContainer = withForwardRef(
 
         // Effects
         useEffect(() => {
+            if (disabled) {
+                return undefined;
+            }
+
             window.addEventListener('mousemove', onMove);
             return () => window.removeEventListener('mousemove', onMove);
-        }, [onMove]);
+        }, [disabled, onMove]);
 
         useEffect(() => {
+            if (disabled) {
+                return undefined;
+            }
+
             window.addEventListener('mouseup', onMoveStop);
             return () => window.removeEventListener('mouseup', onMoveStop);
-        }, [onMoveStop]);
+        }, [disabled, onMoveStop]);
 
         useEffect(() => {
+            if (disabled) {
+                return;
+            }
+
             if (!dimension) {
                 setDimension(getDimensions());
             }
-        }, [dimension, getDimensions, setDimension]);
+        }, [dimension, disabled, getDimensions, setDimension]);
 
         useEffect(() => setIsClient(true), []);
 
         useOnce(() => {
+            if (disabled) {
+                return;
+            }
+
             if (state === ContainerState.POPUP) {
                 openInNewWindow(true);
             }
@@ -436,9 +475,20 @@ export const WindowContainer = withForwardRef(
         }, [openInNewWindow, resizeToContent, state]);
 
         const renderTitle = () => (
-            <Clickable onMouseDown={onMoveStart} className={styles.fullWidth} ref={titleRef} preventDefault={false}>
+            <Clickable
+                onMouseDown={onMoveStart}
+                className={classNames(className, styles.fullWidth)}
+                ref={titleRef}
+                preventDefault={false}
+            >
                 <Flex horizontal={true} className={classNames(styles.title)}>
-                    <TitleTabBar storeId={store} containerId={id} style={{ width: `calc(100% - ${buttonWidth}px)` }} />
+                    <TitleTabBar
+                        storeId={store}
+                        containerId={id}
+                        style={{ width: `calc(100% - ${buttonWidth}px)` }}
+                        titleInfos={titleInfos}
+                        disabled={disabled}
+                    />
                     <SizeCalculator onSize={setButtonWidth}>
                         <InlineBlock className={styles.titleButtons}>
                             {realButtons?.map((b) => (
@@ -469,6 +519,7 @@ export const WindowContainer = withForwardRef(
                                 [styles.popup]: state === ContainerState.POPUP,
                                 [styles.moving]: mouseDownPos,
                                 [styles.active]: isActive,
+                                [styles.disabled]: disabled,
                             })}
                             style={{
                                 top: initialTop,

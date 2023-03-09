@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { WindowContainerDimension } from '../WindowContainer/WindowContainerDimension';
 import type { WindowButtonData } from '../WindowContainer/WindowContainer';
@@ -16,7 +16,7 @@ export type WindowContainerData = {
     id: string;
 };
 
-type WindowData = {
+export type WindowData = {
     id: string;
     title: string;
     fillHeight: boolean;
@@ -123,6 +123,10 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             if (!container) {
                 return;
             }
+            if (container.state === ContainerState.MINIMIZED) {
+                container.state = ContainerState.NORMAL;
+            }
+
             set(({ containers }) => ({
                 containers: { ...containers, [id]: { ...container, activeWindowId } },
                 activeContainerId: id,
@@ -184,7 +188,7 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             }
         },
         setIsDraggingOver(id: string) {
-            set({ isDraggingOver: id });
+            set({ isDraggingOver: id, activeContainerId: id });
         },
         removeIsDraggingOver(id: string) {
             set(({ isDraggingOver }) => ({

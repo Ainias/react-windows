@@ -1,9 +1,11 @@
 import React from 'react';
-import { Block, withMemo } from 'react-bootstrap-mobile';
+import { withMemo } from 'react-bootstrap-mobile';
 import { useDragLayer } from 'react-dnd';
 import { getDragType } from '../helper/getDragType';
 import { getWindowStore } from '../store/createWindowStore';
 import styles from './windowDragPreview.scss';
+import { WindowContainer } from '../WindowContainer/WindowContainer';
+import { checkWindowDimension } from '../WindowContainer/checkWindowDimension';
 
 export type WindowDragPreviewProps = { storeId: string };
 
@@ -19,8 +21,10 @@ export const WindowDragPreview = withMemo(function WindowDragPreview({ storeId }
     });
 
     const useStore = getWindowStore(storeId);
-    const dimension = useStore((s) => s.containers[s.windowContainerMapping[item?.id]]?.dimension);
+    const container = useStore((s) => s.containers[s.windowContainerMapping[item?.id]]);
     const isDraggingOver = useStore((s) => !!s.isDraggingOver);
+    const windowData = useStore((s) => s.windows[item?.id]);
+    const dimension = container?.dimension;
 
     // Refs
 
@@ -33,7 +37,7 @@ export const WindowDragPreview = withMemo(function WindowDragPreview({ storeId }
     // Effects
 
     // Other
-    if (!isDragging || isDraggingOver || !dimension || !diff || !initialOffset) {
+    if (!isDragging || isDraggingOver || !dimension || !diff || !initialOffset || !windowData || !container) {
         return null;
     }
 
@@ -49,7 +53,20 @@ export const WindowDragPreview = withMemo(function WindowDragPreview({ storeId }
         bottom: dimension.bottom - diff.y - offsetDiff.y,
     };
 
-    // Render Functions
+    checkWindowDimension(previewDimension);
 
-    return <Block className={styles.preview} style={previewDimension} />;
+    // Render Functions
+    return (
+        <WindowContainer
+            id={container.id}
+            isActive={true}
+            containerData={{ ...container, dimension: previewDimension }}
+            windowData={windowData}
+            store={storeId}
+            disabled={true}
+            titleInfos={[{ id: windowData.id, title: windowData.title }]}
+        />
+    );
+
+    // return <Block className={styles.preview} style={previewDimension} />;
 }, styles);

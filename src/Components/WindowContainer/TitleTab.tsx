@@ -22,7 +22,7 @@ export const TitleTab = withMemo(
         const useStore = getWindowStore(storeId);
         const moveToOwnContainer = useStore((s) => s.moveWindowToOwnContainer);
 
-        const [, dragRef, previewRef] = useDrag(
+        const [{ isDragging }, dragRef, previewRef] = useDrag(
             () => ({
                 type: getDragType(storeId),
                 item: { id, title: children },
@@ -46,6 +46,10 @@ export const TitleTab = withMemo(
             onClick(id);
         }, [id, onClick]);
 
+        const onMouseDown = useCallback(() => {
+            // Adding this listener to prevent moving from window
+        }, []);
+
         // Effects
         useEffect(() => {
             previewRef(getEmptyImage());
@@ -61,14 +65,14 @@ export const TitleTab = withMemo(
                     styles.titleTab,
                     {
                         [styles.titleTabActive]: isActive,
-                        [styles.titleTabHidden]: isHidden,
+                        [styles.titleTabHidden]: isHidden && isDragging,
                     },
                     className
                 )}
                 style={style}
                 ref={dragRef}
             >
-                <Clickable onClick={onClickInner} preventDefault={false}>
+                <Clickable onClick={onClickInner} onMouseDown={onMouseDown} preventDefault={false}>
                     <Text className={styles.titleText}>{children}</Text>
                 </Clickable>
             </InlineBlock>

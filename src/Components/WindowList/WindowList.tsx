@@ -1,12 +1,12 @@
 import React, { useLayoutEffect } from 'react';
 import { withMemo } from 'react-bootstrap-mobile';
 import { getWindowStore } from '../store/createWindowStore';
-import { WindowContainer } from '../WindowContainer/WindowContainer';
 import { WindowDragPreview } from '../WindowDragPreview/WindowDragPreview';
+import { WindowContainerFromStore } from '../WindowContainer/WindowContainerFromStore';
 
-export type WindowListProps = { store?: string };
+export type WindowListProps = { storeId?: string };
 
-export const WindowList = withMemo(function WindowList({ store = 'default' }: WindowListProps) {
+export const WindowList = withMemo(function WindowList({ storeId = 'default' }: WindowListProps) {
     // Variables
 
     // Refs
@@ -14,7 +14,7 @@ export const WindowList = withMemo(function WindowList({ store = 'default' }: Wi
     // States
 
     // Selectors
-    const useStore = getWindowStore(store);
+    const useStore = getWindowStore(storeId);
     const containers = useStore((s) => s.containers);
     const setWindowSize = useStore((s) => s.setWindowSize);
 
@@ -36,10 +36,10 @@ export const WindowList = withMemo(function WindowList({ store = 'default' }: Wi
 
     return (
         <>
-            <WindowDragPreview storeId={store} />
             {Object.keys(containers).map((container) => (
-                <WindowContainer id={container} key={container} store={store} />
+                <WindowContainerFromStore id={container} key={container} store={storeId} />
             ))}
+            <WindowDragPreview storeId={storeId} />
         </>
     );
 });

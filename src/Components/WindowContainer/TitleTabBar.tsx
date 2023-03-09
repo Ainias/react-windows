@@ -1,7 +1,6 @@
 import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react';
 import { InlineBlock, RbmComponentProps, useComposedRef, withMemo } from 'react-bootstrap-mobile';
 import { TitleTab } from './TitleTab';
-import { selectTitleInfos } from '../store/selectTitleInfos';
 import { getWindowStore } from '../store/createWindowStore';
 import { selectActiveWindowIdForContainer } from '../store/selectAvticeWindowIdForContainer';
 import styles from './windowContainer.scss';
@@ -9,15 +8,26 @@ import classNames from 'classnames';
 import { DropTargetMonitor, useDrop } from 'react-dnd';
 import { getDragType } from '../helper/getDragType';
 
-export type TitleTabBarProps = RbmComponentProps<{ storeId: string; containerId: string }>;
+export type TitleTabBarProps = RbmComponentProps<{
+    storeId: string;
+    containerId: string;
+    titleInfos: { id: string; title: string }[];
+    disabled?: boolean;
+}>;
 
 const TAB_MAX_WIDTH = 150;
-export const TitleTabBar = withMemo(function TitleTabBar({ storeId, containerId, style, className }: TitleTabBarProps) {
+export const TitleTabBar = withMemo(function TitleTabBar({
+    storeId,
+    containerId,
+    style,
+    className,
+    titleInfos,
+    disabled,
+}: TitleTabBarProps) {
     // Variables
 
     // States
     const useStore = getWindowStore(storeId);
-    const titleInfos = useStore((s) => selectTitleInfos(s, containerId));
     const activeWindowId = useStore((s) => selectActiveWindowIdForContainer(s, containerId));
     const updateContainerActiveWindow = useStore((s) => s.updateContainerActiveWindow);
     const setIsDraggingOver = useStore((s) => s.setIsDraggingOver);
@@ -73,7 +83,8 @@ export const TitleTabBar = withMemo(function TitleTabBar({ storeId, containerId,
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [containerId, moveWindow, storeId, titleInfos.length]);
 
-    const containerIsDragSource = useStore((s) => !!dragItemId && s.windowContainerMapping[dragItemId] === containerId);
+    const containerIsDragSource =
+        useStore((s) => !!dragItemId && s.windowContainerMapping[dragItemId] === containerId) && !disabled;
 
     const tabs = useMemo(() => {
         if (previewTab) {
@@ -122,8 +133,8 @@ export const TitleTabBar = withMemo(function TitleTabBar({ storeId, containerId,
     // Render Functions
 
     // prevent division by zero
-    // const tabLength = Math.max(tabs.length - (containerIsDragSource && !isOver ? 1 : 0), 1);
-    const tabLength = tabs.length;
+    const tabLength = Math.max(tabs.length - (containerIsDragSource && !isOver ? 1 : 0), 1);
+    // const tabLength = tabs.length;
     return (
         <InlineBlock
             style={style}
@@ -134,7 +145,7 @@ export const TitleTabBar = withMemo(function TitleTabBar({ storeId, containerId,
                 <TitleTab
                     key={info.id}
                     id={info.id}
-                    isActive={info.id === activeWindowId}
+                    isActive={previewTab ? info.id === previewTab.id : info.id === activeWindowId}
                     onClick={setActiveWindow}
                     storeId={storeId}
                     style={{ width: `${Math.floor(100 / tabLength)}%` }}
@@ -145,4 +156,5 @@ export const TitleTabBar = withMemo(function TitleTabBar({ storeId, containerId,
             ))}
         </InlineBlock>
     );
-}, styles);
+},
+styles);

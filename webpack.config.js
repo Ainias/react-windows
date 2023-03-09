@@ -21,6 +21,7 @@ const banner = `
 
 module.exports = {
     mode: 'development',
+    // mode: 'production',
     // devtool: 'source-map',
     entry: './reactWindows.ts',
     output: {

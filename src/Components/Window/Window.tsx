@@ -7,22 +7,22 @@ import { ContainerState } from '../types/ContainerState';
 export type WindowProps = RbmComponentProps<
     {
         id: string;
-        defaultContainerId?: string;
         title: string;
+        defaultContainerId?: string;
         fillHeight?: boolean;
         buttons?:
             | WindowButtonData[]
             | ((state: ContainerState, defaultButtons: WindowButtonData[]) => WindowButtonData[]);
         defaultWidth?: number;
-        store?: string;
+        storeId?: string;
     },
     WithNoStringAndChildrenProps
 >;
 
 const emptyButtons: WindowButtonData[] = [];
 export const Window = withMemo(function Window({
-    store = 'default',
-    fillHeight = true,
+    storeId = 'default',
+    fillHeight = false,
     buttons = emptyButtons,
     id,
     defaultContainerId,
@@ -31,7 +31,7 @@ export const Window = withMemo(function Window({
     children,
 }: WindowProps) {
     // Variables
-    const useStore = getWindowStore(store);
+    const useStore = getWindowStore(storeId);
     const setWindow = useStore((s) => s.setWindow);
 
     // Refs
