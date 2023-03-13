@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { WindowContainerDimension } from '../WindowContainer/WindowContainerDimension';
 import type { WindowButtonData } from '../WindowContainer/WindowContainer';
-import { Random } from 'js-helper';
+import { Random } from '@ainias42/js-helper';
 import { ReactNode } from 'react';
 import { updateDimensions } from '../helper/updateDimensions';
 import { ContainerState } from '../types/ContainerState';

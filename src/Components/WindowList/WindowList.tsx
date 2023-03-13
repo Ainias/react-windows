@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import { withMemo } from 'react-bootstrap-mobile';
+import { withMemo } from '@ainias42/react-bootstrap-mobile';
 import { getWindowStore } from '../store/createWindowStore';
 import { WindowContainerFromStore } from '../WindowContainer/WindowContainerFromStore';
 

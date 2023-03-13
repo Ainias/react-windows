@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { Clickable, RbmComponentProps, withMemo } from 'react-bootstrap-mobile';
+import { Clickable, RbmComponentProps, withMemo } from '@ainias42/react-bootstrap-mobile';
 import { TitleTab } from './TitleTab';
 import { getWindowStore } from '../store/createWindowStore';
 import { selectActiveWindowIdForContainer } from '../store/selectAvticeWindowIdForContainer';

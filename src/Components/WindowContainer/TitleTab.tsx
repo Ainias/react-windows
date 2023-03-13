@@ -8,7 +8,7 @@ import {
     useWindow,
     withMemo,
     WithStringProps,
-} from 'react-bootstrap-mobile';
+} from '@ainias42/react-bootstrap-mobile';
 import classNames from 'classnames';
 import styles from './windowContainer.scss';
 import { Position, useOnMouseDrag } from '../hooks/useOnMouseDrag';

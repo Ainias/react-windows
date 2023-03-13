@@ -11,7 +11,7 @@ import {
     useListener,
     withMemo,
     WithNoChildren,
-} from 'react-bootstrap-mobile';
+} from '@ainias42/react-bootstrap-mobile';
 import { ContainerState } from '../types/ContainerState';
 
 export type WindowButtonProps<OnClickData> = RbmComponentProps<

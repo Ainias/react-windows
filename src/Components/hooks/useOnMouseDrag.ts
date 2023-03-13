@@ -1,5 +1,5 @@
 import { MouseEvent as ReactMouseEvent, useCallback, useEffect, useRef } from 'react';
-import { useDelayed, useWindow } from 'react-bootstrap-mobile';
+import { useDelayed, useWindow } from '@ainias42/react-bootstrap-mobile';
 
 export type Position = { x: number; y: number };
 

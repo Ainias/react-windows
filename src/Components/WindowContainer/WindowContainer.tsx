@@ -35,7 +35,7 @@ import {
     useOnce,
     WindowContext,
     withForwardRef,
-} from 'react-bootstrap-mobile';
+} from '@ainias42/react-bootstrap-mobile';
 import { getWindowStore, WindowContainerData, WindowData } from '../store/createWindowStore';
 import { shallow } from 'zustand/shallow';
 import { ContainerState } from '../types/ContainerState';

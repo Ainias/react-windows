@@ -1,5 +1,5 @@
 import { useLayoutEffect } from 'react';
-import { RbmComponentProps, withMemo, WithNoStringAndChildrenProps } from 'react-bootstrap-mobile';
+import { RbmComponentProps, withMemo, WithNoStringAndChildrenProps } from '@ainias42/react-bootstrap-mobile';
 import { WindowButtonData } from '../WindowContainer/WindowContainer';
 import { getWindowStore } from '../store/createWindowStore';
 import { ContainerState } from '../types/ContainerState';

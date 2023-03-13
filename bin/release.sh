@@ -18,19 +18,29 @@ if [ -n "$versionExists" ]; then
 	exit 1;
 fi;
 
-WORKING_DIR=$(pwd)
+if [[ -z "$1" ]]; then
+  echo "versioname not given!"
+  exit;
+fi;
+
+versionName=$1
+versionExists="$(git ls-remote $REPOSITORY refs/tags/"$versionName"| tr -d '\n')"
+
+if [ -n "$versionExists" ]; then
+	echo "Version existiert bereits!";
+	exit 1;
+fi;
+
 TMPDIR=$(mktemp -d)
 
-cd TMPDIR;
-git clone git@github.com:Ainias/react-windows.git
-cd react-windows
+cd "$TMPDIR";
+git clone $REPOSITORY project
+cd project
 
-npm install --legacy-peer-deps
+npm install
 npm run build:production
-git add dist/
+git add -u
+git commit -m "pre-version-commit for version $versionName" || echo "no commit needed"
 npm version "$versionName"
+npm publish
 git push
-
-cd "$WORKING_DIR"
-
-
