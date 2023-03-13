@@ -1,3 +1,20 @@
+:root {
+  --react-windows-transition-duration: 32ms;
+}
+
+@keyframes popInAnimation {
+  0% {
+    transform: scale(0.75);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.noSelect, .noSelect * {
+  user-select: none;
+}
+
 .disabled {
   pointer-events: none;
 
@@ -12,14 +29,17 @@
   z-index: 100;
   border: 1px solid var(--border-light);
   border-radius: 4px;
+  animation: 70ms popInAnimation;
 
   &.active {
     z-index: 101;
   }
 
   &.moving {
-    transition: none;
+    transition: top var(--react-windows-transition-duration) linear, left var(--react-windows-transition-duration) linear, bottom var(--react-windows-transition-duration) linear, right var(--react-windows-transition-duration) linear;
+    //transition: none;
     cursor: grabbing;
+    user-select: none;
 
     .title {
       cursor: grabbing;
@@ -45,11 +65,13 @@
     white-space: nowrap;
     width: 100%;
     padding: 4px 4px 0 4px;
-    cursor: move;
+    //cursor: move;
 
     border-bottom: 1px solid var(--border-light);
 
     .titleTabBar {
+      cursor: move;
+      display: inline-block;
       padding-right: 24px;
 
       &.singleTab {

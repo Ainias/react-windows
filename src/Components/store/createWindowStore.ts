@@ -7,6 +7,8 @@ import { ReactNode } from 'react';
 import { updateDimensions } from '../helper/updateDimensions';
 import { ContainerState } from '../types/ContainerState';
 import { checkWindowDimension } from '../WindowContainer/checkWindowDimension';
+import { Position } from 'react-beautiful-dnd';
+import { checkOverContainerAndTabPosition } from '../helper/checkOverContainerAndTabPosition';
 
 export type WindowContainerData = {
     dimension?: WindowContainerDimension;
@@ -14,6 +16,8 @@ export type WindowContainerData = {
     windowIds: string[];
     activeWindowId: string;
     id: string;
+    buttonWidth: number;
+    isMoving: boolean;
 };
 
 export type WindowData = {
@@ -34,7 +38,6 @@ const initialState = {
         x: 0,
         y: 0,
     },
-    isDraggingOver: '',
 };
 export type WindowStoreState = typeof initialState & ReturnType<typeof actionsGenerator>;
 
@@ -71,7 +74,12 @@ const actionsGenerator = (set: SetState, get: GetState) => {
         }
         const newMapping = { ...windowContainerMapping };
         delete newMapping[windowId];
-        set({ containers: { ...containers, [container.id]: container }, windowContainerMapping: newMapping });
+
+        const newContainers = { ...containers, [container.id]: container };
+        if (container.windowIds.length === 0) {
+            delete newContainers[container.id];
+        }
+        set({ containers: newContainers, windowContainerMapping: newMapping });
     }
 
     function setWindow(window: WindowData, defaultContainerId?: string) {
@@ -84,6 +92,8 @@ const actionsGenerator = (set: SetState, get: GetState) => {
                 windowIds: [],
                 activeWindowId: window.id,
                 id: containerId,
+                buttonWidth: 0,
+                isMoving: false,
             };
         }
         if (windowContainerMapping[window.id] !== containerId) {
@@ -96,6 +106,61 @@ const actionsGenerator = (set: SetState, get: GetState) => {
         });
     }
 
+    function moveWindowToOwnContainer(windowId: string, position: { x: number; y: number } | null) {
+        const { windows, containers, windowContainerMapping } = get();
+        const window = windows[windowId];
+        const container = containers[windowContainerMapping[windowId]];
+        if (!window || !container) {
+            return;
+        }
+        const dimension = container.dimension ? { ...container.dimension } : undefined;
+
+        removeWindowFromContainer(windowId);
+        setWindow(window);
+        if (dimension && position) {
+            const { windowContainerMapping: newMapping, containers: newContainers } = get();
+            const newContainer = newContainers[newMapping[windowId]];
+            dimension.right += dimension.left - position.x;
+            dimension.bottom += dimension.top - position.y;
+            dimension.left = position.x;
+            dimension.top = position.y;
+            newContainer.dimension = checkWindowDimension(dimension);
+            newContainer.buttonWidth = container.buttonWidth;
+            set({
+                containers: { ...containers, [newContainer.id]: newContainer },
+                activeContainerId: newContainer.id,
+            });
+        }
+    }
+
+    function moveWindow(windowId: string, newContainerId: string, newIndex: number) {
+        const { containers, windowContainerMapping } = get();
+        const newContainer = containers[newContainerId];
+        const container = containers[windowContainerMapping[windowId]];
+        if (!newContainer || (newContainer.id === container.id && container.windowIds.indexOf(windowId) === newIndex)) {
+            return;
+        }
+
+        removeWindowFromContainer(windowId);
+
+        newContainer.windowIds = [...newContainer.windowIds];
+        newContainer.windowIds.splice(newIndex, 0, windowId);
+        newContainer.activeWindowId = windowId;
+        set({
+            containers: { ...containers, [newContainerId]: newContainer },
+            windowContainerMapping: { ...windowContainerMapping, [windowId]: newContainerId },
+            activeContainerId: newContainerId,
+        });
+    }
+
+    function updateContainerDimension(id: string, dimension: WindowContainerDimension | undefined) {
+        const container = get().containers[id];
+        if (!container) {
+            return;
+        }
+        set(({ containers }) => ({ containers: { ...containers, [id]: { ...container, dimension } } }));
+    }
+
     return {
         clear() {
             set({ ...actionsGenerator(set, get) }, true);
@@ -104,11 +169,7 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             setWindow(window, defaultContainerId);
         },
         updateContainerDimension(id: string, dimension: WindowContainerDimension | undefined) {
-            const container = get().containers[id];
-            if (!container) {
-                return;
-            }
-            set(({ containers }) => ({ containers: { ...containers, [id]: { ...container, dimension } } }));
+            updateContainerDimension(id, dimension);
         },
         updateContainerState(id: string, state: ContainerState | ((old: ContainerState) => ContainerState)) {
             const container = get().containers[id];
@@ -145,55 +206,52 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             const newContainers = updateDimensions(containers, windowSize, newWindowSize);
             set({ containers: newContainers, windowSize: newWindowSize });
         },
-        moveWindow(newContainerId: string, windowId: string, newIndex: number) {
+        setButtonWidth(containerId: string, buttonWidth: number) {
+            const { containers } = get();
+            const container = containers[containerId];
+            if (!container) {
+                return;
+            }
+            container.buttonWidth = buttonWidth;
+            set({ containers: { ...containers, [containerId]: { ...container } } });
+        },
+        setContainerIsMoving(containerId: string, isMoving: boolean) {
+            const { containers } = get();
+            const container = containers[containerId];
+            if (!container) {
+                return;
+            }
+            container.isMoving = isMoving;
+            set({ containers: { ...containers, [containerId]: { ...container } } });
+        },
+        updateDragging(
+            windowId: string,
+            mousePosition: Position,
+            dimension: WindowContainerDimension,
+            ignoredContainer?: string
+        ) {
             const { containers, windowContainerMapping } = get();
-            const newContainer = containers[newContainerId];
-            if (!newContainer) {
-                return;
+            const newContainerData = checkOverContainerAndTabPosition(
+                Object.values(containers),
+                mousePosition,
+                ignoredContainer
+            );
+            if (newContainerData) {
+                moveWindow(windowId, newContainerData.container, newContainerData.index);
+                return undefined;
             }
-            removeWindowFromContainer(windowId);
 
-            newContainer.windowIds = [...newContainer.windowIds];
-            newContainer.windowIds.splice(newIndex, 0, windowId);
-            newContainer.activeWindowId = windowId;
-            set({
-                containers: { ...containers, [newContainerId]: newContainer },
-                windowContainerMapping: { ...windowContainerMapping, [windowId]: newContainerId },
-                activeContainerId: newContainerId,
-            });
-        },
-        moveWindowToOwnContainer(windowId: string, position: { x: number; y: number } | null) {
-            const { windows, containers, windowContainerMapping } = get();
-            const window = windows[windowId];
-            const container = containers[windowContainerMapping[windowId]];
-            if (!window || !container) {
-                return;
+            const currentContainerId = windowContainerMapping[windowId];
+            if (ignoredContainer !== currentContainerId) {
+                moveWindowToOwnContainer(windowId, { x: dimension.left, y: dimension.top });
             }
-            const dimension = container.dimension ? { ...container.dimension } : undefined;
-
-            removeWindowFromContainer(windowId);
-            setWindow(window);
-            if (dimension && position) {
-                const { windowContainerMapping: newMapping, containers: newContainers } = get();
-                const newContainer = newContainers[newMapping[windowId]];
-                dimension.right += dimension.left - position.x;
-                dimension.bottom += dimension.top - position.y;
-                dimension.left = position.x;
-                dimension.top = position.y;
-                newContainer.dimension = checkWindowDimension(dimension);
-                set({
-                    containers: { ...newContainers, [newContainer.id]: newContainer },
-                    activeContainerId: newContainer.id,
-                });
+            const { windowContainerMapping: newWindowContainerMapping, containers: newContainers } = get();
+            const newId = newWindowContainerMapping[windowId];
+            updateContainerDimension(newId, dimension);
+            if (!newContainers[newId].isMoving) {
+                set({ containers: { ...newContainers, [newId]: { ...newContainers[newId], isMoving: true } } });
             }
-        },
-        setIsDraggingOver(id: string) {
-            set({ isDraggingOver: id, activeContainerId: id });
-        },
-        removeIsDraggingOver(id: string) {
-            set(({ isDraggingOver }) => ({
-                isDraggingOver: isDraggingOver === id ? '' : isDraggingOver,
-            }));
+            return newId;
         },
     };
 };

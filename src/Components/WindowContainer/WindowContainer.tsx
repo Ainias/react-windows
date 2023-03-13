@@ -27,6 +27,7 @@ import {
     Clickable,
     Flex,
     Grow,
+    Inline,
     InlineBlock,
     Menu,
     MenuItem,
@@ -40,6 +41,7 @@ import { shallow } from 'zustand/shallow';
 import { ContainerState } from '../types/ContainerState';
 import { TitleTabBar } from './TitleTabBar';
 import { createPortal } from 'react-dom';
+import { Position, useOnMouseDrag } from '../hooks/useOnMouseDrag';
 
 type ResizeDirection = 'top' | 'left' | 'right' | 'bottom' | 'tl' | 'tr' | 'bl' | 'br';
 export type WindowButtonData = WindowButtonProps<any> & { key: string };
@@ -101,10 +103,23 @@ export const WindowContainer = withForwardRef(
 
         // States
         const useStore = getWindowStore(store);
-        const [setActiveContainer, updateContainerDimension, updateContainerState] = useStore(
-            (s) => [s.setActiveContainer, s.updateContainerDimension, s.updateContainerState],
+        const [
+            setActiveContainer,
+            updateContainerDimension,
+            updateContainerState,
+            setContainerButtonWidth,
+            setContainerIsMoving,
+        ] = useStore(
+            (s) => [
+                s.setActiveContainer,
+                s.updateContainerDimension,
+                s.updateContainerState,
+                s.setButtonWidth,
+                s.setContainerIsMoving,
+            ],
             shallow
         );
+        const buttonWidth = useStore((s) => s.containers[id].buttonWidth);
 
         const { defaultWidth } = windowData ?? {};
         const { dimension, state } = containerData;
@@ -115,17 +130,22 @@ export const WindowContainer = withForwardRef(
 
         const [isClient, setIsClient] = useState(false);
 
-        const [mouseDownPos, setMouseDownPos] = useState<undefined | { x: number; y: number }>(undefined);
-        const [moveStartPos, setMoveStartPos] = useState(dimension);
-
-        const [resizeStartPos, setResizeStartPos] = useState<undefined | { x: number; y: number }>(undefined);
         const [resizeDirection, setResizeDirection] = useState<undefined | ResizeDirection>();
         const [resizeStartDimension, setResizeStartDimension] = useState(dimension);
-        const [buttonWidth, setButtonWidth] = useState(0);
+        const { isMoving } = containerData;
 
         // Selectors
 
         // Callbacks
+        const setIsMoving = useCallback(
+            (newIsMoving: boolean) => setContainerIsMoving(id, newIsMoving),
+            [id, setContainerIsMoving]
+        );
+        const setButtonWidth = useCallback(
+            (newButtonWidth: number) => setContainerButtonWidth(id, newButtonWidth),
+            [id, setContainerButtonWidth]
+        );
+
         const setContainerState = useCallback(
             (newState: Parameters<typeof updateContainerState>[1]) => {
                 updateContainerState(id, newState);
@@ -204,99 +224,61 @@ export const WindowContainer = withForwardRef(
             [setContainerState]
         );
 
-        const onResizeStart = useCallback(
-            (e: ReactMouseEvent, direction: ResizeDirection) => {
-                setResizeDirection(direction);
-                setResizeStartPos({ x: e.clientX, y: e.clientY });
-                setResizeStartDimension(dimension);
-            },
-            [dimension]
-        );
+        const onMouseDown = useCallback(() => {
+            setIsMoving(true);
+        }, [setIsMoving]);
 
-        const onMoveStart = useCallback(
-            (e: ReactMouseEvent) => {
-                setMouseDownPos({ x: e.clientX, y: e.clientY });
-                setMoveStartPos(dimension);
-            },
-            [dimension]
-        );
-
-        const onMove = useCallback(
-            (e: MouseEvent) => {
-                if (!dimension) {
+        const onMouseMove = useCallback(
+            (diff: Position) => {
+                if (!resizeStartDimension) {
                     return;
                 }
 
-                const newDimension = { ...dimension };
-                if (resizeStartPos && resizeStartDimension) {
-                    const diff = { x: e.clientX - resizeStartPos.x, y: e.clientY - resizeStartPos.y };
-                    if (resizeDirection === 'top' || resizeDirection === 'tl' || resizeDirection === 'tr') {
-                        newDimension.top = Math.min(
-                            window.innerHeight - (resizeStartDimension.bottom ?? 0) - WINDOW_CONTAINER_MIN_HEIGHT,
-                            resizeStartDimension.top + diff.y
-                        );
-                    }
-                    if (resizeDirection === 'bottom' || resizeDirection === 'bl' || resizeDirection === 'br') {
-                        newDimension.bottom = Math.min(
-                            window.innerHeight - resizeStartDimension.top - WINDOW_CONTAINER_MIN_HEIGHT,
-                            (resizeStartDimension.bottom ?? 0) - diff.y
-                        );
-                    }
-                    if (resizeDirection === 'left' || resizeDirection === 'bl' || resizeDirection === 'tl') {
-                        newDimension.left = Math.min(
-                            window.innerWidth - (resizeStartDimension.right ?? 0) - WINDOW_CONTAINER_MIN_WIDTH,
-                            resizeStartDimension.left + diff.x
-                        );
-                    }
-                    if (resizeDirection === 'right' || resizeDirection === 'br' || resizeDirection === 'tr') {
-                        newDimension.right = Math.min(
-                            window.innerWidth - resizeStartDimension.left - WINDOW_CONTAINER_MIN_WIDTH,
-                            (resizeStartDimension.right ?? 0) - diff.x
-                        );
-                    }
-                } else if (mouseDownPos && moveStartPos) {
-                    const diff = { x: e.clientX - mouseDownPos.x, y: e.clientY - mouseDownPos.y };
-                    const dimensions = getDimensions();
-                    if (!dimensions) {
-                        return;
-                    }
-                    diff.y = Math.min(
-                        Math.max(diff.y, -moveStartPos.top),
-                        dimensions.top + (dimensions.bottom ?? 0) - moveStartPos.top
+                const newDimension = { ...resizeStartDimension };
+                if (resizeDirection === 'top' || resizeDirection === 'tl' || resizeDirection === 'tr') {
+                    newDimension.top = Math.min(
+                        window.innerHeight - (resizeStartDimension.bottom ?? 0) - WINDOW_CONTAINER_MIN_HEIGHT,
+                        resizeStartDimension.top + diff.y
                     );
-                    diff.x = Math.min(
-                        Math.max(diff.x, -moveStartPos.left),
-                        (dimensions.right ?? 0) + dimensions.left - moveStartPos.left
+                }
+                if (resizeDirection === 'bottom' || resizeDirection === 'bl' || resizeDirection === 'br') {
+                    newDimension.bottom = Math.min(
+                        window.innerHeight - resizeStartDimension.top - WINDOW_CONTAINER_MIN_HEIGHT,
+                        (resizeStartDimension.bottom ?? 0) - diff.y
                     );
-
-                    newDimension.top = moveStartPos.top + diff.y;
-                    newDimension.left = moveStartPos.left + diff.x;
-                    newDimension.bottom = moveStartPos.bottom - diff.y;
-                    newDimension.right = moveStartPos.right - diff.x;
                 }
-
-                if (mouseDownPos || resizeStartPos) {
-                    setActive();
-                    setDimension(newDimension);
+                if (resizeDirection === 'left' || resizeDirection === 'bl' || resizeDirection === 'tl') {
+                    newDimension.left = Math.min(
+                        window.innerWidth - (resizeStartDimension.right ?? 0) - WINDOW_CONTAINER_MIN_WIDTH,
+                        resizeStartDimension.left + diff.x
+                    );
                 }
+                if (resizeDirection === 'right' || resizeDirection === 'br' || resizeDirection === 'tr') {
+                    newDimension.right = Math.min(
+                        window.innerWidth - resizeStartDimension.left - WINDOW_CONTAINER_MIN_WIDTH,
+                        (resizeStartDimension.right ?? 0) - diff.x
+                    );
+                }
+                setActive();
+                setDimension(newDimension);
             },
-            [
-                dimension,
-                getDimensions,
-                mouseDownPos,
-                moveStartPos,
-                resizeDirection,
-                resizeStartDimension,
-                resizeStartPos,
-                setActive,
-                setDimension,
-            ]
+            [resizeDirection, resizeStartDimension, setActive, setDimension]
         );
 
-        const onMoveStop = useCallback(() => {
-            setMouseDownPos(undefined);
-            setResizeStartPos(undefined);
-        }, []);
+        const onMouseUp = useCallback(() => {
+            setIsMoving(false);
+        }, [setIsMoving]);
+
+        const onDragDown = useOnMouseDrag({ onMouseMove, onMouseDown, onMouseUp });
+
+        const onResizeStart = useCallback(
+            (e: ReactMouseEvent, direction: ResizeDirection) => {
+                setResizeDirection(direction);
+                onDragDown(e);
+                setResizeStartDimension(dimension);
+            },
+            [dimension, onDragDown]
+        );
 
         const openInNewWindow = useCallback(
             (force = false) => {
@@ -401,24 +383,6 @@ export const WindowContainer = withForwardRef(
         // Effects
         useEffect(() => {
             if (disabled) {
-                return undefined;
-            }
-
-            window.addEventListener('mousemove', onMove);
-            return () => window.removeEventListener('mousemove', onMove);
-        }, [disabled, onMove]);
-
-        useEffect(() => {
-            if (disabled) {
-                return undefined;
-            }
-
-            window.addEventListener('mouseup', onMoveStop);
-            return () => window.removeEventListener('mouseup', onMoveStop);
-        }, [disabled, onMoveStop]);
-
-        useEffect(() => {
-            if (disabled) {
                 return;
             }
 
@@ -475,12 +439,7 @@ export const WindowContainer = withForwardRef(
         }, [openInNewWindow, resizeToContent, state]);
 
         const renderTitle = () => (
-            <Clickable
-                onMouseDown={onMoveStart}
-                className={classNames(className, styles.fullWidth)}
-                ref={titleRef}
-                preventDefault={false}
-            >
+            <Inline className={classNames(className, styles.fullWidth)} ref={titleRef}>
                 <Flex horizontal={true} className={classNames(styles.title)}>
                     <TitleTabBar
                         storeId={store}
@@ -488,6 +447,7 @@ export const WindowContainer = withForwardRef(
                         style={{ width: `calc(100% - ${buttonWidth}px)` }}
                         titleInfos={titleInfos}
                         disabled={disabled}
+                        onMoveUpdate={setIsMoving}
                     />
                     <SizeCalculator onSize={setButtonWidth}>
                         <InlineBlock className={styles.titleButtons}>
@@ -499,7 +459,7 @@ export const WindowContainer = withForwardRef(
                         </InlineBlock>
                     </SizeCalculator>
                 </Flex>
-            </Clickable>
+            </Inline>
         );
 
         // Render Functions
@@ -517,7 +477,7 @@ export const WindowContainer = withForwardRef(
                                 [styles.minimized]: state === ContainerState.MINIMIZED,
                                 [styles.maximized]: state === ContainerState.MAXIMIZED,
                                 [styles.popup]: state === ContainerState.POPUP,
-                                [styles.moving]: mouseDownPos,
+                                [styles.moving]: isMoving,
                                 [styles.active]: isActive,
                                 [styles.disabled]: disabled,
                             })}

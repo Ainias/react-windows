@@ -1,7 +1,6 @@
 import React, { useLayoutEffect } from 'react';
 import { withMemo } from 'react-bootstrap-mobile';
 import { getWindowStore } from '../store/createWindowStore';
-import { WindowDragPreview } from '../WindowDragPreview/WindowDragPreview';
 import { WindowContainerFromStore } from '../WindowContainer/WindowContainerFromStore';
 
 export type WindowListProps = { storeId?: string };
@@ -36,10 +35,13 @@ export const WindowList = withMemo(function WindowList({ storeId = 'default' }: 
 
     return (
         <>
-            {Object.keys(containers).map((container) => (
-                <WindowContainerFromStore id={container} key={container} store={storeId} />
+            {Object.keys(containers).map((_, index, arr) => (
+                <WindowContainerFromStore
+                    id={arr[arr.length - 1 - index]}
+                    key={arr[arr.length - 1 - index]}
+                    store={storeId}
+                />
             ))}
-            <WindowDragPreview storeId={storeId} />
         </>
     );
 });

@@ -1,59 +1,132 @@
-import React, { useCallback, useEffect } from 'react';
-import { Clickable, InlineBlock, RbmComponentProps, withMemo, Text, WithStringProps } from 'react-bootstrap-mobile';
+import React, { useCallback, useRef } from 'react';
+import {
+    Clickable,
+    InlineBlock,
+    RbmComponentProps,
+    Text,
+    useDelayed,
+    useWindow,
+    withMemo,
+    WithStringProps,
+} from 'react-bootstrap-mobile';
 import classNames from 'classnames';
 import styles from './windowContainer.scss';
-import { useDrag } from 'react-dnd';
-import { getDragType } from '../helper/getDragType';
+import { Position, useOnMouseDrag } from '../hooks/useOnMouseDrag';
 import { getWindowStore } from '../store/createWindowStore';
-import { getEmptyImage } from 'react-dnd-html5-backend';
+import { shallow } from 'zustand/shallow';
+import { ContainerState } from '../types/ContainerState';
 
 export type TitleTabProps = RbmComponentProps<
-    { id: string; isActive: boolean; onClick: (id: string) => void; storeId: string; isHidden?: boolean },
+    {
+        id: string;
+        isActive: boolean;
+        onClick: (id: string) => void;
+        isHidden?: boolean;
+        storeId: string;
+    },
     WithStringProps
 >;
 
 export const TitleTab = withMemo(
-    function TitleTab({ id, children, isActive, onClick, className, storeId, style, isHidden = false }: TitleTabProps) {
+    function TitleTab({ id, children, isActive, onClick, className, style, isHidden = false, storeId }: TitleTabProps) {
         // Variables
 
         // Refs
+        const useStore = getWindowStore(storeId);
+        const dimension = useStore((s) => s.containers[s.windowContainerMapping[id]]?.dimension);
+        const canDrag = useStore((s) => s.containers[s.windowContainerMapping[id]]?.state !== ContainerState.POPUP);
+        const singleTabContainerId = useStore((s) => {
+            if (s.containers[s.windowContainerMapping[id]]?.windowIds.length === 1) {
+                return s.windowContainerMapping[id];
+            }
+            return undefined;
+        });
+        const [updateDragging, setContainerIsMoving] = useStore(
+            (s) => [s.updateDragging, s.setContainerIsMoving],
+            shallow
+        );
+        const window = useWindow();
+
+        const dragStartPosition = useRef<Position | undefined>(undefined);
+        const ignoredContainerId = useRef<string | undefined>(undefined);
 
         // States
-        const useStore = getWindowStore(storeId);
-        const moveToOwnContainer = useStore((s) => s.moveWindowToOwnContainer);
-
-        const [{ isDragging }, dragRef, previewRef] = useDrag(
-            () => ({
-                type: getDragType(storeId),
-                item: { id, title: children },
-                collect: (monitor) => ({
-                    isDragging: monitor.isDragging(),
-                }),
-                end: (item, monitor) => {
-                    if (!monitor.didDrop()) {
-                        moveToOwnContainer(item.id, monitor.getSourceClientOffset());
-                    }
-                },
-            }),
-            [storeId, id, children, moveToOwnContainer]
-        );
 
         // Selectors
 
         // Callbacks
+
+        const onDrag = useDelayed(
+            (e: MouseEvent) => {
+                if (!dimension || !dragStartPosition.current) {
+                    return;
+                }
+                const position = { x: e.clientX, y: e.clientY };
+
+                const diff = {
+                    x: position.x - dragStartPosition.current.x,
+                    y: position.y - dragStartPosition.current.y,
+                };
+
+                const newDimension = { ...dimension };
+
+                diff.y = Math.min(Math.max(diff.y, -dimension.top), dimension.bottom);
+                diff.x = Math.min(Math.max(diff.x, -dimension.left), dimension.right);
+
+                newDimension.top += diff.y;
+                newDimension.left += diff.x;
+                newDimension.bottom -= diff.y;
+                newDimension.right -= diff.x;
+
+                ignoredContainerId.current = updateDragging(id, position, newDimension, ignoredContainerId.current);
+
+                // updateDraggingTab(id, newDimension);
+            },
+            [dimension, id, updateDragging],
+            16,
+            16
+        );
+
+        const onDragStop = useCallback(() => {
+            if (ignoredContainerId.current) {
+                setContainerIsMoving(ignoredContainerId.current, false);
+            }
+
+            dragStartPosition.current = undefined;
+            ignoredContainerId.current = undefined;
+            window?.removeEventListener('mousemove', onDrag);
+            window?.removeEventListener('mouseup', onDragStop);
+            window?.document.body.classList.remove(styles.noSelect);
+        }, [onDrag, setContainerIsMoving, window]);
+
+        const onDragStart = useCallback(
+            (e: MouseEvent, startPosition: Position) => {
+                dragStartPosition.current = startPosition;
+                ignoredContainerId.current = singleTabContainerId;
+                onDrag(e);
+                window?.addEventListener('mousemove', onDrag);
+                window?.addEventListener('mouseup', onDragStop);
+                window?.document.body.classList.add(styles.noSelect);
+            },
+            [onDrag, onDragStop, singleTabContainerId, window]
+        );
+
         const onClickInner = useCallback(() => {
-            console.log('LOG-d onClick');
             onClick(id);
         }, [id, onClick]);
 
-        const onMouseDown = useCallback(() => {
-            // Adding this listener to prevent moving from window
-        }, []);
+        const onMouseMove = useCallback(
+            (diff, currentPosition: Position, event) => {
+                if (!canDrag || dragStartPosition.current || (Math.abs(diff.x) < 5 && Math.abs(diff.y) < 5)) {
+                    return;
+                }
+                onDragStart(event, { x: currentPosition.x - diff.x, y: currentPosition.y - diff.y });
+            },
+            [canDrag, onDragStart]
+        );
 
         // Effects
-        useEffect(() => {
-            previewRef(getEmptyImage());
-        }, [previewRef]);
+        const onMouseDown = useOnMouseDrag({ onMouseMove });
 
         // Other
 
@@ -65,12 +138,11 @@ export const TitleTab = withMemo(
                     styles.titleTab,
                     {
                         [styles.titleTabActive]: isActive,
-                        [styles.titleTabHidden]: isHidden && isDragging,
+                        [styles.titleTabHidden]: isHidden,
                     },
                     className
                 )}
                 style={style}
-                ref={dragRef}
             >
                 <Clickable onClick={onClickInner} onMouseDown={onMouseDown} preventDefault={false}>
                     <Text className={styles.titleText}>{children}</Text>

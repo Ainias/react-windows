@@ -19,36 +19,25 @@ and you are good to go!
 
 ## How to use
 
-You only really need three components. The first one is
+You only really need two components. The first one is
 
-```Typescript
+```Typescript tsx
 <Window id = {"unique-window-id"}
 title = {"myWindowTitle"} > {...} < /Window>
 ```
 
-and
+and the second one is
 
-```Typescript
+```Typescript tsx
 <WindowList / >
-```
-
-together with
-
-```Typescript
-<WindowDndProvider backend = {HTML5Backend} >
-    <WindowList / >
-    </WindowDndProvider>
 ```
 
 With ```<Window>``` you create new window data. The component itself does
 not render anything but will add the data and children you give it to a
 store in the background. Then ```<WindowList>``` displays the different
-windows. With this concept you can add windows in different layers of
+windows. With this concept you can add windows in different parts of
 your application, but they will always be on the same z-layer and therefore
 can better interact with each other.
-
-The ```<WindowDndProvider>``` is just an export of ```<DndProvider>``` from the bundled ```react-dnd```
-package. Use always ```<WindowDndProvider>```, even if you have `react-dnd` installed.
 
 The settings (which windows are displayed as tabs inside one container ect) is saved
 locally. From the window itself, only the id and the corresponding container
@@ -75,10 +64,6 @@ it will be in the same container as before. This allows conditional window displ
 | Prop    | type     | required | default   | explanation                                                                                                                                               |
 |---------|----------|----------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | storeId | `string` |          | 'default' | the name of the store to use. Normally you don't need this. If you want windows which should not interact with each other, use different stores for them. |
-
-### `<WindowDndProvider>`
-
-See https://react-dnd.github.io/react-dnd/docs/api/dnd-provider for details.
 
 #### `WindowButtonData`
 
