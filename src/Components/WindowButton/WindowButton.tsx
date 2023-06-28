@@ -21,6 +21,7 @@ export type WindowButtonProps<OnClickData> = RbmComponentProps<
         containerState?: ContainerState;
         hideWhenMaximized?: boolean;
         hideWhenMinimized?: boolean;
+        order?: number;
     } & Listener<'onClick', OnClickData, MouseEvent>,
     WithNoChildren
 >;

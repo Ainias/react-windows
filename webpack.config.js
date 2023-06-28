@@ -40,7 +40,7 @@ module.exports = (env) => {
             '@fortawesome/fontawesome-svg-core': 'commonjs2 @fortawesome/fontawesome-svg-core',
             '@fortawesome/free-solid-svg-icons': 'commonjs2 @fortawesome/free-solid-svg-icons',
             'react-beautiful-dnd': 'commonjs2 react-beautiful-dnd',
-            'react-bootstrap-mobile': 'commonjs2 react-bootstrap-mobile',
+            '@ainias42/react-bootstrap-mobile': 'commonjs2 @ainias42/react-bootstrap-mobile',
         },
         optimization: {
             minimize: false,

@@ -12,19 +12,7 @@ fi;
 
 versionName=$1
 versionExists="$(git ls-remote $REPOSITORY refs/tags/"$versionName"| tr -d '\n')"
-
-if [ -n "$versionExists" ]; then
-	echo "Version existiert bereits!";
-	exit 1;
-fi;
-
-if [[ -z "$1" ]]; then
-  echo "versioname not given!"
-  exit;
-fi;
-
-versionName=$1
-versionExists="$(git ls-remote $REPOSITORY refs/tags/"$versionName"| tr -d '\n')"
+workingDir=$(pwd);
 
 if [ -n "$versionExists" ]; then
 	echo "Version existiert bereits!";
@@ -36,6 +24,7 @@ TMPDIR=$(mktemp -d)
 cd "$TMPDIR";
 git clone $REPOSITORY project
 cd project
+pwd
 
 npm install
 npm run build:production
@@ -44,3 +33,7 @@ git commit -m "pre-version-commit for version $versionName" || echo "no commit n
 npm version "$versionName"
 npm publish
 git push
+
+cd "$workingDir"
+git pull
+

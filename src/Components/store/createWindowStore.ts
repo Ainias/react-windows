@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware';
 import { WindowContainerDimension } from '../WindowContainer/WindowContainerDimension';
 import type { WindowButtonData } from '../WindowContainer/WindowContainer';
 import { Random } from '@ainias42/js-helper';
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { updateDimensions } from '../helper/updateDimensions';
 import { ContainerState } from '../types/ContainerState';
 import { checkWindowDimension } from '../WindowContainer/checkWindowDimension';
@@ -27,6 +27,8 @@ export type WindowData = {
     buttons: (state: ContainerState, defaultButtons: WindowButtonData[]) => WindowButtonData[];
     defaultWidth?: number;
     children: ReactNode;
+    className?: string;
+    style?: CSSProperties;
 };
 
 const initialState = {
@@ -168,6 +170,12 @@ const actionsGenerator = (set: SetState, get: GetState) => {
         setWindow(window: WindowData, defaultContainerId?: string) {
             setWindow(window, defaultContainerId);
         },
+        removeWindow(windowId: string) {
+            const { windows } = get();
+            const newWindows = { ...windows };
+            delete newWindows[windowId];
+            set({ windows: newWindows });
+        },
         updateContainerDimension(id: string, dimension: WindowContainerDimension | undefined) {
             updateContainerDimension(id, dimension);
         },
@@ -251,6 +259,7 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             if (!newContainers[newId].isMoving) {
                 set({ containers: { ...newContainers, [newId]: { ...newContainers[newId], isMoving: true } } });
             }
+            set({ activeContainerId: newId });
             return newId;
         },
     };

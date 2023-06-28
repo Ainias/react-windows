@@ -79,8 +79,6 @@ export const TitleTab = withMemo(
                 newDimension.right -= diff.x;
 
                 ignoredContainerId.current = updateDragging(id, position, newDimension, ignoredContainerId.current);
-
-                // updateDraggingTab(id, newDimension);
             },
             [dimension, id, updateDragging],
             16,

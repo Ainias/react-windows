@@ -410,15 +410,18 @@ export const WindowContainer = withForwardRef(
                     key: 'minimize-button',
                     icon: faWindowMinimize,
                     onClick: toggleMinimized,
+                    order: 10,
                 },
                 {
                     key: 'maximize-button',
                     icon: state === ContainerState.MAXIMIZED ? faWindowRestore : faWindowMaximize,
                     onClick: toggleMaximized,
+                    order: 20,
                 },
             ];
 
-            return windowData?.buttons(state, defaultButtons) ?? defaultButtons;
+            const newButtons = windowData?.buttons(state, defaultButtons) ?? defaultButtons;
+            return newButtons.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
         }, [toggleMinimized, state, toggleMaximized, windowData]);
 
         const menuItems = useMemo(() => {
@@ -469,98 +472,104 @@ export const WindowContainer = withForwardRef(
         }
 
         return (
-            <Clickable onClick={setActive} onClickData={id} ref={updateContainerRef}>
-                {createPortal(
-                    <WindowContext.Provider value={windowObject}>
-                        <Flex
-                            className={classNames(styles.windowContainer, {
-                                [styles.minimized]: state === ContainerState.MINIMIZED,
-                                [styles.maximized]: state === ContainerState.MAXIMIZED,
-                                [styles.popup]: state === ContainerState.POPUP,
-                                [styles.moving]: isMoving,
-                                [styles.active]: isActive,
-                                [styles.disabled]: disabled,
-                            })}
-                            style={{
-                                top: initialTop,
-                                left: initialLeft,
-                                right:
-                                    defaultWidth && isClient
-                                        ? window.innerWidth - initialLeft - defaultWidth
-                                        : undefined,
-                                ...(dimension ?? {}),
-                                minWidth: WINDOW_CONTAINER_MIN_WIDTH,
-                                minHeight: WINDOW_CONTAINER_MIN_HEIGHT,
-                            }}
-                            ref={windowContainerRef}
-                        >
-                            <Flex horizontal={true} className={styles.fullWidth}>
-                                <Clickable
-                                    className={classNames(styles.resize, styles.edge, styles.nw)}
-                                    onMouseDown={onResizeStart}
-                                    onMouseDownData="tl"
-                                />
-                                <Clickable
-                                    className={classNames(styles.resize, styles.y)}
-                                    onMouseDown={onResizeStart}
-                                    onMouseDownData="top"
-                                />
-                                <Clickable
-                                    className={classNames(styles.resize, styles.edge, styles.ne)}
-                                    onMouseDown={onResizeStart}
-                                    onMouseDownData="tr"
-                                />
-                            </Flex>
-                            <Grow className={classNames(styles.fullWidth, styles.overflowHidden)}>
-                                <Flex horizontal={true} className={classNames(styles.stretchItems, styles.fullHeight)}>
+            <>
+                <Clickable onClick={setActive} onClickData={id} ref={updateContainerRef}>
+                    {createPortal(
+                        <WindowContext.Provider value={windowObject}>
+                            <Flex
+                                className={classNames(styles.windowContainer, windowData?.className, {
+                                    [styles.minimized]: state === ContainerState.MINIMIZED,
+                                    [styles.maximized]: state === ContainerState.MAXIMIZED,
+                                    [styles.popup]: state === ContainerState.POPUP,
+                                    [styles.moving]: isMoving,
+                                    [styles.active]: isActive,
+                                    [styles.disabled]: disabled,
+                                })}
+                                style={{
+                                    ...(windowData?.style ?? {}),
+                                    top: initialTop,
+                                    left: initialLeft,
+                                    right:
+                                        defaultWidth && isClient
+                                            ? window.innerWidth - initialLeft - defaultWidth
+                                            : undefined,
+                                    ...(dimension ?? {}),
+                                    minWidth: WINDOW_CONTAINER_MIN_WIDTH,
+                                    minHeight: WINDOW_CONTAINER_MIN_HEIGHT,
+                                }}
+                                ref={windowContainerRef}
+                            >
+                                <Flex horizontal={true} className={styles.fullWidth}>
                                     <Clickable
-                                        className={classNames(styles.resize, styles.x)}
+                                        className={classNames(styles.resize, styles.edge, styles.nw)}
                                         onMouseDown={onResizeStart}
-                                        onMouseDownData="left"
+                                        onMouseDownData="tl"
                                     />
-                                    <Grow className={styles.overflowXAuto}>
-                                        <Block className={styles.window} ref={windowRef}>
-                                            {renderTitle()}
-                                            <Block
-                                                className={classNames(styles.content, {
-                                                    [styles.fillHeight]: windowData?.fillHeight,
-                                                })}
-                                                __allowChildren="all"
-                                                ref={contentRef}
-                                            >
-                                                {windowData?.children}
-                                            </Block>
-                                        </Block>
-                                    </Grow>
                                     <Clickable
-                                        className={classNames(styles.resize, styles.x)}
+                                        className={classNames(styles.resize, styles.y)}
                                         onMouseDown={onResizeStart}
-                                        onMouseDownData="right"
+                                        onMouseDownData="top"
+                                    />
+                                    <Clickable
+                                        className={classNames(styles.resize, styles.edge, styles.ne)}
+                                        onMouseDown={onResizeStart}
+                                        onMouseDownData="tr"
                                     />
                                 </Flex>
-                            </Grow>
-                            <Flex horizontal={true} className={styles.fullWidth}>
-                                <Clickable
-                                    className={classNames(styles.resize, styles.edge, styles.sw)}
-                                    onMouseDown={onResizeStart}
-                                    onMouseDownData="bl"
-                                />
-                                <Clickable
-                                    className={classNames(styles.resize, styles.y)}
-                                    onMouseDown={onResizeStart}
-                                    onMouseDownData="bottom"
-                                />
-                                <Clickable
-                                    className={classNames(styles.resize, styles.edge, styles.se)}
-                                    onMouseDown={onResizeStart}
-                                    onMouseDownData="br"
-                                />
+                                <Grow className={classNames(styles.fullWidth, styles.overflowHidden)}>
+                                    <Flex
+                                        horizontal={true}
+                                        className={classNames(styles.stretchItems, styles.fullHeight)}
+                                    >
+                                        <Clickable
+                                            className={classNames(styles.resize, styles.x)}
+                                            onMouseDown={onResizeStart}
+                                            onMouseDownData="left"
+                                        />
+                                        <Grow className={styles.overflowXAuto}>
+                                            <Block className={styles.window} ref={windowRef}>
+                                                {renderTitle()}
+                                                <Block
+                                                    className={classNames(styles.content, {
+                                                        [styles.fillHeight]: windowData?.fillHeight,
+                                                    })}
+                                                    __allowChildren="all"
+                                                    ref={contentRef}
+                                                >
+                                                    {windowData?.children}
+                                                </Block>
+                                            </Block>
+                                        </Grow>
+                                        <Clickable
+                                            className={classNames(styles.resize, styles.x)}
+                                            onMouseDown={onResizeStart}
+                                            onMouseDownData="right"
+                                        />
+                                    </Flex>
+                                </Grow>
+                                <Flex horizontal={true} className={styles.fullWidth}>
+                                    <Clickable
+                                        className={classNames(styles.resize, styles.edge, styles.sw)}
+                                        onMouseDown={onResizeStart}
+                                        onMouseDownData="bl"
+                                    />
+                                    <Clickable
+                                        className={classNames(styles.resize, styles.y)}
+                                        onMouseDown={onResizeStart}
+                                        onMouseDownData="bottom"
+                                    />
+                                    <Clickable
+                                        className={classNames(styles.resize, styles.edge, styles.se)}
+                                        onMouseDown={onResizeStart}
+                                        onMouseDownData="br"
+                                    />
+                                </Flex>
                             </Flex>
-                        </Flex>
-                    </WindowContext.Provider>,
-                    portalContainer
-                )}
-            </Clickable>
+                        </WindowContext.Provider>,
+                        portalContainer
+                    )}
+                </Clickable>
+            </>
         );
     },
     styles,
