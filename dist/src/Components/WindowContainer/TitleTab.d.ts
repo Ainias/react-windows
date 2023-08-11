@@ -5,5 +5,6 @@ export type TitleTabProps = RbmComponentProps<{
     onClick: (id: string) => void;
     isHidden?: boolean;
     storeId: string;
+    disableDrag: boolean;
 }, WithStringProps>;
-export declare const TitleTab: ({ id, children, isActive, onClick, className, style, isHidden, storeId }: TitleTabProps) => JSX.Element;
+export declare const TitleTab: ({ id, children, isActive, onClick, className, style, isHidden, storeId, disableDrag }: TitleTabProps) => JSX.Element;

@@ -1,6 +1,7 @@
 import type {WindowContainerData} from '../store/createWindowStore';
 import {changeDimension} from '../WindowContainer/changeDimension';
 import {ArrayHelper} from '@ainias42/js-helper';
+import {checkWindowDimension} from "../WindowContainer/checkWindowDimension";
 
 export function updateDimensions(
     containers: Record<string, WindowContainerData>,
@@ -21,7 +22,7 @@ export function updateDimensions(
         if (!dimension) {
             return container;
         }
-        const newDimension = changeDimension({...dimension}, diff.x, diff.y);
+        const newDimension = checkWindowDimension(changeDimension({...dimension}, diff.x, diff.y));
         return {...container, dimension: newDimension};
     });
     return ArrayHelper.arrayToObject(changedContainers, (container) => container.id);

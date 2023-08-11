@@ -1,5 +1,6 @@
 import { WindowButtonProps } from '../WindowButton/WindowButton';
 import { WindowContainerData, WindowData } from '../store/createWindowStore';
+import "../../i18n/i18n";
 export type WindowButtonData = WindowButtonProps<any> & {
     key: string;
 };

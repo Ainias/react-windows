@@ -4,33 +4,35 @@ import { CSSProperties, ReactNode } from 'react';
 import { ContainerState } from '../types/ContainerState';
 import { Position } from 'react-beautiful-dnd';
 export type WindowContainerData = {
+    activeWindowId: string;
+    buttonWidth: number;
     dimension?: WindowContainerDimension;
+    id: string;
+    isLocked: boolean;
+    isMoving: boolean;
     state: ContainerState;
     windowIds: string[];
-    activeWindowId: string;
-    id: string;
-    buttonWidth: number;
-    isMoving: boolean;
 };
 export type WindowData = {
-    id: string;
-    title: string;
-    fillHeight: boolean;
     buttons: (state: ContainerState, defaultButtons: WindowButtonData[]) => WindowButtonData[];
-    defaultWidth?: number;
     children: ReactNode;
     className?: string;
+    defaultWidth?: number;
+    fillHeight: boolean;
+    id: string;
     style?: CSSProperties;
+    title: string;
 };
 declare const initialState: {
-    containers: Record<string, WindowContainerData>;
-    windows: Record<string, WindowData>;
-    windowContainerMapping: Record<string, string>;
     activeContainerId: string;
+    containers: Record<string, WindowContainerData>;
+    draggingWindowId: string;
+    windowContainerMapping: Record<string, string>;
     windowSize: {
         x: number;
         y: number;
     };
+    windows: Record<string, WindowData>;
 };
 export type WindowStoreState = typeof initialState & ReturnType<typeof actionsGenerator>;
 type SetState = (newState: WindowStoreState | Partial<WindowStoreState> | ((state: WindowStoreState) => WindowStoreState | Partial<WindowStoreState>), replace?: boolean) => void;
@@ -46,7 +48,9 @@ declare const actionsGenerator: (set: SetState, get: GetState) => {
     setWindowSize(x: number, y: number): void;
     setButtonWidth(containerId: string, buttonWidth: number): void;
     setContainerIsMoving(containerId: string, isMoving: boolean): void;
+    setContainerIsLocked(containerId: string, isLocked: boolean): void;
     updateDragging(windowId: string, mousePosition: Position, dimension: WindowContainerDimension, ignoredContainer?: string): string | undefined;
+    clearDraggingWindow(): void;
 };
 export declare function getWindowStore(name?: string): import("zustand").UseBoundStore<Omit<import("zustand").StoreApi<WindowStoreState>, "persist"> & {
     persist: {

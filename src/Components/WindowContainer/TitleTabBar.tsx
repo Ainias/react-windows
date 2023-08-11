@@ -14,7 +14,7 @@ export type TitleTabBarProps = RbmComponentProps<{
     containerId: string;
     titleInfos: { id: string; title: string }[];
     onMoveUpdate: (isMoving: boolean) => void;
-    disabled?: boolean;
+    isLocked: boolean;
 }>;
 
 export const TitleTabBar = withMemo(function TitleTabBar({
@@ -24,6 +24,7 @@ export const TitleTabBar = withMemo(function TitleTabBar({
     className,
     titleInfos,
     onMoveUpdate,
+    isLocked
 }: TitleTabBarProps) {
     // Variables
 
@@ -35,7 +36,7 @@ export const TitleTabBar = withMemo(function TitleTabBar({
         (s) => [s.updateContainerActiveWindow, s.setActiveContainer, s.updateContainerDimension],
         shallow
     );
-    const moveStartDimension = useRef(dimension);
+    const moveStartDimension = useRef<WindowContainerDimension|undefined>(undefined);
 
     // Refs
 
@@ -49,10 +50,14 @@ export const TitleTabBar = withMemo(function TitleTabBar({
     );
 
     const onMouseDown = useCallback(() => {
+        if (isLocked) {
+            return;
+        }
+
         moveStartDimension.current = dimension;
         onMoveUpdate(true);
         setActive();
-    }, [dimension, onMoveUpdate, setActive]);
+    }, [dimension, isLocked, onMoveUpdate, setActive]);
 
     const onMouseMove = useCallback(
         (diff: Position) => {
@@ -111,6 +116,7 @@ export const TitleTabBar = withMemo(function TitleTabBar({
                     style={{ width: `${Math.floor(100 / tabLength)}%` }}
                     isHidden={false}
                     storeId={storeId}
+                    disableDrag={isLocked && titleInfos.length === 1}
                 >
                     {info.title}
                 </TitleTab>

@@ -23,12 +23,13 @@ export type TitleTabProps = RbmComponentProps<
         onClick: (id: string) => void;
         isHidden?: boolean;
         storeId: string;
+        disableDrag: boolean
     },
     WithStringProps
 >;
 
 export const TitleTab = withMemo(
-    function TitleTab({ id, children, isActive, onClick, className, style, isHidden = false, storeId }: TitleTabProps) {
+    function TitleTab({ id, children, isActive, onClick, className, style, isHidden = false, storeId, disableDrag }: TitleTabProps) {
         // Variables
 
         // Refs
@@ -41,8 +42,8 @@ export const TitleTab = withMemo(
             }
             return undefined;
         });
-        const [updateDragging, setContainerIsMoving] = useStore(
-            (s) => [s.updateDragging, s.setContainerIsMoving],
+        const [updateDragging, setContainerIsMoving, clearDragging] = useStore(
+            (s) => [s.updateDragging, s.setContainerIsMoving, s.clearDraggingWindow],
             shallow
         );
         const window = useWindow();
@@ -95,10 +96,15 @@ export const TitleTab = withMemo(
             window?.removeEventListener('mousemove', onDrag);
             window?.removeEventListener('mouseup', onDragStop);
             window?.document.body.classList.remove(styles.noSelect);
-        }, [onDrag, setContainerIsMoving, window]);
+            clearDragging();
+        }, [clearDragging, onDrag, setContainerIsMoving, window]);
 
         const onDragStart = useCallback(
             (e: MouseEvent, startPosition: Position) => {
+                if (disableDrag) {
+                    return;
+                }
+
                 dragStartPosition.current = startPosition;
                 ignoredContainerId.current = singleTabContainerId;
                 onDrag(e);
@@ -106,7 +112,7 @@ export const TitleTab = withMemo(
                 window?.addEventListener('mouseup', onDragStop);
                 window?.document.body.classList.add(styles.noSelect);
             },
-            [onDrag, onDragStop, singleTabContainerId, window]
+            [disableDrag, onDrag, onDragStop, singleTabContainerId, window]
         );
 
         const onClickInner = useCallback(() => {

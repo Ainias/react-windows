@@ -65,7 +65,6 @@ export const Window = withMemo(function Window({
 
         if (onClose) {
             const oldButtons = buttonFunction;
-            console.log('LOG-d adding closeButton');
             buttonFunction = (containerState, defaultButtons) => [
                 onCloseButton,
                 ...oldButtons(containerState, defaultButtons),

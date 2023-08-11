@@ -5,6 +5,7 @@ import { WindowConstants } from './WindowConstants';
 export function checkOverContainerAndTabPosition(
     containers: WindowContainerData[],
     position: Position,
+    windows: Record<string, any>,
     excludedContainerId?: string
 ) {
     let foundContainer: string | undefined;
@@ -18,7 +19,8 @@ export function checkOverContainerAndTabPosition(
             container.dimension.left <= position.x &&
             container.dimension.right <= window.innerWidth - position.x &&
             container.dimension.top <= position.y &&
-            container.dimension.top + WindowConstants.TITLE_HEIGHT >= position.y
+            container.dimension.top + WindowConstants.TITLE_HEIGHT >= position.y &&
+            container.windowIds.some(windowId => !!windows[windowId])
         ) {
             foundContainer = container.id;
             const width =

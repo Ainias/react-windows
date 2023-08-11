@@ -5,7 +5,8 @@ const fs = require('fs');
 const packageName = require('../package.json').name;
 
 const pathsToProjects = [
-    '/home/silas/Projekte/web/dnd',
+    // '/home/silas/Projekte/web/dnd',
+    '/Users/sguenter/Projekte/Privat/dnd'
 ];
 
 const deleteFolderRecursive = function (path) {

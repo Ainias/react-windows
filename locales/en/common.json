@@ -1,0 +1,16 @@
+{
+  "window": {
+    "button": {
+      "close": "Close",
+      "maximize": "Maximize",
+      "minimize": "Minimize",
+      "restore": "Restore",
+      "unlock": "Unlock"
+    },
+    "menu-item": {
+      "open-window": "Open in new Window",
+      "resize": "Fit to content",
+      "lock": "Fix Window"
+    }
+  }
+}

@@ -11,35 +11,37 @@ import { Position } from 'react-beautiful-dnd';
 import { checkOverContainerAndTabPosition } from '../helper/checkOverContainerAndTabPosition';
 
 export type WindowContainerData = {
+    activeWindowId: string;
+    buttonWidth: number;
     dimension?: WindowContainerDimension;
+    id: string;
+    isLocked: boolean;
+    isMoving: boolean;
     state: ContainerState;
     windowIds: string[];
-    activeWindowId: string;
-    id: string;
-    buttonWidth: number;
-    isMoving: boolean;
 };
 
 export type WindowData = {
-    id: string;
-    title: string;
-    fillHeight: boolean;
     buttons: (state: ContainerState, defaultButtons: WindowButtonData[]) => WindowButtonData[];
-    defaultWidth?: number;
     children: ReactNode;
     className?: string;
+    defaultWidth?: number;
+    fillHeight: boolean;
+    id: string;
     style?: CSSProperties;
+    title: string;
 };
 
 const initialState = {
-    containers: {} as Record<string, WindowContainerData>,
-    windows: {} as Record<string, WindowData>,
-    windowContainerMapping: {} as Record<string, string>,
     activeContainerId: '',
+    containers: {} as Record<string, WindowContainerData>,
+    draggingWindowId: '',
+    windowContainerMapping: {} as Record<string, string>,
     windowSize: {
         x: 0,
         y: 0,
     },
+    windows: {} as Record<string, WindowData>,
 };
 export type WindowStoreState = typeof initialState & ReturnType<typeof actionsGenerator>;
 
@@ -95,6 +97,7 @@ const actionsGenerator = (set: SetState, get: GetState) => {
                 activeWindowId: window.id,
                 id: containerId,
                 buttonWidth: 0,
+                isLocked: false,
                 isMoving: false,
             };
         }
@@ -232,16 +235,27 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             container.isMoving = isMoving;
             set({ containers: { ...containers, [containerId]: { ...container } } });
         },
+        setContainerIsLocked(containerId: string, isLocked: boolean) {
+            const { containers } = get();
+            const container = containers[containerId];
+            if (!container) {
+                return;
+            }
+            container.isLocked = isLocked;
+            set({ containers: { ...containers, [containerId]: { ...container } } });
+        },
         updateDragging(
             windowId: string,
             mousePosition: Position,
             dimension: WindowContainerDimension,
             ignoredContainer?: string
         ) {
-            const { containers, windowContainerMapping } = get();
+            set({draggingWindowId: windowId});
+            const { containers,windows, windowContainerMapping } = get();
             const newContainerData = checkOverContainerAndTabPosition(
                 Object.values(containers),
                 mousePosition,
+                windows,
                 ignoredContainer
             );
             if (newContainerData) {
@@ -262,6 +276,9 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             set({ activeContainerId: newId });
             return newId;
         },
+        clearDraggingWindow(){
+            set({ draggingWindowId: '' });
+        }
     };
 };
 

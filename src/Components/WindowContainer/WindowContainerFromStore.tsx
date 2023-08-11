@@ -43,6 +43,9 @@ export const WindowContainerFromStore = withMemo(function WindowContainerFromSto
     // Other
 
     // Render Functions
+    if (!windowData){
+        return null;
+    }
 
     return (
         <WindowContainer

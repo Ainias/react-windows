@@ -7,6 +7,6 @@ export type TitleTabBarProps = RbmComponentProps<{
         title: string;
     }[];
     onMoveUpdate: (isMoving: boolean) => void;
-    disabled?: boolean;
+    isLocked: boolean;
 }>;
-export declare const TitleTabBar: ({ storeId, containerId, style, className, titleInfos, onMoveUpdate, }: TitleTabBarProps) => JSX.Element;
+export declare const TitleTabBar: ({ storeId, containerId, style, className, titleInfos, onMoveUpdate, isLocked }: TitleTabBarProps) => JSX.Element;
