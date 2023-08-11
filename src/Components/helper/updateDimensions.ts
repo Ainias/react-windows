@@ -25,5 +25,5 @@ export function updateDimensions(
         const newDimension = checkWindowDimension(changeDimension({...dimension}, diff.x, diff.y));
         return {...container, dimension: newDimension};
     });
-    return ArrayHelper.arrayToObject(changedContainers, (container) => container.id);
+    return ArrayHelper.arrayToObject(changedContainers, (container) => container.id) as Record<string, WindowContainerData>;
 }
