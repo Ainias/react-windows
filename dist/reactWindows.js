@@ -1,19 +1,11 @@
 /*!
  * 
- *   @ainias42/react-windows v0.1.3
+ *   @ainias42/react-windows v0.1.4
  *   git+https://github.com/Ainias/Bootstrap-React-Mobile.git
  *   Copyright (c) Silas Günther and project contributors.
  *   This source code is licensed under the MIT license found in the
  *   LICENSE file in the root directory of this source tree.
  *
- */
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -28,855 +20,1558 @@
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@ainias42/js-helper/dist/ArrayHelper.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/@ainias42/js-helper/dist/ArrayHelper.js ***!
-  \**************************************************************/
+/***/ 615:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.ArrayHelper = void 0;\nconst Helper_1 = __webpack_require__(/*! ./Helper */ \"./node_modules/@ainias42/js-helper/dist/Helper.js\");\nclass ArrayHelper {\n    static noUndefined(array) {\n        return array.filter(arr => arr !== undefined);\n    }\n    static reverseFind(array, callback) {\n        for (let i = array.length - 1; i >= 0; i--) {\n            if (callback(array[i], i)) {\n                return array[i];\n            }\n        }\n        return undefined;\n    }\n    static reverseIndexOf(array, element, fromIndex = array.length - 1) {\n        for (let i = Math.min(fromIndex, array.length - 1); i >= 0; i--) {\n            if (array[i] === element) {\n                return i;\n            }\n        }\n        return -1;\n    }\n    static reverseSome(array, callback) {\n        for (let i = array.length - 1; i >= 0; i--) {\n            if (callback(array[i], i)) {\n                return true;\n            }\n        }\n        return false;\n    }\n    static reverseEvery(array, callback) {\n        for (let i = array.length - 1; i >= 0; i--) {\n            if (!callback(array[i], i)) {\n                return false;\n            }\n        }\n        return true;\n    }\n    static reverseForEach(array, callback) {\n        for (let i = array.length - 1; i >= 0; i--) {\n            callback(array[i], i);\n        }\n    }\n    static asyncForEach(array, callback, runAsynchronous) {\n        return __awaiter(this, void 0, void 0, function* () {\n            runAsynchronous = Helper_1.Helper.nonNull(runAsynchronous, false);\n            let validPromises = [];\n            for (let i = 0; i < array.length; i++) {\n                let index = i;\n                let currentPromise = Promise.resolve(callback(array[index], index, array));\n                if (!runAsynchronous) {\n                    yield currentPromise;\n                }\n                validPromises.push(currentPromise);\n            }\n            return Promise.all(validPromises);\n        });\n    }\n    static shuffle(array) {\n        let currentIndex = array.length, temporaryValue, randomIndex;\n        // While there remain elements to shuffle...\n        while (0 !== currentIndex) {\n            // Pick a remaining element...\n            randomIndex = Math.floor(Math.random() * currentIndex);\n            currentIndex -= 1;\n            // And swap it with the current element.\n            temporaryValue = array[currentIndex];\n            array[currentIndex] = array[randomIndex];\n            array[randomIndex] = temporaryValue;\n        }\n        return array;\n    }\n    static arrayToObject(array, index) {\n        const obj = {};\n        array.forEach(val => {\n            obj[index(val)] = val;\n        });\n        return obj;\n    }\n    static groupBy(array, index) {\n        const obj = {};\n        array.forEach(val => {\n            var _a;\n            const key = index(val);\n            (_a = obj[key]) !== null && _a !== void 0 ? _a : (obj[key] = []);\n            obj[key].push(val);\n        });\n        return obj;\n    }\n    static rotate(array, index) {\n        index %= array.length;\n        if (index < 0) {\n            index += array.length;\n        }\n        const arrCopy = array.slice(0);\n        const rotatingPart = arrCopy.splice(0, index);\n        arrCopy.push(...rotatingPart);\n        return arrCopy;\n    }\n}\nexports.ArrayHelper = ArrayHelper;\n//# sourceMappingURL=ArrayHelper.js.map\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@ainias42/js-helper/dist/ArrayHelper.js?");
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ArrayHelper = void 0;
+const Helper_1 = __webpack_require__(209);
+class ArrayHelper {
+    static noUndefined(array) {
+        return array.filter(arr => arr !== undefined);
+    }
+    static reverseFind(array, callback) {
+        for (let i = array.length - 1; i >= 0; i--) {
+            if (callback(array[i], i)) {
+                return array[i];
+            }
+        }
+        return undefined;
+    }
+    static reverseIndexOf(array, element, fromIndex = array.length - 1) {
+        for (let i = Math.min(fromIndex, array.length - 1); i >= 0; i--) {
+            if (array[i] === element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    static reverseSome(array, callback) {
+        for (let i = array.length - 1; i >= 0; i--) {
+            if (callback(array[i], i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    static reverseEvery(array, callback) {
+        for (let i = array.length - 1; i >= 0; i--) {
+            if (!callback(array[i], i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    static reverseForEach(array, callback) {
+        for (let i = array.length - 1; i >= 0; i--) {
+            callback(array[i], i);
+        }
+    }
+    static asyncForEach(array, callback, runAsynchronous) {
+        return __awaiter(this, void 0, void 0, function* () {
+            runAsynchronous = Helper_1.Helper.nonNull(runAsynchronous, false);
+            let validPromises = [];
+            for (let i = 0; i < array.length; i++) {
+                let index = i;
+                let currentPromise = Promise.resolve(callback(array[index], index, array));
+                if (!runAsynchronous) {
+                    yield currentPromise;
+                }
+                validPromises.push(currentPromise);
+            }
+            return Promise.all(validPromises);
+        });
+    }
+    static shuffle(array) {
+        let currentIndex = array.length, temporaryValue, randomIndex;
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+        return array;
+    }
+    static arrayToObject(array, index) {
+        const obj = {};
+        array.forEach(val => {
+            obj[index(val)] = val;
+        });
+        return obj;
+    }
+    static groupBy(array, index) {
+        const obj = {};
+        array.forEach(val => {
+            var _a;
+            const key = index(val);
+            (_a = obj[key]) !== null && _a !== void 0 ? _a : (obj[key] = []);
+            obj[key].push(val);
+        });
+        return obj;
+    }
+    static rotate(array, index) {
+        index %= array.length;
+        if (index < 0) {
+            index += array.length;
+        }
+        const arrCopy = array.slice(0);
+        const rotatingPart = arrCopy.splice(0, index);
+        arrCopy.push(...rotatingPart);
+        return arrCopy;
+    }
+}
+exports.ArrayHelper = ArrayHelper;
+//# sourceMappingURL=ArrayHelper.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@ainias42/js-helper/dist/Counter.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/@ainias42/js-helper/dist/Counter.js ***!
-  \**********************************************************/
+/***/ 366:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.Counter = void 0;\nconst Helper_1 = __webpack_require__(/*! ./Helper */ \"./node_modules/@ainias42/js-helper/dist/Helper.js\");\nclass Counter {\n    constructor(value) {\n        this._value = 0;\n        if (value instanceof Counter) {\n            value = value.current;\n        }\n        this._value = Helper_1.Helper.nonNull(value, 0);\n    }\n    next() {\n        this._value++;\n        return this._value;\n    }\n    current() {\n        return this._value;\n    }\n}\nexports.Counter = Counter;\n//# sourceMappingURL=Counter.js.map\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@ainias42/js-helper/dist/Counter.js?");
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Counter = void 0;
+const Helper_1 = __webpack_require__(209);
+class Counter {
+    constructor(value) {
+        this._value = 0;
+        if (value instanceof Counter) {
+            value = value.current;
+        }
+        this._value = Helper_1.Helper.nonNull(value, 0);
+    }
+    next() {
+        this._value++;
+        return this._value;
+    }
+    current() {
+        return this._value;
+    }
+}
+exports.Counter = Counter;
+//# sourceMappingURL=Counter.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@ainias42/js-helper/dist/DateHelper.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/@ainias42/js-helper/dist/DateHelper.js ***!
-  \*************************************************************/
+/***/ 9:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.DateHelper = void 0;\nconst Helper_1 = __webpack_require__(/*! ./Helper */ \"./node_modules/@ainias42/js-helper/dist/Helper.js\");\nclass DateHelper {\n    /**\n     * Formatiert ein Date-Object nach der Vorlage von der C-Funktion strftime\n     *\n     * @param sFormat\n     * @param date\n     * @param useUTC\n     * @returns {*|void|string}\n     */\n    static strftime(sFormat, date, useUTC) {\n        useUTC = Helper_1.Helper.nonNull(useUTC, false);\n        date = Helper_1.Helper.nonNull(date, new Date());\n        if (!(date instanceof Date))\n            date = new Date(date);\n        let nDay = (useUTC) ? date.getUTCDay() : date.getDay(), nDate = (useUTC) ? date.getUTCDate() : date.getDate(), nMonth = (useUTC) ? date.getUTCMonth() : date.getMonth(), nYear = (useUTC) ? date.getUTCFullYear() : date.getFullYear(), nHour = (useUTC) ? date.getUTCHours() : date.getHours(), aDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], aDaysShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], aMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], aDayCount = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334], isLeapYear = function () {\n            if ((nYear & 3) !== 0)\n                return false;\n            return nYear % 100 !== 0 || nYear % 400 === 0;\n        }, getThursday = function () {\n            let target = new Date(date);\n            target.setDate(nDate - ((nDay + 6) % 7) + 3);\n            return target;\n        }, zeroPad = function (nNum, nPad) {\n            return ('' + (Math.pow(10, nPad) + nNum)).slice(1);\n        };\n        return sFormat.replace(/%[a-z]/gi, (sMatch) => {\n            return {\n                '%a': this.translate(aDaysShort[nDay]),\n                '%A': this.translate(aDays[nDay]),\n                '%b': this.translate(aMonths[nMonth].slice(0, 3)),\n                '%B': this.translate(aMonths[nMonth]),\n                '%c': date.toUTCString(),\n                '%C': Math.floor(nYear / 100),\n                '%d': zeroPad(nDate, 2),\n                '%e': nDate,\n                '%f': zeroPad(date.getTime() % 1000, 4),\n                '%F': date.toISOString().slice(0, 10),\n                '%G': getThursday().getFullYear(),\n                '%g': ('' + getThursday().getFullYear()).slice(2),\n                '%H': zeroPad(nHour, 2),\n                '%I': zeroPad((nHour + 11) % 12 + 1, 2),\n                '%j': zeroPad(aDayCount[nMonth] + nDate + ((nMonth > 1 && isLeapYear()) ? 1 : 0), 3),\n                '%k': '' + nHour,\n                '%l': (nHour + 11) % 12 + 1,\n                '%m': zeroPad(nMonth + 1, 2),\n                '%M': zeroPad(date.getMinutes(), 2),\n                '%p': (nHour < 12) ? 'AM' : 'PM',\n                '%P': (nHour < 12) ? 'am' : 'pm',\n                '%s': Math.round(date.getTime() / 1000),\n                '%S': zeroPad(date.getSeconds(), 2),\n                '%u': nDay || 7,\n                '%w': '' + nDay,\n                '%x': date.toLocaleDateString(),\n                '%X': date.toLocaleTimeString(),\n                '%y': ('' + nYear).slice(2),\n                '%Y': nYear,\n                '%z': date.toTimeString().replace(/.+GMT([+-]\\d+).+/, '$1'),\n                '%Z': date.toTimeString().replace(/.+\\((.+?)\\)$/, '$1')\n            }[sMatch] || sMatch;\n        });\n    }\n    static translate(key) {\n        if (this.translationCallback) {\n            return this.translationCallback(key);\n        }\n        return key;\n    }\n    static setTranslationCallback(callback) {\n        this.translationCallback = callback;\n    }\n    static duration(timeInSeconds, locale = undefined) {\n        const nonPaddedIntl = Intl.NumberFormat(locale, { minimumIntegerDigits: 1 });\n        const paddedIntl = Intl.NumberFormat(locale, { minimumIntegerDigits: 2 });\n        const [delimiter] = new Date().toLocaleTimeString('en-us').match(/\\b[:.]\\b/);\n        const hours = Math.floor(timeInSeconds / 3600);\n        const minutes = Math.floor(timeInSeconds / 60) % 60;\n        const seconds = timeInSeconds % 60;\n        const indexToPad = hours ? 0 : 1;\n        return [hours, minutes, seconds]\n            .map((val, i) => {\n            return (val < 10 && i > indexToPad) ? paddedIntl.format(val) : nonPaddedIntl.format(val);\n        })\n            .filter((val, i) => {\n            if (i === 0) {\n                return !(val === '00' || val === '0');\n            }\n            return true;\n        })\n            .join(delimiter);\n    }\n}\nexports.DateHelper = DateHelper;\nDateHelper.FORMAT = {\n    ISO_TIME: \"%Y-%m-%dT%H:%M:%S\",\n    GERMAN: \"%d.%m-%y %H:%M:%S\"\n};\n//# sourceMappingURL=DateHelper.js.map\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@ainias42/js-helper/dist/DateHelper.js?");
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.DateHelper = void 0;
+const Helper_1 = __webpack_require__(209);
+class DateHelper {
+    /**
+     * Formatiert ein Date-Object nach der Vorlage von der C-Funktion strftime
+     *
+     * @param sFormat
+     * @param date
+     * @param useUTC
+     * @returns {*|void|string}
+     */
+    static strftime(sFormat, date, useUTC) {
+        useUTC = Helper_1.Helper.nonNull(useUTC, false);
+        date = Helper_1.Helper.nonNull(date, new Date());
+        if (!(date instanceof Date))
+            date = new Date(date);
+        let nDay = (useUTC) ? date.getUTCDay() : date.getDay(), nDate = (useUTC) ? date.getUTCDate() : date.getDate(), nMonth = (useUTC) ? date.getUTCMonth() : date.getMonth(), nYear = (useUTC) ? date.getUTCFullYear() : date.getFullYear(), nHour = (useUTC) ? date.getUTCHours() : date.getHours(), aDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], aDaysShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], aMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], aDayCount = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334], isLeapYear = function () {
+            if ((nYear & 3) !== 0)
+                return false;
+            return nYear % 100 !== 0 || nYear % 400 === 0;
+        }, getThursday = function () {
+            let target = new Date(date);
+            target.setDate(nDate - ((nDay + 6) % 7) + 3);
+            return target;
+        }, zeroPad = function (nNum, nPad) {
+            return ('' + (Math.pow(10, nPad) + nNum)).slice(1);
+        };
+        return sFormat.replace(/%[a-z]/gi, (sMatch) => {
+            return {
+                '%a': this.translate(aDaysShort[nDay]),
+                '%A': this.translate(aDays[nDay]),
+                '%b': this.translate(aMonths[nMonth].slice(0, 3)),
+                '%B': this.translate(aMonths[nMonth]),
+                '%c': date.toUTCString(),
+                '%C': Math.floor(nYear / 100),
+                '%d': zeroPad(nDate, 2),
+                '%e': nDate,
+                '%f': zeroPad(date.getTime() % 1000, 4),
+                '%F': date.toISOString().slice(0, 10),
+                '%G': getThursday().getFullYear(),
+                '%g': ('' + getThursday().getFullYear()).slice(2),
+                '%H': zeroPad(nHour, 2),
+                '%I': zeroPad((nHour + 11) % 12 + 1, 2),
+                '%j': zeroPad(aDayCount[nMonth] + nDate + ((nMonth > 1 && isLeapYear()) ? 1 : 0), 3),
+                '%k': '' + nHour,
+                '%l': (nHour + 11) % 12 + 1,
+                '%m': zeroPad(nMonth + 1, 2),
+                '%M': zeroPad(date.getMinutes(), 2),
+                '%p': (nHour < 12) ? 'AM' : 'PM',
+                '%P': (nHour < 12) ? 'am' : 'pm',
+                '%s': Math.round(date.getTime() / 1000),
+                '%S': zeroPad(date.getSeconds(), 2),
+                '%u': nDay || 7,
+                '%w': '' + nDay,
+                '%x': date.toLocaleDateString(),
+                '%X': date.toLocaleTimeString(),
+                '%y': ('' + nYear).slice(2),
+                '%Y': nYear,
+                '%z': date.toTimeString().replace(/.+GMT([+-]\d+).+/, '$1'),
+                '%Z': date.toTimeString().replace(/.+\((.+?)\)$/, '$1')
+            }[sMatch] || sMatch;
+        });
+    }
+    static translate(key) {
+        if (this.translationCallback) {
+            return this.translationCallback(key);
+        }
+        return key;
+    }
+    static setTranslationCallback(callback) {
+        this.translationCallback = callback;
+    }
+    static duration(timeInSeconds, locale = undefined) {
+        const nonPaddedIntl = Intl.NumberFormat(locale, { minimumIntegerDigits: 1 });
+        const paddedIntl = Intl.NumberFormat(locale, { minimumIntegerDigits: 2 });
+        const [delimiter] = new Date().toLocaleTimeString('en-us').match(/\b[:.]\b/);
+        const hours = Math.floor(timeInSeconds / 3600);
+        const minutes = Math.floor(timeInSeconds / 60) % 60;
+        const seconds = timeInSeconds % 60;
+        const indexToPad = hours ? 0 : 1;
+        return [hours, minutes, seconds]
+            .map((val, i) => {
+            return (val < 10 && i > indexToPad) ? paddedIntl.format(val) : nonPaddedIntl.format(val);
+        })
+            .filter((val, i) => {
+            if (i === 0) {
+                return !(val === '00' || val === '0');
+            }
+            return true;
+        })
+            .join(delimiter);
+    }
+}
+exports.DateHelper = DateHelper;
+DateHelper.FORMAT = {
+    ISO_TIME: "%Y-%m-%dT%H:%M:%S",
+    GERMAN: "%d.%m-%y %H:%M:%S"
+};
+//# sourceMappingURL=DateHelper.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@ainias42/js-helper/dist/Helper.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/@ainias42/js-helper/dist/Helper.js ***!
-  \*********************************************************/
+/***/ 209:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.Helper = void 0;\n/**\n * Eine Klasse mit häufig genutzten, nützlichen Funktionen\n */\nconst JsonHelper_1 = __webpack_require__(/*! ./JsonHelper */ \"./node_modules/@ainias42/js-helper/dist/JsonHelper.js\");\nconst ArrayHelper_1 = __webpack_require__(/*! ./ArrayHelper */ \"./node_modules/@ainias42/js-helper/dist/ArrayHelper.js\");\nconst PromiseWithHandlers_1 = __webpack_require__(/*! ./Promises/PromiseWithHandlers */ \"./node_modules/@ainias42/js-helper/dist/Promises/PromiseWithHandlers.js\");\nconst ObjectHelper_1 = __webpack_require__(/*! ./ObjectHelper */ \"./node_modules/@ainias42/js-helper/dist/ObjectHelper.js\");\nclass Helper {\n    /**\n     * Testet, ob eine Variable null oder Undefined ist\n     *\n     * @param variable\n     * @returns {boolean}\n     */\n    static isNull(variable) {\n        return Helper.isAllNull(variable);\n    }\n    static isAllNull(...args) {\n        for (let i = 0; i < args.length; i++) {\n            if (!(args[i] === null || args[i] === undefined)) {\n                return false;\n            }\n        }\n        return true;\n    }\n    static isAtLeastOneNull(...args) {\n        return !Helper.isAllNull(...args);\n    }\n    /**\n     * Testet, ob eine Variable nicht (null oder undefined) ist\n     *\n     * @param variable\n     * @returns {boolean}\n     */\n    static isNotNull(variable) {\n        return Helper.isAllNotNull(variable);\n    }\n    static isAllNotNull(...args) {\n        for (let i = 0; i < args.length; i++) {\n            if ((args[i] === null || args[i] === undefined)) {\n                return false;\n            }\n        }\n        return true;\n    }\n    static isAtLeastOneNotNull(...args) {\n        return !Helper.isAllNull(...args);\n    }\n    static delay(duration, args) {\n        return new Promise(resolve => setTimeout(() => resolve(args), duration));\n    }\n    /**\n     * Gibt den ersten übergebenen Wert, der nicht (null oder undefined) ist, zurück\n     *\n     * @param val1\n     * @param val2\n     * @param args\n     * @returns {*}\n     */\n    static nonNull(val1, val2, ...args) {\n        for (let i = 0; i < arguments.length; i++) {\n            if (Helper.isNotNull(arguments[i])) {\n                return arguments[i];\n            }\n        }\n        return null;\n    }\n    /**\n     * Testet, ob ein Wert null oder Leerstring, bzw nur aus leerzeichend bestehender String ist\n     *\n     * @param value\n     * @returns {boolean}\n     */\n    static empty(value) {\n        return (Helper.isNull(value) || (typeof value === 'string' && value.trim() === \"\"));\n    }\n    /**\n     * Testet, ob ein Wert NICHT (null oder Leerstring, bzw nur aus leerzeichend bestehender String ist)\n     *\n     * @param value\n     * @returns {boolean}\n     */\n    static notEmpty(value) {\n        return !Helper.empty(value);\n    }\n    /**\n     * @deprecated Use ArrayHelper.arrayToObject instead\n     *\n     * @param array\n     * @param indexFunction\n     */\n    static arrayToObject(array, indexFunction) {\n        return ArrayHelper_1.ArrayHelper.arrayToObject(array, indexFunction);\n    }\n    /**\n     * Erstellt ein FormData-Object von JSON-Data. Nützlich für fetch\n     *\n     * @param obj\n     * @returns {FormData}\n     */\n    static formDataFromObject(obj) {\n        let formData = new FormData();\n        for (let k in obj) {\n            formData.set(k, obj[k]);\n        }\n        return formData;\n    }\n    static padZero(n, width, z) {\n        z = Helper.nonNull(z, '0');\n        n = n + '';\n        width = Helper.nonNull(width, 1);\n        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;\n    }\n    //Ältere evtl nützliche Funktionen\n    static htmlspecialcharsDecode(text) {\n        const map = {\n            '&amp;': '&',\n            '&#038;': \"&\",\n            '&lt;': '<',\n            '&gt;': '>',\n            '&quot;': '\"',\n            '&#039;': \"'\",\n            '&#8217;': \"’\",\n            '&#8216;': \"‘\",\n            '&#8211;': \"–\",\n            '&#8212;': \"—\",\n            '&#8230;': \"…\",\n            '&#8221;': '”'\n        };\n        if (Helper.isNotNull(text) && typeof text.replace === \"function\") {\n            return text.replace(/\\&[\\w\\d\\#]{2,5}\\;/g, function (m) {\n                return map[m];\n            });\n        }\n        return text;\n    }\n    static escapeRegExp(str) {\n        return str.replace(/[.*+?^${}()|[\\]\\\\]/g, \"\\\\$&\"); // $& means the whole matched string\n    }\n    static imageUrlIsEmpty(url) {\n        return (Helper.isNull(url) || url.trim() === \"\" || url.trim() === \"data:\");\n    }\n    static isMobileApp() {\n        return (typeof window[\"device\"] !== \"undefined\" && window[\"device\"].platform !== \"browser\");\n    }\n    static isIOS() {\n        return (typeof window[\"device\"] !== \"undefined\" && window[\"device\"].platform === \"iOS\");\n    }\n    static toSnakeCase(camelCase) {\n        return camelCase.replace(/([A-Z])/g, function (find, something, position) {\n            return ((position > 0) ? \"_\" : \"\") + find[0].toLowerCase();\n        });\n    }\n    static wait(timeout, result) {\n        return __awaiter(this, void 0, void 0, function* () {\n            return new Promise(r => {\n                setTimeout(() => {\n                    r(result);\n                }, timeout);\n            });\n        });\n    }\n    static timeout(time, otherPromise, timeoutResult) {\n        return __awaiter(this, void 0, void 0, function* () {\n            return Promise.race([otherPromise, Helper.wait(time).then(() => {\n                    if (timeoutResult === undefined) {\n                        return Promise.reject();\n                    }\n                    else {\n                        return timeoutResult;\n                    }\n                })]);\n        });\n    }\n    static execNonThrow(fn) {\n        return (...args) => {\n            try {\n                const res = fn(...args);\n                if (res instanceof Promise) {\n                    res.catch(e => console.error(e));\n                }\n                return res;\n            }\n            catch (e) {\n                console.error(e);\n            }\n        };\n    }\n    /** @deprecated Use ArrayHelper.shuffle instead */\n    static shuffleArray(array) {\n        return ArrayHelper_1.ArrayHelper.shuffle(array);\n    }\n    /** @deprecated use ArrayHelper.reverseForEach instead */\n    static reverseForEach(array, callback) {\n        return ArrayHelper_1.ArrayHelper.reverseForEach(array, callback);\n    }\n    /** @deprecated use ArrayHelper.asyncForEach instead */\n    static asyncForEach(array, callback, runAsynchronous) {\n        return __awaiter(this, void 0, void 0, function* () {\n            return ArrayHelper_1.ArrayHelper.asyncForEach(array, callback, runAsynchronous);\n        });\n    }\n    /** @deprecated use ObjectHelper.objectForEach instead */\n    static objectForEach(object, callback) {\n        return ObjectHelper_1.ObjectHelper.objectForEach(object, callback);\n    }\n    /** @deprecated use ObjectHelper.toArray instead */\n    static toArray(object) {\n        return ObjectHelper_1.ObjectHelper.toArray(object);\n    }\n    /**\n     * @deprecated Use ObjectHelper.invertKeyValues instead\n     *\n     * Inverts the key-Values for an object\n     * @param obj\n     * @return {*}\n     */\n    static invertKeyValues(obj) {\n        return ObjectHelper_1.ObjectHelper.invertKeyValues(obj);\n    }\n    /**\n     * @deprecated Use ObjectHelper.isSet instead\n     *\n     * Testet, ob der übergebene Index am Objekt gesetzt ist. Werden mehrere Indexes übergeben, so wird getestet,\n     * ob die \"Index-Kette\" gesetzt ist.\n     * Bsp.:\n     *  Helper.isSet({\"index1\":{\"index2\":value}}, \"index1\", \"index2\") ist wahr\n     *\n     * @param object\n     * @param indexes\n     * @returns {*}\n     */\n    static isSet(object, ...indexes) {\n        return ObjectHelper_1.ObjectHelper.isSet(object, ...indexes);\n    }\n    /** @deprecated use PromiseWithHandlers instead */\n    static newPromiseWithResolve() {\n        return new PromiseWithHandlers_1.PromiseWithHandlers();\n    }\n    /**\n     * @deprecated Use JsonHelper.deepCopy instead\n     *\n     * Deepcopies JSON\n     *\n     * @param obj\n     * @returns {*}\n     */\n    static cloneJson(obj) {\n        return JsonHelper_1.JsonHelper.deepCopy(obj);\n    }\n}\nexports.Helper = Helper;\n//# sourceMappingURL=Helper.js.map\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@ainias42/js-helper/dist/Helper.js?");
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Helper = void 0;
+/**
+ * Eine Klasse mit häufig genutzten, nützlichen Funktionen
+ */
+const JsonHelper_1 = __webpack_require__(493);
+const ArrayHelper_1 = __webpack_require__(615);
+const PromiseWithHandlers_1 = __webpack_require__(314);
+const ObjectHelper_1 = __webpack_require__(495);
+class Helper {
+    /**
+     * Testet, ob eine Variable null oder Undefined ist
+     *
+     * @param variable
+     * @returns {boolean}
+     */
+    static isNull(variable) {
+        return Helper.isAllNull(variable);
+    }
+    static isAllNull(...args) {
+        for (let i = 0; i < args.length; i++) {
+            if (!(args[i] === null || args[i] === undefined)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    static isAtLeastOneNull(...args) {
+        return !Helper.isAllNull(...args);
+    }
+    /**
+     * Testet, ob eine Variable nicht (null oder undefined) ist
+     *
+     * @param variable
+     * @returns {boolean}
+     */
+    static isNotNull(variable) {
+        return Helper.isAllNotNull(variable);
+    }
+    static isAllNotNull(...args) {
+        for (let i = 0; i < args.length; i++) {
+            if ((args[i] === null || args[i] === undefined)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    static isAtLeastOneNotNull(...args) {
+        return !Helper.isAllNull(...args);
+    }
+    static delay(duration, args) {
+        return new Promise(resolve => setTimeout(() => resolve(args), duration));
+    }
+    /**
+     * Gibt den ersten übergebenen Wert, der nicht (null oder undefined) ist, zurück
+     *
+     * @param val1
+     * @param val2
+     * @param args
+     * @returns {*}
+     */
+    static nonNull(val1, val2, ...args) {
+        for (let i = 0; i < arguments.length; i++) {
+            if (Helper.isNotNull(arguments[i])) {
+                return arguments[i];
+            }
+        }
+        return null;
+    }
+    /**
+     * Testet, ob ein Wert null oder Leerstring, bzw nur aus leerzeichend bestehender String ist
+     *
+     * @param value
+     * @returns {boolean}
+     */
+    static empty(value) {
+        return (Helper.isNull(value) || (typeof value === 'string' && value.trim() === ""));
+    }
+    /**
+     * Testet, ob ein Wert NICHT (null oder Leerstring, bzw nur aus leerzeichend bestehender String ist)
+     *
+     * @param value
+     * @returns {boolean}
+     */
+    static notEmpty(value) {
+        return !Helper.empty(value);
+    }
+    /**
+     * @deprecated Use ArrayHelper.arrayToObject instead
+     *
+     * @param array
+     * @param indexFunction
+     */
+    static arrayToObject(array, indexFunction) {
+        return ArrayHelper_1.ArrayHelper.arrayToObject(array, indexFunction);
+    }
+    /**
+     * Erstellt ein FormData-Object von JSON-Data. Nützlich für fetch
+     *
+     * @param obj
+     * @returns {FormData}
+     */
+    static formDataFromObject(obj) {
+        let formData = new FormData();
+        for (let k in obj) {
+            formData.set(k, obj[k]);
+        }
+        return formData;
+    }
+    static padZero(n, width, z) {
+        z = Helper.nonNull(z, '0');
+        n = n + '';
+        width = Helper.nonNull(width, 1);
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+    }
+    //Ältere evtl nützliche Funktionen
+    static htmlspecialcharsDecode(text) {
+        const map = {
+            '&amp;': '&',
+            '&#038;': "&",
+            '&lt;': '<',
+            '&gt;': '>',
+            '&quot;': '"',
+            '&#039;': "'",
+            '&#8217;': "’",
+            '&#8216;': "‘",
+            '&#8211;': "–",
+            '&#8212;': "—",
+            '&#8230;': "…",
+            '&#8221;': '”'
+        };
+        if (Helper.isNotNull(text) && typeof text.replace === "function") {
+            return text.replace(/\&[\w\d\#]{2,5}\;/g, function (m) {
+                return map[m];
+            });
+        }
+        return text;
+    }
+    static escapeRegExp(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
+    }
+    static imageUrlIsEmpty(url) {
+        return (Helper.isNull(url) || url.trim() === "" || url.trim() === "data:");
+    }
+    static isMobileApp() {
+        return (typeof window["device"] !== "undefined" && window["device"].platform !== "browser");
+    }
+    static isIOS() {
+        return (typeof window["device"] !== "undefined" && window["device"].platform === "iOS");
+    }
+    static toSnakeCase(camelCase) {
+        return camelCase.replace(/([A-Z])/g, function (find, something, position) {
+            return ((position > 0) ? "_" : "") + find[0].toLowerCase();
+        });
+    }
+    static wait(timeout, result) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return new Promise(r => {
+                setTimeout(() => {
+                    r(result);
+                }, timeout);
+            });
+        });
+    }
+    static timeout(time, otherPromise, timeoutResult) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return Promise.race([otherPromise, Helper.wait(time).then(() => {
+                    if (timeoutResult === undefined) {
+                        return Promise.reject();
+                    }
+                    else {
+                        return timeoutResult;
+                    }
+                })]);
+        });
+    }
+    static execNonThrow(fn) {
+        return (...args) => {
+            try {
+                const res = fn(...args);
+                if (res instanceof Promise) {
+                    res.catch(e => console.error(e));
+                }
+                return res;
+            }
+            catch (e) {
+                console.error(e);
+            }
+        };
+    }
+    /** @deprecated Use ArrayHelper.shuffle instead */
+    static shuffleArray(array) {
+        return ArrayHelper_1.ArrayHelper.shuffle(array);
+    }
+    /** @deprecated use ArrayHelper.reverseForEach instead */
+    static reverseForEach(array, callback) {
+        return ArrayHelper_1.ArrayHelper.reverseForEach(array, callback);
+    }
+    /** @deprecated use ArrayHelper.asyncForEach instead */
+    static asyncForEach(array, callback, runAsynchronous) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return ArrayHelper_1.ArrayHelper.asyncForEach(array, callback, runAsynchronous);
+        });
+    }
+    /** @deprecated use ObjectHelper.objectForEach instead */
+    static objectForEach(object, callback) {
+        return ObjectHelper_1.ObjectHelper.objectForEach(object, callback);
+    }
+    /** @deprecated use ObjectHelper.toArray instead */
+    static toArray(object) {
+        return ObjectHelper_1.ObjectHelper.toArray(object);
+    }
+    /**
+     * @deprecated Use ObjectHelper.invertKeyValues instead
+     *
+     * Inverts the key-Values for an object
+     * @param obj
+     * @return {*}
+     */
+    static invertKeyValues(obj) {
+        return ObjectHelper_1.ObjectHelper.invertKeyValues(obj);
+    }
+    /**
+     * @deprecated Use ObjectHelper.isSet instead
+     *
+     * Testet, ob der übergebene Index am Objekt gesetzt ist. Werden mehrere Indexes übergeben, so wird getestet,
+     * ob die "Index-Kette" gesetzt ist.
+     * Bsp.:
+     *  Helper.isSet({"index1":{"index2":value}}, "index1", "index2") ist wahr
+     *
+     * @param object
+     * @param indexes
+     * @returns {*}
+     */
+    static isSet(object, ...indexes) {
+        return ObjectHelper_1.ObjectHelper.isSet(object, ...indexes);
+    }
+    /** @deprecated use PromiseWithHandlers instead */
+    static newPromiseWithResolve() {
+        return new PromiseWithHandlers_1.PromiseWithHandlers();
+    }
+    /**
+     * @deprecated Use JsonHelper.deepCopy instead
+     *
+     * Deepcopies JSON
+     *
+     * @param obj
+     * @returns {*}
+     */
+    static cloneJson(obj) {
+        return JsonHelper_1.JsonHelper.deepCopy(obj);
+    }
+}
+exports.Helper = Helper;
+//# sourceMappingURL=Helper.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@ainias42/js-helper/dist/JSONType.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/@ainias42/js-helper/dist/JSONType.js ***!
-  \***********************************************************/
+/***/ 135:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nclass Test {\n    constructor() {\n        this.e = () => {\n            console.log(\"e\");\n        };\n    }\n}\n//# sourceMappingURL=JSONType.js.map\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@ainias42/js-helper/dist/JSONType.js?");
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+class Test {
+    constructor() {
+        this.e = () => {
+            console.log("e");
+        };
+    }
+}
+//# sourceMappingURL=JSONType.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@ainias42/js-helper/dist/JsonHelper.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/@ainias42/js-helper/dist/JsonHelper.js ***!
-  \*************************************************************/
+/***/ 493:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.JsonHelper = void 0;\nconst Helper_1 = __webpack_require__(/*! ./Helper */ \"./node_modules/@ainias42/js-helper/dist/Helper.js\");\nclass JsonHelper {\n    static deepEqual(a, b, depth = -1) {\n        if (a === b) {\n            return true;\n        }\n        if (a === null || b === null) {\n            return false;\n        }\n        //date deepEqual\n        if (a instanceof Date && b instanceof Date) {\n            return a.getTime() === b.getTime();\n        }\n        // array deepEqual\n        if (a instanceof Array && b instanceof Array && a.length === b.length) {\n            return a[\"every\"]((obj, i) => {\n                if (depth === 0) {\n                    return obj === b[i];\n                }\n                return JsonHelper.deepEqual(obj, b[i], depth - 1);\n            });\n        }\n        // object deep equal\n        if (typeof a === \"object\" && typeof b === \"object\") {\n            let aKeys = Object.keys(a);\n            let bKeys = Object.keys(b);\n            return aKeys.length === bKeys.length && aKeys[\"every\"]((key) => {\n                if (depth === 0) {\n                    return a[key] === b[key];\n                }\n                return Helper_1.Helper.isNotNull(b[key]) && JsonHelper.deepEqual(a[key], b[key], depth - 1);\n            });\n        }\n        //else is false (or not handled)\n        return false;\n    }\n    /**\n     * Deepcopies JSON\n     *\n     * @param obj\n     * @returns {*}\n     */\n    static deepCopy(obj) {\n        // https://stackoverflow.com/questions/4120475/how-to-create-and-clone-a-json-object/17502990#17502990\n        let i;\n        // basic type deep copy\n        if (Helper_1.Helper.isNull(obj) || typeof obj !== 'object') {\n            return obj;\n        }\n        // array deep copy\n        if (obj instanceof Array) {\n            let cloneA = [];\n            for (i = 0; i < obj.length; ++i) {\n                cloneA[i] = JsonHelper.deepCopy(obj[i]);\n            }\n            return cloneA;\n        }\n        if (obj instanceof Date) {\n            return new Date(obj.getTime());\n        }\n        // object deep copy\n        let cloneO = {};\n        for (i in obj) {\n            cloneO[i] = JsonHelper.deepCopy(obj[i]);\n        }\n        return cloneO;\n    }\n    static deepAssign(...objects) {\n        if (objects.length > 0 && Array.isArray(objects)) {\n            const result = [];\n            objects.forEach(arr => result.push(...arr));\n            return result;\n        }\n        const resultObj = {};\n        objects.forEach(obj => {\n            for (let i in obj) {\n                if (resultObj[i] && typeof obj[i] === \"object\" && typeof resultObj[i] === \"object\") {\n                    resultObj[i] = JsonHelper.deepAssign(resultObj[i], obj[i]);\n                }\n                else {\n                    resultObj[i] = obj[i];\n                }\n            }\n        });\n        return resultObj;\n    }\n    static getDiff(a, b) {\n        const result = {\n            changed: {},\n            added: {},\n            removed: [],\n        };\n        // if (Array.isArray(a) && Array.isArray(b)){\n        //     const lengthA = a.length;\n        //     const lengthB = b.length;\n        //\n        //     const minLength = Math.min(lengthA, lengthB);\n        //     for (let i = 0; i < minLength; i++){\n        //         const\n        //     }\n        // }\n        if ((typeof a !== \"object\" || typeof b !== \"object\")\n            && (!Array.isArray(a) && !Array.isArray(b))) {\n            if (a === b) {\n                return null;\n            }\n            else {\n                return { value: b };\n            }\n        }\n        let hasChanged = false;\n        let hasRemoved = false;\n        let hasAdded = false;\n        for (let i in a) {\n            if (i in b) {\n                const newVal = JsonHelper.getDiff(a[i], b[i]);\n                if (newVal !== null) {\n                    result.changed[i] = newVal;\n                    hasChanged = true;\n                }\n            }\n            else {\n                result.removed.push(i);\n                hasRemoved = true;\n            }\n        }\n        for (let i in b) {\n            if (!(i in a)) {\n                result.added[i] = b[i];\n                hasAdded = true;\n            }\n        }\n        if (hasRemoved || hasAdded || hasChanged) {\n            return result;\n        }\n        else {\n            return null;\n        }\n    }\n    static applyDiff(obj, diff) {\n        if (!Array.isArray(diff.removed)) {\n            debugger;\n        }\n        Object.keys(diff.changed).forEach(key => {\n            if (\"value\" in diff.changed[key]) {\n                obj[key] = diff.changed[key].value;\n            }\n            else {\n                obj[key] = JsonHelper.applyDiff(obj[key], diff.changed[key]);\n            }\n        });\n        Object.keys(diff.added).forEach(key => obj[key] = diff.added[key]);\n        if (Array.isArray(obj)) {\n            diff.removed.sort((a, b) => (parseInt(b) - parseInt(a))).forEach(index => {\n                obj.splice(parseInt(index), 1);\n            });\n        }\n        else {\n            diff.removed.forEach(rem => delete obj[rem]);\n        }\n        return obj;\n    }\n}\nexports.JsonHelper = JsonHelper;\n//# sourceMappingURL=JsonHelper.js.map\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@ainias42/js-helper/dist/JsonHelper.js?");
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.JsonHelper = void 0;
+const Helper_1 = __webpack_require__(209);
+class JsonHelper {
+    static deepEqual(a, b, depth = -1) {
+        if (a === b) {
+            return true;
+        }
+        if (a === null || b === null) {
+            return false;
+        }
+        //date deepEqual
+        if (a instanceof Date && b instanceof Date) {
+            return a.getTime() === b.getTime();
+        }
+        // array deepEqual
+        if (a instanceof Array && b instanceof Array && a.length === b.length) {
+            return a["every"]((obj, i) => {
+                if (depth === 0) {
+                    return obj === b[i];
+                }
+                return JsonHelper.deepEqual(obj, b[i], depth - 1);
+            });
+        }
+        // object deep equal
+        if (typeof a === "object" && typeof b === "object") {
+            let aKeys = Object.keys(a);
+            let bKeys = Object.keys(b);
+            return aKeys.length === bKeys.length && aKeys["every"]((key) => {
+                if (depth === 0) {
+                    return a[key] === b[key];
+                }
+                return Helper_1.Helper.isNotNull(b[key]) && JsonHelper.deepEqual(a[key], b[key], depth - 1);
+            });
+        }
+        //else is false (or not handled)
+        return false;
+    }
+    /**
+     * Deepcopies JSON
+     *
+     * @param obj
+     * @returns {*}
+     */
+    static deepCopy(obj) {
+        // https://stackoverflow.com/questions/4120475/how-to-create-and-clone-a-json-object/17502990#17502990
+        let i;
+        // basic type deep copy
+        if (Helper_1.Helper.isNull(obj) || typeof obj !== 'object') {
+            return obj;
+        }
+        // array deep copy
+        if (obj instanceof Array) {
+            let cloneA = [];
+            for (i = 0; i < obj.length; ++i) {
+                cloneA[i] = JsonHelper.deepCopy(obj[i]);
+            }
+            return cloneA;
+        }
+        if (obj instanceof Date) {
+            return new Date(obj.getTime());
+        }
+        // object deep copy
+        let cloneO = {};
+        for (i in obj) {
+            cloneO[i] = JsonHelper.deepCopy(obj[i]);
+        }
+        return cloneO;
+    }
+    static deepAssign(...objects) {
+        if (objects.length > 0 && Array.isArray(objects)) {
+            const result = [];
+            objects.forEach(arr => result.push(...arr));
+            return result;
+        }
+        const resultObj = {};
+        objects.forEach(obj => {
+            for (let i in obj) {
+                if (resultObj[i] && typeof obj[i] === "object" && typeof resultObj[i] === "object") {
+                    resultObj[i] = JsonHelper.deepAssign(resultObj[i], obj[i]);
+                }
+                else {
+                    resultObj[i] = obj[i];
+                }
+            }
+        });
+        return resultObj;
+    }
+    static getDiff(a, b) {
+        const result = {
+            changed: {},
+            added: {},
+            removed: [],
+        };
+        // if (Array.isArray(a) && Array.isArray(b)){
+        //     const lengthA = a.length;
+        //     const lengthB = b.length;
+        //
+        //     const minLength = Math.min(lengthA, lengthB);
+        //     for (let i = 0; i < minLength; i++){
+        //         const
+        //     }
+        // }
+        if ((typeof a !== "object" || typeof b !== "object")
+            && (!Array.isArray(a) && !Array.isArray(b))) {
+            if (a === b) {
+                return null;
+            }
+            else {
+                return { value: b };
+            }
+        }
+        let hasChanged = false;
+        let hasRemoved = false;
+        let hasAdded = false;
+        for (let i in a) {
+            if (i in b) {
+                const newVal = JsonHelper.getDiff(a[i], b[i]);
+                if (newVal !== null) {
+                    result.changed[i] = newVal;
+                    hasChanged = true;
+                }
+            }
+            else {
+                result.removed.push(i);
+                hasRemoved = true;
+            }
+        }
+        for (let i in b) {
+            if (!(i in a)) {
+                result.added[i] = b[i];
+                hasAdded = true;
+            }
+        }
+        if (hasRemoved || hasAdded || hasChanged) {
+            return result;
+        }
+        else {
+            return null;
+        }
+    }
+    static applyDiff(obj, diff) {
+        if (!Array.isArray(diff.removed)) {
+            debugger;
+        }
+        Object.keys(diff.changed).forEach(key => {
+            if ("value" in diff.changed[key]) {
+                obj[key] = diff.changed[key].value;
+            }
+            else {
+                obj[key] = JsonHelper.applyDiff(obj[key], diff.changed[key]);
+            }
+        });
+        Object.keys(diff.added).forEach(key => obj[key] = diff.added[key]);
+        if (Array.isArray(obj)) {
+            diff.removed.sort((a, b) => (parseInt(b) - parseInt(a))).forEach(index => {
+                obj.splice(parseInt(index), 1);
+            });
+        }
+        else {
+            diff.removed.forEach(rem => delete obj[rem]);
+        }
+        return obj;
+    }
+}
+exports.JsonHelper = JsonHelper;
+//# sourceMappingURL=JsonHelper.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@ainias42/js-helper/dist/ObjectHelper.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@ainias42/js-helper/dist/ObjectHelper.js ***!
-  \***************************************************************/
+/***/ 495:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.ObjectHelper = void 0;\nconst Helper_1 = __webpack_require__(/*! ./Helper */ \"./node_modules/@ainias42/js-helper/dist/Helper.js\");\nclass ObjectHelper {\n    /**\n     * Inverts the key-Values for an object\n     * @param obj\n     * @return {*}\n     */\n    static invertKeyValues(obj) {\n        let new_obj = {};\n        for (let prop in obj) {\n            if (obj.hasOwnProperty(prop)) {\n                new_obj[obj[prop]] = prop;\n            }\n        }\n        return new_obj;\n    }\n    static toArray(object) {\n        let res = [];\n        for (let k in object) {\n            res.push(object[k]);\n        }\n        return res;\n    }\n    static objectForEach(object, callback) {\n        Object.keys(object).forEach(key => {\n            callback(object[key], key, object);\n        });\n    }\n    /**\n     * Testet, ob der übergebene Index am Objekt gesetzt ist. Werden mehrere Indexes übergeben, so wird getestet,\n     * ob die \"Index-Kette\" gesetzt ist.\n     * Bsp.:\n     *  Helper.isSet({\"index1\":{\"index2\":value}}, \"index1\", \"index2\") ist wahr\n     *\n     * @param object\n     * @param indexes\n     * @returns {*}\n     */\n    static isSet(object, ...indexes) {\n        if (Helper_1.Helper.isNotNull(object)) {\n            if (indexes.length === 0) {\n                return true;\n            }\n            return (ObjectHelper.isSet.apply(null, [object[indexes[0]]].concat(indexes.slice(1))));\n        }\n        return false;\n    }\n    static entries(object, filterUndefined) {\n        const entries = Object.entries(object);\n        if (filterUndefined !== false) {\n            return entries.filter(([, val]) => val !== undefined);\n        }\n        return entries;\n    }\n    static values(object, filterUndefined) {\n        const entries = Object.values(object);\n        if (filterUndefined !== false) {\n            return entries.filter((val) => val !== undefined);\n        }\n        return entries;\n    }\n    static keys(object) {\n        return Object.keys(object);\n    }\n}\nexports.ObjectHelper = ObjectHelper;\n//# sourceMappingURL=ObjectHelper.js.map\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@ainias42/js-helper/dist/ObjectHelper.js?");
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ObjectHelper = void 0;
+const Helper_1 = __webpack_require__(209);
+class ObjectHelper {
+    /**
+     * Inverts the key-Values for an object
+     * @param obj
+     * @return {*}
+     */
+    static invertKeyValues(obj) {
+        let new_obj = {};
+        for (let prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                new_obj[obj[prop]] = prop;
+            }
+        }
+        return new_obj;
+    }
+    static toArray(object) {
+        let res = [];
+        for (let k in object) {
+            res.push(object[k]);
+        }
+        return res;
+    }
+    static objectForEach(object, callback) {
+        Object.keys(object).forEach(key => {
+            callback(object[key], key, object);
+        });
+    }
+    /**
+     * Testet, ob der übergebene Index am Objekt gesetzt ist. Werden mehrere Indexes übergeben, so wird getestet,
+     * ob die "Index-Kette" gesetzt ist.
+     * Bsp.:
+     *  Helper.isSet({"index1":{"index2":value}}, "index1", "index2") ist wahr
+     *
+     * @param object
+     * @param indexes
+     * @returns {*}
+     */
+    static isSet(object, ...indexes) {
+        if (Helper_1.Helper.isNotNull(object)) {
+            if (indexes.length === 0) {
+                return true;
+            }
+            return (ObjectHelper.isSet.apply(null, [object[indexes[0]]].concat(indexes.slice(1))));
+        }
+        return false;
+    }
+    static entries(object, filterUndefined) {
+        const entries = Object.entries(object);
+        if (filterUndefined !== false) {
+            return entries.filter(([, val]) => val !== undefined);
+        }
+        return entries;
+    }
+    static values(object, filterUndefined) {
+        const entries = Object.values(object);
+        if (filterUndefined !== false) {
+            return entries.filter((val) => val !== undefined);
+        }
+        return entries;
+    }
+    static keys(object) {
+        return Object.keys(object);
+    }
+}
+exports.ObjectHelper = ObjectHelper;
+//# sourceMappingURL=ObjectHelper.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@ainias42/js-helper/dist/Prioritized.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/@ainias42/js-helper/dist/Prioritized.js ***!
-  \**************************************************************/
+/***/ 744:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.Prioritized = void 0;\nconst Helper_1 = __webpack_require__(/*! ./Helper */ \"./node_modules/@ainias42/js-helper/dist/Helper.js\");\nclass Prioritized {\n    constructor(promises) {\n        this._lastPriority = 0;\n        this._status = 0;\n        this._lastResult = null;\n        this._success = {};\n        this._highestPromise = null;\n        promises = Helper_1.Helper.nonNull(promises, {});\n        this._callbacks = [];\n        if (Array.isArray(promises)) {\n            let tmpPromises = {};\n            promises.forEach((promise, i) => {\n                tmpPromises[(i + 1) * 10] = promise;\n            });\n            promises = tmpPromises;\n        }\n        let highestPromiseResolver = null;\n        this._highestPromise = new Promise(resolve => {\n            highestPromiseResolver = resolve;\n        });\n        Object.keys(promises).forEach(priority => {\n            this._success[priority] = null;\n            promises[priority].then(res => {\n                this._success[priority] = true;\n                if (parseInt(priority) > this._lastPriority) {\n                    this._lastResult = res;\n                    this._lastPriority = parseInt(priority);\n                    this._callCallbacks();\n                    if (this._checkHighest()) {\n                        this._status = 2;\n                        highestPromiseResolver();\n                    }\n                    else {\n                        this._status = 1;\n                    }\n                }\n            }).catch(e => {\n                this._success[priority] = e;\n                if (this._checkHighest()) {\n                    this._status = 2;\n                    highestPromiseResolver();\n                }\n            });\n        });\n        this._promises = promises;\n    }\n    _callCallbacks() {\n        this._callbacks.forEach(callback => {\n            callback(this._lastResult, this._lastPriority);\n        });\n    }\n    _checkHighest() {\n        let isHighestResult = false;\n        Object.keys(this._success).reverse().some(priority => {\n            if (Helper_1.Helper.isNull(this._success[priority])) {\n                //return true beendet some-schleife\n                return true;\n            }\n            else if (this._success[priority] === true) {\n                isHighestResult = true;\n                return true;\n            }\n        });\n        return isHighestResult;\n    }\n    do(callback) {\n        if (this._status < 2) {\n            this._callbacks.push(callback);\n        }\n        if (this._status > 0) {\n            callback(this._lastResult, this._lastPriority);\n        }\n    }\n    highest(funcOrPromise) {\n        return __awaiter(this, void 0, void 0, function* () {\n            yield this._highestPromise;\n            if (Helper_1.Helper.isNotNull(funcOrPromise)) {\n                return Promise.resolve(this._lastResult).then(funcOrPromise);\n            }\n            else {\n                return Promise.resolve(this._lastResult);\n            }\n        });\n    }\n    first(funcOrPromise) {\n        return __awaiter(this, void 0, void 0, function* () {\n            if (this._status === 0) {\n                if (Helper_1.Helper.isNotNull(funcOrPromise)) {\n                    return Promise.race(Object[\"values\"](this._promises)).then(funcOrPromise);\n                }\n                else {\n                    return Promise.race(Object[\"values\"](this._promises));\n                }\n            }\n            else {\n                return Promise.resolve(this._lastResult);\n            }\n        });\n    }\n}\nexports.Prioritized = Prioritized;\n//# sourceMappingURL=Prioritized.js.map\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@ainias42/js-helper/dist/Prioritized.js?");
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Prioritized = void 0;
+const Helper_1 = __webpack_require__(209);
+class Prioritized {
+    constructor(promises) {
+        this._lastPriority = 0;
+        this._status = 0;
+        this._lastResult = null;
+        this._success = {};
+        this._highestPromise = null;
+        promises = Helper_1.Helper.nonNull(promises, {});
+        this._callbacks = [];
+        if (Array.isArray(promises)) {
+            let tmpPromises = {};
+            promises.forEach((promise, i) => {
+                tmpPromises[(i + 1) * 10] = promise;
+            });
+            promises = tmpPromises;
+        }
+        let highestPromiseResolver = null;
+        this._highestPromise = new Promise(resolve => {
+            highestPromiseResolver = resolve;
+        });
+        Object.keys(promises).forEach(priority => {
+            this._success[priority] = null;
+            promises[priority].then(res => {
+                this._success[priority] = true;
+                if (parseInt(priority) > this._lastPriority) {
+                    this._lastResult = res;
+                    this._lastPriority = parseInt(priority);
+                    this._callCallbacks();
+                    if (this._checkHighest()) {
+                        this._status = 2;
+                        highestPromiseResolver();
+                    }
+                    else {
+                        this._status = 1;
+                    }
+                }
+            }).catch(e => {
+                this._success[priority] = e;
+                if (this._checkHighest()) {
+                    this._status = 2;
+                    highestPromiseResolver();
+                }
+            });
+        });
+        this._promises = promises;
+    }
+    _callCallbacks() {
+        this._callbacks.forEach(callback => {
+            callback(this._lastResult, this._lastPriority);
+        });
+    }
+    _checkHighest() {
+        let isHighestResult = false;
+        Object.keys(this._success).reverse().some(priority => {
+            if (Helper_1.Helper.isNull(this._success[priority])) {
+                //return true beendet some-schleife
+                return true;
+            }
+            else if (this._success[priority] === true) {
+                isHighestResult = true;
+                return true;
+            }
+        });
+        return isHighestResult;
+    }
+    do(callback) {
+        if (this._status < 2) {
+            this._callbacks.push(callback);
+        }
+        if (this._status > 0) {
+            callback(this._lastResult, this._lastPriority);
+        }
+    }
+    highest(funcOrPromise) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this._highestPromise;
+            if (Helper_1.Helper.isNotNull(funcOrPromise)) {
+                return Promise.resolve(this._lastResult).then(funcOrPromise);
+            }
+            else {
+                return Promise.resolve(this._lastResult);
+            }
+        });
+    }
+    first(funcOrPromise) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this._status === 0) {
+                if (Helper_1.Helper.isNotNull(funcOrPromise)) {
+                    return Promise.race(Object["values"](this._promises)).then(funcOrPromise);
+                }
+                else {
+                    return Promise.race(Object["values"](this._promises));
+                }
+            }
+            else {
+                return Promise.resolve(this._lastResult);
+            }
+        });
+    }
+}
+exports.Prioritized = Prioritized;
+//# sourceMappingURL=Prioritized.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@ainias42/js-helper/dist/Promises/PromiseWithHandlers.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/@ainias42/js-helper/dist/Promises/PromiseWithHandlers.js ***!
-  \*******************************************************************************/
+/***/ 314:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.PromiseWithHandlers = void 0;\nclass PromiseWithHandlers extends Promise {\n    constructor(executor) {\n        let resolver = null;\n        let rejecter = null;\n        super((res, rej) => {\n            resolver = res;\n            rejecter = rej;\n            if (executor) {\n                executor(resolver, rejecter);\n            }\n        });\n        this.resolver = resolver;\n        this.rejecter = rejecter;\n    }\n    resolve(value) {\n        if (this.resolver) {\n            this.resolver(value);\n        }\n    }\n    reject(reason) {\n        if (this.rejecter) {\n            this.rejecter(reason);\n        }\n    }\n}\nexports.PromiseWithHandlers = PromiseWithHandlers;\n//# sourceMappingURL=PromiseWithHandlers.js.map\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@ainias42/js-helper/dist/Promises/PromiseWithHandlers.js?");
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.PromiseWithHandlers = void 0;
+class PromiseWithHandlers extends Promise {
+    constructor(executor) {
+        let resolver = null;
+        let rejecter = null;
+        super((res, rej) => {
+            resolver = res;
+            rejecter = rej;
+            if (executor) {
+                executor(resolver, rejecter);
+            }
+        });
+        this.resolver = resolver;
+        this.rejecter = rejecter;
+    }
+    resolve(value) {
+        if (this.resolver) {
+            this.resolver(value);
+        }
+    }
+    reject(reason) {
+        if (this.rejecter) {
+            this.rejecter(reason);
+        }
+    }
+}
+exports.PromiseWithHandlers = PromiseWithHandlers;
+//# sourceMappingURL=PromiseWithHandlers.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@ainias42/js-helper/dist/Random.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/@ainias42/js-helper/dist/Random.js ***!
-  \*********************************************************/
+/***/ 289:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.Random = void 0;\nclass Random {\n    static seedRandom(seed) {\n        this._seed = seed;\n    }\n    static getRandom() {\n        let t = this._seed += 0x6D2B79F5;\n        t = Math.imul(t ^ t >>> 15, t | 1);\n        t ^= t + Math.imul(t ^ t >>> 7, t | 61);\n        return ((t ^ t >>> 14) >>> 0) / 4294967296;\n    }\n    static getIntRandom(maxValue) {\n        return Math.floor(Random.getRandom() * (maxValue + 1));\n    }\n    static getStringRandom(numSigns, alphabet = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\") {\n        let random = \"\";\n        const numAlphabet = alphabet.length - 1;\n        for (let i = 0; i < numSigns; i++) {\n            random += alphabet[Random.getIntRandom(numAlphabet)];\n        }\n        return random;\n    }\n}\nexports.Random = Random;\nRandom._seed = new Date().getTime();\n//# sourceMappingURL=Random.js.map\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@ainias42/js-helper/dist/Random.js?");
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Random = void 0;
+class Random {
+    static seedRandom(seed) {
+        this._seed = seed;
+    }
+    static getRandom() {
+        let t = this._seed += 0x6D2B79F5;
+        t = Math.imul(t ^ t >>> 15, t | 1);
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    }
+    static getIntRandom(maxValue) {
+        return Math.floor(Random.getRandom() * (maxValue + 1));
+    }
+    static getStringRandom(numSigns, alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789") {
+        let random = "";
+        const numAlphabet = alphabet.length - 1;
+        for (let i = 0; i < numSigns; i++) {
+            random += alphabet[Random.getIntRandom(numAlphabet)];
+        }
+        return random;
+    }
+}
+exports.Random = Random;
+Random._seed = new Date().getTime();
+//# sourceMappingURL=Random.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@ainias42/js-helper/dist/TypeHelper.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/@ainias42/js-helper/dist/TypeHelper.js ***!
-  \*************************************************************/
+/***/ 193:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n//# sourceMappingURL=TypeHelper.js.map\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@ainias42/js-helper/dist/TypeHelper.js?");
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+//# sourceMappingURL=TypeHelper.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@ainias42/js-helper/dist/XSSHelper.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@ainias42/js-helper/dist/XSSHelper.js ***!
-  \************************************************************/
+/***/ 487:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.XSSHelper = void 0;\nclass XSSHelper {\n    static escapeHTML(text) {\n        if (typeof text !== \"string\") {\n            return text;\n        }\n        const MAP = {\n            '&': '&amp;',\n            '<': '&lt;',\n            '>': '&gt;',\n            '\"': '&quot;',\n            \"'\": '&#039;'\n        };\n        return text.replace(/[&<>\"']/g, function (m) {\n            return MAP[m];\n        });\n    }\n    static escapeJS(text) {\n        if (typeof text !== \"string\") {\n            return text;\n        }\n        return text.replace(/[<]([\\\\s]*\\\\\\/?[\\\\s]*)script([^<]*)[>]/g, function (match, p1, p2) {\n            return \"&lt;\" + p1 + \"sc&zwnj;ript\" + p2 + \"&gt;\";\n        });\n    }\n}\nexports.XSSHelper = XSSHelper;\n//# sourceMappingURL=XSSHelper.js.map\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@ainias42/js-helper/dist/XSSHelper.js?");
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.XSSHelper = void 0;
+class XSSHelper {
+    static escapeHTML(text) {
+        if (typeof text !== "string") {
+            return text;
+        }
+        const MAP = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, function (m) {
+            return MAP[m];
+        });
+    }
+    static escapeJS(text) {
+        if (typeof text !== "string") {
+            return text;
+        }
+        return text.replace(/[<]([\\s]*\\\/?[\\s]*)script([^<]*)[>]/g, function (match, p1, p2) {
+            return "&lt;" + p1 + "sc&zwnj;ript" + p2 + "&gt;";
+        });
+    }
+}
+exports.XSSHelper = XSSHelper;
+//# sourceMappingURL=XSSHelper.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@ainias42/js-helper/dist/js-helper.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@ainias42/js-helper/dist/js-helper.js ***!
-  \************************************************************/
+/***/ 355:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\n}) : (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    o[k2] = m[k];\n}));\nvar __exportStar = (this && this.__exportStar) || function(m, exports) {\n    for (var p in m) if (p !== \"default\" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n__exportStar(__webpack_require__(/*! ./ArrayHelper */ \"./node_modules/@ainias42/js-helper/dist/ArrayHelper.js\"), exports);\n__exportStar(__webpack_require__(/*! ./Counter */ \"./node_modules/@ainias42/js-helper/dist/Counter.js\"), exports);\n__exportStar(__webpack_require__(/*! ./DateHelper */ \"./node_modules/@ainias42/js-helper/dist/DateHelper.js\"), exports);\n__exportStar(__webpack_require__(/*! ./Helper */ \"./node_modules/@ainias42/js-helper/dist/Helper.js\"), exports);\n__exportStar(__webpack_require__(/*! ./JSONType */ \"./node_modules/@ainias42/js-helper/dist/JSONType.js\"), exports);\n__exportStar(__webpack_require__(/*! ./JsonHelper */ \"./node_modules/@ainias42/js-helper/dist/JsonHelper.js\"), exports);\n__exportStar(__webpack_require__(/*! ./ObjectHelper */ \"./node_modules/@ainias42/js-helper/dist/ObjectHelper.js\"), exports);\n__exportStar(__webpack_require__(/*! ./Prioritized */ \"./node_modules/@ainias42/js-helper/dist/Prioritized.js\"), exports);\n__exportStar(__webpack_require__(/*! ./Promises/PromiseWithHandlers */ \"./node_modules/@ainias42/js-helper/dist/Promises/PromiseWithHandlers.js\"), exports);\n__exportStar(__webpack_require__(/*! ./Random */ \"./node_modules/@ainias42/js-helper/dist/Random.js\"), exports);\n__exportStar(__webpack_require__(/*! ./TypeHelper */ \"./node_modules/@ainias42/js-helper/dist/TypeHelper.js\"), exports);\n__exportStar(__webpack_require__(/*! ./XSSHelper */ \"./node_modules/@ainias42/js-helper/dist/XSSHelper.js\"), exports);\n//# sourceMappingURL=js-helper.js.map\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@ainias42/js-helper/dist/js-helper.js?");
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+__exportStar(__webpack_require__(615), exports);
+__exportStar(__webpack_require__(366), exports);
+__exportStar(__webpack_require__(9), exports);
+__exportStar(__webpack_require__(209), exports);
+__exportStar(__webpack_require__(135), exports);
+__exportStar(__webpack_require__(493), exports);
+__exportStar(__webpack_require__(495), exports);
+__exportStar(__webpack_require__(744), exports);
+__exportStar(__webpack_require__(314), exports);
+__exportStar(__webpack_require__(289), exports);
+__exportStar(__webpack_require__(193), exports);
+__exportStar(__webpack_require__(487), exports);
+//# sourceMappingURL=js-helper.js.map
 
 /***/ }),
 
-/***/ "./reactWindows.ts":
-/*!*************************!*\
-  !*** ./reactWindows.ts ***!
-  \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ContainerState\": () => (/* reexport safe */ _src_Components_types_ContainerState__WEBPACK_IMPORTED_MODULE_20__.ContainerState),\n/* harmony export */   \"ResizeToContentEnum\": () => (/* reexport safe */ _src_Components_WindowContainer_ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_2__.ResizeToContentEnum),\n/* harmony export */   \"TitleTab\": () => (/* reexport safe */ _src_Components_WindowContainer_TitleTab__WEBPACK_IMPORTED_MODULE_3__.TitleTab),\n/* harmony export */   \"TitleTabBar\": () => (/* reexport safe */ _src_Components_WindowContainer_TitleTabBar__WEBPACK_IMPORTED_MODULE_4__.TitleTabBar),\n/* harmony export */   \"WINDOW_CONTAINER_MIN_HEIGHT\": () => (/* reexport safe */ _src_Components_WindowContainer_WindowContainerDimension__WEBPACK_IMPORTED_MODULE_6__.WINDOW_CONTAINER_MIN_HEIGHT),\n/* harmony export */   \"WINDOW_CONTAINER_MIN_WIDTH\": () => (/* reexport safe */ _src_Components_WindowContainer_WindowContainerDimension__WEBPACK_IMPORTED_MODULE_6__.WINDOW_CONTAINER_MIN_WIDTH),\n/* harmony export */   \"Window\": () => (/* reexport safe */ _src_Components_Window_Window__WEBPACK_IMPORTED_MODULE_0__.Window),\n/* harmony export */   \"WindowButton\": () => (/* reexport safe */ _src_Components_WindowButton_WindowButton__WEBPACK_IMPORTED_MODULE_1__.WindowButton),\n/* harmony export */   \"WindowConstants\": () => (/* reexport safe */ _src_Components_helper_WindowConstants__WEBPACK_IMPORTED_MODULE_12__.WindowConstants),\n/* harmony export */   \"WindowContainer\": () => (/* reexport safe */ _src_Components_WindowContainer_WindowContainer__WEBPACK_IMPORTED_MODULE_5__.WindowContainer),\n/* harmony export */   \"WindowContainerFromStore\": () => (/* reexport safe */ _src_Components_WindowContainer_WindowContainerFromStore__WEBPACK_IMPORTED_MODULE_7__.WindowContainerFromStore),\n/* harmony export */   \"WindowContainerRefContext\": () => (/* reexport safe */ _src_Components_WindowContainer_WindowContainerRefContext__WEBPACK_IMPORTED_MODULE_8__.WindowContainerRefContext),\n/* harmony export */   \"WindowList\": () => (/* reexport safe */ _src_Components_WindowList_WindowList__WEBPACK_IMPORTED_MODULE_11__.WindowList),\n/* harmony export */   \"changeDimension\": () => (/* reexport safe */ _src_Components_WindowContainer_changeDimension__WEBPACK_IMPORTED_MODULE_9__.changeDimension),\n/* harmony export */   \"changeDimensionHeight\": () => (/* reexport safe */ _src_Components_WindowContainer_changeDimension__WEBPACK_IMPORTED_MODULE_9__.changeDimensionHeight),\n/* harmony export */   \"changeDimensionWidth\": () => (/* reexport safe */ _src_Components_WindowContainer_changeDimension__WEBPACK_IMPORTED_MODULE_9__.changeDimensionWidth),\n/* harmony export */   \"checkOverContainerAndTabPosition\": () => (/* reexport safe */ _src_Components_helper_checkOverContainerAndTabPosition__WEBPACK_IMPORTED_MODULE_13__.checkOverContainerAndTabPosition),\n/* harmony export */   \"checkWindowDimension\": () => (/* reexport safe */ _src_Components_WindowContainer_checkWindowDimension__WEBPACK_IMPORTED_MODULE_10__.checkWindowDimension),\n/* harmony export */   \"getWindowStore\": () => (/* reexport safe */ _src_Components_store_createWindowStore__WEBPACK_IMPORTED_MODULE_16__.getWindowStore),\n/* harmony export */   \"reactWindowsI18n\": () => (/* reexport safe */ _src_i18n_i18n__WEBPACK_IMPORTED_MODULE_22__.reactWindowsI18n),\n/* harmony export */   \"selectActiveWindowForContainer\": () => (/* reexport safe */ _src_Components_store_selectActiveWindowForContainers__WEBPACK_IMPORTED_MODULE_17__.selectActiveWindowForContainer),\n/* harmony export */   \"selectActiveWindowIdForContainer\": () => (/* reexport safe */ _src_Components_store_selectAvticeWindowIdForContainer__WEBPACK_IMPORTED_MODULE_18__.selectActiveWindowIdForContainer),\n/* harmony export */   \"selectTitleInfos\": () => (/* reexport safe */ _src_Components_store_selectTitleInfos__WEBPACK_IMPORTED_MODULE_19__.selectTitleInfos),\n/* harmony export */   \"updateDimensions\": () => (/* reexport safe */ _src_Components_helper_updateDimensions__WEBPACK_IMPORTED_MODULE_14__.updateDimensions),\n/* harmony export */   \"useCloseButton\": () => (/* reexport safe */ _src_hooks_useCloseButton__WEBPACK_IMPORTED_MODULE_21__.useCloseButton),\n/* harmony export */   \"useOnMouseDrag\": () => (/* reexport safe */ _src_Components_hooks_useOnMouseDrag__WEBPACK_IMPORTED_MODULE_15__.useOnMouseDrag),\n/* harmony export */   \"useWindowContainerRef\": () => (/* reexport safe */ _src_Components_WindowContainer_WindowContainerRefContext__WEBPACK_IMPORTED_MODULE_8__.useWindowContainerRef)\n/* harmony export */ });\n/* harmony import */ var _src_Components_Window_Window__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/Components/Window/Window */ \"./src/Components/Window/Window.tsx\");\n/* harmony import */ var _src_Components_WindowButton_WindowButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/Components/WindowButton/WindowButton */ \"./src/Components/WindowButton/WindowButton.tsx\");\n/* harmony import */ var _src_Components_WindowContainer_ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/Components/WindowContainer/ResizeToContentEnum */ \"./src/Components/WindowContainer/ResizeToContentEnum.ts\");\n/* harmony import */ var _src_Components_WindowContainer_TitleTab__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./src/Components/WindowContainer/TitleTab */ \"./src/Components/WindowContainer/TitleTab.tsx\");\n/* harmony import */ var _src_Components_WindowContainer_TitleTabBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./src/Components/WindowContainer/TitleTabBar */ \"./src/Components/WindowContainer/TitleTabBar.tsx\");\n/* harmony import */ var _src_Components_WindowContainer_WindowContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./src/Components/WindowContainer/WindowContainer */ \"./src/Components/WindowContainer/WindowContainer.tsx\");\n/* harmony import */ var _src_Components_WindowContainer_WindowContainerDimension__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./src/Components/WindowContainer/WindowContainerDimension */ \"./src/Components/WindowContainer/WindowContainerDimension.ts\");\n/* harmony import */ var _src_Components_WindowContainer_WindowContainerFromStore__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./src/Components/WindowContainer/WindowContainerFromStore */ \"./src/Components/WindowContainer/WindowContainerFromStore.tsx\");\n/* harmony import */ var _src_Components_WindowContainer_WindowContainerRefContext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./src/Components/WindowContainer/WindowContainerRefContext */ \"./src/Components/WindowContainer/WindowContainerRefContext.ts\");\n/* harmony import */ var _src_Components_WindowContainer_changeDimension__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./src/Components/WindowContainer/changeDimension */ \"./src/Components/WindowContainer/changeDimension.ts\");\n/* harmony import */ var _src_Components_WindowContainer_checkWindowDimension__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./src/Components/WindowContainer/checkWindowDimension */ \"./src/Components/WindowContainer/checkWindowDimension.ts\");\n/* harmony import */ var _src_Components_WindowList_WindowList__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./src/Components/WindowList/WindowList */ \"./src/Components/WindowList/WindowList.tsx\");\n/* harmony import */ var _src_Components_helper_WindowConstants__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./src/Components/helper/WindowConstants */ \"./src/Components/helper/WindowConstants.ts\");\n/* harmony import */ var _src_Components_helper_checkOverContainerAndTabPosition__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./src/Components/helper/checkOverContainerAndTabPosition */ \"./src/Components/helper/checkOverContainerAndTabPosition.ts\");\n/* harmony import */ var _src_Components_helper_updateDimensions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./src/Components/helper/updateDimensions */ \"./src/Components/helper/updateDimensions.ts\");\n/* harmony import */ var _src_Components_hooks_useOnMouseDrag__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./src/Components/hooks/useOnMouseDrag */ \"./src/Components/hooks/useOnMouseDrag.ts\");\n/* harmony import */ var _src_Components_store_createWindowStore__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./src/Components/store/createWindowStore */ \"./src/Components/store/createWindowStore.ts\");\n/* harmony import */ var _src_Components_store_selectActiveWindowForContainers__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./src/Components/store/selectActiveWindowForContainers */ \"./src/Components/store/selectActiveWindowForContainers.ts\");\n/* harmony import */ var _src_Components_store_selectAvticeWindowIdForContainer__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./src/Components/store/selectAvticeWindowIdForContainer */ \"./src/Components/store/selectAvticeWindowIdForContainer.ts\");\n/* harmony import */ var _src_Components_store_selectTitleInfos__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./src/Components/store/selectTitleInfos */ \"./src/Components/store/selectTitleInfos.ts\");\n/* harmony import */ var _src_Components_types_ContainerState__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./src/Components/types/ContainerState */ \"./src/Components/types/ContainerState.ts\");\n/* harmony import */ var _src_hooks_useCloseButton__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./src/hooks/useCloseButton */ \"./src/hooks/useCloseButton.ts\");\n/* harmony import */ var _src_i18n_i18n__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./src/i18n/i18n */ \"./src/i18n/i18n.ts\");\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./reactWindows.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/Window/Window.tsx":
-/*!******************************************!*\
-  !*** ./src/Components/Window/Window.tsx ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Window\": () => (/* binding */ Window)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ainias42/react-bootstrap-mobile */ \"@ainias42/react-bootstrap-mobile\");\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _store_createWindowStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/createWindowStore */ \"./src/Components/store/createWindowStore.ts\");\n/* harmony import */ var _hooks_useCloseButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useCloseButton */ \"./src/hooks/useCloseButton.ts\");\n\n\n\n\nconst emptyButtons = [];\nconst Window = (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.withMemo)(function Window({\n  storeId = 'default',\n  fillHeight = false,\n  buttons = emptyButtons,\n  id,\n  defaultContainerId,\n  title,\n  defaultWidth,\n  children,\n  onClose,\n  className,\n  style,\n  isActiveOnOpen = true\n}) {\n  // Variables\n  const useStore = (0,_store_createWindowStore__WEBPACK_IMPORTED_MODULE_2__.getWindowStore)(storeId);\n  const setWindow = useStore(s => s.setWindow);\n  const removeWindow = useStore(s => s.removeWindow);\n  const onCloseButton = (0,_hooks_useCloseButton__WEBPACK_IMPORTED_MODULE_3__.useCloseButton)(id, storeId, onClose);\n  // Refs\n  // States\n  // Selectors\n  // Callbacks\n  // Effects\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {\n    let buttonFunction;\n    if (Array.isArray(buttons)) {\n      buttonFunction = (_, defaultButtons) => [...defaultButtons, ...buttons];\n    } else {\n      buttonFunction = buttons;\n    }\n    if (onClose) {\n      const oldButtons = buttonFunction;\n      buttonFunction = (containerState, defaultButtons) => [onCloseButton, ...oldButtons(containerState, defaultButtons)];\n    }\n    setWindow({\n      id,\n      title,\n      fillHeight,\n      defaultWidth,\n      buttons: buttonFunction,\n      children,\n      className,\n      style\n    }, defaultContainerId, isActiveOnOpen);\n  }, [id, defaultContainerId, title, fillHeight, defaultWidth, buttons, children, onCloseButton, onClose, setWindow, className, style, isActiveOnOpen]);\n  // remove window only if id changes or component is unmounted\n  (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.useOnMount)(() => {\n    return () => {\n      removeWindow(id);\n      onClose === null || onClose === void 0 ? void 0 : onClose();\n    };\n  });\n  // Other\n  // Render Functions\n  return null;\n});\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/Window/Window.tsx?");
-
-/***/ }),
-
-/***/ "./src/Components/WindowButton/WindowButton.tsx":
-/*!******************************************************!*\
-  !*** ./src/Components/WindowButton/WindowButton.tsx ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"WindowButton\": () => (/* binding */ WindowButton)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _windowButton_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./windowButton.scss */ \"./src/Components/WindowButton/windowButton.scss\");\n/* harmony import */ var _windowButton_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_windowButton_scss__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ainias42/react-bootstrap-mobile */ \"@ainias42/react-bootstrap-mobile\");\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _types_ContainerState__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../types/ContainerState */ \"./src/Components/types/ContainerState.ts\");\nvar __rest = undefined && undefined.__rest || function (s, e) {\n  var t = {};\n  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];\n  if (s != null && typeof Object.getOwnPropertySymbols === \"function\") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];\n  }\n  return t;\n};\n\n\n\n\nconst WindowButton = (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_2__.withMemo)(function WindowButton(_a) {\n  // Variables\n  var {\n      icon,\n      title,\n      containerState,\n      hideWhenMaximized,\n      hideWhenMinimized\n    } = _a,\n    listenerProps = __rest(_a, [\"icon\", \"title\", \"containerState\", \"hideWhenMaximized\", \"hideWhenMinimized\"]);\n  // Refs\n  // States\n  // Selectors\n  // Callbacks\n  const onClick = (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_2__.useListener)('onClick', listenerProps);\n  // Effects\n  // Other\n  // Render Functions\n  if (hideWhenMaximized && containerState === _types_ContainerState__WEBPACK_IMPORTED_MODULE_3__.ContainerState.MAXIMIZED) {\n    return null;\n  }\n  if (hideWhenMinimized && containerState === _types_ContainerState__WEBPACK_IMPORTED_MODULE_3__.ContainerState.MINIMIZED) {\n    return null;\n  }\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_2__.Clickable, {\n    onClick: onClick,\n    className: (_windowButton_scss__WEBPACK_IMPORTED_MODULE_1___default().windowButton)\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_2__.Icon, {\n    icon: icon,\n    title: title\n  }));\n}, (_windowButton_scss__WEBPACK_IMPORTED_MODULE_1___default()));\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowButton/WindowButton.tsx?");
-
-/***/ }),
-
-/***/ "./src/Components/WindowContainer/ResizeToContentEnum.ts":
-/*!***************************************************************!*\
-  !*** ./src/Components/WindowContainer/ResizeToContentEnum.ts ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ResizeToContentEnum\": () => (/* binding */ ResizeToContentEnum)\n/* harmony export */ });\nvar ResizeToContentEnum;\n(function (ResizeToContentEnum) {\n  ResizeToContentEnum[ResizeToContentEnum[\"NONE\"] = 0] = \"NONE\";\n  ResizeToContentEnum[ResizeToContentEnum[\"RESIZE\"] = 1] = \"RESIZE\";\n  ResizeToContentEnum[ResizeToContentEnum[\"HEIGHT_ONLY\"] = 2] = \"HEIGHT_ONLY\";\n  ResizeToContentEnum[ResizeToContentEnum[\"WIDTH_ONLY\"] = 3] = \"WIDTH_ONLY\";\n})(ResizeToContentEnum || (ResizeToContentEnum = {}));\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowContainer/ResizeToContentEnum.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/WindowContainer/TitleTab.tsx":
-/*!*****************************************************!*\
-  !*** ./src/Components/WindowContainer/TitleTab.tsx ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"TitleTab\": () => (/* binding */ TitleTab)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ainias42/react-bootstrap-mobile */ \"@ainias42/react-bootstrap-mobile\");\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ \"./node_modules/classnames/index.js\");\n/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _windowContainer_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./windowContainer.scss */ \"./src/Components/WindowContainer/windowContainer.scss\");\n/* harmony import */ var _windowContainer_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _hooks_useOnMouseDrag__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../hooks/useOnMouseDrag */ \"./src/Components/hooks/useOnMouseDrag.ts\");\n/* harmony import */ var _store_createWindowStore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/createWindowStore */ \"./src/Components/store/createWindowStore.ts\");\n/* harmony import */ var zustand_shallow__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! zustand/shallow */ \"./node_modules/zustand/esm/shallow.mjs\");\n/* harmony import */ var _types_ContainerState__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../types/ContainerState */ \"./src/Components/types/ContainerState.ts\");\n\n\n\n\n\n\n\n\nconst TitleTab = (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.withMemo)(function TitleTab({\n  id,\n  children,\n  isActive,\n  onClick,\n  className,\n  style,\n  isHidden = false,\n  storeId,\n  disableDrag\n}) {\n  // Variables\n  // Refs\n  const useStore = (0,_store_createWindowStore__WEBPACK_IMPORTED_MODULE_5__.getWindowStore)(storeId);\n  const dimension = useStore(s => {\n    var _a;\n    return (_a = s.containers[s.windowContainerMapping[id]]) === null || _a === void 0 ? void 0 : _a.dimension;\n  });\n  const canDrag = useStore(s => {\n    var _a;\n    return ((_a = s.containers[s.windowContainerMapping[id]]) === null || _a === void 0 ? void 0 : _a.state) !== _types_ContainerState__WEBPACK_IMPORTED_MODULE_6__.ContainerState.POPUP;\n  });\n  const singleTabContainerId = useStore(s => {\n    var _a;\n    if (((_a = s.containers[s.windowContainerMapping[id]]) === null || _a === void 0 ? void 0 : _a.windowIds.length) === 1) {\n      return s.windowContainerMapping[id];\n    }\n    return undefined;\n  });\n  const [updateDragging, setContainerIsMoving, clearDragging] = useStore(s => [s.updateDragging, s.setContainerIsMoving, s.clearDraggingWindow], zustand_shallow__WEBPACK_IMPORTED_MODULE_7__.shallow);\n  const window = (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.useWindow)();\n  const dragStartPosition = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(undefined);\n  const ignoredContainerId = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(undefined);\n  // States\n  // Selectors\n  // Callbacks\n  const onDrag = (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.useDelayed)(e => {\n    if (!dimension || !dragStartPosition.current) {\n      return;\n    }\n    const position = {\n      x: e.clientX,\n      y: e.clientY\n    };\n    const diff = {\n      x: position.x - dragStartPosition.current.x,\n      y: position.y - dragStartPosition.current.y\n    };\n    const newDimension = Object.assign({}, dimension);\n    diff.y = Math.min(Math.max(diff.y, -dimension.top), dimension.bottom);\n    diff.x = Math.min(Math.max(diff.x, -dimension.left), dimension.right);\n    newDimension.top += diff.y;\n    newDimension.left += diff.x;\n    newDimension.bottom -= diff.y;\n    newDimension.right -= diff.x;\n    ignoredContainerId.current = updateDragging(id, position, newDimension, ignoredContainerId.current);\n  }, [dimension, id, updateDragging], 16, 16);\n  const onDragStop = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {\n    if (ignoredContainerId.current) {\n      setContainerIsMoving(ignoredContainerId.current, false);\n    }\n    dragStartPosition.current = undefined;\n    ignoredContainerId.current = undefined;\n    window === null || window === void 0 ? void 0 : window.removeEventListener('mousemove', onDrag);\n    window === null || window === void 0 ? void 0 : window.removeEventListener('mouseup', onDragStop);\n    window === null || window === void 0 ? void 0 : window.document.body.classList.remove((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_3___default().noSelect));\n    clearDragging();\n  }, [clearDragging, onDrag, setContainerIsMoving, window]);\n  const onDragStart = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)((e, startPosition) => {\n    if (disableDrag) {\n      return;\n    }\n    dragStartPosition.current = startPosition;\n    ignoredContainerId.current = singleTabContainerId;\n    onDrag(e);\n    window === null || window === void 0 ? void 0 : window.addEventListener('mousemove', onDrag);\n    window === null || window === void 0 ? void 0 : window.addEventListener('mouseup', onDragStop);\n    window === null || window === void 0 ? void 0 : window.document.body.classList.add((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_3___default().noSelect));\n  }, [disableDrag, onDrag, onDragStop, singleTabContainerId, window]);\n  const onClickInner = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {\n    onClick(id);\n  }, [id, onClick]);\n  const onMouseMove = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)((diff, currentPosition, event) => {\n    if (!canDrag || dragStartPosition.current || Math.abs(diff.x) < 5 && Math.abs(diff.y) < 5) {\n      return;\n    }\n    onDragStart(event, {\n      x: currentPosition.x - diff.x,\n      y: currentPosition.y - diff.y\n    });\n  }, [canDrag, onDragStart]);\n  // Effects\n  const onMouseDown = (0,_hooks_useOnMouseDrag__WEBPACK_IMPORTED_MODULE_4__.useOnMouseDrag)({\n    onMouseMove\n  });\n  // Other\n  // Render Functions\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.InlineBlock, {\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_3___default().titleTab), {\n      [(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_3___default().titleTabActive)]: isActive,\n      [(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_3___default().titleTabHidden)]: isHidden\n    }, className),\n    style: style\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.Clickable, {\n    onClick: onClickInner,\n    onMouseDown: onMouseDown,\n    preventDefault: false\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.Text, {\n    className: (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_3___default().titleText)\n  }, children)));\n}, (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_3___default()), 'text');\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowContainer/TitleTab.tsx?");
-
-/***/ }),
-
-/***/ "./src/Components/WindowContainer/TitleTabBar.tsx":
-/*!********************************************************!*\
-  !*** ./src/Components/WindowContainer/TitleTabBar.tsx ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"TitleTabBar\": () => (/* binding */ TitleTabBar)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ainias42/react-bootstrap-mobile */ \"@ainias42/react-bootstrap-mobile\");\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _TitleTab__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TitleTab */ \"./src/Components/WindowContainer/TitleTab.tsx\");\n/* harmony import */ var _store_createWindowStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/createWindowStore */ \"./src/Components/store/createWindowStore.ts\");\n/* harmony import */ var _store_selectAvticeWindowIdForContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/selectAvticeWindowIdForContainer */ \"./src/Components/store/selectAvticeWindowIdForContainer.ts\");\n/* harmony import */ var _windowContainer_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./windowContainer.scss */ \"./src/Components/WindowContainer/windowContainer.scss\");\n/* harmony import */ var _windowContainer_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! classnames */ \"./node_modules/classnames/index.js\");\n/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);\n/* harmony import */ var zustand_shallow__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! zustand/shallow */ \"./node_modules/zustand/esm/shallow.mjs\");\n/* harmony import */ var _hooks_useOnMouseDrag__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../hooks/useOnMouseDrag */ \"./src/Components/hooks/useOnMouseDrag.ts\");\n\n\n\n\n\n\n\n\n\nconst TitleTabBar = (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.withMemo)(function TitleTabBar({\n  storeId,\n  containerId,\n  style,\n  className,\n  titleInfos,\n  onMoveUpdate,\n  isLocked\n}) {\n  // Variables\n  // States\n  const useStore = (0,_store_createWindowStore__WEBPACK_IMPORTED_MODULE_3__.getWindowStore)(storeId);\n  const activeWindowId = useStore(s => (0,_store_selectAvticeWindowIdForContainer__WEBPACK_IMPORTED_MODULE_4__.selectActiveWindowIdForContainer)(s, containerId));\n  const dimension = useStore(s => {\n    var _a;\n    return (_a = s.containers[containerId]) === null || _a === void 0 ? void 0 : _a.dimension;\n  });\n  const [updateContainerActiveWindow, setActiveContainer, updateContainerDimension] = useStore(s => [s.updateContainerActiveWindow, s.setActiveContainer, s.updateContainerDimension], zustand_shallow__WEBPACK_IMPORTED_MODULE_8__.shallow);\n  const moveStartDimension = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(undefined);\n  // Refs\n  // Selectors\n  // Callbacks\n  const setActive = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => setActiveContainer(containerId), [containerId, setActiveContainer]);\n  const setDimension = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(newDimension => updateContainerDimension(containerId, newDimension), [containerId, updateContainerDimension]);\n  const onMouseDown = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {\n    if (isLocked) {\n      return;\n    }\n    moveStartDimension.current = dimension;\n    onMoveUpdate(true);\n    setActive();\n  }, [dimension, isLocked, onMoveUpdate, setActive]);\n  const onMouseMove = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(diff => {\n    const startDimension = moveStartDimension.current;\n    if (!startDimension) {\n      return;\n    }\n    const newDimension = Object.assign({}, startDimension);\n    diff.y = Math.min(Math.max(diff.y, -startDimension.top), startDimension.bottom);\n    diff.x = Math.min(Math.max(diff.x, -startDimension.left), startDimension.right);\n    newDimension.top += diff.y;\n    newDimension.left += diff.x;\n    newDimension.bottom -= diff.y;\n    newDimension.right -= diff.x;\n    setDimension(newDimension);\n  }, [setDimension]);\n  const onMouseUp = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {\n    moveStartDimension.current = undefined;\n    onMoveUpdate(false);\n  }, [onMoveUpdate]);\n  const setActiveWindow = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(activeWindow => updateContainerActiveWindow(containerId, activeWindow), [containerId, updateContainerActiveWindow]);\n  const onMoveStart = (0,_hooks_useOnMouseDrag__WEBPACK_IMPORTED_MODULE_7__.useOnMouseDrag)({\n    onMouseDown,\n    onMouseMove,\n    onMouseUp\n  });\n  // Effects\n  // Other\n  // Render Functions\n  // prevent division by zero\n  const tabLength = titleInfos.length;\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.Clickable, {\n    onMouseDown: onMoveStart,\n    style: style,\n    className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(className, (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_5___default().titleTabBar), {\n      [(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_5___default().singleTab)]: tabLength === 1\n    })\n  }, titleInfos.map(info => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TitleTab__WEBPACK_IMPORTED_MODULE_2__.TitleTab, {\n    key: info.id,\n    id: info.id,\n    isActive: info.id === activeWindowId,\n    onClick: setActiveWindow,\n    style: {\n      width: `${Math.floor(100 / tabLength)}%`\n    },\n    isHidden: false,\n    storeId: storeId,\n    disableDrag: isLocked && titleInfos.length === 1\n  }, info.title)));\n}, (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_5___default()));\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowContainer/TitleTabBar.tsx?");
-
-/***/ }),
-
-/***/ "./src/Components/WindowContainer/WindowContainer.tsx":
-/*!************************************************************!*\
-  !*** ./src/Components/WindowContainer/WindowContainer.tsx ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"WindowContainer\": () => (/* binding */ WindowContainer)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _windowContainer_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./windowContainer.scss */ \"./src/Components/WindowContainer/windowContainer.scss\");\n/* harmony import */ var _windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ \"./node_modules/classnames/index.js\");\n/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ \"./node_modules/@fortawesome/free-regular-svg-icons/index.mjs\");\n/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ \"@fortawesome/free-solid-svg-icons\");\n/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _checkWindowDimension__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./checkWindowDimension */ \"./src/Components/WindowContainer/checkWindowDimension.ts\");\n/* harmony import */ var _changeDimension__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./changeDimension */ \"./src/Components/WindowContainer/changeDimension.ts\");\n/* harmony import */ var _WindowContainerDimension__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./WindowContainerDimension */ \"./src/Components/WindowContainer/WindowContainerDimension.ts\");\n/* harmony import */ var _WindowButton_WindowButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../WindowButton/WindowButton */ \"./src/Components/WindowButton/WindowButton.tsx\");\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ainias42/react-bootstrap-mobile */ \"@ainias42/react-bootstrap-mobile\");\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__);\n/* harmony import */ var _store_createWindowStore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../store/createWindowStore */ \"./src/Components/store/createWindowStore.ts\");\n/* harmony import */ var zustand_shallow__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! zustand/shallow */ \"./node_modules/zustand/esm/shallow.mjs\");\n/* harmony import */ var _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../types/ContainerState */ \"./src/Components/types/ContainerState.ts\");\n/* harmony import */ var _TitleTabBar__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./TitleTabBar */ \"./src/Components/WindowContainer/TitleTabBar.tsx\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-dom */ \"react-dom\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_12__);\n/* harmony import */ var _hooks_useOnMouseDrag__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../hooks/useOnMouseDrag */ \"./src/Components/hooks/useOnMouseDrag.ts\");\n/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-i18next */ \"./node_modules/react-i18next/dist/es/index.js\");\n/* harmony import */ var _i18n_i18n__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../i18n/i18n */ \"./src/i18n/i18n.ts\");\n/* harmony import */ var _WindowContainerRefContext__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./WindowContainerRefContext */ \"./src/Components/WindowContainer/WindowContainerRefContext.ts\");\n/* harmony import */ var _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./ResizeToContentEnum */ \"./src/Components/WindowContainer/ResizeToContentEnum.ts\");\nfunction _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nconst WindowContainer = (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.withForwardRef)(function WindowContainer({\n  initialTop = 200,\n  initialLeft = 200,\n  id,\n  store = 'default',\n  containerData,\n  windowData,\n  titleInfos,\n  isActive,\n  disabled,\n  className\n}, ref) {\n  var _a;\n  // Variables\n  const {\n    t\n  } = (0,react_i18next__WEBPACK_IMPORTED_MODULE_14__.useTranslation)();\n  // Refs\n  const [portalContainer] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => {\n    return document.createElement('div');\n  });\n  // Open in new window refs\n  const windowContainerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);\n  const containerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();\n  const [windowObject, setWindowObject] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(undefined);\n  // Resize to content-refs\n  const titleRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);\n  const contentRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);\n  const windowRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);\n  // States\n  const useStore = (0,_store_createWindowStore__WEBPACK_IMPORTED_MODULE_9__.getWindowStore)(store);\n  const [setActiveContainer, updateContainerDimension, updateContainerState, setContainerButtonWidth, setContainerIsMoving, setContainerIsLocked, setShouldResizeToContent] = useStore(s => [s.setActiveContainer, s.updateContainerDimension, s.updateContainerState, s.setButtonWidth, s.setContainerIsMoving, s.setContainerIsLocked, s.setShouldResizeToContent], zustand_shallow__WEBPACK_IMPORTED_MODULE_18__.shallow);\n  const buttonWidth = useStore(s => s.containers[id].buttonWidth);\n  const draggingWindowId = useStore(s => s.draggingWindowId);\n  const {\n    defaultWidth\n  } = windowData !== null && windowData !== void 0 ? windowData : {};\n  const {\n    dimension,\n    state,\n    shouldResizeToContent\n  } = containerData;\n  const [isMenuOpen, setIsMenuOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n  const [menuX, setMenuX] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);\n  const [menuY, setMenuY] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);\n  const [isClient, setIsClient] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n  const [resizeDirection, setResizeDirection] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();\n  const [resizeStartDimension, setResizeStartDimension] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(dimension);\n  const {\n    isMoving\n  } = containerData;\n  // Selectors\n  // Callbacks\n  const setIsMoving = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(newIsMoving => setContainerIsMoving(id, newIsMoving), [id, setContainerIsMoving]);\n  const unlock = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => setContainerIsLocked(id, false), [id, setContainerIsLocked]);\n  const lock = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => setContainerIsLocked(id, true), [id, setContainerIsLocked]);\n  const setButtonWidth = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(newButtonWidth => setContainerButtonWidth(id, newButtonWidth), [id, setContainerButtonWidth]);\n  const setContainerState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(newState => {\n    updateContainerState(id, newState);\n  }, [id, updateContainerState]);\n  const setDimension = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(newDimension => updateContainerDimension(id, newDimension), [id, updateContainerDimension]);\n  const setActive = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => setActiveContainer(id), [id, setActiveContainer]);\n  const closeMenu = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => setIsMenuOpen(false), []);\n  const openMenu = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(ev => {\n    setIsMenuOpen(true);\n    setMenuX(ev.clientX);\n    setMenuY(ev.clientY);\n  }, []);\n  const getDimensions = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {\n    if (windowContainerRef.current) {\n      const computedStyles = window.getComputedStyle(windowContainerRef.current);\n      return {\n        top: parseFloat(computedStyles.getPropertyValue('top')),\n        bottom: parseFloat(computedStyles.getPropertyValue('bottom')),\n        left: parseFloat(computedStyles.getPropertyValue('left')),\n        right: parseFloat(computedStyles.getPropertyValue('right'))\n      };\n    }\n    return undefined;\n  }, []);\n  const resizeToContent = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)((resizeWidth = true, resizeHeight = true) => {\n    if (!windowRef.current || !titleRef.current || !contentRef.current) {\n      return;\n    }\n    const classesBefore = contentRef.current.className;\n    contentRef.current.classList.remove((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().fillHeight));\n    contentRef.current.classList.add(\"resizing\");\n    const realDimension = getDimensions();\n    if (!realDimension) {\n      return;\n    }\n    if (defaultWidth && windowContainerRef.current && resizeWidth) {\n      const currentWidth = window.innerWidth - realDimension.left - realDimension.right;\n      if (currentWidth !== defaultWidth) {\n        (0,_changeDimension__WEBPACK_IMPORTED_MODULE_5__.changeDimensionWidth)(realDimension, defaultWidth - currentWidth);\n        windowContainerRef.current.style.right = `${realDimension.right}px`;\n        windowContainerRef.current.style.left = `${realDimension.left}px`;\n      }\n    }\n    let diffY = contentRef.current.scrollHeight - contentRef.current.clientHeight;\n    const diffX = !resizeWidth ? 0 : contentRef.current.scrollWidth - contentRef.current.clientWidth;\n    if (diffY === 0) {\n      diffY = titleRef.current.clientHeight + contentRef.current.clientHeight - windowRef.current.clientHeight;\n    }\n    if (!resizeHeight) {\n      diffY = 0;\n    }\n    if (resizeHeight) {\n      setShouldResizeToContent(id, resizeWidth ? _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.RESIZE : _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.HEIGHT_ONLY);\n    } else if (resizeWidth) {\n      setShouldResizeToContent(id, _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.WIDTH_ONLY);\n    } else {\n      setShouldResizeToContent(id, _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.NONE);\n    }\n    contentRef.current.className = classesBefore;\n    (0,_changeDimension__WEBPACK_IMPORTED_MODULE_5__.changeDimension)(realDimension, diffX, diffY);\n    setDimension((0,_checkWindowDimension__WEBPACK_IMPORTED_MODULE_4__.checkWindowDimension)(realDimension));\n  }, [defaultWidth, getDimensions, id, setDimension, setShouldResizeToContent]);\n  const toggleMinimized = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => setContainerState(old => old === _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.MINIMIZED ? _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.NORMAL : _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.MINIMIZED), [setContainerState]);\n  const toggleMaximized = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => setContainerState(old => old === _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.MAXIMIZED ? _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.NORMAL : _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.MAXIMIZED), [setContainerState]);\n  const onMouseDown = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {\n    if (!containerData.isLocked) {\n      setIsMoving(true);\n    }\n  }, [containerData.isLocked, setIsMoving]);\n  const onMouseMove = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(diff => {\n    var _a, _b, _c, _d;\n    if (!resizeStartDimension) {\n      return;\n    }\n    const newDimension = Object.assign({}, resizeStartDimension);\n    if (resizeDirection === 'top' || resizeDirection === 'tl' || resizeDirection === 'tr') {\n      newDimension.top = Math.min(window.innerHeight - ((_a = resizeStartDimension.bottom) !== null && _a !== void 0 ? _a : 0) - _WindowContainerDimension__WEBPACK_IMPORTED_MODULE_6__.WINDOW_CONTAINER_MIN_HEIGHT, resizeStartDimension.top + diff.y);\n    }\n    if (resizeDirection === 'bottom' || resizeDirection === 'bl' || resizeDirection === 'br') {\n      newDimension.bottom = Math.min(window.innerHeight - resizeStartDimension.top - _WindowContainerDimension__WEBPACK_IMPORTED_MODULE_6__.WINDOW_CONTAINER_MIN_HEIGHT, ((_b = resizeStartDimension.bottom) !== null && _b !== void 0 ? _b : 0) - diff.y);\n    }\n    if (resizeDirection === 'left' || resizeDirection === 'bl' || resizeDirection === 'tl') {\n      newDimension.left = Math.min(window.innerWidth - ((_c = resizeStartDimension.right) !== null && _c !== void 0 ? _c : 0) - _WindowContainerDimension__WEBPACK_IMPORTED_MODULE_6__.WINDOW_CONTAINER_MIN_WIDTH, resizeStartDimension.left + diff.x);\n    }\n    if (resizeDirection === 'right' || resizeDirection === 'br' || resizeDirection === 'tr') {\n      newDimension.right = Math.min(window.innerWidth - resizeStartDimension.left - _WindowContainerDimension__WEBPACK_IMPORTED_MODULE_6__.WINDOW_CONTAINER_MIN_WIDTH, ((_d = resizeStartDimension.right) !== null && _d !== void 0 ? _d : 0) - diff.x);\n    }\n    const changedHeight = resizeStartDimension.bottom !== newDimension.bottom || resizeStartDimension.top !== newDimension.top;\n    const changedWidth = resizeStartDimension.left !== newDimension.left || resizeStartDimension.right !== newDimension.right;\n    if (shouldResizeToContent !== _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.NONE) {\n      if (changedWidth && changedHeight || shouldResizeToContent === _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.WIDTH_ONLY && changedWidth || shouldResizeToContent === _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.HEIGHT_ONLY && changedHeight) {\n        setShouldResizeToContent(id, _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.NONE);\n      } else if (shouldResizeToContent === _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.RESIZE) {\n        if (changedHeight) {\n          setShouldResizeToContent(id, _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.WIDTH_ONLY);\n        } else if (changedWidth) {\n          setShouldResizeToContent(id, _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.HEIGHT_ONLY);\n        }\n      }\n    }\n    setActive();\n    setDimension(newDimension);\n  }, [id, resizeDirection, resizeStartDimension, setActive, setDimension, setShouldResizeToContent, shouldResizeToContent]);\n  const onMouseUp = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {\n    setIsMoving(false);\n  }, [setIsMoving]);\n  const onDragDown = (0,_hooks_useOnMouseDrag__WEBPACK_IMPORTED_MODULE_13__.useOnMouseDrag)({\n    onMouseMove,\n    onMouseDown,\n    onMouseUp\n  });\n  const onResizeStart = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)((e, direction) => {\n    setResizeDirection(direction);\n    onDragDown(e);\n    setResizeStartDimension(dimension);\n  }, [dimension, onDragDown]);\n  const openInNewWindow = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)((force = false) => {\n    var _a;\n    if (!force && state === _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.POPUP || !containerRef.current) {\n      return;\n    }\n    const windowProxy = window.open('', '', 'modal=yes');\n    if (windowProxy === null) {\n      // showToast('cannot open popup :(');\n      if (state === _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.POPUP) {\n        setContainerState(_types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.NORMAL);\n      }\n      return;\n    }\n    setContainerState(_types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.POPUP);\n    const baseElement = document.createElement('base');\n    baseElement.href = window.location.href;\n    windowProxy.document.head.appendChild(baseElement);\n    const titleElement = document.createElement('title');\n    titleElement.innerText = (_a = windowData === null || windowData === void 0 ? void 0 : windowData.title) !== null && _a !== void 0 ? _a : '';\n    windowProxy.document.head.appendChild(titleElement);\n    document.querySelectorAll(\"link[rel='stylesheet']\").forEach(styleElem => {\n      windowProxy.document.head.appendChild(styleElem.cloneNode());\n    });\n    document.querySelectorAll('style').forEach(styleElem => {\n      windowProxy.document.head.appendChild(styleElem.cloneNode(true));\n    });\n    document.body.classList.forEach(bodyClass => {\n      windowProxy.document.body.classList.add(bodyClass);\n    });\n    // TODO Theme-Checker?\n    windowProxy.document.body.classList.add('flat-design');\n    portalContainer.remove();\n    windowProxy.document.body.appendChild(portalContainer);\n    setWindowObject(windowProxy.window);\n    windowProxy.addEventListener('beforeunload', () => {\n      var _a;\n      setContainerState(_types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.NORMAL);\n      portalContainer.remove();\n      (_a = containerRef.current) === null || _a === void 0 ? void 0 : _a.append(portalContainer);\n      setWindowObject(undefined);\n    });\n  }, [portalContainer, setContainerState, state, windowData === null || windowData === void 0 ? void 0 : windowData.title]);\n  const checkResizeToContent = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {\n    if (shouldResizeToContent !== _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.NONE && (windowData === null || windowData === void 0 ? void 0 : windowData.id) !== draggingWindowId) {\n      resizeToContent(shouldResizeToContent === _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.WIDTH_ONLY || shouldResizeToContent === _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.RESIZE, shouldResizeToContent === _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.HEIGHT_ONLY || shouldResizeToContent === _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.RESIZE);\n    }\n  }, [draggingWindowId, resizeToContent, shouldResizeToContent, windowData === null || windowData === void 0 ? void 0 : windowData.id]);\n  const realRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => ({\n    toggleMaximize: () => {\n      if (!disabled) {\n        toggleMaximized();\n      }\n    },\n    toggleMinimize: () => {\n      if (!disabled) {\n        toggleMinimized();\n      }\n    },\n    maximize() {\n      if (!disabled && state !== _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.POPUP && state !== _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.MAXIMIZED) {\n        toggleMaximized();\n      }\n    },\n    minimize() {\n      if (!disabled && state !== _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.POPUP && state !== _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.MINIMIZED) {\n        toggleMinimized();\n      }\n    },\n    openInNewWindow() {\n      if (!disabled && state !== _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.POPUP) {\n        openInNewWindow();\n      }\n    },\n    resizeToContent() {\n      if (!disabled && state !== _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.POPUP) {\n        resizeToContent();\n      }\n    },\n    checkResizeToContent() {\n      if (!disabled && state !== _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.POPUP) {\n        checkResizeToContent();\n      }\n    }\n  }), [checkResizeToContent, disabled, openInNewWindow, resizeToContent, state, toggleMaximized, toggleMinimized]);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, () => realRef, [realRef]);\n  const updateContainerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(element => {\n    containerRef.current = element !== null && element !== void 0 ? element : undefined;\n    if (element && state !== _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.POPUP) {\n      element.appendChild(portalContainer);\n    }\n  }, [portalContainer, state]);\n  const resizeInBothDirections = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => resizeToContent(true, true), [resizeToContent]);\n  const resizeToWidth = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => {\n    console.log(\"LOG-d resiize to width\");\n    resizeToContent(true, false);\n  }, [resizeToContent]);\n  const resizeToHeight = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(() => resizeToContent(false, true), [resizeToContent]);\n  // Effects\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    if (disabled) {\n      return;\n    }\n    if (!dimension) {\n      setDimension(getDimensions());\n    }\n  }, [dimension, disabled, getDimensions, setDimension]);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => setIsClient(true), []);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    if (!contentRef.current) {\n      return undefined;\n    }\n    const observer = new ResizeObserver(entries => {\n      const [entry] = entries;\n      if (!entry || shouldResizeToContent === _ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_17__.ResizeToContentEnum.NONE) {\n        return;\n      }\n      checkResizeToContent();\n    });\n    observer.observe(contentRef.current);\n    return () => {\n      observer.disconnect();\n    };\n  }, [checkResizeToContent, shouldResizeToContent, windowData]);\n  (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.useOnce)(() => {\n    if (disabled) {\n      return;\n    }\n    if (state === _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.POPUP) {\n      openInNewWindow(true);\n    }\n  }, !!windowData);\n  // Other\n  const realButtons = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => {\n    var _a;\n    const defaultButtons = [{\n      key: 'minimize-button',\n      icon: state === _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.MINIMIZED ? _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_19__.faWindowRestore : _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_19__.faWindowMinimize,\n      onClick: toggleMinimized,\n      title: state === _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.MINIMIZED ? t('window.button.restore') : t('window.button.minimize'),\n      order: 10\n    }, {\n      key: 'maximize-button',\n      icon: state === _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.MAXIMIZED ? _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_19__.faWindowRestore : _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_19__.faWindowMaximize,\n      onClick: toggleMaximized,\n      title: state === _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.MAXIMIZED ? t('window.button.restore') : t('window.button.maximize'),\n      order: 20\n    }];\n    if (containerData.isLocked) {\n      defaultButtons.push({\n        key: 'unlock-button',\n        icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faThumbtack,\n        onClick: unlock,\n        title: t(\"window.button.unlock\"),\n        order: 5\n      });\n    }\n    const newButtons = (_a = windowData === null || windowData === void 0 ? void 0 : windowData.buttons(state, defaultButtons)) !== null && _a !== void 0 ? _a : defaultButtons;\n    return newButtons.sort((a, b) => {\n      var _a, _b;\n      return ((_a = a.order) !== null && _a !== void 0 ? _a : 0) - ((_b = b.order) !== null && _b !== void 0 ? _b : 0);\n    });\n  }, [state, toggleMinimized, t, toggleMaximized, containerData.isLocked, windowData, unlock]);\n  const menuItems = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => {\n    const items = [];\n    if (state !== _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.POPUP && !containerData.isLocked) {\n      items.push({\n        key: \"lock\",\n        label: t(\"window.menu-item.lock\"),\n        callback: lock\n      });\n    }\n    if (state === _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.NORMAL) {\n      items.push({\n        key: 'resize',\n        label: t(\"window.menu-item.resize\"),\n        callback: resizeToContent\n      });\n    }\n    items.push({\n      key: 'openInWindow',\n      label: t('window.menu-item.open-window'),\n      callback: openInNewWindow\n    });\n    return items;\n  }, [state, containerData.isLocked, t, openInNewWindow, lock, resizeToContent]);\n  const renderTitle = () => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Inline, {\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().fullWidth)),\n    ref: titleRef\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Flex, {\n    horizontal: true,\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().title))\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_TitleTabBar__WEBPACK_IMPORTED_MODULE_11__.TitleTabBar, {\n    storeId: store,\n    containerId: id,\n    style: {\n      width: `calc(100% - ${buttonWidth}px)`\n    },\n    titleInfos: titleInfos,\n    isLocked: containerData.isLocked,\n    onMoveUpdate: setIsMoving\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.SizeCalculator, {\n    onSize: setButtonWidth\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.InlineBlock, {\n    className: (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().titleButtons)\n  }, realButtons === null || realButtons === void 0 ? void 0 : realButtons.map(b => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_WindowButton_WindowButton__WEBPACK_IMPORTED_MODULE_7__.WindowButton, _extends({}, b, {\n    containerState: state\n  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_WindowButton_WindowButton__WEBPACK_IMPORTED_MODULE_7__.WindowButton, {\n    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faEllipsisV,\n    onClick: openMenu,\n    containerState: state\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Menu, {\n    items: menuItems,\n    x: menuX,\n    y: menuY,\n    isOpen: isMenuOpen,\n    onClose: closeMenu\n  })))));\n  // Render Functions\n  if (!windowData) {\n    return null;\n  }\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Clickable, {\n    onClick: setActive,\n    onClickData: id,\n    ref: updateContainerRef\n  }, /*#__PURE__*/(0,react_dom__WEBPACK_IMPORTED_MODULE_12__.createPortal)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.WindowContext.Provider, {\n    value: windowObject\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_WindowContainerRefContext__WEBPACK_IMPORTED_MODULE_16__.WindowContainerRefContext.Provider, {\n    value: realRef\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Flex, {\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().windowContainer), windowData === null || windowData === void 0 ? void 0 : windowData.className, {\n      [(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().minimized)]: state === _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.MINIMIZED,\n      [(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().maximized)]: state === _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.MAXIMIZED,\n      [(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().popup)]: state === _types_ContainerState__WEBPACK_IMPORTED_MODULE_10__.ContainerState.POPUP,\n      [(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().moving)]: isMoving,\n      [(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().active)]: isActive,\n      [(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().disabled)]: disabled\n    }),\n    style: Object.assign(Object.assign(Object.assign(Object.assign({}, (_a = windowData === null || windowData === void 0 ? void 0 : windowData.style) !== null && _a !== void 0 ? _a : {}), {\n      top: initialTop,\n      left: initialLeft,\n      right: defaultWidth && isClient ? window.innerWidth - initialLeft - defaultWidth : undefined\n    }), dimension !== null && dimension !== void 0 ? dimension : {}), {\n      minWidth: _WindowContainerDimension__WEBPACK_IMPORTED_MODULE_6__.WINDOW_CONTAINER_MIN_WIDTH,\n      minHeight: _WindowContainerDimension__WEBPACK_IMPORTED_MODULE_6__.WINDOW_CONTAINER_MIN_HEIGHT\n    }),\n    ref: windowContainerRef\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Flex, {\n    horizontal: true,\n    className: (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().fullWidth)\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Clickable, {\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().resize), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().edge), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().nw)),\n    onMouseDown: onResizeStart,\n    onMouseDownData: \"tl\",\n    onDoubleClick: resizeInBothDirections\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Clickable, {\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().resize), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().y)),\n    onMouseDown: onResizeStart,\n    onMouseDownData: \"top\",\n    onDoubleClick: resizeToHeight\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Clickable, {\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().resize), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().edge), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().ne)),\n    onMouseDown: onResizeStart,\n    onMouseDownData: \"tr\",\n    onDoubleClick: resizeInBothDirections\n  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Grow, {\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().fullWidth), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().overflowHidden))\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Flex, {\n    horizontal: true,\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().stretchItems), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().fullHeight))\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Clickable, {\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().resize), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().x)),\n    onMouseDown: onResizeStart,\n    onMouseDownData: \"left\",\n    onDoubleClick: resizeToWidth\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Grow, {\n    className: (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().overflowXAuto)\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Block, {\n    className: (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().window),\n    ref: windowRef\n  }, renderTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Block, {\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().content), {\n      [(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().fillHeight)]: windowData === null || windowData === void 0 ? void 0 : windowData.fillHeight\n    }),\n    __allowChildren: \"all\",\n    ref: contentRef\n  }, windowData === null || windowData === void 0 ? void 0 : windowData.children))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Clickable, {\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().resize), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().x)),\n    onMouseDown: onResizeStart,\n    onMouseDownData: \"right\",\n    onDoubleClick: resizeToWidth\n  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Flex, {\n    horizontal: true,\n    className: (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().fullWidth)\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Clickable, {\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().resize), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().edge), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().sw)),\n    onMouseDown: onResizeStart,\n    onMouseDownData: \"bl\",\n    onDoubleClick: resizeInBothDirections\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Clickable, {\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().resize), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().y)),\n    onMouseDown: onResizeStart,\n    onMouseDownData: \"bottom\",\n    onDoubleClick: resizeToHeight\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_8__.Clickable, {\n    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()((_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().resize), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().edge), (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default().se)),\n    onMouseDown: onResizeStart,\n    onMouseDownData: \"br\",\n    onDoubleClick: resizeInBothDirections\n  }))))), portalContainer)));\n}, (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_1___default()), 'html');\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowContainer/WindowContainer.tsx?");
-
-/***/ }),
-
-/***/ "./src/Components/WindowContainer/WindowContainerDimension.ts":
-/*!********************************************************************!*\
-  !*** ./src/Components/WindowContainer/WindowContainerDimension.ts ***!
-  \********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"WINDOW_CONTAINER_MIN_HEIGHT\": () => (/* binding */ WINDOW_CONTAINER_MIN_HEIGHT),\n/* harmony export */   \"WINDOW_CONTAINER_MIN_WIDTH\": () => (/* binding */ WINDOW_CONTAINER_MIN_WIDTH)\n/* harmony export */ });\nconst WINDOW_CONTAINER_MIN_WIDTH = 150;\nconst WINDOW_CONTAINER_MIN_HEIGHT = 50;\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowContainer/WindowContainerDimension.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/WindowContainer/WindowContainerFromStore.tsx":
-/*!*********************************************************************!*\
-  !*** ./src/Components/WindowContainer/WindowContainerFromStore.tsx ***!
-  \*********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"WindowContainerFromStore\": () => (/* binding */ WindowContainerFromStore)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ainias42/react-bootstrap-mobile */ \"@ainias42/react-bootstrap-mobile\");\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _store_createWindowStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/createWindowStore */ \"./src/Components/store/createWindowStore.ts\");\n/* harmony import */ var _store_selectActiveWindowForContainers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/selectActiveWindowForContainers */ \"./src/Components/store/selectActiveWindowForContainers.ts\");\n/* harmony import */ var _WindowContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./WindowContainer */ \"./src/Components/WindowContainer/WindowContainer.tsx\");\n/* harmony import */ var _store_selectTitleInfos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/selectTitleInfos */ \"./src/Components/store/selectTitleInfos.ts\");\n/* harmony import */ var _windowContainer_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./windowContainer.scss */ \"./src/Components/WindowContainer/windowContainer.scss\");\n/* harmony import */ var _windowContainer_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_windowContainer_scss__WEBPACK_IMPORTED_MODULE_6__);\n\n\n\n\n\n\n\nconst WindowContainerFromStore = (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.withMemo)(function WindowContainerFromStore({\n  id,\n  store = 'default',\n  initialTop,\n  initialLeft\n}) {\n  // Variables\n  // Refs\n  // States\n  // Selectors\n  const useStore = (0,_store_createWindowStore__WEBPACK_IMPORTED_MODULE_2__.getWindowStore)(store);\n  const containerData = useStore(s => s.containers[id]);\n  const windowData = useStore(s => (0,_store_selectActiveWindowForContainers__WEBPACK_IMPORTED_MODULE_3__.selectActiveWindowForContainer)(s, id));\n  const isActive = useStore(s => s.activeContainerId === id);\n  const titleInfos = useStore(s => (0,_store_selectTitleInfos__WEBPACK_IMPORTED_MODULE_5__.selectTitleInfos)(s, id));\n  // Dragging\n  // Callbacks\n  // Effects\n  // Other\n  // Render Functions\n  if (!windowData) {\n    return null;\n  }\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_WindowContainer__WEBPACK_IMPORTED_MODULE_4__.WindowContainer, {\n    id: id,\n    store: store,\n    initialTop: initialTop,\n    initialLeft: initialLeft,\n    containerData: containerData,\n    windowData: windowData,\n    isActive: isActive,\n    titleInfos: titleInfos\n  });\n}, (_windowContainer_scss__WEBPACK_IMPORTED_MODULE_6___default()));\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowContainer/WindowContainerFromStore.tsx?");
-
-/***/ }),
-
-/***/ "./src/Components/WindowContainer/WindowContainerRefContext.ts":
-/*!*********************************************************************!*\
-  !*** ./src/Components/WindowContainer/WindowContainerRefContext.ts ***!
-  \*********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"WindowContainerRefContext\": () => (/* binding */ WindowContainerRefContext),\n/* harmony export */   \"useWindowContainerRef\": () => (/* binding */ useWindowContainerRef)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nconst WindowContainerRefContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createContext(undefined);\nconst useWindowContainerRef = () => react__WEBPACK_IMPORTED_MODULE_0___default().useContext(WindowContainerRefContext);\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowContainer/WindowContainerRefContext.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/WindowContainer/changeDimension.ts":
-/*!***********************************************************!*\
-  !*** ./src/Components/WindowContainer/changeDimension.ts ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"changeDimension\": () => (/* binding */ changeDimension),\n/* harmony export */   \"changeDimensionHeight\": () => (/* binding */ changeDimensionHeight),\n/* harmony export */   \"changeDimensionWidth\": () => (/* binding */ changeDimensionWidth)\n/* harmony export */ });\nfunction changeDimension(dimension, addWidth, addHeight) {\n  if (dimension.right >= dimension.left) {\n    dimension.right -= addWidth;\n  } else {\n    dimension.left -= addWidth;\n  }\n  if (dimension.bottom >= dimension.top) {\n    dimension.bottom -= addHeight;\n  } else {\n    dimension.top -= addHeight;\n  }\n  return dimension;\n}\nfunction changeDimensionWidth(dimension, addWidth) {\n  return changeDimension(dimension, addWidth, 0);\n}\nfunction changeDimensionHeight(dimension, addHeight) {\n  return changeDimension(dimension, 0, addHeight);\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowContainer/changeDimension.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/WindowContainer/checkWindowDimension.ts":
-/*!****************************************************************!*\
-  !*** ./src/Components/WindowContainer/checkWindowDimension.ts ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"checkWindowDimension\": () => (/* binding */ checkWindowDimension)\n/* harmony export */ });\n/* harmony import */ var _WindowContainerDimension__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WindowContainerDimension */ \"./src/Components/WindowContainer/WindowContainerDimension.ts\");\n\nfunction checkWindowDimension(dimension, minWidth = _WindowContainerDimension__WEBPACK_IMPORTED_MODULE_0__.WINDOW_CONTAINER_MIN_WIDTH, minHeight = _WindowContainerDimension__WEBPACK_IMPORTED_MODULE_0__.WINDOW_CONTAINER_MIN_HEIGHT) {\n  dimension.top = Math.max(dimension.top, 0);\n  dimension.left = Math.max(dimension.left, 0);\n  dimension.right = Math.max(dimension.right, 0);\n  dimension.bottom = Math.max(dimension.bottom, 0);\n  if (window.innerWidth < minWidth + dimension.left + dimension.right) {\n    if (dimension.right >= dimension.left) {\n      dimension.right = window.innerWidth - minWidth - dimension.left;\n    } else {\n      dimension.left = window.innerWidth - minWidth - dimension.right;\n    }\n  }\n  if (window.innerHeight < minHeight + dimension.top + dimension.bottom) {\n    if (dimension.bottom >= dimension.top) {\n      dimension.bottom = window.innerHeight - minHeight - dimension.top;\n    } else {\n      dimension.top = window.innerHeight - minHeight - dimension.bottom;\n    }\n  }\n  return dimension;\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowContainer/checkWindowDimension.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/WindowList/WindowList.tsx":
-/*!**************************************************!*\
-  !*** ./src/Components/WindowList/WindowList.tsx ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"WindowList\": () => (/* binding */ WindowList)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ainias42/react-bootstrap-mobile */ \"@ainias42/react-bootstrap-mobile\");\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _store_createWindowStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/createWindowStore */ \"./src/Components/store/createWindowStore.ts\");\n/* harmony import */ var _WindowContainer_WindowContainerFromStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../WindowContainer/WindowContainerFromStore */ \"./src/Components/WindowContainer/WindowContainerFromStore.tsx\");\n\n\n\n\nconst WindowList = (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.withMemo)(function WindowList({\n  storeId = 'default'\n}) {\n  // Variables\n  // Refs\n  // States\n  // Selectors\n  const useStore = (0,_store_createWindowStore__WEBPACK_IMPORTED_MODULE_2__.getWindowStore)(storeId);\n  const containers = useStore(s => s.containers);\n  const setWindowSize = useStore(s => s.setWindowSize);\n  // Callbacks\n  // Effects\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => {\n    setWindowSize(window.innerWidth, window.innerHeight);\n    const listener = () => {\n      setWindowSize(window.innerWidth, window.innerHeight);\n    };\n    window.addEventListener('resize', listener);\n    return () => window.removeEventListener('resize', listener);\n  }, [setWindowSize]);\n  // Other\n  // Render Functions\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, Object.keys(containers).map((_, index, arr) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_WindowContainer_WindowContainerFromStore__WEBPACK_IMPORTED_MODULE_3__.WindowContainerFromStore, {\n    id: arr[arr.length - 1 - index],\n    key: arr[arr.length - 1 - index],\n    store: storeId\n  })));\n});\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowList/WindowList.tsx?");
-
-/***/ }),
-
-/***/ "./src/Components/helper/WindowConstants.ts":
-/*!**************************************************!*\
-  !*** ./src/Components/helper/WindowConstants.ts ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"WindowConstants\": () => (/* binding */ WindowConstants)\n/* harmony export */ });\nconst WindowConstants = {\n  TITLE_HEIGHT: 38,\n  TAB_BAR_GRAB_WIDTH: 24,\n  TITLE_PADDING: 8\n};\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/helper/WindowConstants.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/helper/checkOverContainerAndTabPosition.ts":
-/*!*******************************************************************!*\
-  !*** ./src/Components/helper/checkOverContainerAndTabPosition.ts ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"checkOverContainerAndTabPosition\": () => (/* binding */ checkOverContainerAndTabPosition)\n/* harmony export */ });\n/* harmony import */ var _WindowConstants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WindowConstants */ \"./src/Components/helper/WindowConstants.ts\");\n\nfunction checkOverContainerAndTabPosition(containers, position, windows, excludedContainerId) {\n  let foundContainer;\n  let index;\n  containers.some(container => {\n    if (!container.dimension || container.id === excludedContainerId || container.windowIds.length === 0) {\n      return false;\n    }\n    if (container.dimension.left <= position.x && container.dimension.right <= window.innerWidth - position.x && container.dimension.top <= position.y && container.dimension.top + _WindowConstants__WEBPACK_IMPORTED_MODULE_0__.WindowConstants.TITLE_HEIGHT >= position.y && container.windowIds.some(windowId => !!windows[windowId])) {\n      foundContainer = container.id;\n      const width = window.innerWidth - container.dimension.left - container.dimension.right - container.buttonWidth - _WindowConstants__WEBPACK_IMPORTED_MODULE_0__.WindowConstants.TAB_BAR_GRAB_WIDTH - 2 * _WindowConstants__WEBPACK_IMPORTED_MODULE_0__.WindowConstants.TITLE_PADDING;\n      const tabWidth = width / container.windowIds.length;\n      const relativeXPosition = position.x - container.dimension.left + _WindowConstants__WEBPACK_IMPORTED_MODULE_0__.WindowConstants.TITLE_PADDING;\n      index = Math.floor(relativeXPosition / tabWidth);\n      return true;\n    }\n    return false;\n  });\n  if (foundContainer) {\n    return {\n      container: foundContainer,\n      index: index\n    };\n  }\n  return undefined;\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/helper/checkOverContainerAndTabPosition.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/helper/updateDimensions.ts":
-/*!***************************************************!*\
-  !*** ./src/Components/helper/updateDimensions.ts ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"updateDimensions\": () => (/* binding */ updateDimensions)\n/* harmony export */ });\n/* harmony import */ var _WindowContainer_changeDimension__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../WindowContainer/changeDimension */ \"./src/Components/WindowContainer/changeDimension.ts\");\n/* harmony import */ var _ainias42_js_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ainias42/js-helper */ \"./node_modules/@ainias42/js-helper/dist/js-helper.js\");\n/* harmony import */ var _ainias42_js_helper__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ainias42_js_helper__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _WindowContainer_checkWindowDimension__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../WindowContainer/checkWindowDimension */ \"./src/Components/WindowContainer/checkWindowDimension.ts\");\n\n\n\nfunction updateDimensions(containers, oldWindowDimension, newWindowDimension) {\n  if (oldWindowDimension.x === newWindowDimension.x && oldWindowDimension.y === newWindowDimension.y || oldWindowDimension.x === 0 && oldWindowDimension.y === 0) {\n    return containers;\n  }\n  const diff = {\n    x: oldWindowDimension.x - newWindowDimension.x,\n    y: oldWindowDimension.y - newWindowDimension.y\n  };\n  const changedContainers = Object.values(containers).map(container => {\n    const {\n      dimension\n    } = container;\n    if (!dimension) {\n      return container;\n    }\n    const newDimension = (0,_WindowContainer_checkWindowDimension__WEBPACK_IMPORTED_MODULE_2__.checkWindowDimension)((0,_WindowContainer_changeDimension__WEBPACK_IMPORTED_MODULE_0__.changeDimension)(Object.assign({}, dimension), diff.x, diff.y));\n    return Object.assign(Object.assign({}, container), {\n      dimension: newDimension\n    });\n  });\n  return _ainias42_js_helper__WEBPACK_IMPORTED_MODULE_1__.ArrayHelper.arrayToObject(changedContainers, container => container.id);\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/helper/updateDimensions.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/hooks/useOnMouseDrag.ts":
-/*!************************************************!*\
-  !*** ./src/Components/hooks/useOnMouseDrag.ts ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"useOnMouseDrag\": () => (/* binding */ useOnMouseDrag)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ainias42/react-bootstrap-mobile */ \"@ainias42/react-bootstrap-mobile\");\n/* harmony import */ var _ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__);\n\n\nfunction useOnMouseDrag({\n  onMouseDown,\n  onMouseUp,\n  onMouseMove\n}) {\n  const mouseDownPos = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(undefined);\n  const window = (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.useWindow)();\n  const onMoveStart = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(e => {\n    mouseDownPos.current = {\n      x: e.clientX,\n      y: e.clientY\n    };\n    return onMouseDown === null || onMouseDown === void 0 ? void 0 : onMouseDown(mouseDownPos.current, e);\n  }, [onMouseDown]);\n  const onMove = (0,_ainias42_react_bootstrap_mobile__WEBPACK_IMPORTED_MODULE_1__.useDelayed)(e => {\n    if (!mouseDownPos.current) {\n      return;\n    }\n    const currentPosition = {\n      x: e.clientX,\n      y: e.clientY\n    };\n    const diff = {\n      x: currentPosition.x - mouseDownPos.current.x,\n      y: currentPosition.y - mouseDownPos.current.y\n    };\n    onMouseMove === null || onMouseMove === void 0 ? void 0 : onMouseMove(diff, currentPosition, e);\n  }, [onMouseMove], 16, 16);\n  const onMoveStop = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(e => {\n    if (!mouseDownPos.current) {\n      return;\n    }\n    const currentPosition = {\n      x: e.clientX,\n      y: e.clientY\n    };\n    const diff = {\n      x: currentPosition.x - mouseDownPos.current.x,\n      y: currentPosition.y - mouseDownPos.current.y\n    };\n    onMouseUp === null || onMouseUp === void 0 ? void 0 : onMouseUp(diff, currentPosition, e);\n    mouseDownPos.current = undefined;\n  }, [onMouseUp]);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    window === null || window === void 0 ? void 0 : window.addEventListener('mousemove', onMove);\n    return () => window === null || window === void 0 ? void 0 : window.removeEventListener('mousemove', onMove);\n  }, [onMove, window]);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    window === null || window === void 0 ? void 0 : window.addEventListener('mouseup', onMoveStop);\n    return () => window === null || window === void 0 ? void 0 : window.removeEventListener('mouseup', onMoveStop);\n  }, [onMoveStop, window]);\n  return onMoveStart;\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/hooks/useOnMouseDrag.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/store/createWindowStore.ts":
-/*!***************************************************!*\
-  !*** ./src/Components/store/createWindowStore.ts ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getWindowStore\": () => (/* binding */ getWindowStore)\n/* harmony export */ });\n/* harmony import */ var zustand__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! zustand */ \"./node_modules/zustand/esm/index.mjs\");\n/* harmony import */ var zustand_middleware__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! zustand/middleware */ \"./node_modules/zustand/esm/middleware.mjs\");\n/* harmony import */ var _ainias42_js_helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ainias42/js-helper */ \"./node_modules/@ainias42/js-helper/dist/js-helper.js\");\n/* harmony import */ var _ainias42_js_helper__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_ainias42_js_helper__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _helper_updateDimensions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helper/updateDimensions */ \"./src/Components/helper/updateDimensions.ts\");\n/* harmony import */ var _types_ContainerState__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../types/ContainerState */ \"./src/Components/types/ContainerState.ts\");\n/* harmony import */ var _WindowContainer_checkWindowDimension__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../WindowContainer/checkWindowDimension */ \"./src/Components/WindowContainer/checkWindowDimension.ts\");\n/* harmony import */ var _helper_checkOverContainerAndTabPosition__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helper/checkOverContainerAndTabPosition */ \"./src/Components/helper/checkOverContainerAndTabPosition.ts\");\n/* harmony import */ var _WindowContainer_ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../WindowContainer/ResizeToContentEnum */ \"./src/Components/WindowContainer/ResizeToContentEnum.ts\");\n\n\n\n\n\n\n\n\nconst initialState = {\n  activeContainerId: '',\n  containers: {},\n  draggingWindowId: '',\n  windowContainerMapping: {},\n  windowSize: {\n    x: 0,\n    y: 0\n  },\n  windows: {}\n};\nconst actionsGenerator = (set, get) => {\n  function generateDefaultContainer() {\n    return {\n      state: _types_ContainerState__WEBPACK_IMPORTED_MODULE_2__.ContainerState.NORMAL,\n      windowIds: [],\n      activeWindowId: \"\",\n      buttonWidth: 0,\n      isLocked: false,\n      isMoving: false,\n      shouldResizeToContent: _WindowContainer_ResizeToContentEnum__WEBPACK_IMPORTED_MODULE_5__.ResizeToContentEnum.RESIZE\n    };\n  }\n  function generateUnusedContainerId() {\n    const {\n      containers\n    } = get();\n    for (let i = 0; i < 50; i++) {\n      const id = _ainias42_js_helper__WEBPACK_IMPORTED_MODULE_0__.Random.getStringRandom(16);\n      if (!containers[id]) {\n        return id;\n      }\n    }\n    return undefined;\n  }\n  function removeWindowFromContainer(windowId) {\n    const {\n      windowContainerMapping,\n      containers\n    } = get();\n    const container = containers[windowContainerMapping[windowId]];\n    if (!container) {\n      return;\n    }\n    container.windowIds = container.windowIds.filter(id => id !== windowId);\n    if (container.activeWindowId === windowId) {\n      container.activeWindowId = '';\n    }\n    const newMapping = Object.assign({}, windowContainerMapping);\n    delete newMapping[windowId];\n    const newContainers = Object.assign(Object.assign({}, containers), {\n      [container.id]: container\n    });\n    if (container.windowIds.length === 0) {\n      delete newContainers[container.id];\n    }\n    set({\n      containers: newContainers,\n      windowContainerMapping: newMapping\n    });\n  }\n  function setWindow(window, defaultContainerId, isActiveOnOpen) {\n    var _a, _b;\n    const {\n      containers,\n      windows,\n      windowContainerMapping\n    } = get();\n    const containerId = (_b = (_a = windowContainerMapping[window.id]) !== null && _a !== void 0 ? _a : defaultContainerId) !== null && _b !== void 0 ? _b : generateUnusedContainerId();\n    let container = containers[containerId];\n    if (!container) {\n      container = Object.assign(Object.assign({}, generateDefaultContainer()), {\n        activeWindowId: window.id,\n        id: containerId\n      });\n    }\n    if (windowContainerMapping[window.id] !== containerId) {\n      container.windowIds = [...container.windowIds, window.id];\n    }\n    if (!windows[window.id] && isActiveOnOpen) {\n      container.activeWindowId = window.id;\n      set({\n        activeContainerId: container.id\n      });\n    }\n    set({\n      containers: Object.assign(Object.assign({}, containers), {\n        [containerId]: container\n      }),\n      windows: Object.assign(Object.assign({}, windows), {\n        [window.id]: window\n      }),\n      windowContainerMapping: Object.assign(Object.assign({}, windowContainerMapping), {\n        [window.id]: containerId\n      })\n    });\n  }\n  function moveWindowToOwnContainer(windowId, position) {\n    const {\n      windows,\n      containers,\n      windowContainerMapping\n    } = get();\n    const window = windows[windowId];\n    const container = containers[windowContainerMapping[windowId]];\n    if (!window || !container) {\n      return;\n    }\n    const dimension = container.dimension ? Object.assign({}, container.dimension) : undefined;\n    removeWindowFromContainer(windowId);\n    setWindow(window);\n    if (dimension && position) {\n      const {\n        windowContainerMapping: newMapping,\n        containers: newContainers\n      } = get();\n      const newContainer = newContainers[newMapping[windowId]];\n      dimension.right += dimension.left - position.x;\n      dimension.bottom += dimension.top - position.y;\n      dimension.left = position.x;\n      dimension.top = position.y;\n      newContainer.dimension = (0,_WindowContainer_checkWindowDimension__WEBPACK_IMPORTED_MODULE_3__.checkWindowDimension)(dimension);\n      newContainer.buttonWidth = container.buttonWidth;\n      set({\n        containers: Object.assign(Object.assign({}, containers), {\n          [newContainer.id]: newContainer\n        }),\n        activeContainerId: newContainer.id\n      });\n    }\n  }\n  function moveWindow(windowId, newContainerId, newIndex) {\n    const {\n      containers,\n      windowContainerMapping\n    } = get();\n    const newContainer = containers[newContainerId];\n    const container = containers[windowContainerMapping[windowId]];\n    if (!newContainer || newContainer.id === container.id && container.windowIds.indexOf(windowId) === newIndex) {\n      return;\n    }\n    removeWindowFromContainer(windowId);\n    newContainer.windowIds = [...newContainer.windowIds];\n    newContainer.windowIds.splice(newIndex, 0, windowId);\n    newContainer.activeWindowId = windowId;\n    set({\n      containers: Object.assign(Object.assign({}, containers), {\n        [newContainerId]: newContainer\n      }),\n      windowContainerMapping: Object.assign(Object.assign({}, windowContainerMapping), {\n        [windowId]: newContainerId\n      }),\n      activeContainerId: newContainerId\n    });\n  }\n  function updateContainerDimension(id, dimension) {\n    const container = get().containers[id];\n    if (!container) {\n      return;\n    }\n    set(({\n      containers\n    }) => ({\n      containers: Object.assign(Object.assign({}, containers), {\n        [id]: Object.assign(Object.assign({}, container), {\n          dimension\n        })\n      })\n    }));\n  }\n  return {\n    clear() {\n      set(Object.assign({}, actionsGenerator(set, get)), true);\n    },\n    setWindow(window, defaultContainerId, isActiveOnOpen) {\n      setWindow(window, defaultContainerId, isActiveOnOpen);\n    },\n    removeWindow(windowId) {\n      const {\n        windows\n      } = get();\n      const newWindows = Object.assign({}, windows);\n      delete newWindows[windowId];\n      set({\n        windows: newWindows\n      });\n    },\n    updateContainerDimension(id, dimension) {\n      updateContainerDimension(id, dimension);\n    },\n    updateContainerState(id, state) {\n      const container = get().containers[id];\n      if (!container) {\n        return;\n      }\n      const newState = typeof state === 'function' ? state(container.state) : state;\n      set(({\n        containers\n      }) => ({\n        containers: Object.assign(Object.assign({}, containers), {\n          [id]: Object.assign(Object.assign({}, container), {\n            state: newState\n          })\n        })\n      }));\n    },\n    updateContainerActiveWindow(id, activeWindowId) {\n      const container = get().containers[id];\n      if (!container) {\n        return;\n      }\n      if (container.state === _types_ContainerState__WEBPACK_IMPORTED_MODULE_2__.ContainerState.MINIMIZED) {\n        container.state = _types_ContainerState__WEBPACK_IMPORTED_MODULE_2__.ContainerState.NORMAL;\n      }\n      set(({\n        containers\n      }) => ({\n        containers: Object.assign(Object.assign({}, containers), {\n          [id]: Object.assign(Object.assign({}, container), {\n            activeWindowId\n          })\n        }),\n        activeContainerId: id\n      }));\n    },\n    setActiveContainer(id) {\n      const container = get().containers[id];\n      if (!container) {\n        return;\n      }\n      set({\n        activeContainerId: id\n      });\n    },\n    setWindowSize(x, y) {\n      const {\n        containers,\n        windowSize\n      } = get();\n      const newWindowSize = {\n        x,\n        y\n      };\n      const newContainers = (0,_helper_updateDimensions__WEBPACK_IMPORTED_MODULE_1__.updateDimensions)(containers, windowSize, newWindowSize);\n      set({\n        containers: newContainers,\n        windowSize: newWindowSize\n      });\n    },\n    setButtonWidth(containerId, buttonWidth) {\n      const {\n        containers\n      } = get();\n      const container = containers[containerId];\n      if (!container) {\n        return;\n      }\n      container.buttonWidth = buttonWidth;\n      set({\n        containers: Object.assign(Object.assign({}, containers), {\n          [containerId]: Object.assign({}, container)\n        })\n      });\n    },\n    setContainerIsMoving(containerId, isMoving) {\n      const {\n        containers\n      } = get();\n      const container = containers[containerId];\n      if (!container) {\n        return;\n      }\n      container.isMoving = isMoving;\n      set({\n        containers: Object.assign(Object.assign({}, containers), {\n          [containerId]: Object.assign({}, container)\n        })\n      });\n    },\n    setContainerIsLocked(containerId, isLocked) {\n      const {\n        containers\n      } = get();\n      const container = containers[containerId];\n      if (!container) {\n        return;\n      }\n      container.isLocked = isLocked;\n      set({\n        containers: Object.assign(Object.assign({}, containers), {\n          [containerId]: Object.assign({}, container)\n        })\n      });\n    },\n    setShouldResizeToContent(containerId, shouldResizeToContent) {\n      const {\n        containers\n      } = get();\n      const container = containers[containerId];\n      if (!container) {\n        return;\n      }\n      container.shouldResizeToContent = shouldResizeToContent;\n      set({\n        containers: Object.assign(Object.assign({}, containers), {\n          [containerId]: Object.assign({}, container)\n        })\n      });\n    },\n    setDefaultContainerData(containerId, defaultContainerData) {\n      const {\n        containers\n      } = get();\n      let container = containers[containerId];\n      if (container) {\n        return;\n      }\n      container = Object.assign(Object.assign(Object.assign({}, generateDefaultContainer()), defaultContainerData), {\n        id: containerId\n      });\n      set({\n        containers: Object.assign(Object.assign({}, containers), {\n          [containerId]: container\n        })\n      });\n    },\n    updateDragging(windowId, mousePosition, dimension, ignoredContainer) {\n      set({\n        draggingWindowId: windowId\n      });\n      const {\n        containers,\n        windows,\n        windowContainerMapping\n      } = get();\n      const newContainerData = (0,_helper_checkOverContainerAndTabPosition__WEBPACK_IMPORTED_MODULE_4__.checkOverContainerAndTabPosition)(Object.values(containers), mousePosition, windows, ignoredContainer);\n      if (newContainerData) {\n        moveWindow(windowId, newContainerData.container, newContainerData.index);\n        return undefined;\n      }\n      const currentContainerId = windowContainerMapping[windowId];\n      if (ignoredContainer !== currentContainerId) {\n        moveWindowToOwnContainer(windowId, {\n          x: dimension.left,\n          y: dimension.top\n        });\n      }\n      const {\n        windowContainerMapping: newWindowContainerMapping,\n        containers: newContainers\n      } = get();\n      const newId = newWindowContainerMapping[windowId];\n      updateContainerDimension(newId, dimension);\n      if (!newContainers[newId].isMoving) {\n        set({\n          containers: Object.assign(Object.assign({}, newContainers), {\n            [newId]: Object.assign(Object.assign({}, newContainers[newId]), {\n              isMoving: true\n            })\n          })\n        });\n      }\n      set({\n        activeContainerId: newId\n      });\n      return newId;\n    },\n    clearDraggingWindow() {\n      set({\n        draggingWindowId: ''\n      });\n    }\n  };\n};\nconst stores = {};\nfunction createWindowStore(name) {\n  return (0,zustand__WEBPACK_IMPORTED_MODULE_6__.create)()((0,zustand_middleware__WEBPACK_IMPORTED_MODULE_7__.persist)((set, get) => Object.assign(Object.assign({}, initialState), actionsGenerator(set, get)), {\n    name: `window-store-${name}`,\n    version: 0,\n    partialize: ({\n      containers,\n      windowContainerMapping,\n      windowSize\n    }) => ({\n      containers,\n      windowContainerMapping,\n      windowSize\n    }),\n    onRehydrateStorage: () => {\n      return state => {\n        // can change state directly here\n        if (state) {\n          const newWindowSize = {\n            x: window.innerWidth,\n            y: window.innerHeight\n          };\n          state.containers = (0,_helper_updateDimensions__WEBPACK_IMPORTED_MODULE_1__.updateDimensions)(state.containers, state.windowSize, newWindowSize);\n          // remove duplicates\n          Object.values(state.containers).forEach(container => container.windowIds = [...new Set(container.windowIds)]);\n          // ensure every existing connection is in both directions\n          Object.entries(state.windowContainerMapping).forEach(([windowId, containerId]) => {\n            var _a;\n            const container = state.containers[containerId];\n            const index = (_a = container === null || container === void 0 ? void 0 : container.windowIds.indexOf(windowId)) !== null && _a !== void 0 ? _a : 0;\n            if (index === -1) {\n              container.windowIds.push(windowId);\n            }\n          });\n          state.windowSize = newWindowSize;\n        }\n      };\n    }\n  }));\n}\nfunction getWindowStore(name = 'default') {\n  if (!stores[name]) {\n    stores[name] = createWindowStore(name);\n  }\n  return stores[name];\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/store/createWindowStore.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/store/selectActiveWindowForContainers.ts":
-/*!*****************************************************************!*\
-  !*** ./src/Components/store/selectActiveWindowForContainers.ts ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"selectActiveWindowForContainer\": () => (/* binding */ selectActiveWindowForContainer)\n/* harmony export */ });\n/* harmony import */ var _selectAvticeWindowIdForContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./selectAvticeWindowIdForContainer */ \"./src/Components/store/selectAvticeWindowIdForContainer.ts\");\n\nfunction selectActiveWindowForContainer(state, containerId) {\n  const activeWindowId = (0,_selectAvticeWindowIdForContainer__WEBPACK_IMPORTED_MODULE_0__.selectActiveWindowIdForContainer)(state, containerId);\n  if (activeWindowId) {\n    return state.windows[activeWindowId];\n  }\n  return undefined;\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/store/selectActiveWindowForContainers.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/store/selectAvticeWindowIdForContainer.ts":
-/*!******************************************************************!*\
-  !*** ./src/Components/store/selectAvticeWindowIdForContainer.ts ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"selectActiveWindowIdForContainer\": () => (/* binding */ selectActiveWindowIdForContainer)\n/* harmony export */ });\nfunction selectActiveWindowIdForContainer({\n  containers,\n  windows\n}, containerId) {\n  const container = containers[containerId];\n  if (!container) {\n    return undefined;\n  }\n  return [container.activeWindowId, ...container.windowIds].find(id => windows[id]);\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/store/selectAvticeWindowIdForContainer.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/store/selectTitleInfos.ts":
-/*!**************************************************!*\
-  !*** ./src/Components/store/selectTitleInfos.ts ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"selectTitleInfos\": () => (/* binding */ selectTitleInfos)\n/* harmony export */ });\nfunction selectTitleInfos({\n  containers,\n  windows\n}, containerId) {\n  const container = containers[containerId];\n  if (!container) {\n    return [];\n  }\n  const titleInfos = [];\n  container.windowIds.forEach(id => {\n    const window = windows[id];\n    if (!window) {\n      return;\n    }\n    titleInfos.push({\n      id,\n      title: window.title\n    });\n  });\n  return titleInfos;\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/store/selectTitleInfos.ts?");
-
-/***/ }),
-
-/***/ "./src/Components/types/ContainerState.ts":
-/*!************************************************!*\
-  !*** ./src/Components/types/ContainerState.ts ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ContainerState\": () => (/* binding */ ContainerState)\n/* harmony export */ });\nvar ContainerState;\n(function (ContainerState) {\n  ContainerState[ContainerState[\"NORMAL\"] = 0] = \"NORMAL\";\n  ContainerState[ContainerState[\"MINIMIZED\"] = 1] = \"MINIMIZED\";\n  ContainerState[ContainerState[\"MAXIMIZED\"] = 2] = \"MAXIMIZED\";\n  ContainerState[ContainerState[\"POPUP\"] = 3] = \"POPUP\";\n})(ContainerState || (ContainerState = {}));\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/types/ContainerState.ts?");
-
-/***/ }),
-
-/***/ "./src/hooks/useCloseButton.ts":
-/*!*************************************!*\
-  !*** ./src/hooks/useCloseButton.ts ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"useCloseButton\": () => (/* binding */ useCloseButton)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ \"@fortawesome/free-solid-svg-icons\");\n/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _Components_store_createWindowStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Components/store/createWindowStore */ \"./src/Components/store/createWindowStore.ts\");\n/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-i18next */ \"./node_modules/react-i18next/dist/es/index.js\");\n\n\n\n\nfunction useCloseButton(windowId, storeId = 'default', onClose) {\n  const {\n    t\n  } = (0,react_i18next__WEBPACK_IMPORTED_MODULE_3__.useTranslation)();\n  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => ({\n    key: 'close-button',\n    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__.faTimes,\n    order: 30,\n    title: t(\"window.button.close\"),\n    onClick: () => {\n      (0,_Components_store_createWindowStore__WEBPACK_IMPORTED_MODULE_2__.getWindowStore)(storeId).getState().removeWindow(windowId);\n      onClose === null || onClose === void 0 ? void 0 : onClose();\n    }\n  }), [onClose, storeId, t, windowId]);\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/hooks/useCloseButton.ts?");
-
-/***/ }),
-
-/***/ "./src/i18n/i18n.ts":
-/*!**************************!*\
-  !*** ./src/i18n/i18n.ts ***!
-  \**************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"reactWindowsI18n\": () => (/* reexport safe */ i18next__WEBPACK_IMPORTED_MODULE_0__[\"default\"])\n/* harmony export */ });\n/* harmony import */ var i18next__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! i18next */ \"./node_modules/i18next/dist/esm/i18next.js\");\n/* harmony import */ var react_i18next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-i18next */ \"./node_modules/react-i18next/dist/es/index.js\");\n/* harmony import */ var _locales_en_common_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../locales/en/common.json */ \"./locales/en/common.json\");\n/* harmony import */ var _locales_de_common_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../locales/de/common.json */ \"./locales/de/common.json\");\n\n\n\n\ni18next__WEBPACK_IMPORTED_MODULE_0__[\"default\"].use(react_i18next__WEBPACK_IMPORTED_MODULE_1__.initReactI18next).init({\n  resources: {\n    en: {\n      common: _locales_en_common_json__WEBPACK_IMPORTED_MODULE_2__\n    },\n    de: {\n      common: _locales_de_common_json__WEBPACK_IMPORTED_MODULE_3__\n    }\n  },\n  defaultNS: \"common\",\n  lng: \"en\",\n  fallbackLng: \"en\",\n  interpolation: {\n    escapeValue: false\n  }\n});\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/i18n/i18n.ts?");
-
-/***/ }),
-
-/***/ "./node_modules/classnames/index.js":
-/*!******************************************!*\
-  !*** ./node_modules/classnames/index.js ***!
-  \******************************************/
+/***/ 184:
 /***/ ((module, exports) => {
 
-eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n\tCopyright (c) 2018 Jed Watson.\n\tLicensed under the MIT License (MIT), see\n\thttp://jedwatson.github.io/classnames\n*/\n/* global define */\n\n(function () {\n\t'use strict';\n\n\tvar hasOwn = {}.hasOwnProperty;\n\tvar nativeCodeString = '[native code]';\n\n\tfunction classNames() {\n\t\tvar classes = [];\n\n\t\tfor (var i = 0; i < arguments.length; i++) {\n\t\t\tvar arg = arguments[i];\n\t\t\tif (!arg) continue;\n\n\t\t\tvar argType = typeof arg;\n\n\t\t\tif (argType === 'string' || argType === 'number') {\n\t\t\t\tclasses.push(arg);\n\t\t\t} else if (Array.isArray(arg)) {\n\t\t\t\tif (arg.length) {\n\t\t\t\t\tvar inner = classNames.apply(null, arg);\n\t\t\t\t\tif (inner) {\n\t\t\t\t\t\tclasses.push(inner);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t} else if (argType === 'object') {\n\t\t\t\tif (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {\n\t\t\t\t\tclasses.push(arg.toString());\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\n\t\t\t\tfor (var key in arg) {\n\t\t\t\t\tif (hasOwn.call(arg, key) && arg[key]) {\n\t\t\t\t\t\tclasses.push(key);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\treturn classes.join(' ');\n\t}\n\n\tif ( true && module.exports) {\n\t\tclassNames.default = classNames;\n\t\tmodule.exports = classNames;\n\t} else if (true) {\n\t\t// register as 'classnames', consistent with npm package name\n\t\t!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {\n\t\t\treturn classNames;\n\t\t}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),\n\t\t__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));\n\t} else {}\n}());\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/classnames/index.js?");
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	Copyright (c) 2018 Jed Watson.
+	Licensed under the MIT License (MIT), see
+	http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+	var nativeCodeString = '[native code]';
+
+	function classNames() {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				if (arg.length) {
+					var inner = classNames.apply(null, arg);
+					if (inner) {
+						classes.push(inner);
+					}
+				}
+			} else if (argType === 'object') {
+				if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
+					classes.push(arg.toString());
+					continue;
+				}
+
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if ( true && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}());
+
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/Components/WindowButton/windowButton.scss":
-/*!****************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/Components/WindowButton/windowButton.scss ***!
-  \****************************************************************************************************************************************************************/
+/***/ 947:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("// Imports\nvar ___CSS_LOADER_API_NO_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nvar ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_NO_SOURCEMAP_IMPORT___);\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \".windowButton__NS9jl {\\n  padding-left: 8px;\\n}\", \"\"]);\n// Exports\n___CSS_LOADER_EXPORT___.locals = {\n\t\"windowButton\": \"windowButton__NS9jl\"\n};\nmodule.exports = ___CSS_LOADER_EXPORT___;\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowButton/windowButton.scss?./node_modules/css-loader/dist/cjs.js??ruleSet%5B1%5D.rules%5B1%5D.use%5B1%5D!./node_modules/sass-loader/dist/cjs.js");
+// Imports
+var ___CSS_LOADER_API_NO_SOURCEMAP_IMPORT___ = __webpack_require__(81);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(645);
+var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_NO_SOURCEMAP_IMPORT___);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".windowButton__NS9jl{padding-left:8px}", ""]);
+// Exports
+___CSS_LOADER_EXPORT___.locals = {
+	"windowButton": "windowButton__NS9jl"
+};
+module.exports = ___CSS_LOADER_EXPORT___;
+
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/Components/WindowContainer/windowContainer.scss":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/Components/WindowContainer/windowContainer.scss ***!
-  \**********************************************************************************************************************************************************************/
+/***/ 636:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("// Imports\nvar ___CSS_LOADER_API_NO_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nvar ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_NO_SOURCEMAP_IMPORT___);\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \":root {\\n  --react-windows-transition-duration: 32ms;\\n}\\n\\n@keyframes popInAnimation__Byfoq {\\n  0% {\\n    transform: scale(0.75);\\n  }\\n  100% {\\n    transform: scale(1);\\n  }\\n}\\n.noSelect__mXrhD, .noSelect__mXrhD * {\\n  user-select: none;\\n}\\n\\n.disabled__vRKaE {\\n  pointer-events: none;\\n}\\n.disabled__vRKaE.windowContainer__SgqwX {\\n  z-index: 110;\\n}\\n\\n.windowContainer__SgqwX {\\n  background: white;\\n  position: fixed;\\n  z-index: 100;\\n  border: 1px solid var(--border-light);\\n  border-radius: 4px;\\n  animation: 70ms popInAnimation__Byfoq;\\n  user-select: none;\\n}\\n.windowContainer__SgqwX:focus-within {\\n  user-select: initial;\\n}\\n.windowContainer__SgqwX.active__BjERj {\\n  z-index: 101;\\n}\\n.windowContainer__SgqwX.moving__wodQv {\\n  transition: top var(--react-windows-transition-duration) linear, left var(--react-windows-transition-duration) linear, bottom var(--react-windows-transition-duration) linear, right var(--react-windows-transition-duration) linear;\\n  cursor: grabbing;\\n  user-select: none;\\n}\\n.windowContainer__SgqwX.moving__wodQv .title__t3jPt {\\n  cursor: grabbing;\\n}\\n.windowContainer__SgqwX .overflowHidden__SIvaK {\\n  overflow: hidden;\\n}\\n.windowContainer__SgqwX .window__kmnyV {\\n  height: 100%;\\n  cursor: default;\\n  display: flex;\\n  flex-direction: column;\\n}\\n.windowContainer__SgqwX .window__kmnyV > div {\\n  margin-top: 0 !important;\\n}\\n.windowContainer__SgqwX .title__t3jPt {\\n  white-space: nowrap;\\n  width: 100%;\\n  padding: 4px 4px 0 4px;\\n  border-bottom: 1px solid var(--border-light);\\n}\\n.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor {\\n  cursor: move;\\n  display: inline-block;\\n  padding-right: 24px;\\n}\\n.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor.singleTab__Pu7DD {\\n  padding: 1px 24px 0 0;\\n}\\n.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor.singleTab__Pu7DD .titleTab__MacsN {\\n  max-width: fit-content;\\n  cursor: move;\\n  border: 0;\\n  margin-bottom: 0;\\n  padding-left: 5px;\\n  padding-right: 5px;\\n}\\n.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor.singleTab__Pu7DD .titleTab__MacsN:hover {\\n  background: #efefef;\\n}\\n.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor.singleTab__Pu7DD .titleTab__MacsN.titleTabHidden__czfEn:hover {\\n  background: white;\\n}\\n.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor .titleTab__MacsN {\\n  margin-bottom: -1px;\\n  padding-left: 4px;\\n  background: #efefef;\\n  border: 1px solid #ccc;\\n  border-top-left-radius: 5px;\\n  border-top-right-radius: 5px;\\n  max-width: 150px;\\n}\\n.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor .titleTab__MacsN.titleTabActive__DLrBx {\\n  border-bottom-color: transparent;\\n  background: #fff;\\n}\\n.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor .titleTab__MacsN.titleTabHidden__czfEn {\\n  display: none;\\n}\\n.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor .titleTab__MacsN.titleTabHidden__czfEn .titleText__u8DKa {\\n  visibility: hidden;\\n}\\n.windowContainer__SgqwX .title__t3jPt .titleText__u8DKa {\\n  overflow: hidden;\\n  text-overflow: ellipsis;\\n  width: 100%;\\n  display: inline-block;\\n}\\n.windowContainer__SgqwX .overflowXAuto__QJnNN {\\n  overflow-x: auto;\\n}\\n.windowContainer__SgqwX .content__fHWP6 {\\n  padding: 8px 4px 4px;\\n  overflow: auto;\\n}\\n.windowContainer__SgqwX .content__fHWP6.fillHeight__sQc7g {\\n  flex: 1;\\n}\\n.windowContainer__SgqwX .content__fHWP6 .resizing .windowContainer__SgqwX .content__fHWP6 {\\n  flex: initial !important;\\n}\\n.windowContainer__SgqwX.minimized__N1DEp {\\n  bottom: initial !important;\\n  right: initial !important;\\n}\\n.windowContainer__SgqwX.minimized__N1DEp .title__t3jPt {\\n  border-bottom: none;\\n}\\n.windowContainer__SgqwX.minimized__N1DEp .content__fHWP6 {\\n  display: none;\\n}\\n.windowContainer__SgqwX.minimized__N1DEp .resize__yR7CA {\\n  pointer-events: none;\\n  cursor: pointer;\\n}\\n.windowContainer__SgqwX.maximized__kT0Kc {\\n  left: 0 !important;\\n  top: 0 !important;\\n  bottom: 0 !important;\\n  right: 0 !important;\\n}\\n.windowContainer__SgqwX.maximized__kT0Kc .resize__yR7CA {\\n  pointer-events: none;\\n  cursor: pointer;\\n}\\n.windowContainer__SgqwX.popup__MkxHg {\\n  position: relative;\\n  width: 100%;\\n  height: 100%;\\n  left: 0 !important;\\n  top: 0 !important;\\n  bottom: 0 !important;\\n  right: 0 !important;\\n  border: none;\\n}\\n.windowContainer__SgqwX.popup__MkxHg .title__t3jPt {\\n  cursor: default;\\n}\\n.windowContainer__SgqwX.popup__MkxHg .titleButtons___6JV7 {\\n  display: none;\\n}\\n.windowContainer__SgqwX.popup__MkxHg .resize__yR7CA {\\n  pointer-events: none;\\n  cursor: pointer;\\n}\\n.windowContainer__SgqwX .stretchItems__AJeWE {\\n  align-items: stretch;\\n}\\n.windowContainer__SgqwX .fullWidth__RIbhK {\\n  width: 100%;\\n}\\n.windowContainer__SgqwX .fullHeight__vmBtU {\\n  height: 100%;\\n}\\n.windowContainer__SgqwX .resize__yR7CA {\\n  user-select: none;\\n  display: inline-block;\\n}\\n.windowContainer__SgqwX .resize__yR7CA.edge__uLoos {\\n  width: 4px;\\n  height: 4px;\\n}\\n.windowContainer__SgqwX .resize__yR7CA.edge__uLoos.nw__mh8ZP {\\n  cursor: nw-resize;\\n}\\n.windowContainer__SgqwX .resize__yR7CA.edge__uLoos.ne__VmwvO {\\n  cursor: ne-resize;\\n}\\n.windowContainer__SgqwX .resize__yR7CA.edge__uLoos.sw__nTAIW {\\n  cursor: sw-resize;\\n}\\n.windowContainer__SgqwX .resize__yR7CA.edge__uLoos.se__jxYkp {\\n  cursor: se-resize;\\n}\\n.windowContainer__SgqwX .resize__yR7CA.y__k4dJu {\\n  flex: 1;\\n  cursor: ns-resize;\\n  height: 4px;\\n}\\n.windowContainer__SgqwX .resize__yR7CA.x__BTw5s {\\n  cursor: ew-resize;\\n  width: 4px;\\n}\", \"\"]);\n// Exports\n___CSS_LOADER_EXPORT___.locals = {\n\t\"noSelect\": \"noSelect__mXrhD\",\n\t\"disabled\": \"disabled__vRKaE\",\n\t\"windowContainer\": \"windowContainer__SgqwX\",\n\t\"popInAnimation\": \"popInAnimation__Byfoq\",\n\t\"active\": \"active__BjERj\",\n\t\"moving\": \"moving__wodQv\",\n\t\"title\": \"title__t3jPt\",\n\t\"overflowHidden\": \"overflowHidden__SIvaK\",\n\t\"window\": \"window__kmnyV\",\n\t\"titleTabBar\": \"titleTabBar__KIzor\",\n\t\"singleTab\": \"singleTab__Pu7DD\",\n\t\"titleTab\": \"titleTab__MacsN\",\n\t\"titleTabHidden\": \"titleTabHidden__czfEn\",\n\t\"titleTabActive\": \"titleTabActive__DLrBx\",\n\t\"titleText\": \"titleText__u8DKa\",\n\t\"overflowXAuto\": \"overflowXAuto__QJnNN\",\n\t\"content\": \"content__fHWP6\",\n\t\"fillHeight\": \"fillHeight__sQc7g\",\n\t\"minimized\": \"minimized__N1DEp\",\n\t\"resize\": \"resize__yR7CA\",\n\t\"maximized\": \"maximized__kT0Kc\",\n\t\"popup\": \"popup__MkxHg\",\n\t\"titleButtons\": \"titleButtons___6JV7\",\n\t\"stretchItems\": \"stretchItems__AJeWE\",\n\t\"fullWidth\": \"fullWidth__RIbhK\",\n\t\"fullHeight\": \"fullHeight__vmBtU\",\n\t\"edge\": \"edge__uLoos\",\n\t\"nw\": \"nw__mh8ZP\",\n\t\"ne\": \"ne__VmwvO\",\n\t\"sw\": \"sw__nTAIW\",\n\t\"se\": \"se__jxYkp\",\n\t\"y\": \"y__k4dJu\",\n\t\"x\": \"x__BTw5s\"\n};\nmodule.exports = ___CSS_LOADER_EXPORT___;\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowContainer/windowContainer.scss?./node_modules/css-loader/dist/cjs.js??ruleSet%5B1%5D.rules%5B1%5D.use%5B1%5D!./node_modules/sass-loader/dist/cjs.js");
+// Imports
+var ___CSS_LOADER_API_NO_SOURCEMAP_IMPORT___ = __webpack_require__(81);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(645);
+var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_NO_SOURCEMAP_IMPORT___);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ":root{--react-windows-transition-duration: 32ms}@keyframes popInAnimation__Byfoq{0%{transform:scale(0.75)}100%{transform:scale(1)}}.noSelect__mXrhD,.noSelect__mXrhD *{user-select:none}.disabled__vRKaE{pointer-events:none}.disabled__vRKaE.windowContainer__SgqwX{z-index:110}.windowContainer__SgqwX{background:#fff;position:fixed;z-index:100;border:1px solid var(--border-light);border-radius:4px;animation:70ms popInAnimation__Byfoq;user-select:none}.windowContainer__SgqwX:focus-within{user-select:initial}.windowContainer__SgqwX.active__BjERj{z-index:101}.windowContainer__SgqwX.moving__wodQv{transition:top var(--react-windows-transition-duration) linear,left var(--react-windows-transition-duration) linear,bottom var(--react-windows-transition-duration) linear,right var(--react-windows-transition-duration) linear;cursor:grabbing;user-select:none}.windowContainer__SgqwX.moving__wodQv .title__t3jPt{cursor:grabbing}.windowContainer__SgqwX .overflowHidden__SIvaK{overflow:hidden}.windowContainer__SgqwX .window__kmnyV{height:100%;cursor:default;display:flex;flex-direction:column}.windowContainer__SgqwX .window__kmnyV>div{margin-top:0 !important}.windowContainer__SgqwX .title__t3jPt{white-space:nowrap;width:100%;padding:4px 4px 0 4px;border-bottom:1px solid var(--border-light)}.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor{cursor:move;display:inline-block;padding-right:24px}.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor.singleTab__Pu7DD{padding:1px 24px 0 0}.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor.singleTab__Pu7DD .titleTab__MacsN{max-width:fit-content;cursor:move;border:0;margin-bottom:0;padding-left:5px;padding-right:5px}.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor.singleTab__Pu7DD .titleTab__MacsN:hover{background:#efefef}.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor.singleTab__Pu7DD .titleTab__MacsN.titleTabHidden__czfEn:hover{background:#fff}.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor .titleTab__MacsN{margin-bottom:-1px;padding-left:4px;background:#efefef;border:1px solid #ccc;border-top-left-radius:5px;border-top-right-radius:5px;max-width:150px}.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor .titleTab__MacsN.titleTabActive__DLrBx{border-bottom-color:rgba(0,0,0,0);background:#fff}.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor .titleTab__MacsN.titleTabHidden__czfEn{display:none}.windowContainer__SgqwX .title__t3jPt .titleTabBar__KIzor .titleTab__MacsN.titleTabHidden__czfEn .titleText__u8DKa{visibility:hidden}.windowContainer__SgqwX .title__t3jPt .titleText__u8DKa{overflow:hidden;text-overflow:ellipsis;width:100%;display:inline-block}.windowContainer__SgqwX .overflowXAuto__QJnNN{overflow-x:auto}.windowContainer__SgqwX .content__fHWP6{padding:8px 4px 4px;overflow:auto}.windowContainer__SgqwX .content__fHWP6.fillHeight__sQc7g{flex:1}.windowContainer__SgqwX .content__fHWP6 .resizing .windowContainer__SgqwX .content__fHWP6{flex:initial !important}.windowContainer__SgqwX.minimized__N1DEp{bottom:initial !important;right:initial !important}.windowContainer__SgqwX.minimized__N1DEp .title__t3jPt{border-bottom:none}.windowContainer__SgqwX.minimized__N1DEp .content__fHWP6{display:none}.windowContainer__SgqwX.minimized__N1DEp .resize__yR7CA{pointer-events:none;cursor:pointer}.windowContainer__SgqwX.maximized__kT0Kc{left:0 !important;top:0 !important;bottom:0 !important;right:0 !important}.windowContainer__SgqwX.maximized__kT0Kc .resize__yR7CA{pointer-events:none;cursor:pointer}.windowContainer__SgqwX.popup__MkxHg{position:relative;width:100%;height:100%;left:0 !important;top:0 !important;bottom:0 !important;right:0 !important;border:none}.windowContainer__SgqwX.popup__MkxHg .title__t3jPt{cursor:default}.windowContainer__SgqwX.popup__MkxHg .titleButtons___6JV7{display:none}.windowContainer__SgqwX.popup__MkxHg .resize__yR7CA{pointer-events:none;cursor:pointer}.windowContainer__SgqwX .stretchItems__AJeWE{align-items:stretch}.windowContainer__SgqwX .fullWidth__RIbhK{width:100%}.windowContainer__SgqwX .fullHeight__vmBtU{height:100%}.windowContainer__SgqwX .resize__yR7CA{user-select:none;display:inline-block}.windowContainer__SgqwX .resize__yR7CA.edge__uLoos{width:4px;height:4px}.windowContainer__SgqwX .resize__yR7CA.edge__uLoos.nw__mh8ZP{cursor:nw-resize}.windowContainer__SgqwX .resize__yR7CA.edge__uLoos.ne__VmwvO{cursor:ne-resize}.windowContainer__SgqwX .resize__yR7CA.edge__uLoos.sw__nTAIW{cursor:sw-resize}.windowContainer__SgqwX .resize__yR7CA.edge__uLoos.se__jxYkp{cursor:se-resize}.windowContainer__SgqwX .resize__yR7CA.y__k4dJu{flex:1;cursor:ns-resize;height:4px}.windowContainer__SgqwX .resize__yR7CA.x__BTw5s{cursor:ew-resize;width:4px}", ""]);
+// Exports
+___CSS_LOADER_EXPORT___.locals = {
+	"noSelect": "noSelect__mXrhD",
+	"disabled": "disabled__vRKaE",
+	"windowContainer": "windowContainer__SgqwX",
+	"popInAnimation": "popInAnimation__Byfoq",
+	"active": "active__BjERj",
+	"moving": "moving__wodQv",
+	"title": "title__t3jPt",
+	"overflowHidden": "overflowHidden__SIvaK",
+	"window": "window__kmnyV",
+	"titleTabBar": "titleTabBar__KIzor",
+	"singleTab": "singleTab__Pu7DD",
+	"titleTab": "titleTab__MacsN",
+	"titleTabHidden": "titleTabHidden__czfEn",
+	"titleTabActive": "titleTabActive__DLrBx",
+	"titleText": "titleText__u8DKa",
+	"overflowXAuto": "overflowXAuto__QJnNN",
+	"content": "content__fHWP6",
+	"fillHeight": "fillHeight__sQc7g",
+	"minimized": "minimized__N1DEp",
+	"resize": "resize__yR7CA",
+	"maximized": "maximized__kT0Kc",
+	"popup": "popup__MkxHg",
+	"titleButtons": "titleButtons___6JV7",
+	"stretchItems": "stretchItems__AJeWE",
+	"fullWidth": "fullWidth__RIbhK",
+	"fullHeight": "fullHeight__vmBtU",
+	"edge": "edge__uLoos",
+	"nw": "nw__mh8ZP",
+	"ne": "ne__VmwvO",
+	"sw": "sw__nTAIW",
+	"se": "se__jxYkp",
+	"y": "y__k4dJu",
+	"x": "x__BTw5s"
+};
+module.exports = ___CSS_LOADER_EXPORT___;
+
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/runtime/api.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
-  \*****************************************************/
+/***/ 645:
 /***/ ((module) => {
 
 "use strict";
-eval("\n\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n  Author Tobias Koppers @sokra\n*/\nmodule.exports = function (cssWithMappingToString) {\n  var list = [];\n\n  // return the list of modules as css string\n  list.toString = function toString() {\n    return this.map(function (item) {\n      var content = \"\";\n      var needLayer = typeof item[5] !== \"undefined\";\n      if (item[4]) {\n        content += \"@supports (\".concat(item[4], \") {\");\n      }\n      if (item[2]) {\n        content += \"@media \".concat(item[2], \" {\");\n      }\n      if (needLayer) {\n        content += \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\");\n      }\n      content += cssWithMappingToString(item);\n      if (needLayer) {\n        content += \"}\";\n      }\n      if (item[2]) {\n        content += \"}\";\n      }\n      if (item[4]) {\n        content += \"}\";\n      }\n      return content;\n    }).join(\"\");\n  };\n\n  // import a list of modules into the list\n  list.i = function i(modules, media, dedupe, supports, layer) {\n    if (typeof modules === \"string\") {\n      modules = [[null, modules, undefined]];\n    }\n    var alreadyImportedModules = {};\n    if (dedupe) {\n      for (var k = 0; k < this.length; k++) {\n        var id = this[k][0];\n        if (id != null) {\n          alreadyImportedModules[id] = true;\n        }\n      }\n    }\n    for (var _k = 0; _k < modules.length; _k++) {\n      var item = [].concat(modules[_k]);\n      if (dedupe && alreadyImportedModules[item[0]]) {\n        continue;\n      }\n      if (typeof layer !== \"undefined\") {\n        if (typeof item[5] === \"undefined\") {\n          item[5] = layer;\n        } else {\n          item[1] = \"@layer\".concat(item[5].length > 0 ? \" \".concat(item[5]) : \"\", \" {\").concat(item[1], \"}\");\n          item[5] = layer;\n        }\n      }\n      if (media) {\n        if (!item[2]) {\n          item[2] = media;\n        } else {\n          item[1] = \"@media \".concat(item[2], \" {\").concat(item[1], \"}\");\n          item[2] = media;\n        }\n      }\n      if (supports) {\n        if (!item[4]) {\n          item[4] = \"\".concat(supports);\n        } else {\n          item[1] = \"@supports (\".concat(item[4], \") {\").concat(item[1], \"}\");\n          item[4] = supports;\n        }\n      }\n      list.push(item);\n    }\n  };\n  return list;\n};\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/css-loader/dist/runtime/api.js?");
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+module.exports = function (cssWithMappingToString) {
+  var list = [];
+
+  // return the list of modules as css string
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = "";
+      var needLayer = typeof item[5] !== "undefined";
+      if (item[4]) {
+        content += "@supports (".concat(item[4], ") {");
+      }
+      if (item[2]) {
+        content += "@media ".concat(item[2], " {");
+      }
+      if (needLayer) {
+        content += "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {");
+      }
+      content += cssWithMappingToString(item);
+      if (needLayer) {
+        content += "}";
+      }
+      if (item[2]) {
+        content += "}";
+      }
+      if (item[4]) {
+        content += "}";
+      }
+      return content;
+    }).join("");
+  };
+
+  // import a list of modules into the list
+  list.i = function i(modules, media, dedupe, supports, layer) {
+    if (typeof modules === "string") {
+      modules = [[null, modules, undefined]];
+    }
+    var alreadyImportedModules = {};
+    if (dedupe) {
+      for (var k = 0; k < this.length; k++) {
+        var id = this[k][0];
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+    for (var _k = 0; _k < modules.length; _k++) {
+      var item = [].concat(modules[_k]);
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        continue;
+      }
+      if (typeof layer !== "undefined") {
+        if (typeof item[5] === "undefined") {
+          item[5] = layer;
+        } else {
+          item[1] = "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {").concat(item[1], "}");
+          item[5] = layer;
+        }
+      }
+      if (media) {
+        if (!item[2]) {
+          item[2] = media;
+        } else {
+          item[1] = "@media ".concat(item[2], " {").concat(item[1], "}");
+          item[2] = media;
+        }
+      }
+      if (supports) {
+        if (!item[4]) {
+          item[4] = "".concat(supports);
+        } else {
+          item[1] = "@supports (".concat(item[4], ") {").concat(item[1], "}");
+          item[4] = supports;
+        }
+      }
+      list.push(item);
+    }
+  };
+  return list;
+};
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/runtime/noSourceMaps.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/noSourceMaps.js ***!
-  \**************************************************************/
+/***/ 81:
 /***/ ((module) => {
 
 "use strict";
-eval("\n\nmodule.exports = function (i) {\n  return i[1];\n};\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/css-loader/dist/runtime/noSourceMaps.js?");
+
+
+module.exports = function (i) {
+  return i[1];
+};
 
 /***/ }),
 
-/***/ "./node_modules/html-parse-stringify/dist/html-parse-stringify.module.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/html-parse-stringify/dist/html-parse-stringify.module.js ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var void_elements__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! void-elements */ \"./node_modules/void-elements/index.js\");\n/* harmony import */ var void_elements__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(void_elements__WEBPACK_IMPORTED_MODULE_0__);\nvar t=/\\s([^'\"/\\s><]+?)[\\s/>]|([^\\s=]+)=\\s?(\".*?\"|'.*?')/g;function n(n){var r={type:\"tag\",name:\"\",voidElement:!1,attrs:{},children:[]},i=n.match(/<\\/?([^\\s]+?)[/\\s>]/);if(i&&(r.name=i[1],((void_elements__WEBPACK_IMPORTED_MODULE_0___default())[i[1]]||\"/\"===n.charAt(n.length-2))&&(r.voidElement=!0),r.name.startsWith(\"!--\"))){var s=n.indexOf(\"--\\x3e\");return{type:\"comment\",comment:-1!==s?n.slice(4,s):\"\"}}for(var a=new RegExp(t),c=null;null!==(c=a.exec(n));)if(c[0].trim())if(c[1]){var o=c[1].trim(),l=[o,\"\"];o.indexOf(\"=\")>-1&&(l=o.split(\"=\")),r.attrs[l[0]]=l[1],a.lastIndex--}else c[2]&&(r.attrs[c[2]]=c[3].trim().substring(1,c[3].length-1));return r}var r=/<[a-zA-Z0-9\\-\\!\\/](?:\"[^\"]*\"|'[^']*'|[^'\">])*>/g,i=/^\\s*$/,s=Object.create(null);function a(e,t){switch(t.type){case\"text\":return e+t.content;case\"tag\":return e+=\"<\"+t.name+(t.attrs?function(e){var t=[];for(var n in e)t.push(n+'=\"'+e[n]+'\"');return t.length?\" \"+t.join(\" \"):\"\"}(t.attrs):\"\")+(t.voidElement?\"/>\":\">\"),t.voidElement?e:e+t.children.reduce(a,\"\")+\"</\"+t.name+\">\";case\"comment\":return e+\"\\x3c!--\"+t.comment+\"--\\x3e\"}}var c={parse:function(e,t){t||(t={}),t.components||(t.components=s);var a,c=[],o=[],l=-1,m=!1;if(0!==e.indexOf(\"<\")){var u=e.indexOf(\"<\");c.push({type:\"text\",content:-1===u?e:e.substring(0,u)})}return e.replace(r,function(r,s){if(m){if(r!==\"</\"+a.name+\">\")return;m=!1}var u,f=\"/\"!==r.charAt(1),h=r.startsWith(\"\\x3c!--\"),p=s+r.length,d=e.charAt(p);if(h){var v=n(r);return l<0?(c.push(v),c):((u=o[l]).children.push(v),c)}if(f&&(l++,\"tag\"===(a=n(r)).type&&t.components[a.name]&&(a.type=\"component\",m=!0),a.voidElement||m||!d||\"<\"===d||a.children.push({type:\"text\",content:e.slice(p,e.indexOf(\"<\",p))}),0===l&&c.push(a),(u=o[l-1])&&u.children.push(a),o[l]=a),(!f||a.voidElement)&&(l>-1&&(a.voidElement||a.name===r.slice(2,-1))&&(l--,a=-1===l?c:o[l]),!m&&\"<\"!==d&&d)){u=-1===l?c:o[l].children;var x=e.indexOf(\"<\",p),g=e.slice(p,-1===x?void 0:x);i.test(g)&&(g=\" \"),(x>-1&&l+u.length>=0||\" \"!==g)&&u.push({type:\"text\",content:g})}}),c},stringify:function(e){return e.reduce(function(e,t){return e+a(\"\",t)},\"\")}};/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (c);\n//# sourceMappingURL=html-parse-stringify.module.js.map\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/html-parse-stringify/dist/html-parse-stringify.module.js?");
-
-/***/ }),
-
-/***/ "./src/Components/WindowButton/windowButton.scss":
-/*!*******************************************************!*\
-  !*** ./src/Components/WindowButton/windowButton.scss ***!
-  \*******************************************************/
+/***/ 291:
 /***/ ((module, exports, __webpack_require__) => {
 
-eval("\n    var refs = 0;\n    var css = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!../../../node_modules/sass-loader/dist/cjs.js!./windowButton.scss */ \"./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/Components/WindowButton/windowButton.scss\");\n    var insertCss = __webpack_require__(/*! !../../../node_modules/isomorphic-style-loader/insertCss.js */ \"./node_modules/isomorphic-style-loader/insertCss.js\");\n    var content = typeof css === 'string' ? [[module.id, css, '']] : css;\n\n    exports = module.exports = css.locals || {};\n    exports._getContent = function() { return content; };\n    exports._getCss = function() { return '' + css; };\n    exports._insertCss = function(options) { return insertCss(content, options) };\n\n    // Hot Module Replacement\n    // https://webpack.github.io/docs/hot-module-replacement\n    // Only activated in browser context\n    if (false) { var removeCss; }\n  \n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowButton/windowButton.scss?");
+
+    var refs = 0;
+    var css = __webpack_require__(947);
+    var insertCss = __webpack_require__(718);
+    var content = typeof css === 'string' ? [[module.id, css, '']] : css;
+
+    exports = module.exports = css.locals || {};
+    exports._getContent = function() { return content; };
+    exports._getCss = function() { return '' + css; };
+    exports._insertCss = function(options) { return insertCss(content, options) };
+
+    // Hot Module Replacement
+    // https://webpack.github.io/docs/hot-module-replacement
+    // Only activated in browser context
+    if (false) { var removeCss; }
+  
 
 /***/ }),
 
-/***/ "./src/Components/WindowContainer/windowContainer.scss":
-/*!*************************************************************!*\
-  !*** ./src/Components/WindowContainer/windowContainer.scss ***!
-  \*************************************************************/
+/***/ 5:
 /***/ ((module, exports, __webpack_require__) => {
 
-eval("\n    var refs = 0;\n    var css = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!../../../node_modules/sass-loader/dist/cjs.js!./windowContainer.scss */ \"./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/Components/WindowContainer/windowContainer.scss\");\n    var insertCss = __webpack_require__(/*! !../../../node_modules/isomorphic-style-loader/insertCss.js */ \"./node_modules/isomorphic-style-loader/insertCss.js\");\n    var content = typeof css === 'string' ? [[module.id, css, '']] : css;\n\n    exports = module.exports = css.locals || {};\n    exports._getContent = function() { return content; };\n    exports._getCss = function() { return '' + css; };\n    exports._insertCss = function(options) { return insertCss(content, options) };\n\n    // Hot Module Replacement\n    // https://webpack.github.io/docs/hot-module-replacement\n    // Only activated in browser context\n    if (false) { var removeCss; }\n  \n\n//# sourceURL=webpack://@ainias42/react-windows/./src/Components/WindowContainer/windowContainer.scss?");
+
+    var refs = 0;
+    var css = __webpack_require__(636);
+    var insertCss = __webpack_require__(718);
+    var content = typeof css === 'string' ? [[module.id, css, '']] : css;
+
+    exports = module.exports = css.locals || {};
+    exports._getContent = function() { return content; };
+    exports._getCss = function() { return '' + css; };
+    exports._insertCss = function(options) { return insertCss(content, options) };
+
+    // Hot Module Replacement
+    // https://webpack.github.io/docs/hot-module-replacement
+    // Only activated in browser context
+    if (false) { var removeCss; }
+  
 
 /***/ }),
 
-/***/ "./node_modules/isomorphic-style-loader/insertCss.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/isomorphic-style-loader/insertCss.js ***!
-  \***********************************************************/
+/***/ 718:
 /***/ ((module) => {
 
 "use strict";
-eval("/*! Isomorphic Style Loader | MIT License | https://github.com/kriasoft/isomorphic-style-loader */\n\n\n\nvar inserted = {};\n\nfunction b64EncodeUnicode(str) {\n  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {\n    return String.fromCharCode(\"0x\" + p1);\n  }));\n}\n\nfunction removeCss(ids) {\n  ids.forEach(function (id) {\n    if (--inserted[id] <= 0) {\n      var elem = document.getElementById(id);\n\n      if (elem) {\n        elem.parentNode.removeChild(elem);\n      }\n    }\n  });\n}\n\nfunction insertCss(styles, _temp) {\n  var _ref = _temp === void 0 ? {} : _temp,\n      _ref$replace = _ref.replace,\n      replace = _ref$replace === void 0 ? false : _ref$replace,\n      _ref$prepend = _ref.prepend,\n      prepend = _ref$prepend === void 0 ? false : _ref$prepend,\n      _ref$prefix = _ref.prefix,\n      prefix = _ref$prefix === void 0 ? 's' : _ref$prefix;\n\n  var ids = [];\n\n  for (var i = 0; i < styles.length; i++) {\n    var _styles$i = styles[i],\n        moduleId = _styles$i[0],\n        css = _styles$i[1],\n        media = _styles$i[2],\n        sourceMap = _styles$i[3];\n    var id = \"\" + prefix + moduleId + \"-\" + i;\n    ids.push(id);\n\n    if (inserted[id]) {\n      if (!replace) {\n        inserted[id]++;\n        continue;\n      }\n    }\n\n    inserted[id] = 1;\n    var elem = document.getElementById(id);\n    var create = false;\n\n    if (!elem) {\n      create = true;\n      elem = document.createElement('style');\n      elem.setAttribute('type', 'text/css');\n      elem.id = id;\n\n      if (media) {\n        elem.setAttribute('media', media);\n      }\n    }\n\n    var cssText = css;\n\n    if (sourceMap && typeof btoa === 'function') {\n      cssText += \"\\n/*# sourceMappingURL=data:application/json;base64,\" + b64EncodeUnicode(JSON.stringify(sourceMap)) + \"*/\";\n      cssText += \"\\n/*# sourceURL=\" + sourceMap.file + \"?\" + id + \"*/\";\n    }\n\n    if ('textContent' in elem) {\n      elem.textContent = cssText;\n    } else {\n      elem.styleSheet.cssText = cssText;\n    }\n\n    if (create) {\n      if (prepend) {\n        document.head.insertBefore(elem, document.head.childNodes[0]);\n      } else {\n        document.head.appendChild(elem);\n      }\n    }\n  }\n\n  return removeCss.bind(null, ids);\n}\n\nmodule.exports = insertCss;\n//# sourceMappingURL=insertCss.js.map\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/isomorphic-style-loader/insertCss.js?");
+/*! Isomorphic Style Loader | MIT License | https://github.com/kriasoft/isomorphic-style-loader */
+
+
+
+var inserted = {};
+
+function b64EncodeUnicode(str) {
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
+    return String.fromCharCode("0x" + p1);
+  }));
+}
+
+function removeCss(ids) {
+  ids.forEach(function (id) {
+    if (--inserted[id] <= 0) {
+      var elem = document.getElementById(id);
+
+      if (elem) {
+        elem.parentNode.removeChild(elem);
+      }
+    }
+  });
+}
+
+function insertCss(styles, _temp) {
+  var _ref = _temp === void 0 ? {} : _temp,
+      _ref$replace = _ref.replace,
+      replace = _ref$replace === void 0 ? false : _ref$replace,
+      _ref$prepend = _ref.prepend,
+      prepend = _ref$prepend === void 0 ? false : _ref$prepend,
+      _ref$prefix = _ref.prefix,
+      prefix = _ref$prefix === void 0 ? 's' : _ref$prefix;
+
+  var ids = [];
+
+  for (var i = 0; i < styles.length; i++) {
+    var _styles$i = styles[i],
+        moduleId = _styles$i[0],
+        css = _styles$i[1],
+        media = _styles$i[2],
+        sourceMap = _styles$i[3];
+    var id = "" + prefix + moduleId + "-" + i;
+    ids.push(id);
+
+    if (inserted[id]) {
+      if (!replace) {
+        inserted[id]++;
+        continue;
+      }
+    }
+
+    inserted[id] = 1;
+    var elem = document.getElementById(id);
+    var create = false;
+
+    if (!elem) {
+      create = true;
+      elem = document.createElement('style');
+      elem.setAttribute('type', 'text/css');
+      elem.id = id;
+
+      if (media) {
+        elem.setAttribute('media', media);
+      }
+    }
+
+    var cssText = css;
+
+    if (sourceMap && typeof btoa === 'function') {
+      cssText += "\n/*# sourceMappingURL=data:application/json;base64," + b64EncodeUnicode(JSON.stringify(sourceMap)) + "*/";
+      cssText += "\n/*# sourceURL=" + sourceMap.file + "?" + id + "*/";
+    }
+
+    if ('textContent' in elem) {
+      elem.textContent = cssText;
+    } else {
+      elem.styleSheet.cssText = cssText;
+    }
+
+    if (create) {
+      if (prepend) {
+        document.head.insertBefore(elem, document.head.childNodes[0]);
+      } else {
+        document.head.appendChild(elem);
+      }
+    }
+  }
+
+  return removeCss.bind(null, ids);
+}
+
+module.exports = insertCss;
+//# sourceMappingURL=insertCss.js.map
+
 
 /***/ }),
 
-/***/ "./node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js":
-/*!**********************************************************************************************!*\
-  !*** ./node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js ***!
-  \**********************************************************************************************/
+/***/ 250:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("/**\n * @license React\n * use-sync-external-store-shim.development.js\n *\n * Copyright (c) Facebook, Inc. and its affiliates.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n\n\nif (true) {\n  (function() {\n\n          'use strict';\n\n/* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */\nif (\n  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' &&\n  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart ===\n    'function'\n) {\n  __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());\n}\n          var React = __webpack_require__(/*! react */ \"react\");\n\nvar ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;\n\nfunction error(format) {\n  {\n    {\n      for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {\n        args[_key2 - 1] = arguments[_key2];\n      }\n\n      printWarning('error', format, args);\n    }\n  }\n}\n\nfunction printWarning(level, format, args) {\n  // When changing this logic, you might want to also\n  // update consoleWithStackDev.www.js as well.\n  {\n    var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;\n    var stack = ReactDebugCurrentFrame.getStackAddendum();\n\n    if (stack !== '') {\n      format += '%s';\n      args = args.concat([stack]);\n    } // eslint-disable-next-line react-internal/safe-string-coercion\n\n\n    var argsWithFormat = args.map(function (item) {\n      return String(item);\n    }); // Careful: RN currently depends on this prefix\n\n    argsWithFormat.unshift('Warning: ' + format); // We intentionally don't use spread (or .apply) directly because it\n    // breaks IE9: https://github.com/facebook/react/issues/13610\n    // eslint-disable-next-line react-internal/no-production-logging\n\n    Function.prototype.apply.call(console[level], console, argsWithFormat);\n  }\n}\n\n/**\n * inlined Object.is polyfill to avoid requiring consumers ship their own\n * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is\n */\nfunction is(x, y) {\n  return x === y && (x !== 0 || 1 / x === 1 / y) || x !== x && y !== y // eslint-disable-line no-self-compare\n  ;\n}\n\nvar objectIs = typeof Object.is === 'function' ? Object.is : is;\n\n// dispatch for CommonJS interop named imports.\n\nvar useState = React.useState,\n    useEffect = React.useEffect,\n    useLayoutEffect = React.useLayoutEffect,\n    useDebugValue = React.useDebugValue;\nvar didWarnOld18Alpha = false;\nvar didWarnUncachedGetSnapshot = false; // Disclaimer: This shim breaks many of the rules of React, and only works\n// because of a very particular set of implementation details and assumptions\n// -- change any one of them and it will break. The most important assumption\n// is that updates are always synchronous, because concurrent rendering is\n// only available in versions of React that also have a built-in\n// useSyncExternalStore API. And we only use this shim when the built-in API\n// does not exist.\n//\n// Do not assume that the clever hacks used by this hook also work in general.\n// The point of this shim is to replace the need for hacks by other libraries.\n\nfunction useSyncExternalStore(subscribe, getSnapshot, // Note: The shim does not use getServerSnapshot, because pre-18 versions of\n// React do not expose a way to check if we're hydrating. So users of the shim\n// will need to track that themselves and return the correct value\n// from `getSnapshot`.\ngetServerSnapshot) {\n  {\n    if (!didWarnOld18Alpha) {\n      if (React.startTransition !== undefined) {\n        didWarnOld18Alpha = true;\n\n        error('You are using an outdated, pre-release alpha of React 18 that ' + 'does not support useSyncExternalStore. The ' + 'use-sync-external-store shim will not work correctly. Upgrade ' + 'to a newer pre-release.');\n      }\n    }\n  } // Read the current snapshot from the store on every render. Again, this\n  // breaks the rules of React, and only works here because of specific\n  // implementation details, most importantly that updates are\n  // always synchronous.\n\n\n  var value = getSnapshot();\n\n  {\n    if (!didWarnUncachedGetSnapshot) {\n      var cachedValue = getSnapshot();\n\n      if (!objectIs(value, cachedValue)) {\n        error('The result of getSnapshot should be cached to avoid an infinite loop');\n\n        didWarnUncachedGetSnapshot = true;\n      }\n    }\n  } // Because updates are synchronous, we don't queue them. Instead we force a\n  // re-render whenever the subscribed state changes by updating an some\n  // arbitrary useState hook. Then, during render, we call getSnapshot to read\n  // the current value.\n  //\n  // Because we don't actually use the state returned by the useState hook, we\n  // can save a bit of memory by storing other stuff in that slot.\n  //\n  // To implement the early bailout, we need to track some things on a mutable\n  // object. Usually, we would put that in a useRef hook, but we can stash it in\n  // our useState hook instead.\n  //\n  // To force a re-render, we call forceUpdate({inst}). That works because the\n  // new object always fails an equality check.\n\n\n  var _useState = useState({\n    inst: {\n      value: value,\n      getSnapshot: getSnapshot\n    }\n  }),\n      inst = _useState[0].inst,\n      forceUpdate = _useState[1]; // Track the latest getSnapshot function with a ref. This needs to be updated\n  // in the layout phase so we can access it during the tearing check that\n  // happens on subscribe.\n\n\n  useLayoutEffect(function () {\n    inst.value = value;\n    inst.getSnapshot = getSnapshot; // Whenever getSnapshot or subscribe changes, we need to check in the\n    // commit phase if there was an interleaved mutation. In concurrent mode\n    // this can happen all the time, but even in synchronous mode, an earlier\n    // effect may have mutated the store.\n\n    if (checkIfSnapshotChanged(inst)) {\n      // Force a re-render.\n      forceUpdate({\n        inst: inst\n      });\n    }\n  }, [subscribe, value, getSnapshot]);\n  useEffect(function () {\n    // Check for changes right before subscribing. Subsequent changes will be\n    // detected in the subscription handler.\n    if (checkIfSnapshotChanged(inst)) {\n      // Force a re-render.\n      forceUpdate({\n        inst: inst\n      });\n    }\n\n    var handleStoreChange = function () {\n      // TODO: Because there is no cross-renderer API for batching updates, it's\n      // up to the consumer of this library to wrap their subscription event\n      // with unstable_batchedUpdates. Should we try to detect when this isn't\n      // the case and print a warning in development?\n      // The store changed. Check if the snapshot changed since the last time we\n      // read from the store.\n      if (checkIfSnapshotChanged(inst)) {\n        // Force a re-render.\n        forceUpdate({\n          inst: inst\n        });\n      }\n    }; // Subscribe to the store and return a clean-up function.\n\n\n    return subscribe(handleStoreChange);\n  }, [subscribe]);\n  useDebugValue(value);\n  return value;\n}\n\nfunction checkIfSnapshotChanged(inst) {\n  var latestGetSnapshot = inst.getSnapshot;\n  var prevValue = inst.value;\n\n  try {\n    var nextValue = latestGetSnapshot();\n    return !objectIs(prevValue, nextValue);\n  } catch (error) {\n    return true;\n  }\n}\n\nfunction useSyncExternalStore$1(subscribe, getSnapshot, getServerSnapshot) {\n  // Note: The shim does not use getServerSnapshot, because pre-18 versions of\n  // React do not expose a way to check if we're hydrating. So users of the shim\n  // will need to track that themselves and return the correct value\n  // from `getSnapshot`.\n  return getSnapshot();\n}\n\nvar canUseDOM = !!(typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined');\n\nvar isServerEnvironment = !canUseDOM;\n\nvar shim = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore;\nvar useSyncExternalStore$2 = React.useSyncExternalStore !== undefined ? React.useSyncExternalStore : shim;\n\nexports.useSyncExternalStore = useSyncExternalStore$2;\n          /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */\nif (\n  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' &&\n  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop ===\n    'function'\n) {\n  __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());\n}\n        \n  })();\n}\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js?");
+/**
+ * @license React
+ * use-sync-external-store-shim.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+var e=__webpack_require__(689);function h(a,b){return a===b&&(0!==a||1/a===1/b)||a!==a&&b!==b}var k="function"===typeof Object.is?Object.is:h,l=e.useState,m=e.useEffect,n=e.useLayoutEffect,p=e.useDebugValue;function q(a,b){var d=b(),f=l({inst:{value:d,getSnapshot:b}}),c=f[0].inst,g=f[1];n(function(){c.value=d;c.getSnapshot=b;r(c)&&g({inst:c})},[a,d,b]);m(function(){r(c)&&g({inst:c});return a(function(){r(c)&&g({inst:c})})},[a]);p(d);return d}
+function r(a){var b=a.getSnapshot;a=a.value;try{var d=b();return!k(a,d)}catch(f){return!0}}function t(a,b){return b()}var u="undefined"===typeof window||"undefined"===typeof window.document||"undefined"===typeof window.document.createElement?t:q;exports.useSyncExternalStore=void 0!==e.useSyncExternalStore?e.useSyncExternalStore:u;
+
 
 /***/ }),
 
-/***/ "./node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js":
-/*!************************************************************************************************************!*\
-  !*** ./node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js ***!
-  \************************************************************************************************************/
+/***/ 139:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("/**\n * @license React\n * use-sync-external-store-shim/with-selector.development.js\n *\n * Copyright (c) Facebook, Inc. and its affiliates.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n\n\nif (true) {\n  (function() {\n\n          'use strict';\n\n/* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */\nif (\n  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' &&\n  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart ===\n    'function'\n) {\n  __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());\n}\n          var React = __webpack_require__(/*! react */ \"react\");\nvar shim = __webpack_require__(/*! use-sync-external-store/shim */ \"./node_modules/use-sync-external-store/shim/index.js\");\n\n/**\n * inlined Object.is polyfill to avoid requiring consumers ship their own\n * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is\n */\nfunction is(x, y) {\n  return x === y && (x !== 0 || 1 / x === 1 / y) || x !== x && y !== y // eslint-disable-line no-self-compare\n  ;\n}\n\nvar objectIs = typeof Object.is === 'function' ? Object.is : is;\n\nvar useSyncExternalStore = shim.useSyncExternalStore;\n\n// for CommonJS interop.\n\nvar useRef = React.useRef,\n    useEffect = React.useEffect,\n    useMemo = React.useMemo,\n    useDebugValue = React.useDebugValue; // Same as useSyncExternalStore, but supports selector and isEqual arguments.\n\nfunction useSyncExternalStoreWithSelector(subscribe, getSnapshot, getServerSnapshot, selector, isEqual) {\n  // Use this to track the rendered snapshot.\n  var instRef = useRef(null);\n  var inst;\n\n  if (instRef.current === null) {\n    inst = {\n      hasValue: false,\n      value: null\n    };\n    instRef.current = inst;\n  } else {\n    inst = instRef.current;\n  }\n\n  var _useMemo = useMemo(function () {\n    // Track the memoized state using closure variables that are local to this\n    // memoized instance of a getSnapshot function. Intentionally not using a\n    // useRef hook, because that state would be shared across all concurrent\n    // copies of the hook/component.\n    var hasMemo = false;\n    var memoizedSnapshot;\n    var memoizedSelection;\n\n    var memoizedSelector = function (nextSnapshot) {\n      if (!hasMemo) {\n        // The first time the hook is called, there is no memoized result.\n        hasMemo = true;\n        memoizedSnapshot = nextSnapshot;\n\n        var _nextSelection = selector(nextSnapshot);\n\n        if (isEqual !== undefined) {\n          // Even if the selector has changed, the currently rendered selection\n          // may be equal to the new selection. We should attempt to reuse the\n          // current value if possible, to preserve downstream memoizations.\n          if (inst.hasValue) {\n            var currentSelection = inst.value;\n\n            if (isEqual(currentSelection, _nextSelection)) {\n              memoizedSelection = currentSelection;\n              return currentSelection;\n            }\n          }\n        }\n\n        memoizedSelection = _nextSelection;\n        return _nextSelection;\n      } // We may be able to reuse the previous invocation's result.\n\n\n      // We may be able to reuse the previous invocation's result.\n      var prevSnapshot = memoizedSnapshot;\n      var prevSelection = memoizedSelection;\n\n      if (objectIs(prevSnapshot, nextSnapshot)) {\n        // The snapshot is the same as last time. Reuse the previous selection.\n        return prevSelection;\n      } // The snapshot has changed, so we need to compute a new selection.\n\n\n      // The snapshot has changed, so we need to compute a new selection.\n      var nextSelection = selector(nextSnapshot); // If a custom isEqual function is provided, use that to check if the data\n      // has changed. If it hasn't, return the previous selection. That signals\n      // to React that the selections are conceptually equal, and we can bail\n      // out of rendering.\n\n      // If a custom isEqual function is provided, use that to check if the data\n      // has changed. If it hasn't, return the previous selection. That signals\n      // to React that the selections are conceptually equal, and we can bail\n      // out of rendering.\n      if (isEqual !== undefined && isEqual(prevSelection, nextSelection)) {\n        return prevSelection;\n      }\n\n      memoizedSnapshot = nextSnapshot;\n      memoizedSelection = nextSelection;\n      return nextSelection;\n    }; // Assigning this to a constant so that Flow knows it can't change.\n\n\n    // Assigning this to a constant so that Flow knows it can't change.\n    var maybeGetServerSnapshot = getServerSnapshot === undefined ? null : getServerSnapshot;\n\n    var getSnapshotWithSelector = function () {\n      return memoizedSelector(getSnapshot());\n    };\n\n    var getServerSnapshotWithSelector = maybeGetServerSnapshot === null ? undefined : function () {\n      return memoizedSelector(maybeGetServerSnapshot());\n    };\n    return [getSnapshotWithSelector, getServerSnapshotWithSelector];\n  }, [getSnapshot, getServerSnapshot, selector, isEqual]),\n      getSelection = _useMemo[0],\n      getServerSelection = _useMemo[1];\n\n  var value = useSyncExternalStore(subscribe, getSelection, getServerSelection);\n  useEffect(function () {\n    inst.hasValue = true;\n    inst.value = value;\n  }, [value]);\n  useDebugValue(value);\n  return value;\n}\n\nexports.useSyncExternalStoreWithSelector = useSyncExternalStoreWithSelector;\n          /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */\nif (\n  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' &&\n  typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop ===\n    'function'\n) {\n  __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());\n}\n        \n  })();\n}\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js?");
+/**
+ * @license React
+ * use-sync-external-store-shim/with-selector.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+var h=__webpack_require__(689),n=__webpack_require__(688);function p(a,b){return a===b&&(0!==a||1/a===1/b)||a!==a&&b!==b}var q="function"===typeof Object.is?Object.is:p,r=n.useSyncExternalStore,t=h.useRef,u=h.useEffect,v=h.useMemo,w=h.useDebugValue;
+exports.useSyncExternalStoreWithSelector=function(a,b,e,l,g){var c=t(null);if(null===c.current){var f={hasValue:!1,value:null};c.current=f}else f=c.current;c=v(function(){function a(a){if(!c){c=!0;d=a;a=l(a);if(void 0!==g&&f.hasValue){var b=f.value;if(g(b,a))return k=b}return k=a}b=k;if(q(d,a))return b;var e=l(a);if(void 0!==g&&g(b,e))return b;d=a;return k=e}var c=!1,d,k,m=void 0===e?null:e;return[function(){return a(b())},null===m?void 0:function(){return a(m())}]},[b,e,l,g]);var d=r(a,c[0],c[1]);
+u(function(){f.hasValue=!0;f.value=d},[d]);w(d);return d};
+
 
 /***/ }),
 
-/***/ "./node_modules/use-sync-external-store/shim/index.js":
-/*!************************************************************!*\
-  !*** ./node_modules/use-sync-external-store/shim/index.js ***!
-  \************************************************************/
+/***/ 688:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ../cjs/use-sync-external-store-shim.development.js */ \"./node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js\");\n}\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/use-sync-external-store/shim/index.js?");
+
+
+if (true) {
+  module.exports = __webpack_require__(250);
+} else {}
+
 
 /***/ }),
 
-/***/ "./node_modules/use-sync-external-store/shim/with-selector.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/use-sync-external-store/shim/with-selector.js ***!
-  \********************************************************************/
+/***/ 798:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ../cjs/use-sync-external-store-shim/with-selector.development.js */ \"./node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js\");\n}\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/use-sync-external-store/shim/with-selector.js?");
+
+
+if (true) {
+  module.exports = __webpack_require__(139);
+} else {}
+
 
 /***/ }),
 
-/***/ "./node_modules/void-elements/index.js":
-/*!*********************************************!*\
-  !*** ./node_modules/void-elements/index.js ***!
-  \*********************************************/
+/***/ 739:
 /***/ ((module) => {
 
-eval("/**\n * This file automatically generated from `pre-publish.js`.\n * Do not manually edit.\n */\n\nmodule.exports = {\n  \"area\": true,\n  \"base\": true,\n  \"br\": true,\n  \"col\": true,\n  \"embed\": true,\n  \"hr\": true,\n  \"img\": true,\n  \"input\": true,\n  \"link\": true,\n  \"meta\": true,\n  \"param\": true,\n  \"source\": true,\n  \"track\": true,\n  \"wbr\": true\n};\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/void-elements/index.js?");
+/**
+ * This file automatically generated from `pre-publish.js`.
+ * Do not manually edit.
+ */
+
+module.exports = {
+  "area": true,
+  "base": true,
+  "br": true,
+  "col": true,
+  "embed": true,
+  "hr": true,
+  "img": true,
+  "input": true,
+  "link": true,
+  "meta": true,
+  "param": true,
+  "source": true,
+  "track": true,
+  "wbr": true
+};
+
 
 /***/ }),
 
-/***/ "react":
-/*!************************!*\
-  !*** external "react" ***!
-  \************************/
+/***/ 689:
 /***/ ((module) => {
 
 "use strict";
 module.exports = require("react");
-
-/***/ }),
-
-/***/ "react-dom":
-/*!****************************!*\
-  !*** external "react-dom" ***!
-  \****************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("react-dom");
-
-/***/ }),
-
-/***/ "@ainias42/react-bootstrap-mobile":
-/*!***************************************************!*\
-  !*** external "@ainias42/react-bootstrap-mobile" ***!
-  \***************************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("@ainias42/react-bootstrap-mobile");
-
-/***/ }),
-
-/***/ "@fortawesome/free-solid-svg-icons":
-/*!****************************************************!*\
-  !*** external "@fortawesome/free-solid-svg-icons" ***!
-  \****************************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("@fortawesome/free-solid-svg-icons");
-
-/***/ }),
-
-/***/ "./node_modules/@fortawesome/free-regular-svg-icons/index.mjs":
-/*!********************************************************************!*\
-  !*** ./node_modules/@fortawesome/free-regular-svg-icons/index.mjs ***!
-  \********************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"faAddressBook\": () => (/* binding */ faAddressBook),\n/* harmony export */   \"faAddressCard\": () => (/* binding */ faAddressCard),\n/* harmony export */   \"faAngry\": () => (/* binding */ faAngry),\n/* harmony export */   \"faArrowAltCircleDown\": () => (/* binding */ faArrowAltCircleDown),\n/* harmony export */   \"faArrowAltCircleLeft\": () => (/* binding */ faArrowAltCircleLeft),\n/* harmony export */   \"faArrowAltCircleRight\": () => (/* binding */ faArrowAltCircleRight),\n/* harmony export */   \"faArrowAltCircleUp\": () => (/* binding */ faArrowAltCircleUp),\n/* harmony export */   \"faBarChart\": () => (/* binding */ faBarChart),\n/* harmony export */   \"faBell\": () => (/* binding */ faBell),\n/* harmony export */   \"faBellSlash\": () => (/* binding */ faBellSlash),\n/* harmony export */   \"faBookmark\": () => (/* binding */ faBookmark),\n/* harmony export */   \"faBuilding\": () => (/* binding */ faBuilding),\n/* harmony export */   \"faCalendar\": () => (/* binding */ faCalendar),\n/* harmony export */   \"faCalendarAlt\": () => (/* binding */ faCalendarAlt),\n/* harmony export */   \"faCalendarCheck\": () => (/* binding */ faCalendarCheck),\n/* harmony export */   \"faCalendarDays\": () => (/* binding */ faCalendarDays),\n/* harmony export */   \"faCalendarMinus\": () => (/* binding */ faCalendarMinus),\n/* harmony export */   \"faCalendarPlus\": () => (/* binding */ faCalendarPlus),\n/* harmony export */   \"faCalendarTimes\": () => (/* binding */ faCalendarTimes),\n/* harmony export */   \"faCalendarXmark\": () => (/* binding */ faCalendarXmark),\n/* harmony export */   \"faCaretSquareDown\": () => (/* binding */ faCaretSquareDown),\n/* harmony export */   \"faCaretSquareLeft\": () => (/* binding */ faCaretSquareLeft),\n/* harmony export */   \"faCaretSquareRight\": () => (/* binding */ faCaretSquareRight),\n/* harmony export */   \"faCaretSquareUp\": () => (/* binding */ faCaretSquareUp),\n/* harmony export */   \"faChartBar\": () => (/* binding */ faChartBar),\n/* harmony export */   \"faCheckCircle\": () => (/* binding */ faCheckCircle),\n/* harmony export */   \"faCheckSquare\": () => (/* binding */ faCheckSquare),\n/* harmony export */   \"faChessBishop\": () => (/* binding */ faChessBishop),\n/* harmony export */   \"faChessKing\": () => (/* binding */ faChessKing),\n/* harmony export */   \"faChessKnight\": () => (/* binding */ faChessKnight),\n/* harmony export */   \"faChessPawn\": () => (/* binding */ faChessPawn),\n/* harmony export */   \"faChessQueen\": () => (/* binding */ faChessQueen),\n/* harmony export */   \"faChessRook\": () => (/* binding */ faChessRook),\n/* harmony export */   \"faCircle\": () => (/* binding */ faCircle),\n/* harmony export */   \"faCircleCheck\": () => (/* binding */ faCircleCheck),\n/* harmony export */   \"faCircleDot\": () => (/* binding */ faCircleDot),\n/* harmony export */   \"faCircleDown\": () => (/* binding */ faCircleDown),\n/* harmony export */   \"faCircleLeft\": () => (/* binding */ faCircleLeft),\n/* harmony export */   \"faCirclePause\": () => (/* binding */ faCirclePause),\n/* harmony export */   \"faCirclePlay\": () => (/* binding */ faCirclePlay),\n/* harmony export */   \"faCircleQuestion\": () => (/* binding */ faCircleQuestion),\n/* harmony export */   \"faCircleRight\": () => (/* binding */ faCircleRight),\n/* harmony export */   \"faCircleStop\": () => (/* binding */ faCircleStop),\n/* harmony export */   \"faCircleUp\": () => (/* binding */ faCircleUp),\n/* harmony export */   \"faCircleUser\": () => (/* binding */ faCircleUser),\n/* harmony export */   \"faCircleXmark\": () => (/* binding */ faCircleXmark),\n/* harmony export */   \"faClipboard\": () => (/* binding */ faClipboard),\n/* harmony export */   \"faClock\": () => (/* binding */ faClock),\n/* harmony export */   \"faClockFour\": () => (/* binding */ faClockFour),\n/* harmony export */   \"faClone\": () => (/* binding */ faClone),\n/* harmony export */   \"faClosedCaptioning\": () => (/* binding */ faClosedCaptioning),\n/* harmony export */   \"faComment\": () => (/* binding */ faComment),\n/* harmony export */   \"faCommentAlt\": () => (/* binding */ faCommentAlt),\n/* harmony export */   \"faCommentDots\": () => (/* binding */ faCommentDots),\n/* harmony export */   \"faCommenting\": () => (/* binding */ faCommenting),\n/* harmony export */   \"faComments\": () => (/* binding */ faComments),\n/* harmony export */   \"faCompass\": () => (/* binding */ faCompass),\n/* harmony export */   \"faContactBook\": () => (/* binding */ faContactBook),\n/* harmony export */   \"faContactCard\": () => (/* binding */ faContactCard),\n/* harmony export */   \"faCopy\": () => (/* binding */ faCopy),\n/* harmony export */   \"faCopyright\": () => (/* binding */ faCopyright),\n/* harmony export */   \"faCreditCard\": () => (/* binding */ faCreditCard),\n/* harmony export */   \"faCreditCardAlt\": () => (/* binding */ faCreditCardAlt),\n/* harmony export */   \"faDizzy\": () => (/* binding */ faDizzy),\n/* harmony export */   \"faDotCircle\": () => (/* binding */ faDotCircle),\n/* harmony export */   \"faDriversLicense\": () => (/* binding */ faDriversLicense),\n/* harmony export */   \"faEdit\": () => (/* binding */ faEdit),\n/* harmony export */   \"faEnvelope\": () => (/* binding */ faEnvelope),\n/* harmony export */   \"faEnvelopeOpen\": () => (/* binding */ faEnvelopeOpen),\n/* harmony export */   \"faEye\": () => (/* binding */ faEye),\n/* harmony export */   \"faEyeSlash\": () => (/* binding */ faEyeSlash),\n/* harmony export */   \"faFaceAngry\": () => (/* binding */ faFaceAngry),\n/* harmony export */   \"faFaceDizzy\": () => (/* binding */ faFaceDizzy),\n/* harmony export */   \"faFaceFlushed\": () => (/* binding */ faFaceFlushed),\n/* harmony export */   \"faFaceFrown\": () => (/* binding */ faFaceFrown),\n/* harmony export */   \"faFaceFrownOpen\": () => (/* binding */ faFaceFrownOpen),\n/* harmony export */   \"faFaceGrimace\": () => (/* binding */ faFaceGrimace),\n/* harmony export */   \"faFaceGrin\": () => (/* binding */ faFaceGrin),\n/* harmony export */   \"faFaceGrinBeam\": () => (/* binding */ faFaceGrinBeam),\n/* harmony export */   \"faFaceGrinBeamSweat\": () => (/* binding */ faFaceGrinBeamSweat),\n/* harmony export */   \"faFaceGrinHearts\": () => (/* binding */ faFaceGrinHearts),\n/* harmony export */   \"faFaceGrinSquint\": () => (/* binding */ faFaceGrinSquint),\n/* harmony export */   \"faFaceGrinSquintTears\": () => (/* binding */ faFaceGrinSquintTears),\n/* harmony export */   \"faFaceGrinStars\": () => (/* binding */ faFaceGrinStars),\n/* harmony export */   \"faFaceGrinTears\": () => (/* binding */ faFaceGrinTears),\n/* harmony export */   \"faFaceGrinTongue\": () => (/* binding */ faFaceGrinTongue),\n/* harmony export */   \"faFaceGrinTongueSquint\": () => (/* binding */ faFaceGrinTongueSquint),\n/* harmony export */   \"faFaceGrinTongueWink\": () => (/* binding */ faFaceGrinTongueWink),\n/* harmony export */   \"faFaceGrinWide\": () => (/* binding */ faFaceGrinWide),\n/* harmony export */   \"faFaceGrinWink\": () => (/* binding */ faFaceGrinWink),\n/* harmony export */   \"faFaceKiss\": () => (/* binding */ faFaceKiss),\n/* harmony export */   \"faFaceKissBeam\": () => (/* binding */ faFaceKissBeam),\n/* harmony export */   \"faFaceKissWinkHeart\": () => (/* binding */ faFaceKissWinkHeart),\n/* harmony export */   \"faFaceLaugh\": () => (/* binding */ faFaceLaugh),\n/* harmony export */   \"faFaceLaughBeam\": () => (/* binding */ faFaceLaughBeam),\n/* harmony export */   \"faFaceLaughSquint\": () => (/* binding */ faFaceLaughSquint),\n/* harmony export */   \"faFaceLaughWink\": () => (/* binding */ faFaceLaughWink),\n/* harmony export */   \"faFaceMeh\": () => (/* binding */ faFaceMeh),\n/* harmony export */   \"faFaceMehBlank\": () => (/* binding */ faFaceMehBlank),\n/* harmony export */   \"faFaceRollingEyes\": () => (/* binding */ faFaceRollingEyes),\n/* harmony export */   \"faFaceSadCry\": () => (/* binding */ faFaceSadCry),\n/* harmony export */   \"faFaceSadTear\": () => (/* binding */ faFaceSadTear),\n/* harmony export */   \"faFaceSmile\": () => (/* binding */ faFaceSmile),\n/* harmony export */   \"faFaceSmileBeam\": () => (/* binding */ faFaceSmileBeam),\n/* harmony export */   \"faFaceSmileWink\": () => (/* binding */ faFaceSmileWink),\n/* harmony export */   \"faFaceSurprise\": () => (/* binding */ faFaceSurprise),\n/* harmony export */   \"faFaceTired\": () => (/* binding */ faFaceTired),\n/* harmony export */   \"faFile\": () => (/* binding */ faFile),\n/* harmony export */   \"faFileAlt\": () => (/* binding */ faFileAlt),\n/* harmony export */   \"faFileArchive\": () => (/* binding */ faFileArchive),\n/* harmony export */   \"faFileAudio\": () => (/* binding */ faFileAudio),\n/* harmony export */   \"faFileClipboard\": () => (/* binding */ faFileClipboard),\n/* harmony export */   \"faFileCode\": () => (/* binding */ faFileCode),\n/* harmony export */   \"faFileExcel\": () => (/* binding */ faFileExcel),\n/* harmony export */   \"faFileImage\": () => (/* binding */ faFileImage),\n/* harmony export */   \"faFileLines\": () => (/* binding */ faFileLines),\n/* harmony export */   \"faFilePdf\": () => (/* binding */ faFilePdf),\n/* harmony export */   \"faFilePowerpoint\": () => (/* binding */ faFilePowerpoint),\n/* harmony export */   \"faFileText\": () => (/* binding */ faFileText),\n/* harmony export */   \"faFileVideo\": () => (/* binding */ faFileVideo),\n/* harmony export */   \"faFileWord\": () => (/* binding */ faFileWord),\n/* harmony export */   \"faFileZipper\": () => (/* binding */ faFileZipper),\n/* harmony export */   \"faFlag\": () => (/* binding */ faFlag),\n/* harmony export */   \"faFloppyDisk\": () => (/* binding */ faFloppyDisk),\n/* harmony export */   \"faFlushed\": () => (/* binding */ faFlushed),\n/* harmony export */   \"faFolder\": () => (/* binding */ faFolder),\n/* harmony export */   \"faFolderBlank\": () => (/* binding */ faFolderBlank),\n/* harmony export */   \"faFolderClosed\": () => (/* binding */ faFolderClosed),\n/* harmony export */   \"faFolderOpen\": () => (/* binding */ faFolderOpen),\n/* harmony export */   \"faFontAwesome\": () => (/* binding */ faFontAwesome),\n/* harmony export */   \"faFontAwesomeFlag\": () => (/* binding */ faFontAwesomeFlag),\n/* harmony export */   \"faFontAwesomeLogoFull\": () => (/* binding */ faFontAwesomeLogoFull),\n/* harmony export */   \"faFrown\": () => (/* binding */ faFrown),\n/* harmony export */   \"faFrownOpen\": () => (/* binding */ faFrownOpen),\n/* harmony export */   \"faFutbol\": () => (/* binding */ faFutbol),\n/* harmony export */   \"faFutbolBall\": () => (/* binding */ faFutbolBall),\n/* harmony export */   \"faGem\": () => (/* binding */ faGem),\n/* harmony export */   \"faGrimace\": () => (/* binding */ faGrimace),\n/* harmony export */   \"faGrin\": () => (/* binding */ faGrin),\n/* harmony export */   \"faGrinAlt\": () => (/* binding */ faGrinAlt),\n/* harmony export */   \"faGrinBeam\": () => (/* binding */ faGrinBeam),\n/* harmony export */   \"faGrinBeamSweat\": () => (/* binding */ faGrinBeamSweat),\n/* harmony export */   \"faGrinHearts\": () => (/* binding */ faGrinHearts),\n/* harmony export */   \"faGrinSquint\": () => (/* binding */ faGrinSquint),\n/* harmony export */   \"faGrinSquintTears\": () => (/* binding */ faGrinSquintTears),\n/* harmony export */   \"faGrinStars\": () => (/* binding */ faGrinStars),\n/* harmony export */   \"faGrinTears\": () => (/* binding */ faGrinTears),\n/* harmony export */   \"faGrinTongue\": () => (/* binding */ faGrinTongue),\n/* harmony export */   \"faGrinTongueSquint\": () => (/* binding */ faGrinTongueSquint),\n/* harmony export */   \"faGrinTongueWink\": () => (/* binding */ faGrinTongueWink),\n/* harmony export */   \"faGrinWink\": () => (/* binding */ faGrinWink),\n/* harmony export */   \"faHand\": () => (/* binding */ faHand),\n/* harmony export */   \"faHandBackFist\": () => (/* binding */ faHandBackFist),\n/* harmony export */   \"faHandLizard\": () => (/* binding */ faHandLizard),\n/* harmony export */   \"faHandPaper\": () => (/* binding */ faHandPaper),\n/* harmony export */   \"faHandPeace\": () => (/* binding */ faHandPeace),\n/* harmony export */   \"faHandPointDown\": () => (/* binding */ faHandPointDown),\n/* harmony export */   \"faHandPointLeft\": () => (/* binding */ faHandPointLeft),\n/* harmony export */   \"faHandPointRight\": () => (/* binding */ faHandPointRight),\n/* harmony export */   \"faHandPointUp\": () => (/* binding */ faHandPointUp),\n/* harmony export */   \"faHandPointer\": () => (/* binding */ faHandPointer),\n/* harmony export */   \"faHandRock\": () => (/* binding */ faHandRock),\n/* harmony export */   \"faHandScissors\": () => (/* binding */ faHandScissors),\n/* harmony export */   \"faHandSpock\": () => (/* binding */ faHandSpock),\n/* harmony export */   \"faHandshake\": () => (/* binding */ faHandshake),\n/* harmony export */   \"faHardDrive\": () => (/* binding */ faHardDrive),\n/* harmony export */   \"faHdd\": () => (/* binding */ faHdd),\n/* harmony export */   \"faHeart\": () => (/* binding */ faHeart),\n/* harmony export */   \"faHospital\": () => (/* binding */ faHospital),\n/* harmony export */   \"faHospitalAlt\": () => (/* binding */ faHospitalAlt),\n/* harmony export */   \"faHospitalWide\": () => (/* binding */ faHospitalWide),\n/* harmony export */   \"faHourglass\": () => (/* binding */ faHourglass),\n/* harmony export */   \"faHourglass2\": () => (/* binding */ faHourglass2),\n/* harmony export */   \"faHourglassEmpty\": () => (/* binding */ faHourglassEmpty),\n/* harmony export */   \"faHourglassHalf\": () => (/* binding */ faHourglassHalf),\n/* harmony export */   \"faIdBadge\": () => (/* binding */ faIdBadge),\n/* harmony export */   \"faIdCard\": () => (/* binding */ faIdCard),\n/* harmony export */   \"faImage\": () => (/* binding */ faImage),\n/* harmony export */   \"faImages\": () => (/* binding */ faImages),\n/* harmony export */   \"faKeyboard\": () => (/* binding */ faKeyboard),\n/* harmony export */   \"faKiss\": () => (/* binding */ faKiss),\n/* harmony export */   \"faKissBeam\": () => (/* binding */ faKissBeam),\n/* harmony export */   \"faKissWinkHeart\": () => (/* binding */ faKissWinkHeart),\n/* harmony export */   \"faLaugh\": () => (/* binding */ faLaugh),\n/* harmony export */   \"faLaughBeam\": () => (/* binding */ faLaughBeam),\n/* harmony export */   \"faLaughSquint\": () => (/* binding */ faLaughSquint),\n/* harmony export */   \"faLaughWink\": () => (/* binding */ faLaughWink),\n/* harmony export */   \"faLemon\": () => (/* binding */ faLemon),\n/* harmony export */   \"faLifeRing\": () => (/* binding */ faLifeRing),\n/* harmony export */   \"faLightbulb\": () => (/* binding */ faLightbulb),\n/* harmony export */   \"faListAlt\": () => (/* binding */ faListAlt),\n/* harmony export */   \"faMap\": () => (/* binding */ faMap),\n/* harmony export */   \"faMeh\": () => (/* binding */ faMeh),\n/* harmony export */   \"faMehBlank\": () => (/* binding */ faMehBlank),\n/* harmony export */   \"faMehRollingEyes\": () => (/* binding */ faMehRollingEyes),\n/* harmony export */   \"faMessage\": () => (/* binding */ faMessage),\n/* harmony export */   \"faMinusSquare\": () => (/* binding */ faMinusSquare),\n/* harmony export */   \"faMoneyBill1\": () => (/* binding */ faMoneyBill1),\n/* harmony export */   \"faMoneyBillAlt\": () => (/* binding */ faMoneyBillAlt),\n/* harmony export */   \"faMoon\": () => (/* binding */ faMoon),\n/* harmony export */   \"faNewspaper\": () => (/* binding */ faNewspaper),\n/* harmony export */   \"faNoteSticky\": () => (/* binding */ faNoteSticky),\n/* harmony export */   \"faObjectGroup\": () => (/* binding */ faObjectGroup),\n/* harmony export */   \"faObjectUngroup\": () => (/* binding */ faObjectUngroup),\n/* harmony export */   \"faPaperPlane\": () => (/* binding */ faPaperPlane),\n/* harmony export */   \"faPaste\": () => (/* binding */ faPaste),\n/* harmony export */   \"faPauseCircle\": () => (/* binding */ faPauseCircle),\n/* harmony export */   \"faPenToSquare\": () => (/* binding */ faPenToSquare),\n/* harmony export */   \"faPlayCircle\": () => (/* binding */ faPlayCircle),\n/* harmony export */   \"faPlusSquare\": () => (/* binding */ faPlusSquare),\n/* harmony export */   \"faQuestionCircle\": () => (/* binding */ faQuestionCircle),\n/* harmony export */   \"faRectangleList\": () => (/* binding */ faRectangleList),\n/* harmony export */   \"faRectangleTimes\": () => (/* binding */ faRectangleTimes),\n/* harmony export */   \"faRectangleXmark\": () => (/* binding */ faRectangleXmark),\n/* harmony export */   \"faRegistered\": () => (/* binding */ faRegistered),\n/* harmony export */   \"faSadCry\": () => (/* binding */ faSadCry),\n/* harmony export */   \"faSadTear\": () => (/* binding */ faSadTear),\n/* harmony export */   \"faSave\": () => (/* binding */ faSave),\n/* harmony export */   \"faShareFromSquare\": () => (/* binding */ faShareFromSquare),\n/* harmony export */   \"faShareSquare\": () => (/* binding */ faShareSquare),\n/* harmony export */   \"faSmile\": () => (/* binding */ faSmile),\n/* harmony export */   \"faSmileBeam\": () => (/* binding */ faSmileBeam),\n/* harmony export */   \"faSmileWink\": () => (/* binding */ faSmileWink),\n/* harmony export */   \"faSnowflake\": () => (/* binding */ faSnowflake),\n/* harmony export */   \"faSoccerBall\": () => (/* binding */ faSoccerBall),\n/* harmony export */   \"faSquare\": () => (/* binding */ faSquare),\n/* harmony export */   \"faSquareCaretDown\": () => (/* binding */ faSquareCaretDown),\n/* harmony export */   \"faSquareCaretLeft\": () => (/* binding */ faSquareCaretLeft),\n/* harmony export */   \"faSquareCaretRight\": () => (/* binding */ faSquareCaretRight),\n/* harmony export */   \"faSquareCaretUp\": () => (/* binding */ faSquareCaretUp),\n/* harmony export */   \"faSquareCheck\": () => (/* binding */ faSquareCheck),\n/* harmony export */   \"faSquareFull\": () => (/* binding */ faSquareFull),\n/* harmony export */   \"faSquareMinus\": () => (/* binding */ faSquareMinus),\n/* harmony export */   \"faSquarePlus\": () => (/* binding */ faSquarePlus),\n/* harmony export */   \"faStar\": () => (/* binding */ faStar),\n/* harmony export */   \"faStarHalf\": () => (/* binding */ faStarHalf),\n/* harmony export */   \"faStarHalfAlt\": () => (/* binding */ faStarHalfAlt),\n/* harmony export */   \"faStarHalfStroke\": () => (/* binding */ faStarHalfStroke),\n/* harmony export */   \"faStickyNote\": () => (/* binding */ faStickyNote),\n/* harmony export */   \"faStopCircle\": () => (/* binding */ faStopCircle),\n/* harmony export */   \"faSun\": () => (/* binding */ faSun),\n/* harmony export */   \"faSurprise\": () => (/* binding */ faSurprise),\n/* harmony export */   \"faThumbsDown\": () => (/* binding */ faThumbsDown),\n/* harmony export */   \"faThumbsUp\": () => (/* binding */ faThumbsUp),\n/* harmony export */   \"faTimesCircle\": () => (/* binding */ faTimesCircle),\n/* harmony export */   \"faTimesRectangle\": () => (/* binding */ faTimesRectangle),\n/* harmony export */   \"faTired\": () => (/* binding */ faTired),\n/* harmony export */   \"faTrashAlt\": () => (/* binding */ faTrashAlt),\n/* harmony export */   \"faTrashCan\": () => (/* binding */ faTrashCan),\n/* harmony export */   \"faUser\": () => (/* binding */ faUser),\n/* harmony export */   \"faUserCircle\": () => (/* binding */ faUserCircle),\n/* harmony export */   \"faVcard\": () => (/* binding */ faVcard),\n/* harmony export */   \"faWindowClose\": () => (/* binding */ faWindowClose),\n/* harmony export */   \"faWindowMaximize\": () => (/* binding */ faWindowMaximize),\n/* harmony export */   \"faWindowMinimize\": () => (/* binding */ faWindowMinimize),\n/* harmony export */   \"faWindowRestore\": () => (/* binding */ faWindowRestore),\n/* harmony export */   \"faXmarkCircle\": () => (/* binding */ faXmarkCircle),\n/* harmony export */   \"far\": () => (/* binding */ icons),\n/* harmony export */   \"prefix\": () => (/* binding */ prefix)\n/* harmony export */ });\nvar prefix = \"far\";\nvar faTrashCan = {\n  prefix: 'far',\n  iconName: 'trash-can',\n  icon: [448, 512, [61460, \"trash-alt\"], \"f2ed\", \"M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z\"]\n};\nvar faTrashAlt = faTrashCan;\nvar faMessage = {\n  prefix: 'far',\n  iconName: 'message',\n  icon: [512, 512, [\"comment-alt\"], \"f27a\", \"M160 368c26.5 0 48 21.5 48 48v16l72.5-54.4c8.3-6.2 18.4-9.6 28.8-9.6H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16V352c0 8.8 7.2 16 16 16h96zm48 124l-.2 .2-5.1 3.8-17.1 12.8c-4.8 3.6-11.3 4.2-16.8 1.5s-8.8-8.2-8.8-14.3V474.7v-6.4V468v-4V416H112 64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0H448c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H309.3L208 492z\"]\n};\nvar faCommentAlt = faMessage;\nvar faFileLines = {\n  prefix: 'far',\n  iconName: 'file-lines',\n  icon: [384, 512, [128441, 128462, 61686, \"file-alt\", \"file-text\"], \"f15c\", \"M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z\"]\n};\nvar faFileAlt = faFileLines;\nvar faFileText = faFileLines;\nvar faCalendarDays = {\n  prefix: 'far',\n  iconName: 'calendar-days',\n  icon: [448, 512, [\"calendar-alt\"], \"f073\", \"M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192h80v56H48V192zm0 104h80v64H48V296zm128 0h96v64H176V296zm144 0h80v64H320V296zm80-48H320V192h80v56zm0 160v40c0 8.8-7.2 16-16 16H320V408h80zm-128 0v56H176V408h96zm-144 0v56H64c-8.8 0-16-7.2-16-16V408h80zM272 248H176V192h96v56z\"]\n};\nvar faCalendarAlt = faCalendarDays;\nvar faHandPointRight = {\n  prefix: 'far',\n  iconName: 'hand-point-right',\n  icon: [512, 512, [], \"f0a4\", \"M448 128l-177.6 0c1 5.2 1.6 10.5 1.6 16l0 16 32 0 144 0c8.8 0 16-7.2 16-16s-7.2-16-16-16zM224 144c0-17.7-14.3-32-32-32c0 0 0 0 0 0l-24 0c-66.3 0-120 53.7-120 120l0 48c0 52.5 33.7 97.1 80.7 113.4c-.5-3.1-.7-6.2-.7-9.4c0-20 9.2-37.9 23.6-49.7c-4.9-9-7.6-19.4-7.6-30.3c0-15.1 5.3-29 14-40c-8.8-11-14-24.9-14-40l0-40c0-13.3 10.7-24 24-24s24 10.7 24 24l0 40c0 8.8 7.2 16 16 16s16-7.2 16-16l0-40 0-40zM192 64s0 0 0 0c18 0 34.6 6 48 16l208 0c35.3 0 64 28.7 64 64s-28.7 64-64 64l-82 0c1.3 5.1 2 10.5 2 16c0 25.3-14.7 47.2-36 57.6c2.6 7 4 14.5 4 22.4c0 20-9.2 37.9-23.6 49.7c4.9 9 7.6 19.4 7.6 30.3c0 35.3-28.7 64-64 64l-64 0-24 0C75.2 448 0 372.8 0 280l0-48C0 139.2 75.2 64 168 64l24 0zm64 336c8.8 0 16-7.2 16-16s-7.2-16-16-16l-48 0-16 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l64 0zm16-176c0 5.5-.7 10.9-2 16l2 0 32 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-32 0 0 16zm-24 64l-40 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l48 0 16 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-24 0z\"]\n};\nvar faFaceSmileBeam = {\n  prefix: 'far',\n  iconName: 'face-smile-beam',\n  icon: [512, 512, [128522, \"smile-beam\"], \"f5b8\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm177.6 62.1C192.8 334.5 218.8 352 256 352s63.2-17.5 78.4-33.9c9-9.7 24.2-10.4 33.9-1.4s10.4 24.2 1.4 33.9c-22 23.8-60 49.4-113.6 49.4s-91.7-25.5-113.6-49.4c-9-9.7-8.4-24.9 1.4-33.9s24.9-8.4 33.9 1.4zm40-89.3l0 0 0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0zm160 0l0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0 0 0z\"]\n};\nvar faSmileBeam = faFaceSmileBeam;\nvar faFaceGrinStars = {\n  prefix: 'far',\n  iconName: 'face-grin-stars',\n  icon: [512, 512, [129321, \"grin-stars\"], \"f587\", \"M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM183.2 132.6c-1.3-2.8-4.1-4.6-7.2-4.6s-5.9 1.8-7.2 4.6l-16.6 34.7-38.1 5c-3.1 .4-5.6 2.5-6.6 5.5s-.1 6.2 2.1 8.3l27.9 26.5-7 37.8c-.6 3 .7 6.1 3.2 7.9s5.8 2 8.5 .6L176 240.5l33.8 18.3c2.7 1.5 6 1.3 8.5-.6s3.7-4.9 3.2-7.9l-7-37.8L242.4 186c2.2-2.1 3.1-5.3 2.1-8.3s-3.5-5.1-6.6-5.5l-38.1-5-16.6-34.7zm160 0c-1.3-2.8-4.1-4.6-7.2-4.6s-5.9 1.8-7.2 4.6l-16.6 34.7-38.1 5c-3.1 .4-5.6 2.5-6.6 5.5s-.1 6.2 2.1 8.3l27.9 26.5-7 37.8c-.6 3 .7 6.1 3.2 7.9s5.8 2 8.5 .6L336 240.5l33.8 18.3c2.7 1.5 6 1.3 8.5-.6s3.7-4.9 3.2-7.9l-7-37.8L402.4 186c2.2-2.1 3.1-5.3 2.1-8.3s-3.5-5.1-6.6-5.5l-38.1-5-16.6-34.7zm6.3 175.8c-28.9 6.8-60.5 10.5-93.6 10.5s-64.7-3.7-93.6-10.5c-18.7-4.4-35.9 12-25.5 28.1c24.6 38.1 68.7 63.5 119.1 63.5s94.5-25.4 119.1-63.5c10.4-16.1-6.8-32.5-25.5-28.1z\"]\n};\nvar faGrinStars = faFaceGrinStars;\nvar faAddressBook = {\n  prefix: 'far',\n  iconName: 'address-book',\n  icon: [512, 512, [62138, \"contact-book\"], \"f2b9\", \"M384 48c8.8 0 16 7.2 16 16V448c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H384zM96 0C60.7 0 32 28.7 32 64V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H96zM240 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128zm-32 32c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16H336c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80H208zM512 80c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V80zM496 192c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm16 144c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V336z\"]\n};\nvar faContactBook = faAddressBook;\nvar faComments = {\n  prefix: 'far',\n  iconName: 'comments',\n  icon: [640, 512, [128490, 61670], \"f086\", \"M88.2 309.1c9.8-18.3 6.8-40.8-7.5-55.8C59.4 230.9 48 204 48 176c0-63.5 63.8-128 160-128s160 64.5 160 128s-63.8 128-160 128c-13.1 0-25.8-1.3-37.8-3.6c-10.4-2-21.2-.6-30.7 4.2c-4.1 2.1-8.3 4.1-12.6 6c-16 7.2-32.9 13.5-49.9 18c2.8-4.6 5.4-9.1 7.9-13.6c1.1-1.9 2.2-3.9 3.2-5.9zM0 176c0 41.8 17.2 80.1 45.9 110.3c-.9 1.7-1.9 3.5-2.8 5.1c-10.3 18.4-22.3 36.5-36.6 52.1c-6.6 7-8.3 17.2-4.6 25.9C5.8 378.3 14.4 384 24 384c43 0 86.5-13.3 122.7-29.7c4.8-2.2 9.6-4.5 14.2-6.8c15.1 3 30.9 4.5 47.1 4.5c114.9 0 208-78.8 208-176S322.9 0 208 0S0 78.8 0 176zM432 480c16.2 0 31.9-1.6 47.1-4.5c4.6 2.3 9.4 4.6 14.2 6.8C529.5 498.7 573 512 616 512c9.6 0 18.2-5.7 22-14.5c3.8-8.8 2-19-4.6-25.9c-14.2-15.6-26.2-33.7-36.6-52.1c-.9-1.7-1.9-3.4-2.8-5.1C622.8 384.1 640 345.8 640 304c0-94.4-87.9-171.5-198.2-175.8c4.1 15.2 6.2 31.2 6.2 47.8l0 .6c87.2 6.7 144 67.5 144 127.4c0 28-11.4 54.9-32.7 77.2c-14.3 15-17.3 37.6-7.5 55.8c1.1 2 2.2 4 3.2 5.9c2.5 4.5 5.2 9 7.9 13.6c-17-4.5-33.9-10.7-49.9-18c-4.3-1.9-8.5-3.9-12.6-6c-9.5-4.8-20.3-6.2-30.7-4.2c-12.1 2.4-24.7 3.6-37.8 3.6c-61.7 0-110-26.5-136.8-62.3c-16 5.4-32.8 9.4-50 11.8C279 439.8 350 480 432 480z\"]\n};\nvar faPaste = {\n  prefix: 'far',\n  iconName: 'paste',\n  icon: [512, 512, [\"file-clipboard\"], \"f0ea\", \"M80 96v16c0 17.7 14.3 32 32 32h60.8c16.6-28.7 47.6-48 83.2-48h62c-7.1-27.6-32.2-48-62-48H215.4C211.6 20.9 188.2 0 160 0s-51.6 20.9-55.4 48H64C28.7 48 0 76.7 0 112V384c0 35.3 28.7 64 64 64h96V400H64c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H80zm64-40a16 16 0 1 1 32 0 16 16 0 1 1 -32 0zM256 464c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H384v48c0 17.7 14.3 32 32 32h48V448c0 8.8-7.2 16-16 16H256zm192 48c35.3 0 64-28.7 64-64V227.9c0-12.7-5.1-24.9-14.1-33.9l-51.9-51.9c-9-9-21.2-14.1-33.9-14.1H256c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H448z\"]\n};\nvar faFileClipboard = faPaste;\nvar faFaceGrinTongueSquint = {\n  prefix: 'far',\n  iconName: 'face-grin-tongue-squint',\n  icon: [512, 512, [128541, \"grin-tongue-squint\"], \"f58a\", \"M464 256c0-114.9-93.1-208-208-208S48 141.1 48 256c0 81.7 47.1 152.4 115.7 186.4c-2.4-8.4-3.7-17.3-3.7-26.4V392.7c-24-17.5-43.1-41.4-54.8-69.2c-5-11.8 7-22.5 19.3-18.7c39.7 12.2 84.5 19 131.8 19s92.1-6.8 131.8-19c12.3-3.8 24.3 6.9 19.3 18.7c-11.8 28-31.1 52-55.4 69.6V416c0 9.2-1.3 18-3.7 26.4C416.9 408.4 464 337.7 464 256zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm116-98.9c0-9 9.6-14.7 17.5-10.5l89.9 47.9c10.7 5.7 10.7 21.1 0 26.8l-89.9 47.9c-7.9 4.2-17.5-1.5-17.5-10.5c0-2.8 1-5.5 2.8-7.6l36-43.2-36-43.2c-1.8-2.1-2.8-4.8-2.8-7.6zm262.5-10.5c7.9-4.2 17.5 1.5 17.5 10.5c0 2.8-1 5.5-2.8 7.6l-36 43.2 36 43.2c1.8 2.1 2.8 4.8 2.8 7.6c0 9-9.6 14.7-17.5 10.5l-89.9-47.9c-10.7-5.7-10.7-21.1 0-26.8l89.9-47.9zM320 416V378.6c0-14.7-11.9-26.6-26.6-26.6h-2c-11.3 0-21.1 7.9-23.6 18.9c-2.8 12.6-20.8 12.6-23.6 0c-2.5-11.1-12.3-18.9-23.6-18.9h-2c-14.7 0-26.6 11.9-26.6 26.6V416c0 35.3 28.7 64 64 64s64-28.7 64-64z\"]\n};\nvar faGrinTongueSquint = faFaceGrinTongueSquint;\nvar faFaceFlushed = {\n  prefix: 'far',\n  iconName: 'face-flushed',\n  icon: [512, 512, [128563, \"flushed\"], \"f579\", \"M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM160.4 248a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm216-24a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM192 336c-13.3 0-24 10.7-24 24s10.7 24 24 24H320c13.3 0 24-10.7 24-24s-10.7-24-24-24H192zM160 176a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm0 128a80 80 0 1 0 0-160 80 80 0 1 0 0 160zm144-80a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm128 0a80 80 0 1 0 -160 0 80 80 0 1 0 160 0z\"]\n};\nvar faFlushed = faFaceFlushed;\nvar faSquareCaretRight = {\n  prefix: 'far',\n  iconName: 'square-caret-right',\n  icon: [448, 512, [\"caret-square-right\"], \"f152\", \"M400 96c0-8.8-7.2-16-16-16L64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320zM384 32c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l320 0zM320 256c0 6.7-2.8 13-7.7 17.6l-112 104c-7 6.5-17.2 8.2-25.9 4.4s-14.4-12.5-14.4-22l0-208c0-9.5 5.7-18.2 14.4-22s18.9-2.1 25.9 4.4l112 104c4.9 4.5 7.7 10.9 7.7 17.6z\"]\n};\nvar faCaretSquareRight = faSquareCaretRight;\nvar faSquareMinus = {\n  prefix: 'far',\n  iconName: 'square-minus',\n  icon: [448, 512, [61767, \"minus-square\"], \"f146\", \"M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM152 232H296c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24z\"]\n};\nvar faMinusSquare = faSquareMinus;\nvar faCompass = {\n  prefix: 'far',\n  iconName: 'compass',\n  icon: [512, 512, [129517], \"f14e\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm306.7 69.1L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z\"]\n};\nvar faSquareCaretDown = {\n  prefix: 'far',\n  iconName: 'square-caret-down',\n  icon: [448, 512, [\"caret-square-down\"], \"f150\", \"M384 432c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0zm64-16c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320zM224 352c-6.7 0-13-2.8-17.6-7.7l-104-112c-6.5-7-8.2-17.2-4.4-25.9s12.5-14.4 22-14.4l208 0c9.5 0 18.2 5.7 22 14.4s2.1 18.9-4.4 25.9l-104 112c-4.5 4.9-10.9 7.7-17.6 7.7z\"]\n};\nvar faCaretSquareDown = faSquareCaretDown;\nvar faFaceKissBeam = {\n  prefix: 'far',\n  iconName: 'face-kiss-beam',\n  icon: [512, 512, [128537, \"kiss-beam\"], \"f597\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm304.7 41.7c4.3 5.1 7.3 11.4 7.3 18.3s-3.1 13.2-7.3 18.3c-4.3 5.2-10.1 9.7-16.7 13.4c-2.7 1.5-5.7 3-8.7 4.3c3.1 1.3 6 2.7 8.7 4.3c6.6 3.7 12.5 8.2 16.7 13.4c4.3 5.1 7.3 11.4 7.3 18.3s-3.1 13.2-7.3 18.3c-4.3 5.2-10.1 9.7-16.7 13.4C274.7 427.1 257.4 432 240 432c-3.6 0-6.8-2.5-7.7-6s.6-7.2 3.8-9l0 0 0 0 0 0 0 0 .2-.1c.2-.1 .5-.3 .9-.5c.8-.5 2-1.2 3.4-2.1c2.8-1.9 6.5-4.5 10.2-7.6c3.7-3.1 7.2-6.6 9.6-10.1c2.5-3.5 3.5-6.4 3.5-8.6s-1-5-3.5-8.6c-2.5-3.5-5.9-6.9-9.6-10.1c-3.7-3.1-7.4-5.7-10.2-7.6c-1.4-.9-2.6-1.6-3.4-2.1c-.4-.2-.7-.4-.9-.5l-.2-.1 0 0 0 0 0 0c-2.5-1.4-4.1-4.1-4.1-7s1.6-5.6 4.1-7l0 0 0 0 0 0 0 0 0 0 .2-.1c.2-.1 .5-.3 .9-.5c.8-.5 2-1.2 3.4-2.1c2.8-1.9 6.5-4.5 10.2-7.6c3.7-3.1 7.2-6.6 9.6-10.1c2.5-3.5 3.5-6.4 3.5-8.6s-1-5-3.5-8.6c-2.5-3.5-5.9-6.9-9.6-10.1c-3.7-3.1-7.4-5.7-10.2-7.6c-1.4-.9-2.6-1.6-3.4-2.1c-.4-.2-.7-.4-.9-.5l-.2-.1 0 0 0 0 0 0c-3.2-1.8-4.7-5.5-3.8-9s4.1-6 7.7-6c17.4 0 34.7 4.9 47.9 12.3c6.6 3.7 12.5 8.2 16.7 13.4zm-87.1-68.9l0 0 0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0zm160 0l0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0 0 0z\"]\n};\nvar faKissBeam = faFaceKissBeam;\nvar faLightbulb = {\n  prefix: 'far',\n  iconName: 'lightbulb',\n  icon: [384, 512, [128161], \"f0eb\", \"M297.2 248.9C311.6 228.3 320 203.2 320 176c0-70.7-57.3-128-128-128S64 105.3 64 176c0 27.2 8.4 52.3 22.8 72.9c3.7 5.3 8.1 11.3 12.8 17.7l0 0c12.9 17.7 28.3 38.9 39.8 59.8c10.4 19 15.7 38.8 18.3 57.5H109c-2.2-12-5.9-23.7-11.8-34.5c-9.9-18-22.2-34.9-34.5-51.8l0 0 0 0c-5.2-7.1-10.4-14.2-15.4-21.4C27.6 247.9 16 213.3 16 176C16 78.8 94.8 0 192 0s176 78.8 176 176c0 37.3-11.6 71.9-31.4 100.3c-5 7.2-10.2 14.3-15.4 21.4l0 0 0 0c-12.3 16.8-24.6 33.7-34.5 51.8c-5.9 10.8-9.6 22.5-11.8 34.5H226.4c2.6-18.7 7.9-38.6 18.3-57.5c11.5-20.9 26.9-42.1 39.8-59.8l0 0 0 0 0 0c4.7-6.4 9-12.4 12.7-17.7zM192 128c-26.5 0-48 21.5-48 48c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-44.2 35.8-80 80-80c8.8 0 16 7.2 16 16s-7.2 16-16 16zm0 384c-44.2 0-80-35.8-80-80V416H272v16c0 44.2-35.8 80-80 80z\"]\n};\nvar faFlag = {\n  prefix: 'far',\n  iconName: 'flag',\n  icon: [448, 512, [127988, 61725], \"f024\", \"M48 24C48 10.7 37.3 0 24 0S0 10.7 0 24V64 350.5 400v88c0 13.3 10.7 24 24 24s24-10.7 24-24V388l80.3-20.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L48 52V24zm0 77.5l96.6-24.2c27-6.7 55.5-3.6 80.4 8.8c54.9 27.4 118.7 29.7 175 6.8V334.7l-24.4 9.1c-33.7 12.6-71.2 10.7-103.4-5.4c-48.2-24.1-103.3-30.1-155.6-17.1L48 338.5v-237z\"]\n};\nvar faSquareCheck = {\n  prefix: 'far',\n  iconName: 'square-check',\n  icon: [448, 512, [9745, 9989, 61510, \"check-square\"], \"f14a\", \"M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z\"]\n};\nvar faCheckSquare = faSquareCheck;\nvar faCircleDot = {\n  prefix: 'far',\n  iconName: 'circle-dot',\n  icon: [512, 512, [128280, \"dot-circle\"], \"f192\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256-96a96 96 0 1 1 0 192 96 96 0 1 1 0-192z\"]\n};\nvar faDotCircle = faCircleDot;\nvar faFaceDizzy = {\n  prefix: 'far',\n  iconName: 'face-dizzy',\n  icon: [512, 512, [\"dizzy\"], \"f567\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM103 135c9.4-9.4 24.6-9.4 33.9 0l23 23 23-23c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-23 23 23 23c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-23-23-23 23c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l23-23-23-23c-9.4-9.4-9.4-24.6 0-33.9zm192 0c9.4-9.4 24.6-9.4 33.9 0l23 23 23-23c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-23 23 23 23c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-23-23-23 23c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l23-23-23-23c-9.4-9.4-9.4-24.6 0-33.9z\"]\n};\nvar faDizzy = faFaceDizzy;\nvar faFutbol = {\n  prefix: 'far',\n  iconName: 'futbol',\n  icon: [512, 512, [9917, \"futbol-ball\", \"soccer-ball\"], \"f1e3\", \"M435.4 361.3l-89.7-6c-5.2-.3-10.3 1.1-14.5 4.2s-7.2 7.4-8.4 12.5l-22 87.2c-14.4 3.2-29.4 4.8-44.8 4.8s-30.3-1.7-44.8-4.8l-22-87.2c-1.3-5-4.3-9.4-8.4-12.5s-9.3-4.5-14.5-4.2l-89.7 6C61.7 335.9 51.9 307 49 276.2L125 228.3c4.4-2.8 7.6-7 9.2-11.9s1.4-10.2-.5-15L100.4 118c19.9-22.4 44.6-40.5 72.4-52.7l69.1 57.6c4 3.3 9 5.1 14.1 5.1s10.2-1.8 14.1-5.1l69.1-57.6c27.8 12.2 52.5 30.3 72.4 52.7l-33.4 83.4c-1.9 4.8-2.1 10.1-.5 15s4.9 9.1 9.2 11.9L463 276.2c-3 30.8-12.7 59.7-27.6 85.1zM256 48l.9 0h-1.8l.9 0zM56.7 196.2c.9-3 1.9-6.1 2.9-9.1l-2.9 9.1zM132 423l3.8 2.7c-1.3-.9-2.5-1.8-3.8-2.7zm248.1-.1c-1.3 1-2.7 2-4 2.9l4-2.9zm75.2-226.6l-3-9.2c1.1 3 2.1 6.1 3 9.2zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm14.1-325.7c-8.4-6.1-19.8-6.1-28.2 0L194 221c-8.4 6.1-11.9 16.9-8.7 26.8l18.3 56.3c3.2 9.9 12.4 16.6 22.8 16.6h59.2c10.4 0 19.6-6.7 22.8-16.6l18.3-56.3c3.2-9.9-.3-20.7-8.7-26.8l-47.9-34.8z\"]\n};\nvar faFutbolBall = faFutbol;\nvar faSoccerBall = faFutbol;\nvar faPenToSquare = {\n  prefix: 'far',\n  iconName: 'pen-to-square',\n  icon: [512, 512, [\"edit\"], \"f044\", \"M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z\"]\n};\nvar faEdit = faPenToSquare;\nvar faHourglassHalf = {\n  prefix: 'far',\n  iconName: 'hourglass-half',\n  icon: [384, 512, [\"hourglass-2\"], \"f252\", \"M0 24C0 10.7 10.7 0 24 0H360c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V67c0 40.3-16 79-44.5 107.5L225.9 256l81.5 81.5C336 366 352 404.7 352 445v19h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H24c-13.3 0-24-10.7-24-24s10.7-24 24-24h8V445c0-40.3 16-79 44.5-107.5L158.1 256 76.5 174.5C48 146 32 107.3 32 67V48H24C10.7 48 0 37.3 0 24zM110.5 371.5c-3.9 3.9-7.5 8.1-10.7 12.5H284.2c-3.2-4.4-6.8-8.6-10.7-12.5L192 289.9l-81.5 81.5zM284.2 128C297 110.4 304 89 304 67V48H80V67c0 22.1 7 43.4 19.8 61H284.2z\"]\n};\nvar faHourglass2 = faHourglassHalf;\nvar faEyeSlash = {\n  prefix: 'far',\n  iconName: 'eye-slash',\n  icon: [640, 512, [], \"f070\", \"M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zm151 118.3C226 97.7 269.5 80 320 80c65.2 0 118.8 29.6 159.9 67.7C518.4 183.5 545 226 558.6 256c-12.6 28-36.6 66.8-70.9 100.9l-53.8-42.2c9.1-17.6 14.2-37.5 14.2-58.7c0-70.7-57.3-128-128-128c-32.2 0-61.7 11.9-84.2 31.5l-46.1-36.1zM394.9 284.2l-81.5-63.9c4.2-8.5 6.6-18.2 6.6-28.3c0-5.5-.7-10.9-2-16c.7 0 1.3 0 2 0c44.2 0 80 35.8 80 80c0 9.9-1.8 19.4-5.1 28.2zm9.4 130.3C378.8 425.4 350.7 432 320 432c-65.2 0-118.8-29.6-159.9-67.7C121.6 328.5 95 286 81.4 256c8.3-18.4 21.5-41.5 39.4-64.8L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5l-41.9-33zM192 256c0 70.7 57.3 128 128 128c13.3 0 26.1-2 38.2-5.8L302 334c-23.5-5.4-43.1-21.2-53.7-42.3l-56.1-44.2c-.2 2.8-.3 5.6-.3 8.5z\"]\n};\nvar faHand = {\n  prefix: 'far',\n  iconName: 'hand',\n  icon: [512, 512, [129306, 9995, \"hand-paper\"], \"f256\", \"M256 0c-25.3 0-47.2 14.7-57.6 36c-7-2.6-14.5-4-22.4-4c-35.3 0-64 28.7-64 64V261.5l-2.7-2.7c-25-25-65.5-25-90.5 0s-25 65.5 0 90.5L106.5 437c48 48 113.1 75 181 75H296h8c1.5 0 3-.1 4.5-.4c91.7-6.2 165-79.4 171.1-171.1c.3-1.5 .4-3 .4-4.5V160c0-35.3-28.7-64-64-64c-5.5 0-10.9 .7-16 2V96c0-35.3-28.7-64-64-64c-7.9 0-15.4 1.4-22.4 4C303.2 14.7 281.3 0 256 0zM240 96.1c0 0 0-.1 0-.1V64c0-8.8 7.2-16 16-16s16 7.2 16 16V95.9c0 0 0 .1 0 .1V232c0 13.3 10.7 24 24 24s24-10.7 24-24V96c0 0 0 0 0-.1c0-8.8 7.2-16 16-16s16 7.2 16 16v55.9c0 0 0 .1 0 .1v80c0 13.3 10.7 24 24 24s24-10.7 24-24V160.1c0 0 0-.1 0-.1c0-8.8 7.2-16 16-16s16 7.2 16 16V332.9c-.1 .6-.1 1.3-.2 1.9c-3.4 69.7-59.3 125.6-129 129c-.6 0-1.3 .1-1.9 .2H296h-8.5c-55.2 0-108.1-21.9-147.1-60.9L52.7 315.3c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L119 336.4c6.9 6.9 17.2 8.9 26.2 5.2s14.8-12.5 14.8-22.2V96c0-8.8 7.2-16 16-16c8.8 0 16 7.1 16 15.9V232c0 13.3 10.7 24 24 24s24-10.7 24-24V96.1z\"]\n};\nvar faHandPaper = faHand;\nvar faHandSpock = {\n  prefix: 'far',\n  iconName: 'hand-spock',\n  icon: [576, 512, [128406], \"f259\", \"M170.2 80.8C161 47 180.8 12 214.6 2.4c34-9.6 69.4 10.2 79 44.2l30.3 107.1L337.1 84c6.6-34.7 40.1-57.5 74.8-50.9c31.4 6 53 33.9 52 64.9c10-2.6 20.8-2.8 31.5-.1c34.3 8.6 55.1 43.3 46.6 77.6L486.7 397.2C469.8 464.7 409.2 512 339.6 512c-11.2 0-22.5 0-33.7 0c-56.9 0-112.2-19-157.2-53.9l-92-71.6c-27.9-21.7-32.9-61.9-11.2-89.8s61.9-32.9 89.8-11.2l17 13.2L100.5 167.5c-13-32.9 3.2-70.1 36-83c11.1-4.4 22.7-5.4 33.7-3.7zm77.1-21.2c-2.4-8.5-11.2-13.4-19.7-11s-13.4 11.2-11 19.7l54.8 182.4c3.5 12.3-3.3 25.2-15.4 29.3s-25.3-2-30-13.9L174.9 138.1c-3.2-8.2-12.5-12.3-20.8-9s-12.3 12.5-9 20.8l73.3 185.6c12 30.3-23.7 57-49.4 37l-63.1-49.1c-7-5.4-17-4.2-22.5 2.8s-4.2 17 2.8 22.5l92 71.6c36.5 28.4 81.4 43.8 127.7 43.8c11.2 0 22.5 0 33.7 0c47.5 0 89-32.4 100.5-78.5l55.4-221.6c2.1-8.6-3.1-17.3-11.6-19.4s-17.3 3.1-19.4 11.6l-26 104C435.6 271.8 425 280 413 280c-16.5 0-28.9-15-25.8-31.2L415.7 99c1.7-8.7-4-17.1-12.7-18.7s-17.1 4-18.7 12.7L352.5 260c-2.2 11.6-12.4 20-24.2 20c-11 0-20.7-7.3-23.7-17.9L247.4 59.6z\"]\n};\nvar faFaceKiss = {\n  prefix: 'far',\n  iconName: 'face-kiss',\n  icon: [512, 512, [128535, \"kiss\"], \"f596\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm304.7 25.7c4.3 5.1 7.3 11.4 7.3 18.3s-3.1 13.2-7.3 18.3c-4.3 5.2-10.1 9.7-16.7 13.4c-2.7 1.5-5.7 3-8.7 4.3c3.1 1.3 6 2.7 8.7 4.3c6.6 3.7 12.5 8.2 16.7 13.4c4.3 5.1 7.3 11.4 7.3 18.3s-3.1 13.2-7.3 18.3c-4.3 5.2-10.1 9.7-16.7 13.4C274.7 411.1 257.4 416 240 416c-3.6 0-6.8-2.5-7.7-6s.6-7.2 3.8-9l0 0 0 0 0 0 0 0 .2-.1c.2-.1 .5-.3 .9-.5c.8-.5 2-1.2 3.4-2.1c2.8-1.9 6.5-4.5 10.2-7.6c3.7-3.1 7.2-6.6 9.6-10.1c2.5-3.5 3.5-6.4 3.5-8.6s-1-5-3.5-8.6c-2.5-3.5-5.9-6.9-9.6-10.1c-3.7-3.1-7.4-5.7-10.2-7.6c-1.4-.9-2.6-1.6-3.4-2.1l-.8-.5-.1-.1-.2-.1 0 0 0 0 0 0c-2.5-1.4-4.1-4.1-4.1-7s1.6-5.6 4.1-7l0 0 0 0 0 0 0 0 0 0 .2-.1c.2-.1 .5-.3 .9-.5c.8-.5 2-1.2 3.4-2.1c2.8-1.9 6.5-4.5 10.2-7.6c3.7-3.1 7.2-6.6 9.6-10.1c2.5-3.5 3.5-6.4 3.5-8.6s-1-5-3.5-8.6c-2.5-3.5-5.9-6.9-9.6-10.1c-3.7-3.1-7.4-5.7-10.2-7.6c-1.4-.9-2.6-1.6-3.4-2.1c-.4-.2-.7-.4-.9-.5l-.2-.1 0 0 0 0 0 0c-3.2-1.8-4.7-5.5-3.8-9s4.1-6 7.7-6c17.4 0 34.7 4.9 47.9 12.3c6.6 3.7 12.5 8.2 16.7 13.4zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z\"]\n};\nvar faKiss = faFaceKiss;\nvar faFaceGrinTongue = {\n  prefix: 'far',\n  iconName: 'face-grin-tongue',\n  icon: [512, 512, [128539, \"grin-tongue\"], \"f589\", \"M464 256c0-114.9-93.1-208-208-208S48 141.1 48 256c0 81.7 47.1 152.4 115.7 186.4c-2.4-8.4-3.7-17.3-3.7-26.4V363.6c-8.9-8-16.7-17.1-23.1-27.1c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5c18.7-4.4 35.9 12 25.5 28.1c-6.4 9.9-14.2 19-23 27V416c0 9.2-1.3 18-3.7 26.4C416.9 408.4 464 337.7 464 256zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm176.4-80a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm128 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 416V378.6c0-14.7-11.9-26.6-26.6-26.6h-2c-11.3 0-21.1 7.9-23.6 18.9c-2.8 12.6-20.8 12.6-23.6 0c-2.5-11.1-12.3-18.9-23.6-18.9h-2c-14.7 0-26.6 11.9-26.6 26.6V416c0 35.3 28.7 64 64 64s64-28.7 64-64z\"]\n};\nvar faGrinTongue = faFaceGrinTongue;\nvar faChessBishop = {\n  prefix: 'far',\n  iconName: 'chess-bishop',\n  icon: [320, 512, [9821], \"f43a\", \"M104 0C90.7 0 80 10.7 80 24c0 11.2 7.6 20.6 18 23.2c-7.8 8-16.1 17-24.4 27C38.2 116.7 0 178.8 0 250.9c0 44.8 24.6 72.2 48 87.8V352H96V325c0-9-5-17.2-13-21.3c-18-9.3-35-24.7-35-52.7c0-55.5 29.8-106.8 62.4-145.9c16-19.2 32.1-34.8 44.2-45.5c1.9-1.7 3.7-3.2 5.3-4.6c1.7 1.4 3.4 3 5.3 4.6c12.1 10.7 28.2 26.3 44.2 45.5c5.3 6.3 10.5 13 15.5 20L159 191c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l57.8-57.8c12.8 25.9 21.2 54.3 21.2 83.8c0 28-17 43.4-35 52.7c-8 4.1-13 12.3-13 21.3v27h48V338.7c23.4-15.6 48-42.9 48-87.8c0-72.1-38.2-134.2-73.6-176.7c-8.3-9.9-16.6-19-24.4-27c10.3-2.7 18-12.1 18-23.2c0-13.3-10.7-24-24-24H160 104zM52.7 464l16.6-32H250.8l16.6 32H52.7zm207.9-80H59.5c-12 0-22.9 6.7-28.4 17.3L4.6 452.5c-3 5.8-4.6 12.2-4.6 18.7C0 493.8 18.2 512 40.8 512H279.2c22.5 0 40.8-18.2 40.8-40.8c0-6.5-1.6-12.9-4.6-18.7l-26.5-51.2c-5.5-10.6-16.5-17.3-28.4-17.3z\"]\n};\nvar faFaceGrinWink = {\n  prefix: 'far',\n  iconName: 'face-grin-wink',\n  icon: [512, 512, [\"grin-wink\"], \"f58c\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm349.5 52.4c18.7-4.4 35.9 12 25.5 28.1C350.4 374.6 306.3 400 255.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm165.8 21.7c-7.6 8.1-20.2 8.5-28.3 .9s-8.5-20.2-.9-28.3c14.5-15.5 35.2-22.3 54.6-22.3s40.1 6.8 54.6 22.3c7.6 8.1 7.1 20.7-.9 28.3s-20.7 7.1-28.3-.9c-5.5-5.8-14.8-9.7-25.4-9.7s-19.9 3.8-25.4 9.7z\"]\n};\nvar faGrinWink = faFaceGrinWink;\nvar faFaceGrinWide = {\n  prefix: 'far',\n  iconName: 'face-grin-wide',\n  icon: [512, 512, [128515, \"grin-alt\"], \"f581\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm349.5 52.4c18.7-4.4 35.9 12 25.5 28.1C350.4 374.6 306.3 400 255.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5zM224 192c0 35.3-14.3 64-32 64s-32-28.7-32-64s14.3-64 32-64s32 28.7 32 64zm96 64c-17.7 0-32-28.7-32-64s14.3-64 32-64s32 28.7 32 64s-14.3 64-32 64z\"]\n};\nvar faGrinAlt = faFaceGrinWide;\nvar faFaceFrownOpen = {\n  prefix: 'far',\n  iconName: 'face-frown-open',\n  icon: [512, 512, [128550, \"frown-open\"], \"f57a\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM182.4 382.5c-12.4 5.2-26.5-4.1-21.1-16.4c16-36.6 52.4-62.1 94.8-62.1s78.8 25.6 94.8 62.1c5.4 12.3-8.7 21.6-21.1 16.4c-22.4-9.5-47.4-14.8-73.7-14.8s-51.3 5.3-73.7 14.8zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z\"]\n};\nvar faFrownOpen = faFaceFrownOpen;\nvar faHandPointUp = {\n  prefix: 'far',\n  iconName: 'hand-point-up',\n  icon: [384, 512, [9757], \"f0a6\", \"M64 64V241.6c5.2-1 10.5-1.6 16-1.6H96V208 64c0-8.8-7.2-16-16-16s-16 7.2-16 16zM80 288c-17.7 0-32 14.3-32 32c0 0 0 0 0 0v24c0 66.3 53.7 120 120 120h48c52.5 0 97.1-33.7 113.4-80.7c-3.1 .5-6.2 .7-9.4 .7c-20 0-37.9-9.2-49.7-23.6c-9 4.9-19.4 7.6-30.3 7.6c-15.1 0-29-5.3-40-14c-11 8.8-24.9 14-40 14H120c-13.3 0-24-10.7-24-24s10.7-24 24-24h40c8.8 0 16-7.2 16-16s-7.2-16-16-16H120 80zM0 320s0 0 0 0c0-18 6-34.6 16-48V64C16 28.7 44.7 0 80 0s64 28.7 64 64v82c5.1-1.3 10.5-2 16-2c25.3 0 47.2 14.7 57.6 36c7-2.6 14.5-4 22.4-4c20 0 37.9 9.2 49.7 23.6c9-4.9 19.4-7.6 30.3-7.6c35.3 0 64 28.7 64 64v64 24c0 92.8-75.2 168-168 168H168C75.2 512 0 436.8 0 344V320zm336-64c0-8.8-7.2-16-16-16s-16 7.2-16 16v48 16c0 8.8 7.2 16 16 16s16-7.2 16-16V256zM160 240c5.5 0 10.9 .7 16 2v-2V208c0-8.8-7.2-16-16-16s-16 7.2-16 16v32h16zm64 24v40c0 8.8 7.2 16 16 16s16-7.2 16-16V256 240c0-8.8-7.2-16-16-16s-16 7.2-16 16v24z\"]\n};\nvar faBookmark = {\n  prefix: 'far',\n  iconName: 'bookmark',\n  icon: [384, 512, [128278, 61591], \"f02e\", \"M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z\"]\n};\nvar faHandPointDown = {\n  prefix: 'far',\n  iconName: 'hand-point-down',\n  icon: [384, 512, [], \"f0a7\", \"M64 448l0-177.6c5.2 1 10.5 1.6 16 1.6l16 0 0 32 0 144c0 8.8-7.2 16-16 16s-16-7.2-16-16zM80 224c-17.7 0-32-14.3-32-32c0 0 0 0 0 0l0-24c0-66.3 53.7-120 120-120l48 0c52.5 0 97.1 33.7 113.4 80.7c-3.1-.5-6.2-.7-9.4-.7c-20 0-37.9 9.2-49.7 23.6c-9-4.9-19.4-7.6-30.3-7.6c-15.1 0-29 5.3-40 14c-11-8.8-24.9-14-40-14l-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-40 0-40 0zM0 192s0 0 0 0c0 18 6 34.6 16 48l0 208c0 35.3 28.7 64 64 64s64-28.7 64-64l0-82c5.1 1.3 10.5 2 16 2c25.3 0 47.2-14.7 57.6-36c7 2.6 14.5 4 22.4 4c20 0 37.9-9.2 49.7-23.6c9 4.9 19.4 7.6 30.3 7.6c35.3 0 64-28.7 64-64l0-64 0-24C384 75.2 308.8 0 216 0L168 0C75.2 0 0 75.2 0 168l0 24zm336 64c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-16c0-8.8 7.2-16 16-16s16 7.2 16 16l0 64zM160 272c5.5 0 10.9-.7 16-2l0 2 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-32 16 0zm64-24l0-40c0-8.8 7.2-16 16-16s16 7.2 16 16l0 48 0 16c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-24z\"]\n};\nvar faFolder = {\n  prefix: 'far',\n  iconName: 'folder',\n  icon: [512, 512, [128193, 128447, 61716, \"folder-blank\"], \"f07b\", \"M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z\"]\n};\nvar faFolderBlank = faFolder;\nvar faUser = {\n  prefix: 'far',\n  iconName: 'user',\n  icon: [448, 512, [128100, 62144], \"f007\", \"M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z\"]\n};\nvar faSquareCaretLeft = {\n  prefix: 'far',\n  iconName: 'square-caret-left',\n  icon: [448, 512, [\"caret-square-left\"], \"f191\", \"M48 416c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80c-8.8 0-16 7.2-16 16l0 320zm16 64c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480zm64-224c0-6.7 2.8-13 7.7-17.6l112-104c7-6.5 17.2-8.2 25.9-4.4s14.4 12.5 14.4 22l0 208c0 9.5-5.7 18.2-14.4 22s-18.9 2.1-25.9-4.4l-112-104c-4.9-4.5-7.7-10.9-7.7-17.6z\"]\n};\nvar faCaretSquareLeft = faSquareCaretLeft;\nvar faStar = {\n  prefix: 'far',\n  iconName: 'star',\n  icon: [576, 512, [11088, 61446], \"f005\", \"M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.6 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z\"]\n};\nvar faChessKnight = {\n  prefix: 'far',\n  iconName: 'chess-knight',\n  icon: [448, 512, [9822], \"f441\", \"M226.6 48H117.3l17.1 12.8c6 4.5 9.6 11.6 9.6 19.2s-3.6 14.7-9.6 19.2l-6.5 4.9c-10 7.5-16 19.3-16 31.9l-.3 91c0 10.2 4.9 19.9 13.2 25.8l1.9 1.3c9.9 7.1 23.3 7 33.2-.1l49.9-36.3c10.7-7.8 25.7-5.4 33.5 5.3s5.4 25.7-5.3 33.5l-49.9 36.3-53.8 39.1c-7.3 5.3-13 12.2-16.9 20.1H66.8c5.3-22.1 17.8-41.9 35.9-56.3c-1.3-.8-2.6-1.7-3.8-2.6L97 291.8c-21-15-33.4-39.2-33.3-65l.3-91c.1-19.8 6.7-38.7 18.6-53.9l-.4-.3C70.7 73 64 59.6 64 45.3C64 20.3 84.3 0 109.3 0H226.6C331.2 0 416 84.8 416 189.4c0 11.1-1 22.2-2.9 33.2L390.1 352H341.3l24.5-137.8c1.5-8.2 2.2-16.5 2.2-24.8C368 111.3 304.7 48 226.6 48zM85.2 432L68.7 464H379.3l-16.6-32H85.2zm315.7-30.7l26.5 51.2c3 5.8 4.6 12.2 4.6 18.7c0 22.5-18.2 40.8-40.8 40.8H56.8C34.2 512 16 493.8 16 471.2c0-6.5 1.6-12.9 4.6-18.7l26.5-51.2C52.5 390.7 63.5 384 75.5 384h297c12 0 22.9 6.7 28.4 17.3zM172 128a20 20 0 1 1 0 40 20 20 0 1 1 0-40z\"]\n};\nvar faFaceLaughSquint = {\n  prefix: 'far',\n  iconName: 'face-laugh-squint',\n  icon: [512, 512, [\"laugh-squint\"], \"f59b\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm130.7 57.9c-4.2-13.6 7.1-25.9 21.3-25.9H364.5c14.2 0 25.5 12.4 21.3 25.9C369 368.4 318.2 408 258.2 408s-110.8-39.6-127.5-94.1zm2.8-183.3l89.9 47.9c10.7 5.7 10.7 21.1 0 26.8l-89.9 47.9c-7.9 4.2-17.5-1.5-17.5-10.5c0-2.8 1-5.5 2.8-7.6l36-43.2-36-43.2c-1.8-2.1-2.8-4.8-2.8-7.6c0-9 9.6-14.7 17.5-10.5zM396 141.1c0 2.8-1 5.5-2.8 7.6l-36 43.2 36 43.2c1.8 2.1 2.8 4.8 2.8 7.6c0 9-9.6 14.7-17.5 10.5l-89.9-47.9c-10.7-5.7-10.7-21.1 0-26.8l89.9-47.9c7.9-4.2 17.5 1.5 17.5 10.5z\"]\n};\nvar faLaughSquint = faFaceLaughSquint;\nvar faFaceLaugh = {\n  prefix: 'far',\n  iconName: 'face-laugh',\n  icon: [512, 512, [\"laugh\"], \"f599\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm130.7 57.9c-4.2-13.6 7.1-25.9 21.3-25.9H364.5c14.2 0 25.5 12.4 21.3 25.9C369 368.4 318.2 408 258.2 408s-110.8-39.6-127.5-94.1zM144.4 192a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z\"]\n};\nvar faLaugh = faFaceLaugh;\nvar faFolderOpen = {\n  prefix: 'far',\n  iconName: 'folder-open',\n  icon: [576, 512, [128194, 128449, 61717], \"f07c\", \"M384 480h48c11.4 0 21.9-6 27.6-15.9l112-192c5.8-9.9 5.8-22.1 .1-32.1S555.5 224 544 224H144c-11.4 0-21.9 6-27.6 15.9L48 357.1V96c0-8.8 7.2-16 16-16H181.5c4.2 0 8.3 1.7 11.3 4.7l26.5 26.5c21 21 49.5 32.8 79.2 32.8H416c8.8 0 16 7.2 16 16v32h48V160c0-35.3-28.7-64-64-64H298.5c-17 0-33.3-6.7-45.3-18.7L226.7 50.7c-12-12-28.3-18.7-45.3-18.7H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H87.7 384z\"]\n};\nvar faClipboard = {\n  prefix: 'far',\n  iconName: 'clipboard',\n  icon: [384, 512, [128203], \"f328\", \"M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z\"]\n};\nvar faChessQueen = {\n  prefix: 'far',\n  iconName: 'chess-queen',\n  icon: [512, 512, [9819], \"f445\", \"M256 96a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm-95.2-8c-18.1 0-31.3 12.8-35.6 26.9c-8 26.2-32.4 45.2-61.2 45.2c-10 0-19.4-2.3-27.7-6.3c-7.6-3.7-16.7-3.3-24 1.2C.7 162.1-3.1 177.1 3.7 188.9L97.6 352H153l-83-144.1c40.5-2.2 75.3-25.9 93.1-59.8c22 26.8 55.4 43.9 92.8 43.9s70.8-17.1 92.8-43.9c17.8 34 52.6 57.7 93.1 59.8L359 352h55.4l93.9-163.1c6.8-11.7 3-26.7-8.6-33.8c-7.3-4.5-16.4-4.9-24-1.2c-8.4 4-17.7 6.3-27.7 6.3c-28.8 0-53.2-19-61.2-45.2C382.5 100.8 369.3 88 351.2 88c-14.5 0-26.3 8.5-32.4 19.3c-12.4 22-35.9 36.7-62.8 36.7s-50.4-14.8-62.8-36.7C187.1 96.5 175.4 88 160.8 88zM133.2 432H378.8l16.6 32H116.7l16.6-32zm283.7-30.7c-5.5-10.6-16.5-17.3-28.4-17.3h-265c-12 0-22.9 6.7-28.4 17.3L68.6 452.5c-3 5.8-4.6 12.2-4.6 18.7c0 22.5 18.2 40.8 40.8 40.8H407.2c22.5 0 40.8-18.2 40.8-40.8c0-6.5-1.6-12.9-4.6-18.7l-26.5-51.2z\"]\n};\nvar faHandBackFist = {\n  prefix: 'far',\n  iconName: 'hand-back-fist',\n  icon: [448, 512, [\"hand-rock\"], \"f255\", \"M144 64c0-8.8 7.2-16 16-16s16 7.2 16 16c0 9.1 5.1 17.4 13.3 21.5s17.9 3.2 25.1-2.3c2.7-2 6-3.2 9.6-3.2c8.8 0 16 7.2 16 16c0 9.1 5.1 17.4 13.3 21.5s17.9 3.2 25.1-2.3c2.7-2 6-3.2 9.6-3.2c8.8 0 16 7.2 16 16c0 9.1 5.1 17.4 13.3 21.5s17.9 3.2 25.1-2.3c2.7-2 6-3.2 9.6-3.2c8.8 0 16 7.2 16 16V264c0 31.3-20 58-48 67.9c-9.6 3.4-16 12.5-16 22.6V488c0 13.3 10.7 24 24 24s24-10.7 24-24V370.2c38-20.1 64-60.1 64-106.2V160c0-35.3-28.7-64-64-64c-2.8 0-5.6 .2-8.3 .5C332.8 77.1 311.9 64 288 64c-2.8 0-5.6 .2-8.3 .5C268.8 45.1 247.9 32 224 32c-2.8 0-5.6 .2-8.3 .5C204.8 13.1 183.9 0 160 0C124.7 0 96 28.7 96 64v64.3c-11.7 7.4-22.5 16.4-32 26.9l17.8 16.1L64 155.2l-9.4 10.5C40 181.8 32 202.8 32 224.6v12.8c0 49.6 24.2 96.1 64.8 124.5l13.8-19.7L96.8 361.9l8.9 6.2c6.9 4.8 14.4 8.6 22.3 11.3V488c0 13.3 10.7 24 24 24s24-10.7 24-24V359.9c0-12.6-9.8-23.1-22.4-23.9c-7.3-.5-14.3-2.9-20.3-7.1l-13.1 18.7 13.1-18.7-8.9-6.2C96.6 303.1 80 271.3 80 237.4V224.6c0-9.9 3.7-19.4 10.3-26.8l9.4-10.5c3.8-4.2 7.9-8.1 12.3-11.6V208c0 8.8 7.2 16 16 16s16-7.2 16-16V142.3 128 64z\"]\n};\nvar faHandRock = faHandBackFist;\nvar faSquareCaretUp = {\n  prefix: 'far',\n  iconName: 'square-caret-up',\n  icon: [448, 512, [\"caret-square-up\"], \"f151\", \"M64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80zM0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zm224 64c6.7 0 13 2.8 17.6 7.7l104 112c6.5 7 8.2 17.2 4.4 25.9s-12.5 14.4-22 14.4l-208 0c-9.5 0-18.2-5.7-22-14.4s-2.1-18.9 4.4-25.9l104-112c4.5-4.9 10.9-7.7 17.6-7.7z\"]\n};\nvar faCaretSquareUp = faSquareCaretUp;\nvar faChartBar = {\n  prefix: 'far',\n  iconName: 'chart-bar',\n  icon: [512, 512, [\"bar-chart\"], \"f080\", \"M24 32c13.3 0 24 10.7 24 24V408c0 13.3 10.7 24 24 24H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H72c-39.8 0-72-32.2-72-72V56C0 42.7 10.7 32 24 32zM128 136c0-13.3 10.7-24 24-24l208 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-208 0c-13.3 0-24-10.7-24-24zm24 72H296c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24zm0 96H424c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24z\"]\n};\nvar faBarChart = faChartBar;\nvar faWindowRestore = {\n  prefix: 'far',\n  iconName: 'window-restore',\n  icon: [512, 512, [], \"f2d2\", \"M432 48H208c-17.7 0-32 14.3-32 32V96H128V80c0-44.2 35.8-80 80-80H432c44.2 0 80 35.8 80 80V304c0 44.2-35.8 80-80 80H416V336h16c17.7 0 32-14.3 32-32V80c0-17.7-14.3-32-32-32zM48 448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V256H48V448zM64 128H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192c0-35.3 28.7-64 64-64z\"]\n};\nvar faSquarePlus = {\n  prefix: 'far',\n  iconName: 'square-plus',\n  icon: [448, 512, [61846, \"plus-square\"], \"f0fe\", \"M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM200 344V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z\"]\n};\nvar faPlusSquare = faSquarePlus;\nvar faImage = {\n  prefix: 'far',\n  iconName: 'image',\n  icon: [512, 512, [], \"f03e\", \"M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z\"]\n};\nvar faFolderClosed = {\n  prefix: 'far',\n  iconName: 'folder-closed',\n  icon: [512, 512, [], \"e185\", \"M251.7 127.6l0 0c10.5 10.5 24.7 16.4 39.6 16.4H448c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H197.5c4.2 0 8.3 1.7 11.3 4.7l33.9-33.9L208.8 84.7l42.9 42.9zM48 240H464V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V240zM285.7 93.7L242.7 50.7c-12-12-28.3-18.7-45.3-18.7H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H291.3c-2.1 0-4.2-.8-5.7-2.3z\"]\n};\nvar faLemon = {\n  prefix: 'far',\n  iconName: 'lemon',\n  icon: [448, 512, [127819], \"f094\", \"M368 80c-3.2 0-6.2 .4-8.9 1.3C340 86.8 313 91.9 284.8 84.6C227.4 69.7 160.2 92 110.1 142.1S37.7 259.4 52.6 316.8c7.3 28.2 2.2 55.2-3.3 74.3c-.8 2.8-1.3 5.8-1.3 8.9c0 17.7 14.3 32 32 32c3.2 0 6.2-.4 8.9-1.3c19.1-5.5 46.1-10.7 74.3-3.3c57.4 14.9 124.6-7.4 174.7-57.5s72.4-117.3 57.5-174.7c-7.3-28.2-2.2-55.2 3.3-74.3c.8-2.8 1.3-5.8 1.3-8.9c0-17.7-14.3-32-32-32zm0-48c44.2 0 80 35.8 80 80c0 7.7-1.1 15.2-3.1 22.3c-4.6 15.8-7.1 32.9-3 48.9c20.1 77.6-10.9 161.5-70 220.7s-143.1 90.2-220.7 70c-16-4.1-33-1.6-48.9 3c-7.1 2-14.6 3.1-22.3 3.1c-44.2 0-80-35.8-80-80c0-7.7 1.1-15.2 3.1-22.3c4.6-15.8 7.1-32.9 3-48.9C-14 251.3 17 167.3 76.2 108.2S219.3 18 296.8 38.1c16 4.1 33 1.6 48.9-3c7.1-2 14.6-3.1 22.3-3.1zM246.7 167c-52 15.2-96.5 59.7-111.7 111.7c-3.7 12.7-17.1 20-29.8 16.3s-20-17.1-16.3-29.8c19.8-67.7 76.6-124.5 144.3-144.3c12.7-3.7 26.1 3.6 29.8 16.3s-3.6 26.1-16.3 29.8z\"]\n};\nvar faHandshake = {\n  prefix: 'far',\n  iconName: 'handshake',\n  icon: [640, 512, [], \"f2b5\", \"M272.2 64.6l-51.1 51.1c-15.3 4.2-29.5 11.9-41.5 22.5L153 161.9C142.8 171 129.5 176 115.8 176H96V304c20.4 .6 39.8 8.9 54.3 23.4l35.6 35.6 7 7 0 0L219.9 397c6.2 6.2 16.4 6.2 22.6 0c1.7-1.7 3-3.7 3.7-5.8c2.8-7.7 9.3-13.5 17.3-15.3s16.4 .6 22.2 6.5L296.5 393c11.6 11.6 30.4 11.6 41.9 0c5.4-5.4 8.3-12.3 8.6-19.4c.4-8.8 5.6-16.6 13.6-20.4s17.3-3 24.4 2.1c9.4 6.7 22.5 5.8 30.9-2.6c9.4-9.4 9.4-24.6 0-33.9L340.1 243l-35.8 33c-27.3 25.2-69.2 25.6-97 .9c-31.7-28.2-32.4-77.4-1.6-106.5l70.1-66.2C303.2 78.4 339.4 64 377.1 64c36.1 0 71 13.3 97.9 37.2L505.1 128H544h40 40c8.8 0 16 7.2 16 16V352c0 17.7-14.3 32-32 32H576c-11.8 0-22.2-6.4-27.7-16H463.4c-3.4 6.7-7.9 13.1-13.5 18.7c-17.1 17.1-40.8 23.8-63 20.1c-3.6 7.3-8.5 14.1-14.6 20.2c-27.3 27.3-70 30-100.4 8.1c-25.1 20.8-62.5 19.5-86-4.1L159 404l-7-7-35.6-35.6c-5.5-5.5-12.7-8.7-20.4-9.3C96 369.7 81.6 384 64 384H32c-17.7 0-32-14.3-32-32V144c0-8.8 7.2-16 16-16H56 96h19.8c2 0 3.9-.7 5.3-2l26.5-23.6C175.5 77.7 211.4 64 248.7 64H259c4.4 0 8.9 .2 13.2 .6zM544 320V176H496c-5.9 0-11.6-2.2-15.9-6.1l-36.9-32.8c-18.2-16.2-41.7-25.1-66.1-25.1c-25.4 0-49.8 9.7-68.3 27.1l-70.1 66.2c-10.3 9.8-10.1 26.3 .5 35.7c9.3 8.3 23.4 8.1 32.5-.3l71.9-66.4c9.7-9 24.9-8.4 33.9 1.4s8.4 24.9-1.4 33.9l-.8 .8 74.4 74.4c10 10 16.5 22.3 19.4 35.1H544zM64 336a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zm528 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32z\"]\n};\nvar faGem = {\n  prefix: 'far',\n  iconName: 'gem',\n  icon: [512, 512, [128142], \"f3a5\", \"M168.5 72L256 165l87.5-93h-175zM383.9 99.1L311.5 176h129L383.9 99.1zm50 124.9H256 78.1L256 420.3 433.9 224zM71.5 176h129L128.1 99.1 71.5 176zm434.3 40.1l-232 256c-4.5 5-11 7.9-17.8 7.9s-13.2-2.9-17.8-7.9l-232-256c-7.7-8.5-8.3-21.2-1.5-30.4l112-152c4.5-6.1 11.7-9.8 19.3-9.8H376c7.6 0 14.8 3.6 19.3 9.8l112 152c6.8 9.2 6.1 21.9-1.5 30.4z\"]\n};\nvar faCirclePlay = {\n  prefix: 'far',\n  iconName: 'circle-play',\n  icon: [512, 512, [61469, \"play-circle\"], \"f144\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c7.6-4.2 16.8-4.1 24.3 .5l144 88c7.1 4.4 11.5 12.1 11.5 20.5s-4.4 16.1-11.5 20.5l-144 88c-7.4 4.5-16.7 4.7-24.3 .5s-12.3-12.2-12.3-20.9V168c0-8.7 4.7-16.7 12.3-20.9z\"]\n};\nvar faPlayCircle = faCirclePlay;\nvar faCircleCheck = {\n  prefix: 'far',\n  iconName: 'circle-check',\n  icon: [512, 512, [61533, \"check-circle\"], \"f058\", \"M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z\"]\n};\nvar faCheckCircle = faCircleCheck;\nvar faCircleStop = {\n  prefix: 'far',\n  iconName: 'circle-stop',\n  icon: [512, 512, [62094, \"stop-circle\"], \"f28d\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm192-96H320c17.7 0 32 14.3 32 32V320c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32V192c0-17.7 14.3-32 32-32z\"]\n};\nvar faStopCircle = faCircleStop;\nvar faIdBadge = {\n  prefix: 'far',\n  iconName: 'id-badge',\n  icon: [384, 512, [], \"f2c1\", \"M256 48V64c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H256zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM160 320h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z\"]\n};\nvar faFaceLaughBeam = {\n  prefix: 'far',\n  iconName: 'face-laugh-beam',\n  icon: [512, 512, [128513, \"laugh-beam\"], \"f59a\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm130.7 57.9c-4.2-13.6 7.1-25.9 21.3-25.9H364.5c14.2 0 25.5 12.4 21.3 25.9C369 368.4 318.2 408 258.2 408s-110.8-39.6-127.5-94.1zm86.9-85.1l0 0 0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0zm160 0l0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0 0 0z\"]\n};\nvar faLaughBeam = faFaceLaughBeam;\nvar faRegistered = {\n  prefix: 'far',\n  iconName: 'registered',\n  icon: [512, 512, [174], \"f25d\", \"M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM160 152V264v96c0 13.3 10.7 24 24 24s24-10.7 24-24V288h60.9l37.2 81.9c5.5 12.1 19.7 17.4 31.8 11.9s17.4-19.7 11.9-31.8L315.7 275c21.8-14.3 36.3-39 36.3-67c0-44.2-35.8-80-80-80H184c-13.3 0-24 10.7-24 24zm48 88V176h64c17.7 0 32 14.3 32 32s-14.3 32-32 32H208z\"]\n};\nvar faAddressCard = {\n  prefix: 'far',\n  iconName: 'address-card',\n  icon: [576, 512, [62140, \"contact-card\", \"vcard\"], \"f2bb\", \"M512 80c8.8 0 16 7.2 16 16V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16H512zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM208 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128zm-32 32c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16H304c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80H176zM376 144c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376z\"]\n};\nvar faContactCard = faAddressCard;\nvar faVcard = faAddressCard;\nvar faFaceTired = {\n  prefix: 'far',\n  iconName: 'face-tired',\n  icon: [512, 512, [128555, \"tired\"], \"f5c8\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm176.5 64.3C196.1 302.1 223.8 288 256 288s59.9 14.1 79.5 32.3C354.5 338.1 368 362 368 384c0 5.4-2.7 10.4-7.2 13.4s-10.2 3.4-15.2 1.3l-17.2-7.5c-22.8-10-47.5-15.1-72.4-15.1s-49.6 5.2-72.4 15.1l-17.2 7.5c-4.9 2.2-10.7 1.7-15.2-1.3s-7.2-8-7.2-13.4c0-22 13.5-45.9 32.5-63.7zm-43-173.6l89.9 47.9c10.7 5.7 10.7 21.1 0 26.8l-89.9 47.9c-7.9 4.2-17.5-1.5-17.5-10.5c0-2.8 1-5.5 2.8-7.6l36-43.2-36-43.2c-1.8-2.1-2.8-4.8-2.8-7.6c0-9 9.6-14.7 17.5-10.5zM396 157.1c0 2.8-1 5.5-2.8 7.6l-36 43.2 36 43.2c1.8 2.1 2.8 4.8 2.8 7.6c0 9-9.6 14.7-17.5 10.5l-89.9-47.9c-10.7-5.7-10.7-21.1 0-26.8l89.9-47.9c7.9-4.2 17.5 1.5 17.5 10.5z\"]\n};\nvar faTired = faFaceTired;\nvar faFontAwesome = {\n  prefix: 'far',\n  iconName: 'font-awesome',\n  icon: [448, 512, [62501, 62694, \"font-awesome-flag\", \"font-awesome-logo-full\"], \"f2b4\", \"M48 56c0-13.3-10.7-24-24-24S0 42.7 0 56V456c0 13.3 10.7 24 24 24s24-10.7 24-24V124.2l12.5-2.4c16.7-3.2 31.5-8.5 44.2-13.1l0 0 0 0c3.7-1.3 7.1-2.6 10.4-3.7c15.2-5.2 30.4-9.1 51.2-9.1c25.6 0 43 6 63.5 13.3l.5 .2c20.9 7.4 44.8 15.9 79.1 15.9c32.4 0 53.7-6.8 90.5-19.6V342.9l-9.5 3.3c-41.5 14.4-55.2 19.2-81 19.2c-25.7 0-43.1-6-63.6-13.3l-.6-.2c-20.8-7.4-44.8-15.8-79-15.8c-16.8 0-31 2-43.9 5c-12.9 3-20.9 16-17.9 28.9s16 20.9 28.9 17.9c9.6-2.2 20.1-3.7 32.9-3.7c25.6 0 43 6 63.5 13.3l.5 .2c20.9 7.4 44.8 15.9 79.1 15.9c34.4 0 56.4-7.7 97.8-22.2c7.5-2.6 15.5-5.4 24.4-8.5l16.2-5.5V360 72 38.4L416.2 49.3c-9.7 3.3-18.2 6.3-25.7 8.9c-41.5 14.4-55.2 19.2-81 19.2c-25.7 0-43.1-6-63.6-13.3l-.6-.2c-20.8-7.4-44.8-15.8-79-15.8c-27.8 0-48.5 5.5-66.6 11.6c-4.9 1.7-9.3 3.3-13.6 4.8c-11.9 4.3-22 7.9-34.7 10.3L48 75.4V56z\"]\n};\nvar faFontAwesomeFlag = faFontAwesome;\nvar faFontAwesomeLogoFull = faFontAwesome;\nvar faFaceSmileWink = {\n  prefix: 'far',\n  iconName: 'face-smile-wink',\n  icon: [512, 512, [128521, \"smile-wink\"], \"f4da\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm177.6 62.1C192.8 334.5 218.8 352 256 352s63.2-17.5 78.4-33.9c9-9.7 24.2-10.4 33.9-1.4s10.4 24.2 1.4 33.9c-22 23.8-60 49.4-113.6 49.4s-91.7-25.5-113.6-49.4c-9-9.7-8.4-24.9 1.4-33.9s24.9-8.4 33.9 1.4zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm165.8 21.7c-7.6 8.1-20.2 8.5-28.3 .9s-8.5-20.2-.9-28.3c14.5-15.5 35.2-22.3 54.6-22.3s40.1 6.8 54.6 22.3c7.6 8.1 7.1 20.7-.9 28.3s-20.7 7.1-28.3-.9c-5.5-5.8-14.8-9.7-25.4-9.7s-19.9 3.8-25.4 9.7z\"]\n};\nvar faSmileWink = faFaceSmileWink;\nvar faFileWord = {\n  prefix: 'far',\n  iconName: 'file-word',\n  icon: [384, 512, [], \"f1c2\", \"M48 448V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm55 241.1c-3.8-12.7-17.2-19.9-29.9-16.1s-19.9 17.2-16.1 29.9l48 160c3 10.2 12.4 17.1 23 17.1s19.9-7 23-17.1l25-83.4 25 83.4c3 10.2 12.4 17.1 23 17.1s19.9-7 23-17.1l48-160c3.8-12.7-3.4-26.1-16.1-29.9s-26.1 3.4-29.9 16.1l-25 83.4-25-83.4c-3-10.2-12.4-17.1-23-17.1s-19.9 7-23 17.1l-25 83.4-25-83.4z\"]\n};\nvar faFilePowerpoint = {\n  prefix: 'far',\n  iconName: 'file-powerpoint',\n  icon: [384, 512, [], \"f1c4\", \"M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm72 208c-13.3 0-24 10.7-24 24V336v56c0 13.3 10.7 24 24 24s24-10.7 24-24V360h44c42 0 76-34 76-76s-34-76-76-76H136zm68 104H160V256h44c15.5 0 28 12.5 28 28s-12.5 28-28 28z\"]\n};\nvar faEnvelopeOpen = {\n  prefix: 'far',\n  iconName: 'envelope-open',\n  icon: [512, 512, [62135], \"f2b6\", \"M255.4 48.2c.2-.1 .4-.2 .6-.2s.4 .1 .6 .2L460.6 194c2.1 1.5 3.4 3.9 3.4 6.5v13.6L291.5 355.7c-20.7 17-50.4 17-71.1 0L48 214.1V200.5c0-2.6 1.2-5 3.4-6.5L255.4 48.2zM48 276.2L190 392.8c38.4 31.5 93.7 31.5 132 0L464 276.2V456c0 4.4-3.6 8-8 8H56c-4.4 0-8-3.6-8-8V276.2zM256 0c-10.2 0-20.2 3.2-28.5 9.1L23.5 154.9C8.7 165.4 0 182.4 0 200.5V456c0 30.9 25.1 56 56 56H456c30.9 0 56-25.1 56-56V200.5c0-18.1-8.7-35.1-23.4-45.6L284.5 9.1C276.2 3.2 266.2 0 256 0z\"]\n};\nvar faFileZipper = {\n  prefix: 'far',\n  iconName: 'file-zipper',\n  icon: [384, 512, [\"file-archive\"], \"f1c6\", \"M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16h48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16h48v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm48 112c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H128c-8.8 0-16 7.2-16 16zm0 64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H128c-8.8 0-16 7.2-16 16zm-6.3 71.8L82.1 335.9c-1.4 5.4-2.1 10.9-2.1 16.4c0 35.2 28.8 63.7 64 63.7s64-28.5 64-63.7c0-5.5-.7-11.1-2.1-16.4l-23.5-88.2c-3.7-14-16.4-23.8-30.9-23.8H136.6c-14.5 0-27.2 9.7-30.9 23.8zM128 336h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H128c-8.8 0-16-7.2-16-16s7.2-16 16-16z\"]\n};\nvar faFileArchive = faFileZipper;\nvar faSquare = {\n  prefix: 'far',\n  iconName: 'square',\n  icon: [448, 512, [9632, 9723, 9724, 61590], \"f0c8\", \"M384 80c8.8 0 16 7.2 16 16V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16H384zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z\"]\n};\nvar faSnowflake = {\n  prefix: 'far',\n  iconName: 'snowflake',\n  icon: [448, 512, [10052, 10054], \"f2dc\", \"M224 0c13.3 0 24 10.7 24 24V70.1l23-23c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-57 57v76.5l66.2-38.2 20.9-77.8c3.4-12.8 16.6-20.4 29.4-17s20.4 16.6 17 29.4L373 142.2l37.1-21.4c11.5-6.6 26.2-2.7 32.8 8.8s2.7 26.2-8.8 32.8L397 183.8l31.5 8.4c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4 17l-77.8-20.9L272 256l66.2 38.2 77.8-20.9c12.8-3.4 26 4.2 29.4 17s-4.2 26-17 29.4L397 328.2l37.1 21.4c11.5 6.6 15.4 21.3 8.8 32.8s-21.3 15.4-32.8 8.8L373 369.8l8.4 31.5c3.4 12.8-4.2 26-17 29.4s-26-4.2-29.4-17l-20.9-77.8L248 297.6v76.5l57 57c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-23-23V488c0 13.3-10.7 24-24 24s-24-10.7-24-24V441.9l-23 23c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l57-57V297.6l-66.2 38.2-20.9 77.8c-3.4 12.8-16.6 20.4-29.4 17s-20.4-16.6-17-29.4L75 369.8 37.9 391.2c-11.5 6.6-26.2 2.7-32.8-8.8s-2.7-26.2 8.8-32.8L51 328.2l-31.5-8.4c-12.8-3.4-20.4-16.6-17-29.4s16.6-20.4 29.4-17l77.8 20.9L176 256l-66.2-38.2L31.9 238.6c-12.8 3.4-26-4.2-29.4-17s4.2-26 17-29.4L51 183.8 13.9 162.4c-11.5-6.6-15.4-21.3-8.8-32.8s21.3-15.4 32.8-8.8L75 142.2l-8.4-31.5c-3.4-12.8 4.2-26 17-29.4s26 4.2 29.4 17l20.9 77.8L200 214.4V137.9L143 81c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l23 23V24c0-13.3 10.7-24 24-24z\"]\n};\nvar faNewspaper = {\n  prefix: 'far',\n  iconName: 'newspaper',\n  icon: [512, 512, [128240], \"f1ea\", \"M168 80c-13.3 0-24 10.7-24 24V408c0 8.4-1.4 16.5-4.1 24H440c13.3 0 24-10.7 24-24V104c0-13.3-10.7-24-24-24H168zM72 480c-39.8 0-72-32.2-72-72V112C0 98.7 10.7 88 24 88s24 10.7 24 24V408c0 13.3 10.7 24 24 24s24-10.7 24-24V104c0-39.8 32.2-72 72-72H440c39.8 0 72 32.2 72 72V408c0 39.8-32.2 72-72 72H72zM176 136c0-13.3 10.7-24 24-24h96c13.3 0 24 10.7 24 24v80c0 13.3-10.7 24-24 24H200c-13.3 0-24-10.7-24-24V136zm200-24h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H376c-13.3 0-24-10.7-24-24s10.7-24 24-24zm0 80h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H376c-13.3 0-24-10.7-24-24s10.7-24 24-24zM200 272H408c13.3 0 24 10.7 24 24s-10.7 24-24 24H200c-13.3 0-24-10.7-24-24s10.7-24 24-24zm0 80H408c13.3 0 24 10.7 24 24s-10.7 24-24 24H200c-13.3 0-24-10.7-24-24s10.7-24 24-24z\"]\n};\nvar faFaceKissWinkHeart = {\n  prefix: 'far',\n  iconName: 'face-kiss-wink-heart',\n  icon: [512, 512, [128536, \"kiss-wink-heart\"], \"f598\", \"M338.9 446.8c-25.4 11-53.4 17.2-82.9 17.2C141.1 464 48 370.9 48 256S141.1 48 256 48s208 93.1 208 208c0 22.4-3.5 43.9-10.1 64.1c3.1 4.5 5.7 9.4 7.8 14.6c12.7-1.6 25.1 .4 36.2 5c9.1-26.2 14-54.4 14-83.7C512 114.6 397.4 0 256 0S0 114.6 0 256S114.6 512 256 512c35.4 0 69.1-7.2 99.7-20.2c-4.8-5.5-8.5-12.2-10.4-19.7l-6.5-25.3zM296 316c0-6.9-3.1-13.2-7.3-18.3c-4.3-5.2-10.1-9.7-16.7-13.4C258.7 276.9 241.4 272 224 272c-3.6 0-6.8 2.5-7.7 6s.6 7.2 3.8 9l0 0 0 0 0 0 .2 .1c.2 .1 .5 .3 .9 .5c.8 .5 2 1.2 3.4 2.1c2.8 1.9 6.5 4.5 10.2 7.6c3.7 3.1 7.2 6.6 9.6 10.1c2.5 3.5 3.5 6.4 3.5 8.6s-1 5-3.5 8.6c-2.5 3.5-5.9 6.9-9.6 10.1c-3.7 3.1-7.4 5.7-10.2 7.6c-1.4 .9-2.6 1.6-3.4 2.1c-.4 .2-.7 .4-.9 .5l-.2 .1 0 0 0 0 0 0 0 0 0 0c-2.5 1.4-4.1 4.1-4.1 7s1.6 5.6 4.1 7l0 0 0 0 0 0 .2 .1c.2 .1 .5 .3 .9 .5c.8 .5 2 1.2 3.4 2.1c2.8 1.9 6.5 4.5 10.2 7.6c3.7 3.1 7.2 6.6 9.6 10.1c2.5 3.5 3.5 6.4 3.5 8.6s-1 5-3.5 8.6c-2.5 3.5-5.9 6.9-9.6 10.1c-3.7 3.1-7.4 5.7-10.2 7.6c-1.4 .9-2.6 1.6-3.4 2.1c-.4 .2-.7 .4-.9 .5l-.2 .1 0 0 0 0 0 0 0 0c-3.2 1.8-4.7 5.5-3.8 9s4.1 6 7.7 6c17.4 0 34.7-4.9 47.9-12.3c6.6-3.7 12.5-8.2 16.7-13.4c4.3-5.1 7.3-11.4 7.3-18.3s-3.1-13.2-7.3-18.3c-4.3-5.2-10.1-9.7-16.7-13.4c-2.7-1.5-5.7-3-8.7-4.3c3.1-1.3 6-2.7 8.7-4.3c6.6-3.7 12.5-8.2 16.7-13.4c4.3-5.1 7.3-11.4 7.3-18.3zM176.4 240a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm159.3-20c10.6 0 19.9 3.8 25.4 9.7c7.6 8.1 20.2 8.5 28.3 .9s8.5-20.2 .9-28.3C375.7 186.8 355 180 335.6 180s-40.1 6.8-54.6 22.3c-7.6 8.1-7.1 20.7 .9 28.3s20.7 7.1 28.3-.9c5.5-5.8 14.8-9.7 25.4-9.7zM434 352.3c-6-23.2-28.8-37-51.1-30.8s-35.4 30.1-29.5 53.4l22.9 89.3c2.2 8.7 11.2 13.9 19.8 11.4l84.9-23.8c22.2-6.2 35.4-30.1 29.5-53.4s-28.8-37-51.1-30.8l-20.2 5.6-5.4-21z\"]\n};\nvar faKissWinkHeart = faFaceKissWinkHeart;\nvar faStarHalfStroke = {\n  prefix: 'far',\n  iconName: 'star-half-stroke',\n  icon: [640, 512, [\"star-half-alt\"], \"f5c0\", \"M341.5 13.5C337.5 5.2 329.1 0 319.9 0s-17.6 5.2-21.6 13.5L229.7 154.8 76.5 177.5c-9 1.3-16.5 7.6-19.3 16.3s-.5 18.1 5.9 24.5L174.2 328.4 148 483.9c-1.5 9 2.2 18.1 9.7 23.5s17.3 6 25.3 1.7l137-73.2 137 73.2c8.1 4.3 17.9 3.7 25.3-1.7s11.2-14.5 9.7-23.5L465.6 328.4 576.8 218.2c6.5-6.4 8.7-15.9 5.9-24.5s-10.3-14.9-19.3-16.3L410.1 154.8 341.5 13.5zM320 384.7V79.1l52.5 108.1c3.5 7.1 10.2 12.1 18.1 13.3l118.3 17.5L423 303c-5.5 5.5-8.1 13.3-6.8 21l20.2 119.6L331.2 387.5c-3.5-1.9-7.4-2.8-11.2-2.8z\"]\n};\nvar faStarHalfAlt = faStarHalfStroke;\nvar faFileExcel = {\n  prefix: 'far',\n  iconName: 'file-excel',\n  icon: [384, 512, [], \"f1c3\", \"M48 448V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm90.9 233.3c-8.1-10.5-23.2-12.3-33.7-4.2s-12.3 23.2-4.2 33.7L161.6 320l-44.5 57.3c-8.1 10.5-6.3 25.5 4.2 33.7s25.5 6.3 33.7-4.2L192 359.1l37.1 47.6c8.1 10.5 23.2 12.3 33.7 4.2s12.3-23.2 4.2-33.7L222.4 320l44.5-57.3c8.1-10.5 6.3-25.5-4.2-33.7s-25.5-6.3-33.7 4.2L192 280.9l-37.1-47.6z\"]\n};\nvar faFaceGrinBeam = {\n  prefix: 'far',\n  iconName: 'face-grin-beam',\n  icon: [512, 512, [128516, \"grin-beam\"], \"f582\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm349.5 52.4c18.7-4.4 35.9 12 25.5 28.1C350.4 374.6 306.3 400 255.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5zM217.6 228.8l0 0 0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0zm160 0l0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0 0 0z\"]\n};\nvar faGrinBeam = faFaceGrinBeam;\nvar faObjectUngroup = {\n  prefix: 'far',\n  iconName: 'object-ungroup',\n  icon: [640, 512, [], \"f248\", \"M48.2 66.8c-.1-.8-.2-1.7-.2-2.5c0-.1 0-.1 0-.2c0-8.8 7.2-16 16-16c.9 0 1.9 .1 2.8 .2C74.3 49.5 80 56.1 80 64c0 8.8-7.2 16-16 16c-7.9 0-14.5-5.7-15.8-13.2zM0 64c0 26.9 16.5 49.9 40 59.3V228.7C16.5 238.1 0 261.1 0 288c0 35.3 28.7 64 64 64c26.9 0 49.9-16.5 59.3-40H324.7c9.5 23.5 32.5 40 59.3 40c35.3 0 64-28.7 64-64c0-26.9-16.5-49.9-40-59.3V123.3c23.5-9.5 40-32.5 40-59.3c0-35.3-28.7-64-64-64c-26.9 0-49.9 16.5-59.3 40H123.3C113.9 16.5 90.9 0 64 0C28.7 0 0 28.7 0 64zm368 0a16 16 0 1 1 32 0 16 16 0 1 1 -32 0zM324.7 88c6.5 16 19.3 28.9 35.3 35.3V228.7c-16 6.5-28.9 19.3-35.3 35.3H123.3c-6.5-16-19.3-28.9-35.3-35.3V123.3c16-6.5 28.9-19.3 35.3-35.3H324.7zM384 272a16 16 0 1 1 0 32 16 16 0 1 1 0-32zM80 288c0 7.9-5.7 14.5-13.2 15.8c-.8 .1-1.7 .2-2.5 .2l-.2 0c-8.8 0-16-7.2-16-16c0-.9 .1-1.9 .2-2.8C49.5 277.7 56.1 272 64 272c8.8 0 16 7.2 16 16zm391.3-40h45.4c6.5 16 19.3 28.9 35.3 35.3V388.7c-16 6.5-28.9 19.3-35.3 35.3H315.3c-6.5-16-19.3-28.9-35.3-35.3V352H232v36.7c-23.5 9.5-40 32.5-40 59.3c0 35.3 28.7 64 64 64c26.9 0 49.9-16.5 59.3-40H516.7c9.5 23.5 32.5 40 59.3 40c35.3 0 64-28.7 64-64c0-26.9-16.5-49.9-40-59.3V283.3c23.5-9.5 40-32.5 40-59.3c0-35.3-28.7-64-64-64c-26.9 0-49.9 16.5-59.3 40H448v16.4c9.8 8.8 17.8 19.5 23.3 31.6zm88.9-26.7a16 16 0 1 1 31.5 5.5 16 16 0 1 1 -31.5-5.5zM271.8 450.7a16 16 0 1 1 -31.5-5.5 16 16 0 1 1 31.5 5.5zm301.5 13c-7.5-1.3-13.2-7.9-13.2-15.8c0-8.8 7.2-16 16-16c7.9 0 14.5 5.7 15.8 13.2l0 .1c.1 .9 .2 1.8 .2 2.7c0 8.8-7.2 16-16 16c-.9 0-1.9-.1-2.8-.2z\"]\n};\nvar faCircleRight = {\n  prefix: 'far',\n  iconName: 'circle-right',\n  icon: [512, 512, [61838, \"arrow-alt-circle-right\"], \"f35a\", \"M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1c-4.2-4.5-10.1-7.1-16.3-7.1C266 128 256 138 256 150.3V208H160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h96v57.7c0 12.3 10 22.3 22.3 22.3c6.2 0 12.1-2.6 16.3-7.1l99.9-107.1c3.5-3.8 5.5-8.7 5.5-13.8s-2-10.1-5.5-13.8L294.6 135.1z\"]\n};\nvar faArrowAltCircleRight = faCircleRight;\nvar faFaceRollingEyes = {\n  prefix: 'far',\n  iconName: 'face-rolling-eyes',\n  icon: [512, 512, [128580, \"meh-rolling-eyes\"], \"f5a5\", \"M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM168 376c0 13.3 10.7 24 24 24H320c13.3 0 24-10.7 24-24s-10.7-24-24-24H192c-13.3 0-24 10.7-24 24zm-8-104c-26.5 0-48-21.5-48-48c0-14.3 6.3-27.2 16.2-36c-.2 1.3-.2 2.6-.2 4c0 17.7 14.3 32 32 32s32-14.3 32-32c0-1.4-.1-2.7-.2-4c10 8.8 16.2 21.7 16.2 36c0 26.5-21.5 48-48 48zm0 32a80 80 0 1 0 0-160 80 80 0 1 0 0 160zm192-32c-26.5 0-48-21.5-48-48c0-14.3 6.3-27.2 16.2-36c-.2 1.3-.2 2.6-.2 4c0 17.7 14.3 32 32 32s32-14.3 32-32c0-1.4-.1-2.7-.2-4c10 8.8 16.2 21.7 16.2 36c0 26.5-21.5 48-48 48zm0 32a80 80 0 1 0 0-160 80 80 0 1 0 0 160z\"]\n};\nvar faMehRollingEyes = faFaceRollingEyes;\nvar faObjectGroup = {\n  prefix: 'far',\n  iconName: 'object-group',\n  icon: [576, 512, [], \"f247\", \"M48 115.8C38.2 107 32 94.2 32 80c0-26.5 21.5-48 48-48c14.2 0 27 6.2 35.8 16H460.2c8.8-9.8 21.6-16 35.8-16c26.5 0 48 21.5 48 48c0 14.2-6.2 27-16 35.8V396.2c9.8 8.8 16 21.6 16 35.8c0 26.5-21.5 48-48 48c-14.2 0-27-6.2-35.8-16H115.8c-8.8 9.8-21.6 16-35.8 16c-26.5 0-48-21.5-48-48c0-14.2 6.2-27 16-35.8V115.8zM125.3 96c-4.8 13.6-15.6 24.4-29.3 29.3V386.7c13.6 4.8 24.4 15.6 29.3 29.3H450.7c4.8-13.6 15.6-24.4 29.3-29.3V125.3c-13.6-4.8-24.4-15.6-29.3-29.3H125.3zm2.7 64c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V160zM256 320h32c35.3 0 64-28.7 64-64V224h64c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H288c-17.7 0-32-14.3-32-32V320z\"]\n};\nvar faHeart = {\n  prefix: 'far',\n  iconName: 'heart',\n  icon: [512, 512, [128153, 128154, 128155, 128156, 128420, 129293, 129294, 129505, 9829, 10084, 61578], \"f004\", \"M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z\"]\n};\nvar faFaceSurprise = {\n  prefix: 'far',\n  iconName: 'face-surprise',\n  icon: [512, 512, [128558, \"surprise\"], \"f5c2\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm176.4-80a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm128 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM256 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z\"]\n};\nvar faSurprise = faFaceSurprise;\nvar faCirclePause = {\n  prefix: 'far',\n  iconName: 'circle-pause',\n  icon: [512, 512, [62092, \"pause-circle\"], \"f28b\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm224-72V328c0 13.3-10.7 24-24 24s-24-10.7-24-24V184c0-13.3 10.7-24 24-24s24 10.7 24 24zm112 0V328c0 13.3-10.7 24-24 24s-24-10.7-24-24V184c0-13.3 10.7-24 24-24s24 10.7 24 24z\"]\n};\nvar faPauseCircle = faCirclePause;\nvar faCircle = {\n  prefix: 'far',\n  iconName: 'circle',\n  icon: [512, 512, [128308, 128309, 128992, 128993, 128994, 128995, 128996, 9679, 9898, 9899, 11044, 61708, 61915], \"f111\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z\"]\n};\nvar faCircleUp = {\n  prefix: 'far',\n  iconName: 'circle-up',\n  icon: [512, 512, [61467, \"arrow-alt-circle-up\"], \"f35b\", \"M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM135.1 217.4c-4.5 4.2-7.1 10.1-7.1 16.3c0 12.3 10 22.3 22.3 22.3H208v96c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V256h57.7c12.3 0 22.3-10 22.3-22.3c0-6.2-2.6-12.1-7.1-16.3L269.8 117.5c-3.8-3.5-8.7-5.5-13.8-5.5s-10.1 2-13.8 5.5L135.1 217.4z\"]\n};\nvar faArrowAltCircleUp = faCircleUp;\nvar faFileAudio = {\n  prefix: 'far',\n  iconName: 'file-audio',\n  icon: [384, 512, [], \"f1c7\", \"M64 464H320c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM192 272V400c0 6.5-3.9 12.3-9.9 14.8s-12.9 1.1-17.4-3.5L129.4 376H112c-8.8 0-16-7.2-16-16V312c0-8.8 7.2-16 16-16h17.4l35.3-35.3c4.6-4.6 11.5-5.9 17.4-3.5s9.9 8.3 9.9 14.8zm85.8-4c11.6 20 18.2 43.3 18.2 68s-6.6 48-18.2 68c-6.6 11.5-21.3 15.4-32.8 8.8s-15.4-21.3-8.8-32.8c7.5-12.9 11.8-27.9 11.8-44s-4.3-31.1-11.8-44c-6.6-11.5-2.7-26.2 8.8-32.8s26.2-2.7 32.8 8.8z\"]\n};\nvar faFileImage = {\n  prefix: 'far',\n  iconName: 'file-image',\n  icon: [384, 512, [128443], \"f1c5\", \"M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm96 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm69.2 46.9c-3-4.3-7.9-6.9-13.2-6.9s-10.2 2.6-13.2 6.9l-41.3 59.7-11.9-19.1c-2.9-4.7-8.1-7.5-13.6-7.5s-10.6 2.8-13.6 7.5l-40 64c-3.1 4.9-3.2 11.1-.4 16.2s8.2 8.2 14 8.2h48 32 40 72c6 0 11.4-3.3 14.2-8.6s2.4-11.6-1-16.5l-72-104z\"]\n};\nvar faCircleQuestion = {\n  prefix: 'far',\n  iconName: 'circle-question',\n  icon: [512, 512, [62108, \"question-circle\"], \"f059\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z\"]\n};\nvar faQuestionCircle = faCircleQuestion;\nvar faFaceMehBlank = {\n  prefix: 'far',\n  iconName: 'face-meh-blank',\n  icon: [512, 512, [128566, \"meh-blank\"], \"f5a4\", \"M256 48a208 208 0 1 0 0 416 208 208 0 1 0 0-416zM512 256A256 256 0 1 1 0 256a256 256 0 1 1 512 0zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z\"]\n};\nvar faMehBlank = faFaceMehBlank;\nvar faEye = {\n  prefix: 'far',\n  iconName: 'eye',\n  icon: [576, 512, [128065], \"f06e\", \"M288 80c-65.2 0-118.8 29.6-159.9 67.7C89.6 183.5 63 226 49.4 256c13.6 30 40.2 72.5 78.6 108.3C169.2 402.4 222.8 432 288 432s118.8-29.6 159.9-67.7C486.4 328.5 513 286 526.6 256c-13.6-30-40.2-72.5-78.6-108.3C406.8 109.6 353.2 80 288 80zM95.4 112.6C142.5 68.8 207.2 32 288 32s145.5 36.8 192.6 80.6c46.8 43.5 78.1 95.4 93 131.1c3.3 7.9 3.3 16.7 0 24.6c-14.9 35.7-46.2 87.7-93 131.1C433.5 443.2 368.8 480 288 480s-145.5-36.8-192.6-80.6C48.6 356 17.3 304 2.5 268.3c-3.3-7.9-3.3-16.7 0-24.6C17.3 208 48.6 156 95.4 112.6zM288 336c44.2 0 80-35.8 80-80s-35.8-80-80-80c-.7 0-1.3 0-2 0c1.3 5.1 2 10.5 2 16c0 35.3-28.7 64-64 64c-5.5 0-10.9-.7-16-2c0 .7 0 1.3 0 2c0 44.2 35.8 80 80 80zm0-208a128 128 0 1 1 0 256 128 128 0 1 1 0-256z\"]\n};\nvar faFaceSadCry = {\n  prefix: 'far',\n  iconName: 'face-sad-cry',\n  icon: [512, 512, [128557, \"sad-cry\"], \"f5b3\", \"M400 406.1V288c0-13.3-10.7-24-24-24s-24 10.7-24 24V440.6c-28.7 15-61.4 23.4-96 23.4s-67.3-8.5-96-23.4V288c0-13.3-10.7-24-24-24s-24 10.7-24 24V406.1C72.6 368.2 48 315 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 59-24.6 112.2-64 150.1zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM159.6 220c10.6 0 19.9 3.8 25.4 9.7c7.6 8.1 20.2 8.5 28.3 .9s8.5-20.2 .9-28.3C199.7 186.8 179 180 159.6 180s-40.1 6.8-54.6 22.3c-7.6 8.1-7.1 20.7 .9 28.3s20.7 7.1 28.3-.9c5.5-5.8 14.8-9.7 25.4-9.7zm166.6 9.7c5.5-5.8 14.8-9.7 25.4-9.7s19.9 3.8 25.4 9.7c7.6 8.1 20.2 8.5 28.3 .9s8.5-20.2 .9-28.3C391.7 186.8 371 180 351.6 180s-40.1 6.8-54.6 22.3c-7.6 8.1-7.1 20.7 .9 28.3s20.7 7.1 28.3-.9zM208 320v32c0 26.5 21.5 48 48 48s48-21.5 48-48V320c0-26.5-21.5-48-48-48s-48 21.5-48 48z\"]\n};\nvar faSadCry = faFaceSadCry;\nvar faFileCode = {\n  prefix: 'far',\n  iconName: 'file-code',\n  icon: [384, 512, [], \"f1c9\", \"M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm97 289c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L79 303c-9.4 9.4-9.4 24.6 0 33.9l48 48c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-31-31 31-31zM257 255c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l31 31-31 31c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l48-48c9.4-9.4 9.4-24.6 0-33.9l-48-48z\"]\n};\nvar faWindowMaximize = {\n  prefix: 'far',\n  iconName: 'window-maximize',\n  icon: [512, 512, [128470], \"f2d0\", \"M.3 89.5C.1 91.6 0 93.8 0 96V224 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64V224 96c0-35.3-28.7-64-64-64H64c-2.2 0-4.4 .1-6.5 .3c-9.2 .9-17.8 3.8-25.5 8.2C21.8 46.5 13.4 55.1 7.7 65.5c-3.9 7.3-6.5 15.4-7.4 24zM48 224H464l0 192c0 8.8-7.2 16-16 16L64 432c-8.8 0-16-7.2-16-16l0-192z\"]\n};\nvar faFaceFrown = {\n  prefix: 'far',\n  iconName: 'face-frown',\n  icon: [512, 512, [9785, \"frown\"], \"f119\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM174.6 384.1c-4.5 12.5-18.2 18.9-30.7 14.4s-18.9-18.2-14.4-30.7C146.9 319.4 198.9 288 256 288s109.1 31.4 126.6 79.9c4.5 12.5-2 26.2-14.4 30.7s-26.2-2-30.7-14.4C328.2 358.5 297.2 336 256 336s-72.2 22.5-81.4 48.1zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z\"]\n};\nvar faFrown = faFaceFrown;\nvar faFloppyDisk = {\n  prefix: 'far',\n  iconName: 'floppy-disk',\n  icon: [448, 512, [128190, 128426, \"save\"], \"f0c7\", \"M48 96V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V170.5c0-4.2-1.7-8.3-4.7-11.3l33.9-33.9c12 12 18.7 28.3 18.7 45.3V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H309.5c17 0 33.3 6.7 45.3 18.7l74.5 74.5-33.9 33.9L320.8 84.7c-.3-.3-.5-.5-.8-.8V184c0 13.3-10.7 24-24 24H104c-13.3 0-24-10.7-24-24V80H64c-8.8 0-16 7.2-16 16zm80-16v80H272V80H128zm32 240a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z\"]\n};\nvar faSave = faFloppyDisk;\nvar faCommentDots = {\n  prefix: 'far',\n  iconName: 'comment-dots',\n  icon: [512, 512, [128172, 62075, \"commenting\"], \"f4ad\", \"M168.2 384.9c-15-5.4-31.7-3.1-44.6 6.4c-8.2 6-22.3 14.8-39.4 22.7c5.6-14.7 9.9-31.3 11.3-49.4c1-12.9-3.3-25.7-11.8-35.5C60.4 302.8 48 272 48 240c0-79.5 83.3-160 208-160s208 80.5 208 160s-83.3 160-208 160c-31.6 0-61.3-5.5-87.8-15.1zM26.3 423.8c-1.6 2.7-3.3 5.4-5.1 8.1l-.3 .5c-1.6 2.3-3.2 4.6-4.8 6.9c-3.5 4.7-7.3 9.3-11.3 13.5c-4.6 4.6-5.9 11.4-3.4 17.4c2.5 6 8.3 9.9 14.8 9.9c5.1 0 10.2-.3 15.3-.8l.7-.1c4.4-.5 8.8-1.1 13.2-1.9c.8-.1 1.6-.3 2.4-.5c17.8-3.5 34.9-9.5 50.1-16.1c22.9-10 42.4-21.9 54.3-30.6c31.8 11.5 67 17.9 104.1 17.9c141.4 0 256-93.1 256-208S397.4 32 256 32S0 125.1 0 240c0 45.1 17.7 86.8 47.7 120.9c-1.9 24.5-11.4 46.3-21.4 62.9zM144 272a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm144-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm80 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z\"]\n};\nvar faCommenting = faCommentDots;\nvar faFaceGrinSquint = {\n  prefix: 'far',\n  iconName: 'face-grin-squint',\n  icon: [512, 512, [128518, \"grin-squint\"], \"f585\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm349.5 52.4c18.7-4.4 35.9 12 25.5 28.1C350.4 374.6 306.3 400 255.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5zm-216-161.7l89.9 47.9c10.7 5.7 10.7 21.1 0 26.8l-89.9 47.9c-7.9 4.2-17.5-1.5-17.5-10.5c0-2.8 1-5.5 2.8-7.6l36-43.2-36-43.2c-1.8-2.1-2.8-4.8-2.8-7.6c0-9 9.6-14.7 17.5-10.5zM396 157.1c0 2.8-1 5.5-2.8 7.6l-36 43.2 36 43.2c1.8 2.1 2.8 4.8 2.8 7.6c0 9-9.6 14.7-17.5 10.5l-89.9-47.9c-10.7-5.7-10.7-21.1 0-26.8l89.9-47.9c7.9-4.2 17.5 1.5 17.5 10.5z\"]\n};\nvar faGrinSquint = faFaceGrinSquint;\nvar faHandPointer = {\n  prefix: 'far',\n  iconName: 'hand-pointer',\n  icon: [448, 512, [], \"f25a\", \"M160 64c0-8.8 7.2-16 16-16s16 7.2 16 16V200c0 10.3 6.6 19.5 16.4 22.8s20.6-.1 26.8-8.3c3-3.9 7.6-6.4 12.8-6.4c8.8 0 16 7.2 16 16c0 10.3 6.6 19.5 16.4 22.8s20.6-.1 26.8-8.3c3-3.9 7.6-6.4 12.8-6.4c7.8 0 14.3 5.6 15.7 13c1.6 8.2 7.3 15.1 15.1 18s16.7 1.6 23.3-3.6c2.7-2.1 6.1-3.4 9.9-3.4c8.8 0 16 7.2 16 16l0 16V392c0 39.8-32.2 72-72 72H272 212.3h-.9c-37.4 0-72.4-18.7-93.2-49.9L50.7 312.9c-4.9-7.4-2.9-17.3 4.4-22.2s17.3-2.9 22.2 4.4L116 353.2c5.9 8.8 16.8 12.7 26.9 9.7s17-12.4 17-23V320 64zM176 0c-35.3 0-64 28.7-64 64V261.7C91.2 238 55.5 232.8 28.5 250.7C-.9 270.4-8.9 310.1 10.8 339.5L78.3 440.8c29.7 44.5 79.6 71.2 133.1 71.2h.9H272h56c66.3 0 120-53.7 120-120V288l0-16c0-35.3-28.7-64-64-64c-4.5 0-8.8 .5-13 1.3c-11.7-15.4-30.2-25.3-51-25.3c-6.9 0-13.5 1.1-19.7 3.1C288.7 170.7 269.6 160 248 160c-2.7 0-5.4 .2-8 .5V64c0-35.3-28.7-64-64-64zm48 304c0-8.8-7.2-16-16-16s-16 7.2-16 16v96c0 8.8 7.2 16 16 16s16-7.2 16-16V304zm48-16c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16s16-7.2 16-16V304c0-8.8-7.2-16-16-16zm80 16c0-8.8-7.2-16-16-16s-16 7.2-16 16v96c0 8.8 7.2 16 16 16s16-7.2 16-16V304z\"]\n};\nvar faHandScissors = {\n  prefix: 'far',\n  iconName: 'hand-scissors',\n  icon: [512, 512, [], \"f257\", \"M.2 276.3c-1.2-35.3 26.4-65 61.7-66.2l3.3-.1L57 208.1C22.5 200.5 .7 166.3 8.3 131.8S50.2 75.5 84.7 83.2l173 38.3c2.3-2.9 4.7-5.7 7.1-8.5l18.4-20.3C299.9 74.5 323.5 64 348.3 64l10.2 0c54.1 0 104.1 28.7 131.3 75.4l1.5 2.6c13.6 23.2 20.7 49.7 20.7 76.6L512 344c0 66.3-53.7 120-120 120l-8 0-96 0c-35.3 0-64-28.7-64-64c0-2.8 .2-5.6 .5-8.3c-19.4-11-32.5-31.8-32.5-55.7c0-.8 0-1.6 0-2.4L66.4 338c-35.3 1.2-65-26.4-66.2-61.7zm63.4-18.2c-8.8 .3-15.7 7.7-15.4 16.5s7.7 15.7 16.5 15.4l161.5-5.6c9.8-.3 18.7 5.3 22.7 14.2s2.2 19.3-4.5 26.4c-2.8 2.9-4.4 6.7-4.4 11c0 8.8 7.2 16 16 16c9.1 0 17.4 5.1 21.5 13.3s3.2 17.9-2.3 25.1c-2 2.7-3.2 6-3.2 9.6c0 8.8 7.2 16 16 16l96 0 8 0c39.8 0 72-32.2 72-72l0-125.4c0-18.4-4.9-36.5-14.2-52.4l-1.5-2.6c-18.6-32-52.8-51.6-89.8-51.6l-10.2 0c-11.3 0-22 4.8-29.6 13.1l-17.5-15.9 17.5 15.9-18.4 20.3c-.6 .6-1.1 1.3-1.7 1.9l57 13.2c8.6 2 14 10.6 12 19.2s-10.6 14-19.2 12l-85.6-19.7L74.3 130c-8.6-1.9-17.2 3.5-19.1 12.2s3.5 17.2 12.2 19.1l187.5 41.6c10.2 2.3 17.8 10.9 18.7 21.4l.1 1c.6 6.6-1.5 13.1-5.8 18.1s-10.6 7.9-17.2 8.2L63.6 258.1z\"]\n};\nvar faFaceGrinTears = {\n  prefix: 'far',\n  iconName: 'face-grin-tears',\n  icon: [640, 512, [128514, \"grin-tears\"], \"f588\", \"M516.1 325.5c1 3 2.1 6 3.3 8.9c3.3 8.1 8.4 18.5 16.5 26.6c3.9 3.9 8.2 7.4 12.7 10.3C506.4 454.8 419.9 512 320 512s-186.4-57.2-228.6-140.6c4.5-2.9 8.7-6.3 12.7-10.3c8.1-8.1 13.2-18.6 16.5-26.6c1.2-2.9 2.3-5.9 3.3-8.9C152.5 406.2 229.5 464 320 464s167.5-57.8 196.1-138.5zM320 48c-101.4 0-185.8 72.5-204.3 168.5c-6.7-3.1-14.3-4.3-22.3-3.1c-6.8 .9-16.2 2.4-26.6 4.4C85.3 94.5 191.6 0 320 0S554.7 94.5 573.2 217.7c-10.3-2-19.8-3.5-26.6-4.4c-8-1.2-15.7 .1-22.3 3.1C505.8 120.5 421.4 48 320 48zM78.5 341.1C60 356.7 32 355.5 14.3 337.7c-18.7-18.7-19.1-48.8-.7-67.2c8.6-8.6 30.1-15.1 50.5-19.6c13-2.8 25.5-4.8 33.9-6c5.4-.8 9.9 3.7 9 9c-3.1 21.5-11.4 70.2-25.5 84.4c-.9 1-1.9 1.8-2.9 2.7zm483 0c-.8-.6-1.5-1.3-2.3-2c-.2-.2-.5-.4-.7-.7c-14.1-14.1-22.5-62.9-25.5-84.4c-.8-5.4 3.7-9.9 9-9c1 .1 2.2 .3 3.3 .5c8.2 1.2 19.2 3 30.6 5.5c20.4 4.4 41.9 10.9 50.5 19.6c18.4 18.4 18 48.5-.7 67.2c-17.7 17.7-45.7 19-64.2 3.4zM439 336.5C414.4 374.6 370.3 400 319.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5c18.7-4.4 35.9 12 25.5 28.1zM281.6 228.8l0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0 0 0zm160 0l0 0 0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0z\"]\n};\nvar faGrinTears = faFaceGrinTears;\nvar faCalendarXmark = {\n  prefix: 'far',\n  iconName: 'calendar-xmark',\n  icon: [512, 512, [\"calendar-times\"], \"f273\", \"M160 0c13.3 0 24 10.7 24 24V64H328V24c0-13.3 10.7-24 24-24s24 10.7 24 24V64h40c35.3 0 64 28.7 64 64v16 48V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V192 144 128c0-35.3 28.7-64 64-64h40V24c0-13.3 10.7-24 24-24zM432 192H80V448c0 8.8 7.2 16 16 16H416c8.8 0 16-7.2 16-16V192zm-95 89l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z\"]\n};\nvar faCalendarTimes = faCalendarXmark;\nvar faFileVideo = {\n  prefix: 'far',\n  iconName: 'file-video',\n  icon: [384, 512, [], \"f1c8\", \"M320 464c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM80 288c0-17.7 14.3-32 32-32h96c17.7 0 32 14.3 32 32v16l44.9-29.9c2-1.3 4.4-2.1 6.8-2.1c6.8 0 12.3 5.5 12.3 12.3V387.7c0 6.8-5.5 12.3-12.3 12.3c-2.4 0-4.8-.7-6.8-2.1L240 368v16c0 17.7-14.3 32-32 32H112c-17.7 0-32-14.3-32-32V288z\"]\n};\nvar faFilePdf = {\n  prefix: 'far',\n  iconName: 'file-pdf',\n  icon: [512, 512, [], \"f1c1\", \"M64 464H96v48H64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V288H336V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16zM176 352h32c30.9 0 56 25.1 56 56s-25.1 56-56 56H192v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V448 368c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24H192v48h16zm96-80h32c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H304c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H320v96h16zm80-112c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16s-7.2 16-16 16H448v32h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H448v48c0 8.8-7.2 16-16 16s-16-7.2-16-16V432 368z\"]\n};\nvar faComment = {\n  prefix: 'far',\n  iconName: 'comment',\n  icon: [512, 512, [128489, 61669], \"f075\", \"M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9c.1-.2 .2-.3 .3-.5z\"]\n};\nvar faEnvelope = {\n  prefix: 'far',\n  iconName: 'envelope',\n  icon: [512, 512, [128386, 9993, 61443], \"f0e0\", \"M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z\"]\n};\nvar faHourglass = {\n  prefix: 'far',\n  iconName: 'hourglass',\n  icon: [384, 512, [9203, 62032, \"hourglass-empty\"], \"f254\", \"M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48h8V67c0 40.3 16 79 44.5 107.5L158.1 256 76.5 337.5C48 366 32 404.7 32 445v19H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24h-8V445c0-40.3-16-79-44.5-107.5L225.9 256l81.5-81.5C336 146 352 107.3 352 67V48h8c13.3 0 24-10.7 24-24s-10.7-24-24-24H24zM192 289.9l81.5 81.5C293 391 304 417.4 304 445v19H80V445c0-27.6 11-54 30.5-73.5L192 289.9zm0-67.9l-81.5-81.5C91 121 80 94.6 80 67V48H304V67c0 27.6-11 54-30.5 73.5L192 222.1z\"]\n};\nvar faHourglassEmpty = faHourglass;\nvar faCalendarCheck = {\n  prefix: 'far',\n  iconName: 'calendar-check',\n  icon: [448, 512, [], \"f274\", \"M128 0c13.3 0 24 10.7 24 24V64H296V24c0-13.3 10.7-24 24-24s24 10.7 24 24V64h40c35.3 0 64 28.7 64 64v16 48V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192 144 128C0 92.7 28.7 64 64 64h40V24c0-13.3 10.7-24 24-24zM400 192H48V448c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V192zM329 297L217 409c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47 95-95c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z\"]\n};\nvar faHardDrive = {\n  prefix: 'far',\n  iconName: 'hard-drive',\n  icon: [512, 512, [128436, \"hdd\"], \"f0a0\", \"M64 80c-8.8 0-16 7.2-16 16V258c5.1-1.3 10.5-2 16-2H448c5.5 0 10.9 .7 16 2V96c0-8.8-7.2-16-16-16H64zM48 320v96c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V320c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM0 320V96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V320v96c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320zm280 48a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm120-24a24 24 0 1 1 0 48 24 24 0 1 1 0-48z\"]\n};\nvar faHdd = faHardDrive;\nvar faFaceGrinSquintTears = {\n  prefix: 'far',\n  iconName: 'face-grin-squint-tears',\n  icon: [512, 512, [129315, \"grin-squint-tears\"], \"f586\", \"M426.8 14.2C446-5 477.5-4.6 497.1 14.9s20 51 .7 70.3c-14.8 14.8-65.7 23.6-88.3 26.7c-5.6 .9-10.3-3.9-9.5-9.5C403.3 79.9 412 29 426.8 14.2zM75 75C158.2-8.3 284.5-22.2 382.2 33.2c-1.5 4.8-2.9 9.6-4.1 14.3c-3.1 12.2-5.5 24.6-7.3 35c-80.8-53.6-190.7-44.8-261.9 26.4C37.7 180.1 28.9 290 82.5 370.8c-10.5 1.8-22.9 4.2-35 7.3c-4.7 1.2-9.5 2.5-14.3 4.1C-22.2 284.5-8.2 158.2 75 75zm389.6 58.9c4.7-1.2 9.5-2.5 14.3-4.1C534.2 227.5 520.2 353.8 437 437c-83.2 83.2-209.5 97.2-307.2 41.8c1.5-4.8 2.8-9.6 4-14.3c3.1-12.2 5.5-24.6 7.3-35c80.8 53.6 190.7 44.8 261.9-26.4c71.2-71.2 80-181.1 26.4-261.9c10.5-1.8 22.9-4.2 35-7.3zm-105.4 93c10.1-16.3 33.9-16.9 37.9 1.9c9.5 44.4-3.7 93.5-39.3 129.1s-84.8 48.8-129.1 39.3c-18.7-4-18.2-27.8-1.9-37.9c25.2-15.7 50.2-35.4 73.6-58.8s43.1-48.4 58.8-73.6zM92 265.3l97.4-29.7c11.6-3.5 22.5 7.3 19 19l-29.7 97.4c-2.6 8.6-13.4 11.3-19.8 4.9c-2-2-3.2-4.6-3.4-7.3l-5.1-56.1-56.1-5.1c-2.8-.3-5.4-1.5-7.3-3.4c-6.3-6.3-3.6-17.2 4.9-19.8zm193-178.2c2 2 3.2 4.6 3.4 7.3l5.1 56.1 56.1 5.1c2.8 .3 5.4 1.5 7.3 3.4c6.3 6.3 3.6 17.2-4.9 19.8l-97.4 29.7c-11.6 3.5-22.5-7.3-19-19L265.3 92c2.6-8.6 13.4-11.3 19.8-4.9zM14.9 497.1c-19.6-19.6-20-51-.7-70.3C29 412 79.8 403.2 102.4 400.1c5.6-.9 10.3 3.9 9.5 9.5c-3.2 22.5-11.9 73.5-26.7 88.3C66 517 34.5 516.6 14.9 497.1z\"]\n};\nvar faGrinSquintTears = faFaceGrinSquintTears;\nvar faRectangleList = {\n  prefix: 'far',\n  iconName: 'rectangle-list',\n  icon: [576, 512, [\"list-alt\"], \"f022\", \"M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm96 64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm104 0c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm-72-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM96 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z\"]\n};\nvar faListAlt = faRectangleList;\nvar faCalendarPlus = {\n  prefix: 'far',\n  iconName: 'calendar-plus',\n  icon: [512, 512, [], \"f271\", \"M184 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H96c-35.3 0-64 28.7-64 64v16 48V448c0 35.3 28.7 64 64 64H416c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H376V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H184V24zM80 192H432V448c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16V192zm176 40c-13.3 0-24 10.7-24 24v48H184c-13.3 0-24 10.7-24 24s10.7 24 24 24h48v48c0 13.3 10.7 24 24 24s24-10.7 24-24V352h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V256c0-13.3-10.7-24-24-24z\"]\n};\nvar faCircleLeft = {\n  prefix: 'far',\n  iconName: 'circle-left',\n  icon: [512, 512, [61840, \"arrow-alt-circle-left\"], \"f359\", \"M48 256a208 208 0 1 1 416 0A208 208 0 1 1 48 256zm464 0A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM217.4 376.9c4.2 4.5 10.1 7.1 16.3 7.1c12.3 0 22.3-10 22.3-22.3V304h96c17.7 0 32-14.3 32-32V240c0-17.7-14.3-32-32-32H256V150.3c0-12.3-10-22.3-22.3-22.3c-6.2 0-12.1 2.6-16.3 7.1L117.5 242.2c-3.5 3.8-5.5 8.7-5.5 13.8s2 10.1 5.5 13.8l99.9 107.1z\"]\n};\nvar faArrowAltCircleLeft = faCircleLeft;\nvar faMoneyBill1 = {\n  prefix: 'far',\n  iconName: 'money-bill-1',\n  icon: [576, 512, [\"money-bill-alt\"], \"f3d1\", \"M112 112c0 35.3-28.7 64-64 64V336c35.3 0 64 28.7 64 64H464c0-35.3 28.7-64 64-64V176c-35.3 0-64-28.7-64-64H112zM0 128C0 92.7 28.7 64 64 64H512c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM176 256a112 112 0 1 1 224 0 112 112 0 1 1 -224 0zm80-48c0 8.8 7.2 16 16 16v64h-8c-8.8 0-16 7.2-16 16s7.2 16 16 16h24 24c8.8 0 16-7.2 16-16s-7.2-16-16-16h-8V208c0-8.8-7.2-16-16-16H272c-8.8 0-16 7.2-16 16z\"]\n};\nvar faMoneyBillAlt = faMoneyBill1;\nvar faClock = {\n  prefix: 'far',\n  iconName: 'clock',\n  icon: [512, 512, [128339, \"clock-four\"], \"f017\", \"M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z\"]\n};\nvar faClockFour = faClock;\nvar faKeyboard = {\n  prefix: 'far',\n  iconName: 'keyboard',\n  icon: [576, 512, [9000], \"f11c\", \"M64 112c-8.8 0-16 7.2-16 16V384c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H64zM0 128C0 92.7 28.7 64 64 64H512c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM176 320H400c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V336c0-8.8 7.2-16 16-16zm-72-72c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H120c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H120c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H200c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H200c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H280c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H280c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H360c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H360c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H440c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H440c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16z\"]\n};\nvar faClosedCaptioning = {\n  prefix: 'far',\n  iconName: 'closed-captioning',\n  icon: [576, 512, [], \"f20a\", \"M512 80c8.8 0 16 7.2 16 16V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16H512zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM200 208c14.2 0 27 6.1 35.8 16c8.8 9.9 24 10.7 33.9 1.9s10.7-24 1.9-33.9c-17.5-19.6-43.1-32-71.5-32c-53 0-96 43-96 96s43 96 96 96c28.4 0 54-12.4 71.5-32c8.8-9.9 8-25-1.9-33.9s-25-8-33.9 1.9c-8.8 9.9-21.6 16-35.8 16c-26.5 0-48-21.5-48-48s21.5-48 48-48zm144 48c0-26.5 21.5-48 48-48c14.2 0 27 6.1 35.8 16c8.8 9.9 24 10.7 33.9 1.9s10.7-24 1.9-33.9c-17.5-19.6-43.1-32-71.5-32c-53 0-96 43-96 96s43 96 96 96c28.4 0 54-12.4 71.5-32c8.8-9.9 8-25-1.9-33.9s-25-8-33.9 1.9c-8.8 9.9-21.6 16-35.8 16c-26.5 0-48-21.5-48-48z\"]\n};\nvar faImages = {\n  prefix: 'far',\n  iconName: 'images',\n  icon: [576, 512, [], \"f302\", \"M160 80H512c8.8 0 16 7.2 16 16V320c0 8.8-7.2 16-16 16H490.8L388.1 178.9c-4.4-6.8-12-10.9-20.1-10.9s-15.7 4.1-20.1 10.9l-52.2 79.8-12.4-16.9c-4.5-6.2-11.7-9.8-19.4-9.8s-14.8 3.6-19.4 9.8L175.6 336H160c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16zM96 96V320c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160c-35.3 0-64 28.7-64 64zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120V344c0 75.1 60.9 136 136 136H456c13.3 0 24-10.7 24-24s-10.7-24-24-24H136c-48.6 0-88-39.4-88-88V120zm208 24a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z\"]\n};\nvar faFaceGrin = {\n  prefix: 'far',\n  iconName: 'face-grin',\n  icon: [512, 512, [128512, \"grin\"], \"f580\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm349.5 52.4c18.7-4.4 35.9 12 25.5 28.1C350.4 374.6 306.3 400 255.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z\"]\n};\nvar faGrin = faFaceGrin;\nvar faFaceMeh = {\n  prefix: 'far',\n  iconName: 'face-meh',\n  icon: [512, 512, [128528, \"meh\"], \"f11a\", \"M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM176.4 240a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm192-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM184 328c-13.3 0-24 10.7-24 24s10.7 24 24 24H328c13.3 0 24-10.7 24-24s-10.7-24-24-24H184z\"]\n};\nvar faMeh = faFaceMeh;\nvar faIdCard = {\n  prefix: 'far',\n  iconName: 'id-card',\n  icon: [576, 512, [62147, \"drivers-license\"], \"f2c2\", \"M528 160V416c0 8.8-7.2 16-16 16H320c0-44.2-35.8-80-80-80H176c-44.2 0-80 35.8-80 80H64c-8.8 0-16-7.2-16-16V160H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM272 256a64 64 0 1 0 -128 0 64 64 0 1 0 128 0zm104-48c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376z\"]\n};\nvar faDriversLicense = faIdCard;\nvar faSun = {\n  prefix: 'far',\n  iconName: 'sun',\n  icon: [512, 512, [9728], \"f185\", \"M375.7 19.7c-1.5-8-6.9-14.7-14.4-17.8s-16.1-2.2-22.8 2.4L256 61.1 173.5 4.2c-6.7-4.6-15.3-5.5-22.8-2.4s-12.9 9.8-14.4 17.8l-18.1 98.5L19.7 136.3c-8 1.5-14.7 6.9-17.8 14.4s-2.2 16.1 2.4 22.8L61.1 256 4.2 338.5c-4.6 6.7-5.5 15.3-2.4 22.8s9.8 13 17.8 14.4l98.5 18.1 18.1 98.5c1.5 8 6.9 14.7 14.4 17.8s16.1 2.2 22.8-2.4L256 450.9l82.5 56.9c6.7 4.6 15.3 5.5 22.8 2.4s12.9-9.8 14.4-17.8l18.1-98.5 98.5-18.1c8-1.5 14.7-6.9 17.8-14.4s2.2-16.1-2.4-22.8L450.9 256l56.9-82.5c4.6-6.7 5.5-15.3 2.4-22.8s-9.8-12.9-17.8-14.4l-98.5-18.1L375.7 19.7zM269.6 110l65.6-45.2 14.4 78.3c1.8 9.8 9.5 17.5 19.3 19.3l78.3 14.4L402 242.4c-5.7 8.2-5.7 19 0 27.2l45.2 65.6-78.3 14.4c-9.8 1.8-17.5 9.5-19.3 19.3l-14.4 78.3L269.6 402c-8.2-5.7-19-5.7-27.2 0l-65.6 45.2-14.4-78.3c-1.8-9.8-9.5-17.5-19.3-19.3L64.8 335.2 110 269.6c5.7-8.2 5.7-19 0-27.2L64.8 176.8l78.3-14.4c9.8-1.8 17.5-9.5 19.3-19.3l14.4-78.3L242.4 110c8.2 5.7 19 5.7 27.2 0zM256 368a112 112 0 1 0 0-224 112 112 0 1 0 0 224zM192 256a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z\"]\n};\nvar faFaceLaughWink = {\n  prefix: 'far',\n  iconName: 'face-laugh-wink',\n  icon: [512, 512, [\"laugh-wink\"], \"f59c\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm130.7 57.9c-4.2-13.6 7.1-25.9 21.3-25.9H364.5c14.2 0 25.5 12.4 21.3 25.9C369 368.4 318.2 408 258.2 408s-110.8-39.6-127.5-94.1zM144.4 192a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm165.8 21.7c-7.6 8.1-20.2 8.5-28.3 .9s-8.5-20.2-.9-28.3c14.5-15.5 35.2-22.3 54.6-22.3s40.1 6.8 54.6 22.3c7.6 8.1 7.1 20.7-.9 28.3s-20.7 7.1-28.3-.9c-5.5-5.8-14.8-9.7-25.4-9.7s-19.9 3.8-25.4 9.7z\"]\n};\nvar faLaughWink = faFaceLaughWink;\nvar faCircleDown = {\n  prefix: 'far',\n  iconName: 'circle-down',\n  icon: [512, 512, [61466, \"arrow-alt-circle-down\"], \"f358\", \"M256 464a208 208 0 1 1 0-416 208 208 0 1 1 0 416zM256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM376.9 294.6c4.5-4.2 7.1-10.1 7.1-16.3c0-12.3-10-22.3-22.3-22.3H304V160c0-17.7-14.3-32-32-32l-32 0c-17.7 0-32 14.3-32 32v96H150.3C138 256 128 266 128 278.3c0 6.2 2.6 12.1 7.1 16.3l107.1 99.9c3.8 3.5 8.7 5.5 13.8 5.5s10.1-2 13.8-5.5l107.1-99.9z\"]\n};\nvar faArrowAltCircleDown = faCircleDown;\nvar faThumbsDown = {\n  prefix: 'far',\n  iconName: 'thumbs-down',\n  icon: [512, 512, [128078, 61576], \"f165\", \"M323.8 477.2c-38.2 10.9-78.1-11.2-89-49.4l-5.7-20c-3.7-13-10.4-25-19.5-35l-51.3-56.4c-8.9-9.8-8.2-25 1.6-33.9s25-8.2 33.9 1.6l51.3 56.4c14.1 15.5 24.4 34 30.1 54.1l5.7 20c3.6 12.7 16.9 20.1 29.7 16.5s20.1-16.9 16.5-29.7l-5.7-20c-5.7-19.9-14.7-38.7-26.6-55.5c-5.2-7.3-5.8-16.9-1.7-24.9s12.3-13 21.3-13L448 288c8.8 0 16-7.2 16-16c0-6.8-4.3-12.7-10.4-15c-7.4-2.8-13-9-14.9-16.7s.1-15.8 5.3-21.7c2.5-2.8 4-6.5 4-10.6c0-7.8-5.6-14.3-13-15.7c-8.2-1.6-15.1-7.3-18-15.2s-1.6-16.7 3.6-23.3c2.1-2.7 3.4-6.1 3.4-9.9c0-6.7-4.2-12.6-10.2-14.9c-11.5-4.5-17.7-16.9-14.4-28.8c.4-1.3 .6-2.8 .6-4.3c0-8.8-7.2-16-16-16H286.5c-12.6 0-25 3.7-35.5 10.7l-61.7 41.1c-11 7.4-25.9 4.4-33.3-6.7s-4.4-25.9 6.7-33.3l61.7-41.1c18.4-12.3 40-18.8 62.1-18.8H384c34.7 0 62.9 27.6 64 62c14.6 11.7 24 29.7 24 50c0 4.5-.5 8.8-1.3 13c15.4 11.7 25.3 30.2 25.3 51c0 6.5-1 12.8-2.8 18.7C504.8 238.3 512 254.3 512 272c0 35.3-28.6 64-64 64l-92.3 0c4.7 10.4 8.7 21.2 11.8 32.2l5.7 20c10.9 38.2-11.2 78.1-49.4 89zM32 384c-17.7 0-32-14.3-32-32V128c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32H32z\"]\n};\nvar faChessPawn = {\n  prefix: 'far',\n  iconName: 'chess-pawn',\n  icon: [320, 512, [9823], \"f443\", \"M232 152A72 72 0 1 0 88 152a72 72 0 1 0 144 0zm24 120H243.4l10.7 80H205.7L195 272H160 125l-10.7 80H65.9l10.7-80H64c-13.3 0-24-10.7-24-24s10.7-24 24-24c-15.1-20.1-24-45-24-72C40 85.7 93.7 32 160 32s120 53.7 120 120c0 27-8.9 51.9-24 72c13.3 0 24 10.7 24 24s-10.7 24-24 24zM52.7 464H267.3l-16.6-32H69.2L52.7 464zm207.9-80c12 0 22.9 6.7 28.4 17.3l26.5 51.2c3 5.8 4.6 12.2 4.6 18.7c0 22.5-18.2 40.8-40.8 40.8H40.8C18.2 512 0 493.8 0 471.2c0-6.5 1.6-12.9 4.6-18.7l26.5-51.2C36.5 390.7 47.5 384 59.5 384h201z\"]\n};\nvar faCreditCard = {\n  prefix: 'far',\n  iconName: 'credit-card',\n  icon: [576, 512, [128179, 62083, \"credit-card-alt\"], \"f09d\", \"M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z\"]\n};\nvar faCreditCardAlt = faCreditCard;\nvar faBell = {\n  prefix: 'far',\n  iconName: 'bell',\n  icon: [448, 512, [128276, 61602], \"f0f3\", \"M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z\"]\n};\nvar faFile = {\n  prefix: 'far',\n  iconName: 'file',\n  icon: [384, 512, [128196, 128459, 61462], \"f15b\", \"M320 464c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64z\"]\n};\nvar faHospital = {\n  prefix: 'far',\n  iconName: 'hospital',\n  icon: [640, 512, [127973, 62589, \"hospital-alt\", \"hospital-wide\"], \"f0f8\", \"M232 0c-39.8 0-72 32.2-72 72v8H72C32.2 80 0 112.2 0 152V440c0 39.8 32.2 72 72 72h.2 .2 .2 .2 .2H73h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2H75h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2H77h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2H79h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2H82h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2H85h.2 .2 .2 .2H86h.2 .2 .2 .2H87h.2 .2 .2 .2H88h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2H98h.2 .2 .2 .2H99h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2v0H456h8v0H568c39.8 0 72-32.2 72-72V152c0-39.8-32.2-72-72-72H480V72c0-39.8-32.2-72-72-72H232zM480 128h88c13.3 0 24 10.7 24 24v40H536c-13.3 0-24 10.7-24 24s10.7 24 24 24h56v48H536c-13.3 0-24 10.7-24 24s10.7 24 24 24h56V440c0 13.3-10.7 24-24 24H480V336 128zM72 128h88V464h-.1-.2-.2-.2H159h-.2-.2-.2H158h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H154h-.2-.2-.2H153h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H150h-.2-.2-.2H149h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H146h-.2-.2-.2H145h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H142h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H139h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H136h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H133h-.2-.2-.2-.2-.2-.2-.2-.2H131h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H128h-.2-.2-.2-.2-.2-.2-.2-.2H126h-.2-.2-.2-.2-.2-.2-.2-.2H124h-.2-.2-.2-.2-.2-.2-.2-.2H122h-.2-.2-.2-.2-.2-.2-.2-.2H120h-.2-.2-.2-.2-.2-.2-.2-.2H118h-.2-.2-.2-.2-.2-.2-.2-.2H116h-.2-.2-.2-.2-.2-.2-.2-.2H114h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H111h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H108h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H105h-.2-.2-.2-.2H104h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H100h-.2-.2-.2-.2H99h-.2-.2-.2-.2H98h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H88h-.2-.2-.2-.2H87h-.2-.2-.2-.2H86h-.2-.2-.2-.2H85h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H82h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H79h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H77h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H75h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H73h-.2-.2-.2-.2-.2H72c-13.2 0-24-10.7-24-24V336h56c13.3 0 24-10.7 24-24s-10.7-24-24-24H48V240h56c13.3 0 24-10.7 24-24s-10.7-24-24-24H48V152c0-13.3 10.7-24 24-24zM208 72c0-13.3 10.7-24 24-24H408c13.3 0 24 10.7 24 24V336 464H368V400c0-26.5-21.5-48-48-48s-48 21.5-48 48v64H208V72zm88 24v24H272c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h24v24c0 8.8 7.2 16 16 16h16c8.8 0 16-7.2 16-16V168h24c8.8 0 16-7.2 16-16V136c0-8.8-7.2-16-16-16H344V96c0-8.8-7.2-16-16-16H312c-8.8 0-16 7.2-16 16z\"]\n};\nvar faHospitalAlt = faHospital;\nvar faHospitalWide = faHospital;\nvar faChessRook = {\n  prefix: 'far',\n  iconName: 'chess-rook',\n  icon: [448, 512, [9820], \"f447\", \"M80 80V192c0 2.5 1.2 4.9 3.2 6.4l51.2 38.4c6.8 5.1 10.4 13.4 9.5 21.9L133.5 352H85.2l9.4-85L54.4 236.8C40.3 226.2 32 209.6 32 192V72c0-22.1 17.9-40 40-40H376c22.1 0 40 17.9 40 40V192c0 17.6-8.3 34.2-22.4 44.8L353.4 267l9.4 85H314.5l-10.4-93.3c-.9-8.4 2.7-16.8 9.5-21.9l51.2-38.4c2-1.5 3.2-3.9 3.2-6.4V80H304v24c0 13.3-10.7 24-24 24s-24-10.7-24-24V80H192v24c0 13.3-10.7 24-24 24s-24-10.7-24-24V80H80zm4.7 384H363.3l-16.6-32H101.2L84.7 464zm271.9-80c12 0 22.9 6.7 28.4 17.3l26.5 51.2c3 5.8 4.6 12.2 4.6 18.7c0 22.5-18.2 40.8-40.8 40.8H72.8C50.2 512 32 493.8 32 471.2c0-6.5 1.6-12.9 4.6-18.7l26.5-51.2C68.5 390.7 79.5 384 91.5 384h265zM208 288c-8.8 0-16-7.2-16-16V224c0-17.7 14.3-32 32-32s32 14.3 32 32v48c0 8.8-7.2 16-16 16H208z\"]\n};\nvar faStarHalf = {\n  prefix: 'far',\n  iconName: 'star-half',\n  icon: [576, 512, [61731], \"f089\", \"M293.3 .6c10.9 2.5 18.6 12.2 18.6 23.4V408.7c0 8.9-4.9 17-12.7 21.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5c4.9-10.1 16.1-15.4 27-12.9zM263.9 128.4l-28.6 58.8c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l92.5-49.4V128.4z\"]\n};\nvar faChessKing = {\n  prefix: 'far',\n  iconName: 'chess-king',\n  icon: [448, 512, [9818], \"f43f\", \"M248 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V56H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h32v40H59.6C26.7 144 0 170.7 0 203.6c0 8.2 1.7 16.3 4.9 23.8L59.1 352h52.3L49 208.2c-.6-1.5-1-3-1-4.6c0-6.4 5.2-11.6 11.6-11.6H224 388.4c6.4 0 11.6 5.2 11.6 11.6c0 1.6-.3 3.2-1 4.6L336.5 352h52.3l54.2-124.6c3.3-7.5 4.9-15.6 4.9-23.8c0-32.9-26.7-59.6-59.6-59.6H248V104h32c13.3 0 24-10.7 24-24s-10.7-24-24-24H248V24zM101.2 432H346.8l16.6 32H84.7l16.6-32zm283.7-30.7c-5.5-10.6-16.5-17.3-28.4-17.3H91.5c-12 0-22.9 6.7-28.4 17.3L36.6 452.5c-3 5.8-4.6 12.2-4.6 18.7C32 493.8 50.2 512 72.8 512H375.2c22.5 0 40.8-18.2 40.8-40.8c0-6.5-1.6-12.9-4.6-18.7l-26.5-51.2z\"]\n};\nvar faCircleUser = {\n  prefix: 'far',\n  iconName: 'circle-user',\n  icon: [512, 512, [62142, \"user-circle\"], \"f2bd\", \"M406.5 399.6C387.4 352.9 341.5 320 288 320H224c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3h64c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z\"]\n};\nvar faUserCircle = faCircleUser;\nvar faCopy = {\n  prefix: 'far',\n  iconName: 'copy',\n  icon: [448, 512, [], \"f0c5\", \"M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H96V128H64z\"]\n};\nvar faShareFromSquare = {\n  prefix: 'far',\n  iconName: 'share-from-square',\n  icon: [576, 512, [61509, \"share-square\"], \"f14d\", \"M400 255.4V240 208c0-8.8-7.2-16-16-16H352 336 289.5c-50.9 0-93.9 33.5-108.3 79.6c-3.3-9.4-5.2-19.8-5.2-31.6c0-61.9 50.1-112 112-112h48 16 32c8.8 0 16-7.2 16-16V80 64.6L506 160 400 255.4zM336 240h16v48c0 17.7 14.3 32 32 32h3.7c7.9 0 15.5-2.9 21.4-8.2l139-125.1c7.6-6.8 11.9-16.5 11.9-26.7s-4.3-19.9-11.9-26.7L409.9 8.9C403.5 3.2 395.3 0 386.7 0C367.5 0 352 15.5 352 34.7V80H336 304 288c-88.4 0-160 71.6-160 160c0 60.4 34.6 99.1 63.9 120.9c5.9 4.4 11.5 8.1 16.7 11.2c4.4 2.7 8.5 4.9 11.9 6.6c3.4 1.7 6.2 3 8.2 3.9c2.2 1 4.6 1.4 7.1 1.4h2.5c9.8 0 17.8-8 17.8-17.8c0-7.8-5.3-14.7-11.6-19.5l0 0c-.4-.3-.7-.5-1.1-.8c-1.7-1.1-3.4-2.5-5-4.1c-.8-.8-1.7-1.6-2.5-2.6s-1.6-1.9-2.4-2.9c-1.8-2.5-3.5-5.3-5-8.5c-2.6-6-4.3-13.3-4.3-22.4c0-36.1 29.3-65.5 65.5-65.5H304h32zM72 32C32.2 32 0 64.2 0 104V440c0 39.8 32.2 72 72 72H408c39.8 0 72-32.2 72-72V376c0-13.3-10.7-24-24-24s-24 10.7-24 24v64c0 13.3-10.7 24-24 24H72c-13.3 0-24-10.7-24-24V104c0-13.3 10.7-24 24-24h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H72z\"]\n};\nvar faShareSquare = faShareFromSquare;\nvar faCopyright = {\n  prefix: 'far',\n  iconName: 'copyright',\n  icon: [512, 512, [169], \"f1f9\", \"M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM199.4 312.6c-31.2-31.2-31.2-81.9 0-113.1s81.9-31.2 113.1 0c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9c-50-50-131-50-181 0s-50 131 0 181s131 50 181 0c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0c-31.2 31.2-81.9 31.2-113.1 0z\"]\n};\nvar faMap = {\n  prefix: 'far',\n  iconName: 'map',\n  icon: [576, 512, [128506, 62072], \"f279\", \"M565.6 36.2C572.1 40.7 576 48.1 576 56V392c0 10-6.2 18.9-15.5 22.4l-168 64c-5.2 2-10.9 2.1-16.1 .3L192.5 417.5l-160 61c-7.4 2.8-15.7 1.8-22.2-2.7S0 463.9 0 456V120c0-10 6.1-18.9 15.5-22.4l168-64c5.2-2 10.9-2.1 16.1-.3L383.5 94.5l160-61c7.4-2.8 15.7-1.8 22.2 2.7zM48 136.5V421.2l120-45.7V90.8L48 136.5zM360 422.7V137.3l-144-48V374.7l144 48zm48-1.5l120-45.7V90.8L408 136.5V421.2z\"]\n};\nvar faBellSlash = {\n  prefix: 'far',\n  iconName: 'bell-slash',\n  icon: [640, 512, [128277, 61943], \"f1f6\", \"M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L542.6 400c2.7-7.8 1.3-16.5-3.9-23l-14.9-18.6C495.5 322.9 480 278.8 480 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V49.9c-43.9 7-81.5 32.7-104.4 68.7L38.8 5.1zM221.7 148.4C239.6 117.1 273.3 96 312 96h8 8c57.4 0 104 46.6 104 104v33.4c0 32.7 6.4 64.8 18.7 94.5L221.7 148.4zM406.2 416l-60.9-48H168.3c21.2-32.8 34.4-70.3 38.4-109.1L160 222.1v11.4c0 45.4-15.5 89.5-43.8 124.9L101.3 377c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6H406.2zM384 448H320 256c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z\"]\n};\nvar faHandLizard = {\n  prefix: 'far',\n  iconName: 'hand-lizard',\n  icon: [512, 512, [], \"f258\", \"M72 112c-13.3 0-24 10.7-24 24s10.7 24 24 24H240c35.3 0 64 28.7 64 64s-28.7 64-64 64H136c-13.3 0-24 10.7-24 24s10.7 24 24 24H288c4.5 0 8.9 1.3 12.7 3.6l64 40c7 4.4 11.3 12.1 11.3 20.4v24c0 13.3-10.7 24-24 24s-24-10.7-24-24V413.3L281.1 384H136c-39.8 0-72-32.2-72-72s32.2-72 72-72H240c8.8 0 16-7.2 16-16s-7.2-16-16-16H72c-39.8 0-72-32.2-72-72S32.2 64 72 64H281.6c46.7 0 90.9 21.5 119.7 58.3l78.4 100.1c20.9 26.7 32.3 59.7 32.3 93.7V424c0 13.3-10.7 24-24 24s-24-10.7-24-24V316.1c0-23.2-7.8-45.8-22.1-64.1L363.5 151.9c-19.7-25.2-49.9-39.9-81.9-39.9H72z\"]\n};\nvar faFaceSmile = {\n  prefix: 'far',\n  iconName: 'face-smile',\n  icon: [512, 512, [128578, \"smile\"], \"f118\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm177.6 62.1C192.8 334.5 218.8 352 256 352s63.2-17.5 78.4-33.9c9-9.7 24.2-10.4 33.9-1.4s10.4 24.2 1.4 33.9c-22 23.8-60 49.4-113.6 49.4s-91.7-25.5-113.6-49.4c-9-9.7-8.4-24.9 1.4-33.9s24.9-8.4 33.9 1.4zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z\"]\n};\nvar faSmile = faFaceSmile;\nvar faHandPeace = {\n  prefix: 'far',\n  iconName: 'hand-peace',\n  icon: [512, 512, [9996], \"f25b\", \"M250.8 1.4c-35.2-3.7-66.6 21.8-70.3 57L174 119 156.7 69.6C145 36.3 108.4 18.8 75.1 30.5S24.2 78.8 35.9 112.1L88.7 262.2C73.5 276.7 64 297.3 64 320v0 24c0 92.8 75.2 168 168 168h48c92.8 0 168-75.2 168-168V272 256 224c0-35.3-28.7-64-64-64c-7.9 0-15.4 1.4-22.4 4c-10.4-21.3-32.3-36-57.6-36c-.7 0-1.5 0-2.2 0l5.9-56.3c3.7-35.2-21.8-66.6-57-70.3zm-.2 155.4C243.9 166.9 240 179 240 192v48c0 .7 0 1.4 0 2c-5.1-1.3-10.5-2-16-2h-7.4l-5.4-15.3 17-161.3c.9-8.8 8.8-15.2 17.6-14.2s15.2 8.8 14.2 17.6l-9.5 90.1zM111.4 85.6L165.7 240H144c-4 0-8 .3-11.9 .9L81.2 96.2c-2.9-8.3 1.5-17.5 9.8-20.4s17.5 1.5 20.4 9.8zM288 192c0-8.8 7.2-16 16-16s16 7.2 16 16v32 16c0 8.8-7.2 16-16 16s-16-7.2-16-16V192zm38.4 108c10.4 21.3 32.3 36 57.6 36c5.5 0 10.9-.7 16-2v10c0 66.3-53.7 120-120 120H232c-66.3 0-120-53.7-120-120l0-24 0 0c0-17.7 14.3-32 32-32h80c8.8 0 16 7.2 16 16s-7.2 16-16 16H184c-13.3 0-24 10.7-24 24s10.7 24 24 24h40c35.3 0 64-28.7 64-64c0-.7 0-1.4 0-2c5.1 1.3 10.5 2 16 2c7.9 0 15.4-1.4 22.4-4zM400 272c0 8.8-7.2 16-16 16s-16-7.2-16-16V240 224c0-8.8 7.2-16 16-16s16 7.2 16 16v32 16z\"]\n};\nvar faFaceGrinHearts = {\n  prefix: 'far',\n  iconName: 'face-grin-hearts',\n  icon: [512, 512, [128525, \"grin-hearts\"], \"f584\", \"M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm349.5 52.4c18.7-4.4 35.9 12 25.5 28.1C350.4 374.6 306.3 400 255.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5zM215.3 137.1c17.8 4.8 28.4 23.1 23.6 40.8l-17.4 65c-2.3 8.5-11.1 13.6-19.6 11.3l-65.1-17.4c-17.8-4.8-28.4-23.1-23.6-40.8s23.1-28.4 40.8-23.6l16.1 4.3 4.3-16.1c4.8-17.8 23.1-28.4 40.8-23.6zm122.3 23.6l4.3 16.1 16.1-4.3c17.8-4.8 36.1 5.8 40.8 23.6s-5.8 36.1-23.6 40.8l-65.1 17.4c-8.5 2.3-17.3-2.8-19.6-11.3l-17.4-65c-4.8-17.8 5.8-36.1 23.6-40.8s36.1 5.8 40.9 23.6z\"]\n};\nvar faGrinHearts = faFaceGrinHearts;\nvar faBuilding = {\n  prefix: 'far',\n  iconName: 'building',\n  icon: [384, 512, [127970, 61687], \"f1ad\", \"M64 48c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16h80V400c0-26.5 21.5-48 48-48s48 21.5 48 48v64h80c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm88 40c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16v48c0 8.8-7.2 16-16 16H104c-8.8 0-16-7.2-16-16V104zM232 88h48c8.8 0 16 7.2 16 16v48c0 8.8-7.2 16-16 16H232c-8.8 0-16-7.2-16-16V104c0-8.8 7.2-16 16-16zM88 232c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16v48c0 8.8-7.2 16-16 16H104c-8.8 0-16-7.2-16-16V232zm144-16h48c8.8 0 16 7.2 16 16v48c0 8.8-7.2 16-16 16H232c-8.8 0-16-7.2-16-16V232c0-8.8 7.2-16 16-16z\"]\n};\nvar faFaceGrinBeamSweat = {\n  prefix: 'far',\n  iconName: 'face-grin-beam-sweat',\n  icon: [512, 512, [128517, \"grin-beam-sweat\"], \"f583\", \"M476.8 126.3C497.1 120.8 512 102.7 512 81c0-20-28.6-60.4-41.6-77.7c-3.2-4.4-9.6-4.4-12.8 0c-9.5 12.6-27.1 37.2-36 57.5c-.3 .7-.6 1.4-.9 2.1C417.8 69.7 416 76 416 81c0 26 21.5 47 48 47c4.4 0 8.7-.6 12.8-1.7zM395.4 41.2C355.3 15.2 307.4 0 256 0C114.6 0 0 114.6 0 256S114.6 512 256 512s256-114.6 256-256c0-35.8-7.3-69.9-20.6-100.8c-8.6 3.1-17.8 4.8-27.4 4.8c-8.9 0-17.6-1.5-25.7-4.2C454.7 185.5 464 219.7 464 256c0 114.9-93.1 208-208 208S48 370.9 48 256S141.1 48 256 48c48.7 0 93.4 16.7 128.9 44.7c-.6-3.8-.9-7.7-.9-11.7c0-11.4 3.8-22.4 7.1-30.5c1.3-3.1 2.7-6.2 4.3-9.3zM375 336.5c10.4-16.1-6.8-32.5-25.5-28.1c-28.9 6.8-60.5 10.5-93.6 10.5s-64.7-3.7-93.6-10.5c-18.7-4.4-35.9 12-25.5 28.1c24.6 38.1 68.7 63.5 119.1 63.5s94.5-25.4 119.1-63.5zM217.6 228.8l0 0 0 0 0 0c2.1 2.8 5.7 3.9 8.9 2.8s5.5-4.1 5.5-7.6c0-17.9-6.7-35.6-16.6-48.8c-9.8-13-23.9-23.2-39.4-23.2s-29.6 10.2-39.4 23.2C126.7 188.4 120 206.1 120 224c0 3.4 2.2 6.5 5.5 7.6s6.9 0 8.9-2.8l0 0 0 0 0 0 .2-.2c.2-.2 .4-.5 .7-.9c.6-.8 1.6-2 2.8-3.4c2.5-2.8 6-6.6 10.2-10.3c8.8-7.8 18.8-14 27.7-14s18.9 6.2 27.7 14c4.2 3.7 7.7 7.5 10.2 10.3c1.2 1.4 2.2 2.6 2.8 3.4c.3 .4 .6 .7 .7 .9l.2 .2 0 0zm160 0l0 0 0 0c2.1 2.8 5.7 3.9 8.9 2.8s5.5-4.1 5.5-7.6c0-17.9-6.7-35.6-16.6-48.8c-9.8-13-23.9-23.2-39.4-23.2s-29.6 10.2-39.4 23.2C286.7 188.4 280 206.1 280 224c0 3.4 2.2 6.5 5.5 7.6s6.9 0 8.9-2.8l0 0 0 0 0 0 .2-.2c.2-.2 .4-.5 .7-.9c.6-.8 1.6-2 2.8-3.4c2.5-2.8 6-6.6 10.2-10.3c8.8-7.8 18.8-14 27.7-14s18.9 6.2 27.7 14c4.2 3.7 7.7 7.5 10.2 10.3c1.2 1.4 2.2 2.6 2.8 3.4c.3 .4 .6 .7 .7 .9l.2 .2 0 0 0 0z\"]\n};\nvar faGrinBeamSweat = faFaceGrinBeamSweat;\nvar faMoon = {\n  prefix: 'far',\n  iconName: 'moon',\n  icon: [384, 512, [127769, 9214], \"f186\", \"M144.7 98.7c-21 34.1-33.1 74.3-33.1 117.3c0 98 62.8 181.4 150.4 211.7c-12.4 2.8-25.3 4.3-38.6 4.3C126.6 432 48 353.3 48 256c0-68.9 39.4-128.4 96.8-157.3zm62.1-66C91.1 41.2 0 137.9 0 256C0 379.7 100 480 223.5 480c47.8 0 92-15 128.4-40.6c1.9-1.3 3.7-2.7 5.5-4c4.8-3.6 9.4-7.4 13.9-11.4c2.7-2.4 5.3-4.8 7.9-7.3c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-3.7 .6-7.4 1.2-11.1 1.6c-5 .5-10.1 .9-15.3 1c-1.2 0-2.5 0-3.7 0c-.1 0-.2 0-.3 0c-96.8-.2-175.2-78.9-175.2-176c0-54.8 24.9-103.7 64.1-136c1-.9 2.1-1.7 3.2-2.6c4-3.2 8.2-6.2 12.5-9c3.1-2 6.3-4 9.6-5.8c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-3.6-.3-7.1-.5-10.7-.6c-2.7-.1-5.5-.1-8.2-.1c-3.3 0-6.5 .1-9.8 .2c-2.3 .1-4.6 .2-6.9 .4z\"]\n};\nvar faCalendar = {\n  prefix: 'far',\n  iconName: 'calendar',\n  icon: [448, 512, [128197, 128198], \"f133\", \"M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z\"]\n};\nvar faFaceGrinTongueWink = {\n  prefix: 'far',\n  iconName: 'face-grin-tongue-wink',\n  icon: [512, 512, [128540, \"grin-tongue-wink\"], \"f58b\", \"M348.3 442.4c2.4-8.4 3.7-17.3 3.7-26.4V363.5c8.8-8 16.6-17.1 23-27c10.4-16.1-6.8-32.5-25.5-28.1c-28.9 6.8-60.5 10.5-93.6 10.5s-64.7-3.7-93.6-10.5c-18.7-4.4-35.9 12-25.5 28.1c6.5 10 14.3 19.1 23.1 27.1V416c0 9.2 1.3 18 3.7 26.4C95.1 408.4 48 337.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 81.7-47.1 152.4-115.7 186.4zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM159.6 220c10.6 0 19.9 3.8 25.4 9.7c7.6 8.1 20.2 8.5 28.3 .9s8.5-20.2 .9-28.3C199.7 186.8 179 180 159.6 180s-40.1 6.8-54.6 22.3c-7.6 8.1-7.1 20.7 .9 28.3s20.7 7.1 28.3-.9c5.5-5.8 14.8-9.7 25.4-9.7zm176.7 12a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm-.4-72a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm0 128a80 80 0 1 0 0-160 80 80 0 1 0 0 160zM320 416c0 35.3-28.7 64-64 64s-64-28.7-64-64V378.6c0-14.7 11.9-26.6 26.6-26.6h2c11.3 0 21.1 7.9 23.6 18.9c2.8 12.6 20.8 12.6 23.6 0c2.5-11.1 12.3-18.9 23.6-18.9h2c14.7 0 26.6 11.9 26.6 26.6V416z\"]\n};\nvar faGrinTongueWink = faFaceGrinTongueWink;\nvar faClone = {\n  prefix: 'far',\n  iconName: 'clone',\n  icon: [512, 512, [], \"f24d\", \"M64 464H288c8.8 0 16-7.2 16-16V384h48v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h64v48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16zM224 304H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H224c-8.8 0-16 7.2-16 16V288c0 8.8 7.2 16 16 16zm-64-16V64c0-35.3 28.7-64 64-64H448c35.3 0 64 28.7 64 64V288c0 35.3-28.7 64-64 64H224c-35.3 0-64-28.7-64-64z\"]\n};\nvar faFaceAngry = {\n  prefix: 'far',\n  iconName: 'face-angry',\n  icon: [512, 512, [128544, \"angry\"], \"f556\", \"M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm72.4-118.5c9.7-9 10.2-24.2 1.2-33.9C315.3 344.3 290.6 328 256 328s-59.3 16.3-73.5 31.6c-9 9.7-8.5 24.9 1.2 33.9s24.9 8.5 33.9-1.2c7.4-7.9 20-16.4 38.5-16.4s31.1 8.5 38.5 16.4c9 9.7 24.2 10.2 33.9 1.2zM176.4 272c17.7 0 32-14.3 32-32c0-1.5-.1-3-.3-4.4l10.9 3.6c8.4 2.8 17.4-1.7 20.2-10.1s-1.7-17.4-10.1-20.2l-96-32c-8.4-2.8-17.4 1.7-20.2 10.1s1.7 17.4 10.1 20.2l30.7 10.2c-5.8 5.8-9.3 13.8-9.3 22.6c0 17.7 14.3 32 32 32zm192-32c0-8.9-3.6-17-9.5-22.8l30.2-10.1c8.4-2.8 12.9-11.9 10.1-20.2s-11.9-12.9-20.2-10.1l-96 32c-8.4 2.8-12.9 11.9-10.1 20.2s11.9 12.9 20.2 10.1l11.7-3.9c-.2 1.5-.3 3.1-.3 4.7c0 17.7 14.3 32 32 32s32-14.3 32-32z\"]\n};\nvar faAngry = faFaceAngry;\nvar faRectangleXmark = {\n  prefix: 'far',\n  iconName: 'rectangle-xmark',\n  icon: [512, 512, [62164, \"rectangle-times\", \"times-rectangle\", \"window-close\"], \"f410\", \"M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm175 79c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z\"]\n};\nvar faRectangleTimes = faRectangleXmark;\nvar faTimesRectangle = faRectangleXmark;\nvar faWindowClose = faRectangleXmark;\nvar faPaperPlane = {\n  prefix: 'far',\n  iconName: 'paper-plane',\n  icon: [512, 512, [61913], \"f1d8\", \"M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z\"]\n};\nvar faLifeRing = {\n  prefix: 'far',\n  iconName: 'life-ring',\n  icon: [512, 512, [], \"f1cd\", \"M385.1 419.1C349.7 447.2 304.8 464 256 464s-93.7-16.8-129.1-44.9l80.4-80.4c14.3 8.4 31 13.3 48.8 13.3s34.5-4.8 48.8-13.3l80.4 80.4zm68.1 .2C489.9 374.9 512 318.1 512 256s-22.1-118.9-58.8-163.3L465 81c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L419.3 58.8C374.9 22.1 318.1 0 256 0S137.1 22.1 92.7 58.8L81 47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9L58.8 92.7C22.1 137.1 0 193.9 0 256s22.1 118.9 58.8 163.3L47 431c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l11.8-11.8C137.1 489.9 193.9 512 256 512s118.9-22.1 163.3-58.8L431 465c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-11.8-11.8zm-34.1-34.1l-80.4-80.4c8.4-14.3 13.3-31 13.3-48.8s-4.8-34.5-13.3-48.8l80.4-80.4C447.2 162.3 464 207.2 464 256s-16.8 93.7-44.9 129.1zM385.1 92.9l-80.4 80.4c-14.3-8.4-31-13.3-48.8-13.3s-34.5 4.8-48.8 13.3L126.9 92.9C162.3 64.8 207.2 48 256 48s93.7 16.8 129.1 44.9zM173.3 304.8L92.9 385.1C64.8 349.7 48 304.8 48 256s16.8-93.7 44.9-129.1l80.4 80.4c-8.4 14.3-13.3 31-13.3 48.8s4.8 34.5 13.3 48.8zM208 256a48 48 0 1 1 96 0 48 48 0 1 1 -96 0z\"]\n};\nvar faFaceGrimace = {\n  prefix: 'far',\n  iconName: 'face-grimace',\n  icon: [512, 512, [128556, \"grimace\"], \"f57f\", \"M256 48a208 208 0 1 0 0 416 208 208 0 1 0 0-416zM512 256A256 256 0 1 1 0 256a256 256 0 1 1 512 0zM168 320c-13.3 0-24 10.7-24 24s10.7 24 24 24h8V320h-8zm40 48h32V320H208v48zm96 0V320H272v48h32zm32 0h8c13.3 0 24-10.7 24-24s-10.7-24-24-24h-8v48zM168 288H344c30.9 0 56 25.1 56 56s-25.1 56-56 56H168c-30.9 0-56-25.1-56-56s25.1-56 56-56zm-23.6-80a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z\"]\n};\nvar faGrimace = faFaceGrimace;\nvar faCalendarMinus = {\n  prefix: 'far',\n  iconName: 'calendar-minus',\n  icon: [512, 512, [], \"f272\", \"M160 0c13.3 0 24 10.7 24 24V64H328V24c0-13.3 10.7-24 24-24s24 10.7 24 24V64h40c35.3 0 64 28.7 64 64v16 48V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V192 144 128c0-35.3 28.7-64 64-64h40V24c0-13.3 10.7-24 24-24zM432 192H80V448c0 8.8 7.2 16 16 16H416c8.8 0 16-7.2 16-16V192zM328 352H184c-13.3 0-24-10.7-24-24s10.7-24 24-24H328c13.3 0 24 10.7 24 24s-10.7 24-24 24z\"]\n};\nvar faCircleXmark = {\n  prefix: 'far',\n  iconName: 'circle-xmark',\n  icon: [512, 512, [61532, \"times-circle\", \"xmark-circle\"], \"f057\", \"M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z\"]\n};\nvar faTimesCircle = faCircleXmark;\nvar faXmarkCircle = faCircleXmark;\nvar faThumbsUp = {\n  prefix: 'far',\n  iconName: 'thumbs-up',\n  icon: [512, 512, [128077, 61575], \"f164\", \"M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13L448 224c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3 .6 2.8 .6 4.3c0 8.8-7.2 16-16 16H286.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7C504.8 273.7 512 257.7 512 240c0-35.3-28.6-64-64-64l-92.3 0c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32V448c0 17.7 14.3 32 32 32H96c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z\"]\n};\nvar faWindowMinimize = {\n  prefix: 'far',\n  iconName: 'window-minimize',\n  icon: [512, 512, [128469], \"f2d1\", \"M24 432c-13.3 0-24 10.7-24 24s10.7 24 24 24H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H24z\"]\n};\nvar faSquareFull = {\n  prefix: 'far',\n  iconName: 'square-full',\n  icon: [512, 512, [128997, 128998, 128999, 129000, 129001, 129002, 129003, 11035, 11036], \"f45c\", \"M464 48V464H48V48H464zM48 0H0V48 464v48H48 464h48V464 48 0H464 48z\"]\n};\nvar faNoteSticky = {\n  prefix: 'far',\n  iconName: 'note-sticky',\n  icon: [448, 512, [62026, \"sticky-note\"], \"f249\", \"M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H288V352c0-17.7 14.3-32 32-32h80V96c0-8.8-7.2-16-16-16H64zM288 480H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V320v5.5c0 17-6.7 33.3-18.7 45.3l-90.5 90.5c-12 12-28.3 18.7-45.3 18.7H288z\"]\n};\nvar faStickyNote = faNoteSticky;\nvar faFaceSadTear = {\n  prefix: 'far',\n  iconName: 'face-sad-tear',\n  icon: [512, 512, [128546, \"sad-tear\"], \"f5b4\", \"M175.9 448c-35-.1-65.5-22.6-76-54.6C67.6 356.8 48 308.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208s-93.1 208-208 208c-28.4 0-55.5-5.7-80.1-16zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM128 369c0 26 21.5 47 48 47s48-21 48-47c0-20-28.4-60.4-41.6-77.7c-3.2-4.4-9.6-4.4-12.8 0C156.6 308.6 128 349 128 369zm128-65c-13.3 0-24 10.7-24 24s10.7 24 24 24c30.7 0 58.7 11.5 80 30.6c9.9 8.8 25 8 33.9-1.9s8-25-1.9-33.9C338.3 320.2 299 304 256 304zm47.6-96a32 32 0 1 0 64 0 32 32 0 1 0 -64 0zm-128 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z\"]\n};\nvar faSadTear = faFaceSadTear;\nvar faHandPointLeft = {\n  prefix: 'far',\n  iconName: 'hand-point-left',\n  icon: [512, 512, [], \"f0a5\", \"M64 128l177.6 0c-1 5.2-1.6 10.5-1.6 16l0 16-32 0L64 160c-8.8 0-16-7.2-16-16s7.2-16 16-16zm224 16c0-17.7 14.3-32 32-32c0 0 0 0 0 0l24 0c66.3 0 120 53.7 120 120l0 48c0 52.5-33.7 97.1-80.7 113.4c.5-3.1 .7-6.2 .7-9.4c0-20-9.2-37.9-23.6-49.7c4.9-9 7.6-19.4 7.6-30.3c0-15.1-5.3-29-14-40c8.8-11 14-24.9 14-40l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-40 0-40zm32-80s0 0 0 0c-18 0-34.6 6-48 16L64 80C28.7 80 0 108.7 0 144s28.7 64 64 64l82 0c-1.3 5.1-2 10.5-2 16c0 25.3 14.7 47.2 36 57.6c-2.6 7-4 14.5-4 22.4c0 20 9.2 37.9 23.6 49.7c-4.9 9-7.6 19.4-7.6 30.3c0 35.3 28.7 64 64 64l64 0 24 0c92.8 0 168-75.2 168-168l0-48c0-92.8-75.2-168-168-168l-24 0zM256 400c-8.8 0-16-7.2-16-16s7.2-16 16-16l48 0 16 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0zM240 224c0 5.5 .7 10.9 2 16l-2 0-32 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l32 0 0 16zm24 64l40 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-48 0-16 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l24 0z\"]\n};\nvar icons = {\n  faTrashCan: faTrashCan,\n  faTrashAlt: faTrashAlt,\n  faMessage: faMessage,\n  faCommentAlt: faCommentAlt,\n  faFileLines: faFileLines,\n  faFileAlt: faFileAlt,\n  faFileText: faFileText,\n  faCalendarDays: faCalendarDays,\n  faCalendarAlt: faCalendarAlt,\n  faHandPointRight: faHandPointRight,\n  faFaceSmileBeam: faFaceSmileBeam,\n  faSmileBeam: faSmileBeam,\n  faFaceGrinStars: faFaceGrinStars,\n  faGrinStars: faGrinStars,\n  faAddressBook: faAddressBook,\n  faContactBook: faContactBook,\n  faComments: faComments,\n  faPaste: faPaste,\n  faFileClipboard: faFileClipboard,\n  faFaceGrinTongueSquint: faFaceGrinTongueSquint,\n  faGrinTongueSquint: faGrinTongueSquint,\n  faFaceFlushed: faFaceFlushed,\n  faFlushed: faFlushed,\n  faSquareCaretRight: faSquareCaretRight,\n  faCaretSquareRight: faCaretSquareRight,\n  faSquareMinus: faSquareMinus,\n  faMinusSquare: faMinusSquare,\n  faCompass: faCompass,\n  faSquareCaretDown: faSquareCaretDown,\n  faCaretSquareDown: faCaretSquareDown,\n  faFaceKissBeam: faFaceKissBeam,\n  faKissBeam: faKissBeam,\n  faLightbulb: faLightbulb,\n  faFlag: faFlag,\n  faSquareCheck: faSquareCheck,\n  faCheckSquare: faCheckSquare,\n  faCircleDot: faCircleDot,\n  faDotCircle: faDotCircle,\n  faFaceDizzy: faFaceDizzy,\n  faDizzy: faDizzy,\n  faFutbol: faFutbol,\n  faFutbolBall: faFutbolBall,\n  faSoccerBall: faSoccerBall,\n  faPenToSquare: faPenToSquare,\n  faEdit: faEdit,\n  faHourglassHalf: faHourglassHalf,\n  faHourglass2: faHourglass2,\n  faEyeSlash: faEyeSlash,\n  faHand: faHand,\n  faHandPaper: faHandPaper,\n  faHandSpock: faHandSpock,\n  faFaceKiss: faFaceKiss,\n  faKiss: faKiss,\n  faFaceGrinTongue: faFaceGrinTongue,\n  faGrinTongue: faGrinTongue,\n  faChessBishop: faChessBishop,\n  faFaceGrinWink: faFaceGrinWink,\n  faGrinWink: faGrinWink,\n  faFaceGrinWide: faFaceGrinWide,\n  faGrinAlt: faGrinAlt,\n  faFaceFrownOpen: faFaceFrownOpen,\n  faFrownOpen: faFrownOpen,\n  faHandPointUp: faHandPointUp,\n  faBookmark: faBookmark,\n  faHandPointDown: faHandPointDown,\n  faFolder: faFolder,\n  faFolderBlank: faFolderBlank,\n  faUser: faUser,\n  faSquareCaretLeft: faSquareCaretLeft,\n  faCaretSquareLeft: faCaretSquareLeft,\n  faStar: faStar,\n  faChessKnight: faChessKnight,\n  faFaceLaughSquint: faFaceLaughSquint,\n  faLaughSquint: faLaughSquint,\n  faFaceLaugh: faFaceLaugh,\n  faLaugh: faLaugh,\n  faFolderOpen: faFolderOpen,\n  faClipboard: faClipboard,\n  faChessQueen: faChessQueen,\n  faHandBackFist: faHandBackFist,\n  faHandRock: faHandRock,\n  faSquareCaretUp: faSquareCaretUp,\n  faCaretSquareUp: faCaretSquareUp,\n  faChartBar: faChartBar,\n  faBarChart: faBarChart,\n  faWindowRestore: faWindowRestore,\n  faSquarePlus: faSquarePlus,\n  faPlusSquare: faPlusSquare,\n  faImage: faImage,\n  faFolderClosed: faFolderClosed,\n  faLemon: faLemon,\n  faHandshake: faHandshake,\n  faGem: faGem,\n  faCirclePlay: faCirclePlay,\n  faPlayCircle: faPlayCircle,\n  faCircleCheck: faCircleCheck,\n  faCheckCircle: faCheckCircle,\n  faCircleStop: faCircleStop,\n  faStopCircle: faStopCircle,\n  faIdBadge: faIdBadge,\n  faFaceLaughBeam: faFaceLaughBeam,\n  faLaughBeam: faLaughBeam,\n  faRegistered: faRegistered,\n  faAddressCard: faAddressCard,\n  faContactCard: faContactCard,\n  faVcard: faVcard,\n  faFaceTired: faFaceTired,\n  faTired: faTired,\n  faFontAwesome: faFontAwesome,\n  faFontAwesomeFlag: faFontAwesomeFlag,\n  faFontAwesomeLogoFull: faFontAwesomeLogoFull,\n  faFaceSmileWink: faFaceSmileWink,\n  faSmileWink: faSmileWink,\n  faFileWord: faFileWord,\n  faFilePowerpoint: faFilePowerpoint,\n  faEnvelopeOpen: faEnvelopeOpen,\n  faFileZipper: faFileZipper,\n  faFileArchive: faFileArchive,\n  faSquare: faSquare,\n  faSnowflake: faSnowflake,\n  faNewspaper: faNewspaper,\n  faFaceKissWinkHeart: faFaceKissWinkHeart,\n  faKissWinkHeart: faKissWinkHeart,\n  faStarHalfStroke: faStarHalfStroke,\n  faStarHalfAlt: faStarHalfAlt,\n  faFileExcel: faFileExcel,\n  faFaceGrinBeam: faFaceGrinBeam,\n  faGrinBeam: faGrinBeam,\n  faObjectUngroup: faObjectUngroup,\n  faCircleRight: faCircleRight,\n  faArrowAltCircleRight: faArrowAltCircleRight,\n  faFaceRollingEyes: faFaceRollingEyes,\n  faMehRollingEyes: faMehRollingEyes,\n  faObjectGroup: faObjectGroup,\n  faHeart: faHeart,\n  faFaceSurprise: faFaceSurprise,\n  faSurprise: faSurprise,\n  faCirclePause: faCirclePause,\n  faPauseCircle: faPauseCircle,\n  faCircle: faCircle,\n  faCircleUp: faCircleUp,\n  faArrowAltCircleUp: faArrowAltCircleUp,\n  faFileAudio: faFileAudio,\n  faFileImage: faFileImage,\n  faCircleQuestion: faCircleQuestion,\n  faQuestionCircle: faQuestionCircle,\n  faFaceMehBlank: faFaceMehBlank,\n  faMehBlank: faMehBlank,\n  faEye: faEye,\n  faFaceSadCry: faFaceSadCry,\n  faSadCry: faSadCry,\n  faFileCode: faFileCode,\n  faWindowMaximize: faWindowMaximize,\n  faFaceFrown: faFaceFrown,\n  faFrown: faFrown,\n  faFloppyDisk: faFloppyDisk,\n  faSave: faSave,\n  faCommentDots: faCommentDots,\n  faCommenting: faCommenting,\n  faFaceGrinSquint: faFaceGrinSquint,\n  faGrinSquint: faGrinSquint,\n  faHandPointer: faHandPointer,\n  faHandScissors: faHandScissors,\n  faFaceGrinTears: faFaceGrinTears,\n  faGrinTears: faGrinTears,\n  faCalendarXmark: faCalendarXmark,\n  faCalendarTimes: faCalendarTimes,\n  faFileVideo: faFileVideo,\n  faFilePdf: faFilePdf,\n  faComment: faComment,\n  faEnvelope: faEnvelope,\n  faHourglass: faHourglass,\n  faHourglassEmpty: faHourglassEmpty,\n  faCalendarCheck: faCalendarCheck,\n  faHardDrive: faHardDrive,\n  faHdd: faHdd,\n  faFaceGrinSquintTears: faFaceGrinSquintTears,\n  faGrinSquintTears: faGrinSquintTears,\n  faRectangleList: faRectangleList,\n  faListAlt: faListAlt,\n  faCalendarPlus: faCalendarPlus,\n  faCircleLeft: faCircleLeft,\n  faArrowAltCircleLeft: faArrowAltCircleLeft,\n  faMoneyBill1: faMoneyBill1,\n  faMoneyBillAlt: faMoneyBillAlt,\n  faClock: faClock,\n  faClockFour: faClockFour,\n  faKeyboard: faKeyboard,\n  faClosedCaptioning: faClosedCaptioning,\n  faImages: faImages,\n  faFaceGrin: faFaceGrin,\n  faGrin: faGrin,\n  faFaceMeh: faFaceMeh,\n  faMeh: faMeh,\n  faIdCard: faIdCard,\n  faDriversLicense: faDriversLicense,\n  faSun: faSun,\n  faFaceLaughWink: faFaceLaughWink,\n  faLaughWink: faLaughWink,\n  faCircleDown: faCircleDown,\n  faArrowAltCircleDown: faArrowAltCircleDown,\n  faThumbsDown: faThumbsDown,\n  faChessPawn: faChessPawn,\n  faCreditCard: faCreditCard,\n  faCreditCardAlt: faCreditCardAlt,\n  faBell: faBell,\n  faFile: faFile,\n  faHospital: faHospital,\n  faHospitalAlt: faHospitalAlt,\n  faHospitalWide: faHospitalWide,\n  faChessRook: faChessRook,\n  faStarHalf: faStarHalf,\n  faChessKing: faChessKing,\n  faCircleUser: faCircleUser,\n  faUserCircle: faUserCircle,\n  faCopy: faCopy,\n  faShareFromSquare: faShareFromSquare,\n  faShareSquare: faShareSquare,\n  faCopyright: faCopyright,\n  faMap: faMap,\n  faBellSlash: faBellSlash,\n  faHandLizard: faHandLizard,\n  faFaceSmile: faFaceSmile,\n  faSmile: faSmile,\n  faHandPeace: faHandPeace,\n  faFaceGrinHearts: faFaceGrinHearts,\n  faGrinHearts: faGrinHearts,\n  faBuilding: faBuilding,\n  faFaceGrinBeamSweat: faFaceGrinBeamSweat,\n  faGrinBeamSweat: faGrinBeamSweat,\n  faMoon: faMoon,\n  faCalendar: faCalendar,\n  faFaceGrinTongueWink: faFaceGrinTongueWink,\n  faGrinTongueWink: faGrinTongueWink,\n  faClone: faClone,\n  faFaceAngry: faFaceAngry,\n  faAngry: faAngry,\n  faRectangleXmark: faRectangleXmark,\n  faRectangleTimes: faRectangleTimes,\n  faTimesRectangle: faTimesRectangle,\n  faWindowClose: faWindowClose,\n  faPaperPlane: faPaperPlane,\n  faLifeRing: faLifeRing,\n  faFaceGrimace: faFaceGrimace,\n  faGrimace: faGrimace,\n  faCalendarMinus: faCalendarMinus,\n  faCircleXmark: faCircleXmark,\n  faTimesCircle: faTimesCircle,\n  faXmarkCircle: faXmarkCircle,\n  faThumbsUp: faThumbsUp,\n  faWindowMinimize: faWindowMinimize,\n  faSquareFull: faSquareFull,\n  faNoteSticky: faNoteSticky,\n  faStickyNote: faStickyNote,\n  faFaceSadTear: faFaceSadTear,\n  faSadTear: faSadTear,\n  faHandPointLeft: faHandPointLeft\n};\n\n\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/@fortawesome/free-regular-svg-icons/index.mjs?");
-
-/***/ }),
-
-/***/ "./node_modules/i18next/dist/esm/i18next.js":
-/*!**************************************************!*\
-  !*** ./node_modules/i18next/dist/esm/i18next.js ***!
-  \**************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"changeLanguage\": () => (/* binding */ changeLanguage),\n/* harmony export */   \"createInstance\": () => (/* binding */ createInstance),\n/* harmony export */   \"default\": () => (/* binding */ instance),\n/* harmony export */   \"dir\": () => (/* binding */ dir),\n/* harmony export */   \"exists\": () => (/* binding */ exists),\n/* harmony export */   \"getFixedT\": () => (/* binding */ getFixedT),\n/* harmony export */   \"hasLoadedNamespace\": () => (/* binding */ hasLoadedNamespace),\n/* harmony export */   \"init\": () => (/* binding */ init),\n/* harmony export */   \"loadLanguages\": () => (/* binding */ loadLanguages),\n/* harmony export */   \"loadNamespaces\": () => (/* binding */ loadNamespaces),\n/* harmony export */   \"loadResources\": () => (/* binding */ loadResources),\n/* harmony export */   \"reloadResources\": () => (/* binding */ reloadResources),\n/* harmony export */   \"setDefaultNamespace\": () => (/* binding */ setDefaultNamespace),\n/* harmony export */   \"t\": () => (/* binding */ t),\n/* harmony export */   \"use\": () => (/* binding */ use)\n/* harmony export */ });\nconst consoleLogger = {\n  type: 'logger',\n  log(args) {\n    this.output('log', args);\n  },\n  warn(args) {\n    this.output('warn', args);\n  },\n  error(args) {\n    this.output('error', args);\n  },\n  output(type, args) {\n    if (console && console[type]) console[type].apply(console, args);\n  }\n};\nclass Logger {\n  constructor(concreteLogger) {\n    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n    this.init(concreteLogger, options);\n  }\n  init(concreteLogger) {\n    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n    this.prefix = options.prefix || 'i18next:';\n    this.logger = concreteLogger || consoleLogger;\n    this.options = options;\n    this.debug = options.debug;\n  }\n  log() {\n    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n      args[_key] = arguments[_key];\n    }\n    return this.forward(args, 'log', '', true);\n  }\n  warn() {\n    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {\n      args[_key2] = arguments[_key2];\n    }\n    return this.forward(args, 'warn', '', true);\n  }\n  error() {\n    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {\n      args[_key3] = arguments[_key3];\n    }\n    return this.forward(args, 'error', '');\n  }\n  deprecate() {\n    for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {\n      args[_key4] = arguments[_key4];\n    }\n    return this.forward(args, 'warn', 'WARNING DEPRECATED: ', true);\n  }\n  forward(args, lvl, prefix, debugOnly) {\n    if (debugOnly && !this.debug) return null;\n    if (typeof args[0] === 'string') args[0] = `${prefix}${this.prefix} ${args[0]}`;\n    return this.logger[lvl](args);\n  }\n  create(moduleName) {\n    return new Logger(this.logger, {\n      ...{\n        prefix: `${this.prefix}:${moduleName}:`\n      },\n      ...this.options\n    });\n  }\n  clone(options) {\n    options = options || this.options;\n    options.prefix = options.prefix || this.prefix;\n    return new Logger(this.logger, options);\n  }\n}\nvar baseLogger = new Logger();\n\nclass EventEmitter {\n  constructor() {\n    this.observers = {};\n  }\n  on(events, listener) {\n    events.split(' ').forEach(event => {\n      this.observers[event] = this.observers[event] || [];\n      this.observers[event].push(listener);\n    });\n    return this;\n  }\n  off(event, listener) {\n    if (!this.observers[event]) return;\n    if (!listener) {\n      delete this.observers[event];\n      return;\n    }\n    this.observers[event] = this.observers[event].filter(l => l !== listener);\n  }\n  emit(event) {\n    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {\n      args[_key - 1] = arguments[_key];\n    }\n    if (this.observers[event]) {\n      const cloned = [].concat(this.observers[event]);\n      cloned.forEach(observer => {\n        observer(...args);\n      });\n    }\n    if (this.observers['*']) {\n      const cloned = [].concat(this.observers['*']);\n      cloned.forEach(observer => {\n        observer.apply(observer, [event, ...args]);\n      });\n    }\n  }\n}\n\nfunction defer() {\n  let res;\n  let rej;\n  const promise = new Promise((resolve, reject) => {\n    res = resolve;\n    rej = reject;\n  });\n  promise.resolve = res;\n  promise.reject = rej;\n  return promise;\n}\nfunction makeString(object) {\n  if (object == null) return '';\n  return '' + object;\n}\nfunction copy(a, s, t) {\n  a.forEach(m => {\n    if (s[m]) t[m] = s[m];\n  });\n}\nfunction getLastOfPath(object, path, Empty) {\n  function cleanKey(key) {\n    return key && key.indexOf('###') > -1 ? key.replace(/###/g, '.') : key;\n  }\n  function canNotTraverseDeeper() {\n    return !object || typeof object === 'string';\n  }\n  const stack = typeof path !== 'string' ? [].concat(path) : path.split('.');\n  while (stack.length > 1) {\n    if (canNotTraverseDeeper()) return {};\n    const key = cleanKey(stack.shift());\n    if (!object[key] && Empty) object[key] = new Empty();\n    if (Object.prototype.hasOwnProperty.call(object, key)) {\n      object = object[key];\n    } else {\n      object = {};\n    }\n  }\n  if (canNotTraverseDeeper()) return {};\n  return {\n    obj: object,\n    k: cleanKey(stack.shift())\n  };\n}\nfunction setPath(object, path, newValue) {\n  const {\n    obj,\n    k\n  } = getLastOfPath(object, path, Object);\n  obj[k] = newValue;\n}\nfunction pushPath(object, path, newValue, concat) {\n  const {\n    obj,\n    k\n  } = getLastOfPath(object, path, Object);\n  obj[k] = obj[k] || [];\n  if (concat) obj[k] = obj[k].concat(newValue);\n  if (!concat) obj[k].push(newValue);\n}\nfunction getPath(object, path) {\n  const {\n    obj,\n    k\n  } = getLastOfPath(object, path);\n  if (!obj) return undefined;\n  return obj[k];\n}\nfunction getPathWithDefaults(data, defaultData, key) {\n  const value = getPath(data, key);\n  if (value !== undefined) {\n    return value;\n  }\n  return getPath(defaultData, key);\n}\nfunction deepExtend(target, source, overwrite) {\n  for (const prop in source) {\n    if (prop !== '__proto__' && prop !== 'constructor') {\n      if (prop in target) {\n        if (typeof target[prop] === 'string' || target[prop] instanceof String || typeof source[prop] === 'string' || source[prop] instanceof String) {\n          if (overwrite) target[prop] = source[prop];\n        } else {\n          deepExtend(target[prop], source[prop], overwrite);\n        }\n      } else {\n        target[prop] = source[prop];\n      }\n    }\n  }\n  return target;\n}\nfunction regexEscape(str) {\n  return str.replace(/[\\-\\[\\]\\/\\{\\}\\(\\)\\*\\+\\?\\.\\\\\\^\\$\\|]/g, '\\\\$&');\n}\nvar _entityMap = {\n  '&': '&amp;',\n  '<': '&lt;',\n  '>': '&gt;',\n  '\"': '&quot;',\n  \"'\": '&#39;',\n  '/': '&#x2F;'\n};\nfunction escape(data) {\n  if (typeof data === 'string') {\n    return data.replace(/[&<>\"'\\/]/g, s => _entityMap[s]);\n  }\n  return data;\n}\nconst chars = [' ', ',', '?', '!', ';'];\nfunction looksLikeObjectPath(key, nsSeparator, keySeparator) {\n  nsSeparator = nsSeparator || '';\n  keySeparator = keySeparator || '';\n  const possibleChars = chars.filter(c => nsSeparator.indexOf(c) < 0 && keySeparator.indexOf(c) < 0);\n  if (possibleChars.length === 0) return true;\n  const r = new RegExp(`(${possibleChars.map(c => c === '?' ? '\\\\?' : c).join('|')})`);\n  let matched = !r.test(key);\n  if (!matched) {\n    const ki = key.indexOf(keySeparator);\n    if (ki > 0 && !r.test(key.substring(0, ki))) {\n      matched = true;\n    }\n  }\n  return matched;\n}\nfunction deepFind(obj, path) {\n  let keySeparator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '.';\n  if (!obj) return undefined;\n  if (obj[path]) return obj[path];\n  const paths = path.split(keySeparator);\n  let current = obj;\n  for (let i = 0; i < paths.length; ++i) {\n    if (!current) return undefined;\n    if (typeof current[paths[i]] === 'string' && i + 1 < paths.length) {\n      return undefined;\n    }\n    if (current[paths[i]] === undefined) {\n      let j = 2;\n      let p = paths.slice(i, i + j).join(keySeparator);\n      let mix = current[p];\n      while (mix === undefined && paths.length > i + j) {\n        j++;\n        p = paths.slice(i, i + j).join(keySeparator);\n        mix = current[p];\n      }\n      if (mix === undefined) return undefined;\n      if (mix === null) return null;\n      if (path.endsWith(p)) {\n        if (typeof mix === 'string') return mix;\n        if (p && typeof mix[p] === 'string') return mix[p];\n      }\n      const joinedPath = paths.slice(i + j).join(keySeparator);\n      if (joinedPath) return deepFind(mix, joinedPath, keySeparator);\n      return undefined;\n    }\n    current = current[paths[i]];\n  }\n  return current;\n}\nfunction getCleanedCode(code) {\n  if (code && code.indexOf('_') > 0) return code.replace('_', '-');\n  return code;\n}\n\nclass ResourceStore extends EventEmitter {\n  constructor(data) {\n    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {\n      ns: ['translation'],\n      defaultNS: 'translation'\n    };\n    super();\n    this.data = data || {};\n    this.options = options;\n    if (this.options.keySeparator === undefined) {\n      this.options.keySeparator = '.';\n    }\n    if (this.options.ignoreJSONStructure === undefined) {\n      this.options.ignoreJSONStructure = true;\n    }\n  }\n  addNamespaces(ns) {\n    if (this.options.ns.indexOf(ns) < 0) {\n      this.options.ns.push(ns);\n    }\n  }\n  removeNamespaces(ns) {\n    const index = this.options.ns.indexOf(ns);\n    if (index > -1) {\n      this.options.ns.splice(index, 1);\n    }\n  }\n  getResource(lng, ns, key) {\n    let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};\n    const keySeparator = options.keySeparator !== undefined ? options.keySeparator : this.options.keySeparator;\n    const ignoreJSONStructure = options.ignoreJSONStructure !== undefined ? options.ignoreJSONStructure : this.options.ignoreJSONStructure;\n    let path = [lng, ns];\n    if (key && typeof key !== 'string') path = path.concat(key);\n    if (key && typeof key === 'string') path = path.concat(keySeparator ? key.split(keySeparator) : key);\n    if (lng.indexOf('.') > -1) {\n      path = lng.split('.');\n    }\n    const result = getPath(this.data, path);\n    if (result || !ignoreJSONStructure || typeof key !== 'string') return result;\n    return deepFind(this.data && this.data[lng] && this.data[lng][ns], key, keySeparator);\n  }\n  addResource(lng, ns, key, value) {\n    let options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {\n      silent: false\n    };\n    const keySeparator = options.keySeparator !== undefined ? options.keySeparator : this.options.keySeparator;\n    let path = [lng, ns];\n    if (key) path = path.concat(keySeparator ? key.split(keySeparator) : key);\n    if (lng.indexOf('.') > -1) {\n      path = lng.split('.');\n      value = ns;\n      ns = path[1];\n    }\n    this.addNamespaces(ns);\n    setPath(this.data, path, value);\n    if (!options.silent) this.emit('added', lng, ns, key, value);\n  }\n  addResources(lng, ns, resources) {\n    let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {\n      silent: false\n    };\n    for (const m in resources) {\n      if (typeof resources[m] === 'string' || Object.prototype.toString.apply(resources[m]) === '[object Array]') this.addResource(lng, ns, m, resources[m], {\n        silent: true\n      });\n    }\n    if (!options.silent) this.emit('added', lng, ns, resources);\n  }\n  addResourceBundle(lng, ns, resources, deep, overwrite) {\n    let options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {\n      silent: false\n    };\n    let path = [lng, ns];\n    if (lng.indexOf('.') > -1) {\n      path = lng.split('.');\n      deep = resources;\n      resources = ns;\n      ns = path[1];\n    }\n    this.addNamespaces(ns);\n    let pack = getPath(this.data, path) || {};\n    if (deep) {\n      deepExtend(pack, resources, overwrite);\n    } else {\n      pack = {\n        ...pack,\n        ...resources\n      };\n    }\n    setPath(this.data, path, pack);\n    if (!options.silent) this.emit('added', lng, ns, resources);\n  }\n  removeResourceBundle(lng, ns) {\n    if (this.hasResourceBundle(lng, ns)) {\n      delete this.data[lng][ns];\n    }\n    this.removeNamespaces(ns);\n    this.emit('removed', lng, ns);\n  }\n  hasResourceBundle(lng, ns) {\n    return this.getResource(lng, ns) !== undefined;\n  }\n  getResourceBundle(lng, ns) {\n    if (!ns) ns = this.options.defaultNS;\n    if (this.options.compatibilityAPI === 'v1') return {\n      ...{},\n      ...this.getResource(lng, ns)\n    };\n    return this.getResource(lng, ns);\n  }\n  getDataByLanguage(lng) {\n    return this.data[lng];\n  }\n  hasLanguageSomeTranslations(lng) {\n    const data = this.getDataByLanguage(lng);\n    const n = data && Object.keys(data) || [];\n    return !!n.find(v => data[v] && Object.keys(data[v]).length > 0);\n  }\n  toJSON() {\n    return this.data;\n  }\n}\n\nvar postProcessor = {\n  processors: {},\n  addPostProcessor(module) {\n    this.processors[module.name] = module;\n  },\n  handle(processors, value, key, options, translator) {\n    processors.forEach(processor => {\n      if (this.processors[processor]) value = this.processors[processor].process(value, key, options, translator);\n    });\n    return value;\n  }\n};\n\nconst checkedLoadedFor = {};\nclass Translator extends EventEmitter {\n  constructor(services) {\n    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n    super();\n    copy(['resourceStore', 'languageUtils', 'pluralResolver', 'interpolator', 'backendConnector', 'i18nFormat', 'utils'], services, this);\n    this.options = options;\n    if (this.options.keySeparator === undefined) {\n      this.options.keySeparator = '.';\n    }\n    this.logger = baseLogger.create('translator');\n  }\n  changeLanguage(lng) {\n    if (lng) this.language = lng;\n  }\n  exists(key) {\n    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {\n      interpolation: {}\n    };\n    if (key === undefined || key === null) {\n      return false;\n    }\n    const resolved = this.resolve(key, options);\n    return resolved && resolved.res !== undefined;\n  }\n  extractFromKey(key, options) {\n    let nsSeparator = options.nsSeparator !== undefined ? options.nsSeparator : this.options.nsSeparator;\n    if (nsSeparator === undefined) nsSeparator = ':';\n    const keySeparator = options.keySeparator !== undefined ? options.keySeparator : this.options.keySeparator;\n    let namespaces = options.ns || this.options.defaultNS || [];\n    const wouldCheckForNsInKey = nsSeparator && key.indexOf(nsSeparator) > -1;\n    const seemsNaturalLanguage = !this.options.userDefinedKeySeparator && !options.keySeparator && !this.options.userDefinedNsSeparator && !options.nsSeparator && !looksLikeObjectPath(key, nsSeparator, keySeparator);\n    if (wouldCheckForNsInKey && !seemsNaturalLanguage) {\n      const m = key.match(this.interpolator.nestingRegexp);\n      if (m && m.length > 0) {\n        return {\n          key,\n          namespaces\n        };\n      }\n      const parts = key.split(nsSeparator);\n      if (nsSeparator !== keySeparator || nsSeparator === keySeparator && this.options.ns.indexOf(parts[0]) > -1) namespaces = parts.shift();\n      key = parts.join(keySeparator);\n    }\n    if (typeof namespaces === 'string') namespaces = [namespaces];\n    return {\n      key,\n      namespaces\n    };\n  }\n  translate(keys, options, lastKey) {\n    if (typeof options !== 'object' && this.options.overloadTranslationOptionHandler) {\n      options = this.options.overloadTranslationOptionHandler(arguments);\n    }\n    if (typeof options === 'object') options = {\n      ...options\n    };\n    if (!options) options = {};\n    if (keys === undefined || keys === null) return '';\n    if (!Array.isArray(keys)) keys = [String(keys)];\n    const returnDetails = options.returnDetails !== undefined ? options.returnDetails : this.options.returnDetails;\n    const keySeparator = options.keySeparator !== undefined ? options.keySeparator : this.options.keySeparator;\n    const {\n      key,\n      namespaces\n    } = this.extractFromKey(keys[keys.length - 1], options);\n    const namespace = namespaces[namespaces.length - 1];\n    const lng = options.lng || this.language;\n    const appendNamespaceToCIMode = options.appendNamespaceToCIMode || this.options.appendNamespaceToCIMode;\n    if (lng && lng.toLowerCase() === 'cimode') {\n      if (appendNamespaceToCIMode) {\n        const nsSeparator = options.nsSeparator || this.options.nsSeparator;\n        if (returnDetails) {\n          return {\n            res: `${namespace}${nsSeparator}${key}`,\n            usedKey: key,\n            exactUsedKey: key,\n            usedLng: lng,\n            usedNS: namespace\n          };\n        }\n        return `${namespace}${nsSeparator}${key}`;\n      }\n      if (returnDetails) {\n        return {\n          res: key,\n          usedKey: key,\n          exactUsedKey: key,\n          usedLng: lng,\n          usedNS: namespace\n        };\n      }\n      return key;\n    }\n    const resolved = this.resolve(keys, options);\n    let res = resolved && resolved.res;\n    const resUsedKey = resolved && resolved.usedKey || key;\n    const resExactUsedKey = resolved && resolved.exactUsedKey || key;\n    const resType = Object.prototype.toString.apply(res);\n    const noObject = ['[object Number]', '[object Function]', '[object RegExp]'];\n    const joinArrays = options.joinArrays !== undefined ? options.joinArrays : this.options.joinArrays;\n    const handleAsObjectInI18nFormat = !this.i18nFormat || this.i18nFormat.handleAsObject;\n    const handleAsObject = typeof res !== 'string' && typeof res !== 'boolean' && typeof res !== 'number';\n    if (handleAsObjectInI18nFormat && res && handleAsObject && noObject.indexOf(resType) < 0 && !(typeof joinArrays === 'string' && resType === '[object Array]')) {\n      if (!options.returnObjects && !this.options.returnObjects) {\n        if (!this.options.returnedObjectHandler) {\n          this.logger.warn('accessing an object - but returnObjects options is not enabled!');\n        }\n        const r = this.options.returnedObjectHandler ? this.options.returnedObjectHandler(resUsedKey, res, {\n          ...options,\n          ns: namespaces\n        }) : `key '${key} (${this.language})' returned an object instead of string.`;\n        if (returnDetails) {\n          resolved.res = r;\n          return resolved;\n        }\n        return r;\n      }\n      if (keySeparator) {\n        const resTypeIsArray = resType === '[object Array]';\n        const copy = resTypeIsArray ? [] : {};\n        const newKeyToUse = resTypeIsArray ? resExactUsedKey : resUsedKey;\n        for (const m in res) {\n          if (Object.prototype.hasOwnProperty.call(res, m)) {\n            const deepKey = `${newKeyToUse}${keySeparator}${m}`;\n            copy[m] = this.translate(deepKey, {\n              ...options,\n              ...{\n                joinArrays: false,\n                ns: namespaces\n              }\n            });\n            if (copy[m] === deepKey) copy[m] = res[m];\n          }\n        }\n        res = copy;\n      }\n    } else if (handleAsObjectInI18nFormat && typeof joinArrays === 'string' && resType === '[object Array]') {\n      res = res.join(joinArrays);\n      if (res) res = this.extendTranslation(res, keys, options, lastKey);\n    } else {\n      let usedDefault = false;\n      let usedKey = false;\n      const needsPluralHandling = options.count !== undefined && typeof options.count !== 'string';\n      const hasDefaultValue = Translator.hasDefaultValue(options);\n      const defaultValueSuffix = needsPluralHandling ? this.pluralResolver.getSuffix(lng, options.count, options) : '';\n      const defaultValueSuffixOrdinalFallback = options.ordinal && needsPluralHandling ? this.pluralResolver.getSuffix(lng, options.count, {\n        ordinal: false\n      }) : '';\n      const defaultValue = options[`defaultValue${defaultValueSuffix}`] || options[`defaultValue${defaultValueSuffixOrdinalFallback}`] || options.defaultValue;\n      if (!this.isValidLookup(res) && hasDefaultValue) {\n        usedDefault = true;\n        res = defaultValue;\n      }\n      if (!this.isValidLookup(res)) {\n        usedKey = true;\n        res = key;\n      }\n      const missingKeyNoValueFallbackToKey = options.missingKeyNoValueFallbackToKey || this.options.missingKeyNoValueFallbackToKey;\n      const resForMissing = missingKeyNoValueFallbackToKey && usedKey ? undefined : res;\n      const updateMissing = hasDefaultValue && defaultValue !== res && this.options.updateMissing;\n      if (usedKey || usedDefault || updateMissing) {\n        this.logger.log(updateMissing ? 'updateKey' : 'missingKey', lng, namespace, key, updateMissing ? defaultValue : res);\n        if (keySeparator) {\n          const fk = this.resolve(key, {\n            ...options,\n            keySeparator: false\n          });\n          if (fk && fk.res) this.logger.warn('Seems the loaded translations were in flat JSON format instead of nested. Either set keySeparator: false on init or make sure your translations are published in nested format.');\n        }\n        let lngs = [];\n        const fallbackLngs = this.languageUtils.getFallbackCodes(this.options.fallbackLng, options.lng || this.language);\n        if (this.options.saveMissingTo === 'fallback' && fallbackLngs && fallbackLngs[0]) {\n          for (let i = 0; i < fallbackLngs.length; i++) {\n            lngs.push(fallbackLngs[i]);\n          }\n        } else if (this.options.saveMissingTo === 'all') {\n          lngs = this.languageUtils.toResolveHierarchy(options.lng || this.language);\n        } else {\n          lngs.push(options.lng || this.language);\n        }\n        const send = (l, k, specificDefaultValue) => {\n          const defaultForMissing = hasDefaultValue && specificDefaultValue !== res ? specificDefaultValue : resForMissing;\n          if (this.options.missingKeyHandler) {\n            this.options.missingKeyHandler(l, namespace, k, defaultForMissing, updateMissing, options);\n          } else if (this.backendConnector && this.backendConnector.saveMissing) {\n            this.backendConnector.saveMissing(l, namespace, k, defaultForMissing, updateMissing, options);\n          }\n          this.emit('missingKey', l, namespace, k, res);\n        };\n        if (this.options.saveMissing) {\n          if (this.options.saveMissingPlurals && needsPluralHandling) {\n            lngs.forEach(language => {\n              this.pluralResolver.getSuffixes(language, options).forEach(suffix => {\n                send([language], key + suffix, options[`defaultValue${suffix}`] || defaultValue);\n              });\n            });\n          } else {\n            send(lngs, key, defaultValue);\n          }\n        }\n      }\n      res = this.extendTranslation(res, keys, options, resolved, lastKey);\n      if (usedKey && res === key && this.options.appendNamespaceToMissingKey) res = `${namespace}:${key}`;\n      if ((usedKey || usedDefault) && this.options.parseMissingKeyHandler) {\n        if (this.options.compatibilityAPI !== 'v1') {\n          res = this.options.parseMissingKeyHandler(this.options.appendNamespaceToMissingKey ? `${namespace}:${key}` : key, usedDefault ? res : undefined);\n        } else {\n          res = this.options.parseMissingKeyHandler(res);\n        }\n      }\n    }\n    if (returnDetails) {\n      resolved.res = res;\n      return resolved;\n    }\n    return res;\n  }\n  extendTranslation(res, key, options, resolved, lastKey) {\n    var _this = this;\n    if (this.i18nFormat && this.i18nFormat.parse) {\n      res = this.i18nFormat.parse(res, {\n        ...this.options.interpolation.defaultVariables,\n        ...options\n      }, resolved.usedLng, resolved.usedNS, resolved.usedKey, {\n        resolved\n      });\n    } else if (!options.skipInterpolation) {\n      if (options.interpolation) this.interpolator.init({\n        ...options,\n        ...{\n          interpolation: {\n            ...this.options.interpolation,\n            ...options.interpolation\n          }\n        }\n      });\n      const skipOnVariables = typeof res === 'string' && (options && options.interpolation && options.interpolation.skipOnVariables !== undefined ? options.interpolation.skipOnVariables : this.options.interpolation.skipOnVariables);\n      let nestBef;\n      if (skipOnVariables) {\n        const nb = res.match(this.interpolator.nestingRegexp);\n        nestBef = nb && nb.length;\n      }\n      let data = options.replace && typeof options.replace !== 'string' ? options.replace : options;\n      if (this.options.interpolation.defaultVariables) data = {\n        ...this.options.interpolation.defaultVariables,\n        ...data\n      };\n      res = this.interpolator.interpolate(res, data, options.lng || this.language, options);\n      if (skipOnVariables) {\n        const na = res.match(this.interpolator.nestingRegexp);\n        const nestAft = na && na.length;\n        if (nestBef < nestAft) options.nest = false;\n      }\n      if (!options.lng && this.options.compatibilityAPI !== 'v1' && resolved && resolved.res) options.lng = resolved.usedLng;\n      if (options.nest !== false) res = this.interpolator.nest(res, function () {\n        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n          args[_key] = arguments[_key];\n        }\n        if (lastKey && lastKey[0] === args[0] && !options.context) {\n          _this.logger.warn(`It seems you are nesting recursively key: ${args[0]} in key: ${key[0]}`);\n          return null;\n        }\n        return _this.translate(...args, key);\n      }, options);\n      if (options.interpolation) this.interpolator.reset();\n    }\n    const postProcess = options.postProcess || this.options.postProcess;\n    const postProcessorNames = typeof postProcess === 'string' ? [postProcess] : postProcess;\n    if (res !== undefined && res !== null && postProcessorNames && postProcessorNames.length && options.applyPostProcessor !== false) {\n      res = postProcessor.handle(postProcessorNames, res, key, this.options && this.options.postProcessPassResolved ? {\n        i18nResolved: resolved,\n        ...options\n      } : options, this);\n    }\n    return res;\n  }\n  resolve(keys) {\n    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n    let found;\n    let usedKey;\n    let exactUsedKey;\n    let usedLng;\n    let usedNS;\n    if (typeof keys === 'string') keys = [keys];\n    keys.forEach(k => {\n      if (this.isValidLookup(found)) return;\n      const extracted = this.extractFromKey(k, options);\n      const key = extracted.key;\n      usedKey = key;\n      let namespaces = extracted.namespaces;\n      if (this.options.fallbackNS) namespaces = namespaces.concat(this.options.fallbackNS);\n      const needsPluralHandling = options.count !== undefined && typeof options.count !== 'string';\n      const needsZeroSuffixLookup = needsPluralHandling && !options.ordinal && options.count === 0 && this.pluralResolver.shouldUseIntlApi();\n      const needsContextHandling = options.context !== undefined && (typeof options.context === 'string' || typeof options.context === 'number') && options.context !== '';\n      const codes = options.lngs ? options.lngs : this.languageUtils.toResolveHierarchy(options.lng || this.language, options.fallbackLng);\n      namespaces.forEach(ns => {\n        if (this.isValidLookup(found)) return;\n        usedNS = ns;\n        if (!checkedLoadedFor[`${codes[0]}-${ns}`] && this.utils && this.utils.hasLoadedNamespace && !this.utils.hasLoadedNamespace(usedNS)) {\n          checkedLoadedFor[`${codes[0]}-${ns}`] = true;\n          this.logger.warn(`key \"${usedKey}\" for languages \"${codes.join(', ')}\" won't get resolved as namespace \"${usedNS}\" was not yet loaded`, 'This means something IS WRONG in your setup. You access the t function before i18next.init / i18next.loadNamespace / i18next.changeLanguage was done. Wait for the callback or Promise to resolve before accessing it!!!');\n        }\n        codes.forEach(code => {\n          if (this.isValidLookup(found)) return;\n          usedLng = code;\n          const finalKeys = [key];\n          if (this.i18nFormat && this.i18nFormat.addLookupKeys) {\n            this.i18nFormat.addLookupKeys(finalKeys, key, code, ns, options);\n          } else {\n            let pluralSuffix;\n            if (needsPluralHandling) pluralSuffix = this.pluralResolver.getSuffix(code, options.count, options);\n            const zeroSuffix = `${this.options.pluralSeparator}zero`;\n            const ordinalPrefix = `${this.options.pluralSeparator}ordinal${this.options.pluralSeparator}`;\n            if (needsPluralHandling) {\n              finalKeys.push(key + pluralSuffix);\n              if (options.ordinal && pluralSuffix.indexOf(ordinalPrefix) === 0) {\n                finalKeys.push(key + pluralSuffix.replace(ordinalPrefix, this.options.pluralSeparator));\n              }\n              if (needsZeroSuffixLookup) {\n                finalKeys.push(key + zeroSuffix);\n              }\n            }\n            if (needsContextHandling) {\n              const contextKey = `${key}${this.options.contextSeparator}${options.context}`;\n              finalKeys.push(contextKey);\n              if (needsPluralHandling) {\n                finalKeys.push(contextKey + pluralSuffix);\n                if (options.ordinal && pluralSuffix.indexOf(ordinalPrefix) === 0) {\n                  finalKeys.push(contextKey + pluralSuffix.replace(ordinalPrefix, this.options.pluralSeparator));\n                }\n                if (needsZeroSuffixLookup) {\n                  finalKeys.push(contextKey + zeroSuffix);\n                }\n              }\n            }\n          }\n          let possibleKey;\n          while (possibleKey = finalKeys.pop()) {\n            if (!this.isValidLookup(found)) {\n              exactUsedKey = possibleKey;\n              found = this.getResource(code, ns, possibleKey, options);\n            }\n          }\n        });\n      });\n    });\n    return {\n      res: found,\n      usedKey,\n      exactUsedKey,\n      usedLng,\n      usedNS\n    };\n  }\n  isValidLookup(res) {\n    return res !== undefined && !(!this.options.returnNull && res === null) && !(!this.options.returnEmptyString && res === '');\n  }\n  getResource(code, ns, key) {\n    let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};\n    if (this.i18nFormat && this.i18nFormat.getResource) return this.i18nFormat.getResource(code, ns, key, options);\n    return this.resourceStore.getResource(code, ns, key, options);\n  }\n  static hasDefaultValue(options) {\n    const prefix = 'defaultValue';\n    for (const option in options) {\n      if (Object.prototype.hasOwnProperty.call(options, option) && prefix === option.substring(0, prefix.length) && undefined !== options[option]) {\n        return true;\n      }\n    }\n    return false;\n  }\n}\n\nfunction capitalize(string) {\n  return string.charAt(0).toUpperCase() + string.slice(1);\n}\nclass LanguageUtil {\n  constructor(options) {\n    this.options = options;\n    this.supportedLngs = this.options.supportedLngs || false;\n    this.logger = baseLogger.create('languageUtils');\n  }\n  getScriptPartFromCode(code) {\n    code = getCleanedCode(code);\n    if (!code || code.indexOf('-') < 0) return null;\n    const p = code.split('-');\n    if (p.length === 2) return null;\n    p.pop();\n    if (p[p.length - 1].toLowerCase() === 'x') return null;\n    return this.formatLanguageCode(p.join('-'));\n  }\n  getLanguagePartFromCode(code) {\n    code = getCleanedCode(code);\n    if (!code || code.indexOf('-') < 0) return code;\n    const p = code.split('-');\n    return this.formatLanguageCode(p[0]);\n  }\n  formatLanguageCode(code) {\n    if (typeof code === 'string' && code.indexOf('-') > -1) {\n      const specialCases = ['hans', 'hant', 'latn', 'cyrl', 'cans', 'mong', 'arab'];\n      let p = code.split('-');\n      if (this.options.lowerCaseLng) {\n        p = p.map(part => part.toLowerCase());\n      } else if (p.length === 2) {\n        p[0] = p[0].toLowerCase();\n        p[1] = p[1].toUpperCase();\n        if (specialCases.indexOf(p[1].toLowerCase()) > -1) p[1] = capitalize(p[1].toLowerCase());\n      } else if (p.length === 3) {\n        p[0] = p[0].toLowerCase();\n        if (p[1].length === 2) p[1] = p[1].toUpperCase();\n        if (p[0] !== 'sgn' && p[2].length === 2) p[2] = p[2].toUpperCase();\n        if (specialCases.indexOf(p[1].toLowerCase()) > -1) p[1] = capitalize(p[1].toLowerCase());\n        if (specialCases.indexOf(p[2].toLowerCase()) > -1) p[2] = capitalize(p[2].toLowerCase());\n      }\n      return p.join('-');\n    }\n    return this.options.cleanCode || this.options.lowerCaseLng ? code.toLowerCase() : code;\n  }\n  isSupportedCode(code) {\n    if (this.options.load === 'languageOnly' || this.options.nonExplicitSupportedLngs) {\n      code = this.getLanguagePartFromCode(code);\n    }\n    return !this.supportedLngs || !this.supportedLngs.length || this.supportedLngs.indexOf(code) > -1;\n  }\n  getBestMatchFromCodes(codes) {\n    if (!codes) return null;\n    let found;\n    codes.forEach(code => {\n      if (found) return;\n      const cleanedLng = this.formatLanguageCode(code);\n      if (!this.options.supportedLngs || this.isSupportedCode(cleanedLng)) found = cleanedLng;\n    });\n    if (!found && this.options.supportedLngs) {\n      codes.forEach(code => {\n        if (found) return;\n        const lngOnly = this.getLanguagePartFromCode(code);\n        if (this.isSupportedCode(lngOnly)) return found = lngOnly;\n        found = this.options.supportedLngs.find(supportedLng => {\n          if (supportedLng === lngOnly) return supportedLng;\n          if (supportedLng.indexOf('-') < 0 && lngOnly.indexOf('-') < 0) return;\n          if (supportedLng.indexOf(lngOnly) === 0) return supportedLng;\n        });\n      });\n    }\n    if (!found) found = this.getFallbackCodes(this.options.fallbackLng)[0];\n    return found;\n  }\n  getFallbackCodes(fallbacks, code) {\n    if (!fallbacks) return [];\n    if (typeof fallbacks === 'function') fallbacks = fallbacks(code);\n    if (typeof fallbacks === 'string') fallbacks = [fallbacks];\n    if (Object.prototype.toString.apply(fallbacks) === '[object Array]') return fallbacks;\n    if (!code) return fallbacks.default || [];\n    let found = fallbacks[code];\n    if (!found) found = fallbacks[this.getScriptPartFromCode(code)];\n    if (!found) found = fallbacks[this.formatLanguageCode(code)];\n    if (!found) found = fallbacks[this.getLanguagePartFromCode(code)];\n    if (!found) found = fallbacks.default;\n    return found || [];\n  }\n  toResolveHierarchy(code, fallbackCode) {\n    const fallbackCodes = this.getFallbackCodes(fallbackCode || this.options.fallbackLng || [], code);\n    const codes = [];\n    const addCode = c => {\n      if (!c) return;\n      if (this.isSupportedCode(c)) {\n        codes.push(c);\n      } else {\n        this.logger.warn(`rejecting language code not found in supportedLngs: ${c}`);\n      }\n    };\n    if (typeof code === 'string' && (code.indexOf('-') > -1 || code.indexOf('_') > -1)) {\n      if (this.options.load !== 'languageOnly') addCode(this.formatLanguageCode(code));\n      if (this.options.load !== 'languageOnly' && this.options.load !== 'currentOnly') addCode(this.getScriptPartFromCode(code));\n      if (this.options.load !== 'currentOnly') addCode(this.getLanguagePartFromCode(code));\n    } else if (typeof code === 'string') {\n      addCode(this.formatLanguageCode(code));\n    }\n    fallbackCodes.forEach(fc => {\n      if (codes.indexOf(fc) < 0) addCode(this.formatLanguageCode(fc));\n    });\n    return codes;\n  }\n}\n\nlet sets = [{\n  lngs: ['ach', 'ak', 'am', 'arn', 'br', 'fil', 'gun', 'ln', 'mfe', 'mg', 'mi', 'oc', 'pt', 'pt-BR', 'tg', 'tl', 'ti', 'tr', 'uz', 'wa'],\n  nr: [1, 2],\n  fc: 1\n}, {\n  lngs: ['af', 'an', 'ast', 'az', 'bg', 'bn', 'ca', 'da', 'de', 'dev', 'el', 'en', 'eo', 'es', 'et', 'eu', 'fi', 'fo', 'fur', 'fy', 'gl', 'gu', 'ha', 'hi', 'hu', 'hy', 'ia', 'it', 'kk', 'kn', 'ku', 'lb', 'mai', 'ml', 'mn', 'mr', 'nah', 'nap', 'nb', 'ne', 'nl', 'nn', 'no', 'nso', 'pa', 'pap', 'pms', 'ps', 'pt-PT', 'rm', 'sco', 'se', 'si', 'so', 'son', 'sq', 'sv', 'sw', 'ta', 'te', 'tk', 'ur', 'yo'],\n  nr: [1, 2],\n  fc: 2\n}, {\n  lngs: ['ay', 'bo', 'cgg', 'fa', 'ht', 'id', 'ja', 'jbo', 'ka', 'km', 'ko', 'ky', 'lo', 'ms', 'sah', 'su', 'th', 'tt', 'ug', 'vi', 'wo', 'zh'],\n  nr: [1],\n  fc: 3\n}, {\n  lngs: ['be', 'bs', 'cnr', 'dz', 'hr', 'ru', 'sr', 'uk'],\n  nr: [1, 2, 5],\n  fc: 4\n}, {\n  lngs: ['ar'],\n  nr: [0, 1, 2, 3, 11, 100],\n  fc: 5\n}, {\n  lngs: ['cs', 'sk'],\n  nr: [1, 2, 5],\n  fc: 6\n}, {\n  lngs: ['csb', 'pl'],\n  nr: [1, 2, 5],\n  fc: 7\n}, {\n  lngs: ['cy'],\n  nr: [1, 2, 3, 8],\n  fc: 8\n}, {\n  lngs: ['fr'],\n  nr: [1, 2],\n  fc: 9\n}, {\n  lngs: ['ga'],\n  nr: [1, 2, 3, 7, 11],\n  fc: 10\n}, {\n  lngs: ['gd'],\n  nr: [1, 2, 3, 20],\n  fc: 11\n}, {\n  lngs: ['is'],\n  nr: [1, 2],\n  fc: 12\n}, {\n  lngs: ['jv'],\n  nr: [0, 1],\n  fc: 13\n}, {\n  lngs: ['kw'],\n  nr: [1, 2, 3, 4],\n  fc: 14\n}, {\n  lngs: ['lt'],\n  nr: [1, 2, 10],\n  fc: 15\n}, {\n  lngs: ['lv'],\n  nr: [1, 2, 0],\n  fc: 16\n}, {\n  lngs: ['mk'],\n  nr: [1, 2],\n  fc: 17\n}, {\n  lngs: ['mnk'],\n  nr: [0, 1, 2],\n  fc: 18\n}, {\n  lngs: ['mt'],\n  nr: [1, 2, 11, 20],\n  fc: 19\n}, {\n  lngs: ['or'],\n  nr: [2, 1],\n  fc: 2\n}, {\n  lngs: ['ro'],\n  nr: [1, 2, 20],\n  fc: 20\n}, {\n  lngs: ['sl'],\n  nr: [5, 1, 2, 3],\n  fc: 21\n}, {\n  lngs: ['he', 'iw'],\n  nr: [1, 2, 20, 21],\n  fc: 22\n}];\nlet _rulesPluralsTypes = {\n  1: function (n) {\n    return Number(n > 1);\n  },\n  2: function (n) {\n    return Number(n != 1);\n  },\n  3: function (n) {\n    return 0;\n  },\n  4: function (n) {\n    return Number(n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n  },\n  5: function (n) {\n    return Number(n == 0 ? 0 : n == 1 ? 1 : n == 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5);\n  },\n  6: function (n) {\n    return Number(n == 1 ? 0 : n >= 2 && n <= 4 ? 1 : 2);\n  },\n  7: function (n) {\n    return Number(n == 1 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n  },\n  8: function (n) {\n    return Number(n == 1 ? 0 : n == 2 ? 1 : n != 8 && n != 11 ? 2 : 3);\n  },\n  9: function (n) {\n    return Number(n >= 2);\n  },\n  10: function (n) {\n    return Number(n == 1 ? 0 : n == 2 ? 1 : n < 7 ? 2 : n < 11 ? 3 : 4);\n  },\n  11: function (n) {\n    return Number(n == 1 || n == 11 ? 0 : n == 2 || n == 12 ? 1 : n > 2 && n < 20 ? 2 : 3);\n  },\n  12: function (n) {\n    return Number(n % 10 != 1 || n % 100 == 11);\n  },\n  13: function (n) {\n    return Number(n !== 0);\n  },\n  14: function (n) {\n    return Number(n == 1 ? 0 : n == 2 ? 1 : n == 3 ? 2 : 3);\n  },\n  15: function (n) {\n    return Number(n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 >= 2 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n  },\n  16: function (n) {\n    return Number(n % 10 == 1 && n % 100 != 11 ? 0 : n !== 0 ? 1 : 2);\n  },\n  17: function (n) {\n    return Number(n == 1 || n % 10 == 1 && n % 100 != 11 ? 0 : 1);\n  },\n  18: function (n) {\n    return Number(n == 0 ? 0 : n == 1 ? 1 : 2);\n  },\n  19: function (n) {\n    return Number(n == 1 ? 0 : n == 0 || n % 100 > 1 && n % 100 < 11 ? 1 : n % 100 > 10 && n % 100 < 20 ? 2 : 3);\n  },\n  20: function (n) {\n    return Number(n == 1 ? 0 : n == 0 || n % 100 > 0 && n % 100 < 20 ? 1 : 2);\n  },\n  21: function (n) {\n    return Number(n % 100 == 1 ? 1 : n % 100 == 2 ? 2 : n % 100 == 3 || n % 100 == 4 ? 3 : 0);\n  },\n  22: function (n) {\n    return Number(n == 1 ? 0 : n == 2 ? 1 : (n < 0 || n > 10) && n % 10 == 0 ? 2 : 3);\n  }\n};\nconst nonIntlVersions = ['v1', 'v2', 'v3'];\nconst intlVersions = ['v4'];\nconst suffixesOrder = {\n  zero: 0,\n  one: 1,\n  two: 2,\n  few: 3,\n  many: 4,\n  other: 5\n};\nfunction createRules() {\n  const rules = {};\n  sets.forEach(set => {\n    set.lngs.forEach(l => {\n      rules[l] = {\n        numbers: set.nr,\n        plurals: _rulesPluralsTypes[set.fc]\n      };\n    });\n  });\n  return rules;\n}\nclass PluralResolver {\n  constructor(languageUtils) {\n    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n    this.languageUtils = languageUtils;\n    this.options = options;\n    this.logger = baseLogger.create('pluralResolver');\n    if ((!this.options.compatibilityJSON || intlVersions.includes(this.options.compatibilityJSON)) && (typeof Intl === 'undefined' || !Intl.PluralRules)) {\n      this.options.compatibilityJSON = 'v3';\n      this.logger.error('Your environment seems not to be Intl API compatible, use an Intl.PluralRules polyfill. Will fallback to the compatibilityJSON v3 format handling.');\n    }\n    this.rules = createRules();\n  }\n  addRule(lng, obj) {\n    this.rules[lng] = obj;\n  }\n  getRule(code) {\n    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n    if (this.shouldUseIntlApi()) {\n      try {\n        return new Intl.PluralRules(getCleanedCode(code), {\n          type: options.ordinal ? 'ordinal' : 'cardinal'\n        });\n      } catch {\n        return;\n      }\n    }\n    return this.rules[code] || this.rules[this.languageUtils.getLanguagePartFromCode(code)];\n  }\n  needsPlural(code) {\n    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n    const rule = this.getRule(code, options);\n    if (this.shouldUseIntlApi()) {\n      return rule && rule.resolvedOptions().pluralCategories.length > 1;\n    }\n    return rule && rule.numbers.length > 1;\n  }\n  getPluralFormsOfKey(code, key) {\n    let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};\n    return this.getSuffixes(code, options).map(suffix => `${key}${suffix}`);\n  }\n  getSuffixes(code) {\n    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n    const rule = this.getRule(code, options);\n    if (!rule) {\n      return [];\n    }\n    if (this.shouldUseIntlApi()) {\n      return rule.resolvedOptions().pluralCategories.sort((pluralCategory1, pluralCategory2) => suffixesOrder[pluralCategory1] - suffixesOrder[pluralCategory2]).map(pluralCategory => `${this.options.prepend}${options.ordinal ? `ordinal${this.options.prepend}` : ''}${pluralCategory}`);\n    }\n    return rule.numbers.map(number => this.getSuffix(code, number, options));\n  }\n  getSuffix(code, count) {\n    let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};\n    const rule = this.getRule(code, options);\n    if (rule) {\n      if (this.shouldUseIntlApi()) {\n        return `${this.options.prepend}${options.ordinal ? `ordinal${this.options.prepend}` : ''}${rule.select(count)}`;\n      }\n      return this.getSuffixRetroCompatible(rule, count);\n    }\n    this.logger.warn(`no plural rule found for: ${code}`);\n    return '';\n  }\n  getSuffixRetroCompatible(rule, count) {\n    const idx = rule.noAbs ? rule.plurals(count) : rule.plurals(Math.abs(count));\n    let suffix = rule.numbers[idx];\n    if (this.options.simplifyPluralSuffix && rule.numbers.length === 2 && rule.numbers[0] === 1) {\n      if (suffix === 2) {\n        suffix = 'plural';\n      } else if (suffix === 1) {\n        suffix = '';\n      }\n    }\n    const returnSuffix = () => this.options.prepend && suffix.toString() ? this.options.prepend + suffix.toString() : suffix.toString();\n    if (this.options.compatibilityJSON === 'v1') {\n      if (suffix === 1) return '';\n      if (typeof suffix === 'number') return `_plural_${suffix.toString()}`;\n      return returnSuffix();\n    } else if (this.options.compatibilityJSON === 'v2') {\n      return returnSuffix();\n    } else if (this.options.simplifyPluralSuffix && rule.numbers.length === 2 && rule.numbers[0] === 1) {\n      return returnSuffix();\n    }\n    return this.options.prepend && idx.toString() ? this.options.prepend + idx.toString() : idx.toString();\n  }\n  shouldUseIntlApi() {\n    return !nonIntlVersions.includes(this.options.compatibilityJSON);\n  }\n}\n\nfunction deepFindWithDefaults(data, defaultData, key) {\n  let keySeparator = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '.';\n  let ignoreJSONStructure = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;\n  let path = getPathWithDefaults(data, defaultData, key);\n  if (!path && ignoreJSONStructure && typeof key === 'string') {\n    path = deepFind(data, key, keySeparator);\n    if (path === undefined) path = deepFind(defaultData, key, keySeparator);\n  }\n  return path;\n}\nclass Interpolator {\n  constructor() {\n    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n    this.logger = baseLogger.create('interpolator');\n    this.options = options;\n    this.format = options.interpolation && options.interpolation.format || (value => value);\n    this.init(options);\n  }\n  init() {\n    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n    if (!options.interpolation) options.interpolation = {\n      escapeValue: true\n    };\n    const iOpts = options.interpolation;\n    this.escape = iOpts.escape !== undefined ? iOpts.escape : escape;\n    this.escapeValue = iOpts.escapeValue !== undefined ? iOpts.escapeValue : true;\n    this.useRawValueToEscape = iOpts.useRawValueToEscape !== undefined ? iOpts.useRawValueToEscape : false;\n    this.prefix = iOpts.prefix ? regexEscape(iOpts.prefix) : iOpts.prefixEscaped || '{{';\n    this.suffix = iOpts.suffix ? regexEscape(iOpts.suffix) : iOpts.suffixEscaped || '}}';\n    this.formatSeparator = iOpts.formatSeparator ? iOpts.formatSeparator : iOpts.formatSeparator || ',';\n    this.unescapePrefix = iOpts.unescapeSuffix ? '' : iOpts.unescapePrefix || '-';\n    this.unescapeSuffix = this.unescapePrefix ? '' : iOpts.unescapeSuffix || '';\n    this.nestingPrefix = iOpts.nestingPrefix ? regexEscape(iOpts.nestingPrefix) : iOpts.nestingPrefixEscaped || regexEscape('$t(');\n    this.nestingSuffix = iOpts.nestingSuffix ? regexEscape(iOpts.nestingSuffix) : iOpts.nestingSuffixEscaped || regexEscape(')');\n    this.nestingOptionsSeparator = iOpts.nestingOptionsSeparator ? iOpts.nestingOptionsSeparator : iOpts.nestingOptionsSeparator || ',';\n    this.maxReplaces = iOpts.maxReplaces ? iOpts.maxReplaces : 1000;\n    this.alwaysFormat = iOpts.alwaysFormat !== undefined ? iOpts.alwaysFormat : false;\n    this.resetRegExp();\n  }\n  reset() {\n    if (this.options) this.init(this.options);\n  }\n  resetRegExp() {\n    const regexpStr = `${this.prefix}(.+?)${this.suffix}`;\n    this.regexp = new RegExp(regexpStr, 'g');\n    const regexpUnescapeStr = `${this.prefix}${this.unescapePrefix}(.+?)${this.unescapeSuffix}${this.suffix}`;\n    this.regexpUnescape = new RegExp(regexpUnescapeStr, 'g');\n    const nestingRegexpStr = `${this.nestingPrefix}(.+?)${this.nestingSuffix}`;\n    this.nestingRegexp = new RegExp(nestingRegexpStr, 'g');\n  }\n  interpolate(str, data, lng, options) {\n    let match;\n    let value;\n    let replaces;\n    const defaultData = this.options && this.options.interpolation && this.options.interpolation.defaultVariables || {};\n    function regexSafe(val) {\n      return val.replace(/\\$/g, '$$$$');\n    }\n    const handleFormat = key => {\n      if (key.indexOf(this.formatSeparator) < 0) {\n        const path = deepFindWithDefaults(data, defaultData, key, this.options.keySeparator, this.options.ignoreJSONStructure);\n        return this.alwaysFormat ? this.format(path, undefined, lng, {\n          ...options,\n          ...data,\n          interpolationkey: key\n        }) : path;\n      }\n      const p = key.split(this.formatSeparator);\n      const k = p.shift().trim();\n      const f = p.join(this.formatSeparator).trim();\n      return this.format(deepFindWithDefaults(data, defaultData, k, this.options.keySeparator, this.options.ignoreJSONStructure), f, lng, {\n        ...options,\n        ...data,\n        interpolationkey: k\n      });\n    };\n    this.resetRegExp();\n    const missingInterpolationHandler = options && options.missingInterpolationHandler || this.options.missingInterpolationHandler;\n    const skipOnVariables = options && options.interpolation && options.interpolation.skipOnVariables !== undefined ? options.interpolation.skipOnVariables : this.options.interpolation.skipOnVariables;\n    const todos = [{\n      regex: this.regexpUnescape,\n      safeValue: val => regexSafe(val)\n    }, {\n      regex: this.regexp,\n      safeValue: val => this.escapeValue ? regexSafe(this.escape(val)) : regexSafe(val)\n    }];\n    todos.forEach(todo => {\n      replaces = 0;\n      while (match = todo.regex.exec(str)) {\n        const matchedVar = match[1].trim();\n        value = handleFormat(matchedVar);\n        if (value === undefined) {\n          if (typeof missingInterpolationHandler === 'function') {\n            const temp = missingInterpolationHandler(str, match, options);\n            value = typeof temp === 'string' ? temp : '';\n          } else if (options && Object.prototype.hasOwnProperty.call(options, matchedVar)) {\n            value = '';\n          } else if (skipOnVariables) {\n            value = match[0];\n            continue;\n          } else {\n            this.logger.warn(`missed to pass in variable ${matchedVar} for interpolating ${str}`);\n            value = '';\n          }\n        } else if (typeof value !== 'string' && !this.useRawValueToEscape) {\n          value = makeString(value);\n        }\n        const safeValue = todo.safeValue(value);\n        str = str.replace(match[0], safeValue);\n        if (skipOnVariables) {\n          todo.regex.lastIndex += value.length;\n          todo.regex.lastIndex -= match[0].length;\n        } else {\n          todo.regex.lastIndex = 0;\n        }\n        replaces++;\n        if (replaces >= this.maxReplaces) {\n          break;\n        }\n      }\n    });\n    return str;\n  }\n  nest(str, fc) {\n    let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};\n    let match;\n    let value;\n    let clonedOptions;\n    function handleHasOptions(key, inheritedOptions) {\n      const sep = this.nestingOptionsSeparator;\n      if (key.indexOf(sep) < 0) return key;\n      const c = key.split(new RegExp(`${sep}[ ]*{`));\n      let optionsString = `{${c[1]}`;\n      key = c[0];\n      optionsString = this.interpolate(optionsString, clonedOptions);\n      const matchedSingleQuotes = optionsString.match(/'/g);\n      const matchedDoubleQuotes = optionsString.match(/\"/g);\n      if (matchedSingleQuotes && matchedSingleQuotes.length % 2 === 0 && !matchedDoubleQuotes || matchedDoubleQuotes.length % 2 !== 0) {\n        optionsString = optionsString.replace(/'/g, '\"');\n      }\n      try {\n        clonedOptions = JSON.parse(optionsString);\n        if (inheritedOptions) clonedOptions = {\n          ...inheritedOptions,\n          ...clonedOptions\n        };\n      } catch (e) {\n        this.logger.warn(`failed parsing options string in nesting for key ${key}`, e);\n        return `${key}${sep}${optionsString}`;\n      }\n      delete clonedOptions.defaultValue;\n      return key;\n    }\n    while (match = this.nestingRegexp.exec(str)) {\n      let formatters = [];\n      clonedOptions = {\n        ...options\n      };\n      clonedOptions = clonedOptions.replace && typeof clonedOptions.replace !== 'string' ? clonedOptions.replace : clonedOptions;\n      clonedOptions.applyPostProcessor = false;\n      delete clonedOptions.defaultValue;\n      let doReduce = false;\n      if (match[0].indexOf(this.formatSeparator) !== -1 && !/{.*}/.test(match[1])) {\n        const r = match[1].split(this.formatSeparator).map(elem => elem.trim());\n        match[1] = r.shift();\n        formatters = r;\n        doReduce = true;\n      }\n      value = fc(handleHasOptions.call(this, match[1].trim(), clonedOptions), clonedOptions);\n      if (value && match[0] === str && typeof value !== 'string') return value;\n      if (typeof value !== 'string') value = makeString(value);\n      if (!value) {\n        this.logger.warn(`missed to resolve ${match[1]} for nesting ${str}`);\n        value = '';\n      }\n      if (doReduce) {\n        value = formatters.reduce((v, f) => this.format(v, f, options.lng, {\n          ...options,\n          interpolationkey: match[1].trim()\n        }), value.trim());\n      }\n      str = str.replace(match[0], value);\n      this.regexp.lastIndex = 0;\n    }\n    return str;\n  }\n}\n\nfunction parseFormatStr(formatStr) {\n  let formatName = formatStr.toLowerCase().trim();\n  const formatOptions = {};\n  if (formatStr.indexOf('(') > -1) {\n    const p = formatStr.split('(');\n    formatName = p[0].toLowerCase().trim();\n    const optStr = p[1].substring(0, p[1].length - 1);\n    if (formatName === 'currency' && optStr.indexOf(':') < 0) {\n      if (!formatOptions.currency) formatOptions.currency = optStr.trim();\n    } else if (formatName === 'relativetime' && optStr.indexOf(':') < 0) {\n      if (!formatOptions.range) formatOptions.range = optStr.trim();\n    } else {\n      const opts = optStr.split(';');\n      opts.forEach(opt => {\n        if (!opt) return;\n        const [key, ...rest] = opt.split(':');\n        const val = rest.join(':').trim().replace(/^'+|'+$/g, '');\n        if (!formatOptions[key.trim()]) formatOptions[key.trim()] = val;\n        if (val === 'false') formatOptions[key.trim()] = false;\n        if (val === 'true') formatOptions[key.trim()] = true;\n        if (!isNaN(val)) formatOptions[key.trim()] = parseInt(val, 10);\n      });\n    }\n  }\n  return {\n    formatName,\n    formatOptions\n  };\n}\nfunction createCachedFormatter(fn) {\n  const cache = {};\n  return function invokeFormatter(val, lng, options) {\n    const key = lng + JSON.stringify(options);\n    let formatter = cache[key];\n    if (!formatter) {\n      formatter = fn(getCleanedCode(lng), options);\n      cache[key] = formatter;\n    }\n    return formatter(val);\n  };\n}\nclass Formatter {\n  constructor() {\n    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n    this.logger = baseLogger.create('formatter');\n    this.options = options;\n    this.formats = {\n      number: createCachedFormatter((lng, opt) => {\n        const formatter = new Intl.NumberFormat(lng, {\n          ...opt\n        });\n        return val => formatter.format(val);\n      }),\n      currency: createCachedFormatter((lng, opt) => {\n        const formatter = new Intl.NumberFormat(lng, {\n          ...opt,\n          style: 'currency'\n        });\n        return val => formatter.format(val);\n      }),\n      datetime: createCachedFormatter((lng, opt) => {\n        const formatter = new Intl.DateTimeFormat(lng, {\n          ...opt\n        });\n        return val => formatter.format(val);\n      }),\n      relativetime: createCachedFormatter((lng, opt) => {\n        const formatter = new Intl.RelativeTimeFormat(lng, {\n          ...opt\n        });\n        return val => formatter.format(val, opt.range || 'day');\n      }),\n      list: createCachedFormatter((lng, opt) => {\n        const formatter = new Intl.ListFormat(lng, {\n          ...opt\n        });\n        return val => formatter.format(val);\n      })\n    };\n    this.init(options);\n  }\n  init(services) {\n    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {\n      interpolation: {}\n    };\n    const iOpts = options.interpolation;\n    this.formatSeparator = iOpts.formatSeparator ? iOpts.formatSeparator : iOpts.formatSeparator || ',';\n  }\n  add(name, fc) {\n    this.formats[name.toLowerCase().trim()] = fc;\n  }\n  addCached(name, fc) {\n    this.formats[name.toLowerCase().trim()] = createCachedFormatter(fc);\n  }\n  format(value, format, lng) {\n    let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};\n    const formats = format.split(this.formatSeparator);\n    const result = formats.reduce((mem, f) => {\n      const {\n        formatName,\n        formatOptions\n      } = parseFormatStr(f);\n      if (this.formats[formatName]) {\n        let formatted = mem;\n        try {\n          const valOptions = options && options.formatParams && options.formatParams[options.interpolationkey] || {};\n          const l = valOptions.locale || valOptions.lng || options.locale || options.lng || lng;\n          formatted = this.formats[formatName](mem, l, {\n            ...formatOptions,\n            ...options,\n            ...valOptions\n          });\n        } catch (error) {\n          this.logger.warn(error);\n        }\n        return formatted;\n      } else {\n        this.logger.warn(`there was no format function for ${formatName}`);\n      }\n      return mem;\n    }, value);\n    return result;\n  }\n}\n\nfunction removePending(q, name) {\n  if (q.pending[name] !== undefined) {\n    delete q.pending[name];\n    q.pendingCount--;\n  }\n}\nclass Connector extends EventEmitter {\n  constructor(backend, store, services) {\n    let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};\n    super();\n    this.backend = backend;\n    this.store = store;\n    this.services = services;\n    this.languageUtils = services.languageUtils;\n    this.options = options;\n    this.logger = baseLogger.create('backendConnector');\n    this.waitingReads = [];\n    this.maxParallelReads = options.maxParallelReads || 10;\n    this.readingCalls = 0;\n    this.maxRetries = options.maxRetries >= 0 ? options.maxRetries : 5;\n    this.retryTimeout = options.retryTimeout >= 1 ? options.retryTimeout : 350;\n    this.state = {};\n    this.queue = [];\n    if (this.backend && this.backend.init) {\n      this.backend.init(services, options.backend, options);\n    }\n  }\n  queueLoad(languages, namespaces, options, callback) {\n    const toLoad = {};\n    const pending = {};\n    const toLoadLanguages = {};\n    const toLoadNamespaces = {};\n    languages.forEach(lng => {\n      let hasAllNamespaces = true;\n      namespaces.forEach(ns => {\n        const name = `${lng}|${ns}`;\n        if (!options.reload && this.store.hasResourceBundle(lng, ns)) {\n          this.state[name] = 2;\n        } else if (this.state[name] < 0) ; else if (this.state[name] === 1) {\n          if (pending[name] === undefined) pending[name] = true;\n        } else {\n          this.state[name] = 1;\n          hasAllNamespaces = false;\n          if (pending[name] === undefined) pending[name] = true;\n          if (toLoad[name] === undefined) toLoad[name] = true;\n          if (toLoadNamespaces[ns] === undefined) toLoadNamespaces[ns] = true;\n        }\n      });\n      if (!hasAllNamespaces) toLoadLanguages[lng] = true;\n    });\n    if (Object.keys(toLoad).length || Object.keys(pending).length) {\n      this.queue.push({\n        pending,\n        pendingCount: Object.keys(pending).length,\n        loaded: {},\n        errors: [],\n        callback\n      });\n    }\n    return {\n      toLoad: Object.keys(toLoad),\n      pending: Object.keys(pending),\n      toLoadLanguages: Object.keys(toLoadLanguages),\n      toLoadNamespaces: Object.keys(toLoadNamespaces)\n    };\n  }\n  loaded(name, err, data) {\n    const s = name.split('|');\n    const lng = s[0];\n    const ns = s[1];\n    if (err) this.emit('failedLoading', lng, ns, err);\n    if (data) {\n      this.store.addResourceBundle(lng, ns, data);\n    }\n    this.state[name] = err ? -1 : 2;\n    const loaded = {};\n    this.queue.forEach(q => {\n      pushPath(q.loaded, [lng], ns);\n      removePending(q, name);\n      if (err) q.errors.push(err);\n      if (q.pendingCount === 0 && !q.done) {\n        Object.keys(q.loaded).forEach(l => {\n          if (!loaded[l]) loaded[l] = {};\n          const loadedKeys = q.loaded[l];\n          if (loadedKeys.length) {\n            loadedKeys.forEach(n => {\n              if (loaded[l][n] === undefined) loaded[l][n] = true;\n            });\n          }\n        });\n        q.done = true;\n        if (q.errors.length) {\n          q.callback(q.errors);\n        } else {\n          q.callback();\n        }\n      }\n    });\n    this.emit('loaded', loaded);\n    this.queue = this.queue.filter(q => !q.done);\n  }\n  read(lng, ns, fcName) {\n    let tried = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;\n    let wait = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : this.retryTimeout;\n    let callback = arguments.length > 5 ? arguments[5] : undefined;\n    if (!lng.length) return callback(null, {});\n    if (this.readingCalls >= this.maxParallelReads) {\n      this.waitingReads.push({\n        lng,\n        ns,\n        fcName,\n        tried,\n        wait,\n        callback\n      });\n      return;\n    }\n    this.readingCalls++;\n    const resolver = (err, data) => {\n      this.readingCalls--;\n      if (this.waitingReads.length > 0) {\n        const next = this.waitingReads.shift();\n        this.read(next.lng, next.ns, next.fcName, next.tried, next.wait, next.callback);\n      }\n      if (err && data && tried < this.maxRetries) {\n        setTimeout(() => {\n          this.read.call(this, lng, ns, fcName, tried + 1, wait * 2, callback);\n        }, wait);\n        return;\n      }\n      callback(err, data);\n    };\n    const fc = this.backend[fcName].bind(this.backend);\n    if (fc.length === 2) {\n      try {\n        const r = fc(lng, ns);\n        if (r && typeof r.then === 'function') {\n          r.then(data => resolver(null, data)).catch(resolver);\n        } else {\n          resolver(null, r);\n        }\n      } catch (err) {\n        resolver(err);\n      }\n      return;\n    }\n    return fc(lng, ns, resolver);\n  }\n  prepareLoading(languages, namespaces) {\n    let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};\n    let callback = arguments.length > 3 ? arguments[3] : undefined;\n    if (!this.backend) {\n      this.logger.warn('No backend was added via i18next.use. Will not load resources.');\n      return callback && callback();\n    }\n    if (typeof languages === 'string') languages = this.languageUtils.toResolveHierarchy(languages);\n    if (typeof namespaces === 'string') namespaces = [namespaces];\n    const toLoad = this.queueLoad(languages, namespaces, options, callback);\n    if (!toLoad.toLoad.length) {\n      if (!toLoad.pending.length) callback();\n      return null;\n    }\n    toLoad.toLoad.forEach(name => {\n      this.loadOne(name);\n    });\n  }\n  load(languages, namespaces, callback) {\n    this.prepareLoading(languages, namespaces, {}, callback);\n  }\n  reload(languages, namespaces, callback) {\n    this.prepareLoading(languages, namespaces, {\n      reload: true\n    }, callback);\n  }\n  loadOne(name) {\n    let prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';\n    const s = name.split('|');\n    const lng = s[0];\n    const ns = s[1];\n    this.read(lng, ns, 'read', undefined, undefined, (err, data) => {\n      if (err) this.logger.warn(`${prefix}loading namespace ${ns} for language ${lng} failed`, err);\n      if (!err && data) this.logger.log(`${prefix}loaded namespace ${ns} for language ${lng}`, data);\n      this.loaded(name, err, data);\n    });\n  }\n  saveMissing(languages, namespace, key, fallbackValue, isUpdate) {\n    let options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};\n    let clb = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : () => {};\n    if (this.services.utils && this.services.utils.hasLoadedNamespace && !this.services.utils.hasLoadedNamespace(namespace)) {\n      this.logger.warn(`did not save key \"${key}\" as the namespace \"${namespace}\" was not yet loaded`, 'This means something IS WRONG in your setup. You access the t function before i18next.init / i18next.loadNamespace / i18next.changeLanguage was done. Wait for the callback or Promise to resolve before accessing it!!!');\n      return;\n    }\n    if (key === undefined || key === null || key === '') return;\n    if (this.backend && this.backend.create) {\n      const opts = {\n        ...options,\n        isUpdate\n      };\n      const fc = this.backend.create.bind(this.backend);\n      if (fc.length < 6) {\n        try {\n          let r;\n          if (fc.length === 5) {\n            r = fc(languages, namespace, key, fallbackValue, opts);\n          } else {\n            r = fc(languages, namespace, key, fallbackValue);\n          }\n          if (r && typeof r.then === 'function') {\n            r.then(data => clb(null, data)).catch(clb);\n          } else {\n            clb(null, r);\n          }\n        } catch (err) {\n          clb(err);\n        }\n      } else {\n        fc(languages, namespace, key, fallbackValue, clb, opts);\n      }\n    }\n    if (!languages || !languages[0]) return;\n    this.store.addResource(languages[0], namespace, key, fallbackValue);\n  }\n}\n\nfunction get() {\n  return {\n    debug: false,\n    initImmediate: true,\n    ns: ['translation'],\n    defaultNS: ['translation'],\n    fallbackLng: ['dev'],\n    fallbackNS: false,\n    supportedLngs: false,\n    nonExplicitSupportedLngs: false,\n    load: 'all',\n    preload: false,\n    simplifyPluralSuffix: true,\n    keySeparator: '.',\n    nsSeparator: ':',\n    pluralSeparator: '_',\n    contextSeparator: '_',\n    partialBundledLanguages: false,\n    saveMissing: false,\n    updateMissing: false,\n    saveMissingTo: 'fallback',\n    saveMissingPlurals: true,\n    missingKeyHandler: false,\n    missingInterpolationHandler: false,\n    postProcess: false,\n    postProcessPassResolved: false,\n    returnNull: false,\n    returnEmptyString: true,\n    returnObjects: false,\n    joinArrays: false,\n    returnedObjectHandler: false,\n    parseMissingKeyHandler: false,\n    appendNamespaceToMissingKey: false,\n    appendNamespaceToCIMode: false,\n    overloadTranslationOptionHandler: function handle(args) {\n      let ret = {};\n      if (typeof args[1] === 'object') ret = args[1];\n      if (typeof args[1] === 'string') ret.defaultValue = args[1];\n      if (typeof args[2] === 'string') ret.tDescription = args[2];\n      if (typeof args[2] === 'object' || typeof args[3] === 'object') {\n        const options = args[3] || args[2];\n        Object.keys(options).forEach(key => {\n          ret[key] = options[key];\n        });\n      }\n      return ret;\n    },\n    interpolation: {\n      escapeValue: true,\n      format: (value, format, lng, options) => value,\n      prefix: '{{',\n      suffix: '}}',\n      formatSeparator: ',',\n      unescapePrefix: '-',\n      nestingPrefix: '$t(',\n      nestingSuffix: ')',\n      nestingOptionsSeparator: ',',\n      maxReplaces: 1000,\n      skipOnVariables: true\n    }\n  };\n}\nfunction transformOptions(options) {\n  if (typeof options.ns === 'string') options.ns = [options.ns];\n  if (typeof options.fallbackLng === 'string') options.fallbackLng = [options.fallbackLng];\n  if (typeof options.fallbackNS === 'string') options.fallbackNS = [options.fallbackNS];\n  if (options.supportedLngs && options.supportedLngs.indexOf('cimode') < 0) {\n    options.supportedLngs = options.supportedLngs.concat(['cimode']);\n  }\n  return options;\n}\n\nfunction noop() {}\nfunction bindMemberFunctions(inst) {\n  const mems = Object.getOwnPropertyNames(Object.getPrototypeOf(inst));\n  mems.forEach(mem => {\n    if (typeof inst[mem] === 'function') {\n      inst[mem] = inst[mem].bind(inst);\n    }\n  });\n}\nclass I18n extends EventEmitter {\n  constructor() {\n    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n    let callback = arguments.length > 1 ? arguments[1] : undefined;\n    super();\n    this.options = transformOptions(options);\n    this.services = {};\n    this.logger = baseLogger;\n    this.modules = {\n      external: []\n    };\n    bindMemberFunctions(this);\n    if (callback && !this.isInitialized && !options.isClone) {\n      if (!this.options.initImmediate) {\n        this.init(options, callback);\n        return this;\n      }\n      setTimeout(() => {\n        this.init(options, callback);\n      }, 0);\n    }\n  }\n  init() {\n    var _this = this;\n    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n    let callback = arguments.length > 1 ? arguments[1] : undefined;\n    if (typeof options === 'function') {\n      callback = options;\n      options = {};\n    }\n    if (!options.defaultNS && options.defaultNS !== false && options.ns) {\n      if (typeof options.ns === 'string') {\n        options.defaultNS = options.ns;\n      } else if (options.ns.indexOf('translation') < 0) {\n        options.defaultNS = options.ns[0];\n      }\n    }\n    const defOpts = get();\n    this.options = {\n      ...defOpts,\n      ...this.options,\n      ...transformOptions(options)\n    };\n    if (this.options.compatibilityAPI !== 'v1') {\n      this.options.interpolation = {\n        ...defOpts.interpolation,\n        ...this.options.interpolation\n      };\n    }\n    if (options.keySeparator !== undefined) {\n      this.options.userDefinedKeySeparator = options.keySeparator;\n    }\n    if (options.nsSeparator !== undefined) {\n      this.options.userDefinedNsSeparator = options.nsSeparator;\n    }\n    function createClassOnDemand(ClassOrObject) {\n      if (!ClassOrObject) return null;\n      if (typeof ClassOrObject === 'function') return new ClassOrObject();\n      return ClassOrObject;\n    }\n    if (!this.options.isClone) {\n      if (this.modules.logger) {\n        baseLogger.init(createClassOnDemand(this.modules.logger), this.options);\n      } else {\n        baseLogger.init(null, this.options);\n      }\n      let formatter;\n      if (this.modules.formatter) {\n        formatter = this.modules.formatter;\n      } else if (typeof Intl !== 'undefined') {\n        formatter = Formatter;\n      }\n      const lu = new LanguageUtil(this.options);\n      this.store = new ResourceStore(this.options.resources, this.options);\n      const s = this.services;\n      s.logger = baseLogger;\n      s.resourceStore = this.store;\n      s.languageUtils = lu;\n      s.pluralResolver = new PluralResolver(lu, {\n        prepend: this.options.pluralSeparator,\n        compatibilityJSON: this.options.compatibilityJSON,\n        simplifyPluralSuffix: this.options.simplifyPluralSuffix\n      });\n      if (formatter && (!this.options.interpolation.format || this.options.interpolation.format === defOpts.interpolation.format)) {\n        s.formatter = createClassOnDemand(formatter);\n        s.formatter.init(s, this.options);\n        this.options.interpolation.format = s.formatter.format.bind(s.formatter);\n      }\n      s.interpolator = new Interpolator(this.options);\n      s.utils = {\n        hasLoadedNamespace: this.hasLoadedNamespace.bind(this)\n      };\n      s.backendConnector = new Connector(createClassOnDemand(this.modules.backend), s.resourceStore, s, this.options);\n      s.backendConnector.on('*', function (event) {\n        for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {\n          args[_key - 1] = arguments[_key];\n        }\n        _this.emit(event, ...args);\n      });\n      if (this.modules.languageDetector) {\n        s.languageDetector = createClassOnDemand(this.modules.languageDetector);\n        if (s.languageDetector.init) s.languageDetector.init(s, this.options.detection, this.options);\n      }\n      if (this.modules.i18nFormat) {\n        s.i18nFormat = createClassOnDemand(this.modules.i18nFormat);\n        if (s.i18nFormat.init) s.i18nFormat.init(this);\n      }\n      this.translator = new Translator(this.services, this.options);\n      this.translator.on('*', function (event) {\n        for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {\n          args[_key2 - 1] = arguments[_key2];\n        }\n        _this.emit(event, ...args);\n      });\n      this.modules.external.forEach(m => {\n        if (m.init) m.init(this);\n      });\n    }\n    this.format = this.options.interpolation.format;\n    if (!callback) callback = noop;\n    if (this.options.fallbackLng && !this.services.languageDetector && !this.options.lng) {\n      const codes = this.services.languageUtils.getFallbackCodes(this.options.fallbackLng);\n      if (codes.length > 0 && codes[0] !== 'dev') this.options.lng = codes[0];\n    }\n    if (!this.services.languageDetector && !this.options.lng) {\n      this.logger.warn('init: no languageDetector is used and no lng is defined');\n    }\n    const storeApi = ['getResource', 'hasResourceBundle', 'getResourceBundle', 'getDataByLanguage'];\n    storeApi.forEach(fcName => {\n      this[fcName] = function () {\n        return _this.store[fcName](...arguments);\n      };\n    });\n    const storeApiChained = ['addResource', 'addResources', 'addResourceBundle', 'removeResourceBundle'];\n    storeApiChained.forEach(fcName => {\n      this[fcName] = function () {\n        _this.store[fcName](...arguments);\n        return _this;\n      };\n    });\n    const deferred = defer();\n    const load = () => {\n      const finish = (err, t) => {\n        if (this.isInitialized && !this.initializedStoreOnce) this.logger.warn('init: i18next is already initialized. You should call init just once!');\n        this.isInitialized = true;\n        if (!this.options.isClone) this.logger.log('initialized', this.options);\n        this.emit('initialized', this.options);\n        deferred.resolve(t);\n        callback(err, t);\n      };\n      if (this.languages && this.options.compatibilityAPI !== 'v1' && !this.isInitialized) return finish(null, this.t.bind(this));\n      this.changeLanguage(this.options.lng, finish);\n    };\n    if (this.options.resources || !this.options.initImmediate) {\n      load();\n    } else {\n      setTimeout(load, 0);\n    }\n    return deferred;\n  }\n  loadResources(language) {\n    let callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : noop;\n    let usedCallback = callback;\n    const usedLng = typeof language === 'string' ? language : this.language;\n    if (typeof language === 'function') usedCallback = language;\n    if (!this.options.resources || this.options.partialBundledLanguages) {\n      if (usedLng && usedLng.toLowerCase() === 'cimode') return usedCallback();\n      const toLoad = [];\n      const append = lng => {\n        if (!lng) return;\n        const lngs = this.services.languageUtils.toResolveHierarchy(lng);\n        lngs.forEach(l => {\n          if (toLoad.indexOf(l) < 0) toLoad.push(l);\n        });\n      };\n      if (!usedLng) {\n        const fallbacks = this.services.languageUtils.getFallbackCodes(this.options.fallbackLng);\n        fallbacks.forEach(l => append(l));\n      } else {\n        append(usedLng);\n      }\n      if (this.options.preload) {\n        this.options.preload.forEach(l => append(l));\n      }\n      this.services.backendConnector.load(toLoad, this.options.ns, e => {\n        if (!e && !this.resolvedLanguage && this.language) this.setResolvedLanguage(this.language);\n        usedCallback(e);\n      });\n    } else {\n      usedCallback(null);\n    }\n  }\n  reloadResources(lngs, ns, callback) {\n    const deferred = defer();\n    if (!lngs) lngs = this.languages;\n    if (!ns) ns = this.options.ns;\n    if (!callback) callback = noop;\n    this.services.backendConnector.reload(lngs, ns, err => {\n      deferred.resolve();\n      callback(err);\n    });\n    return deferred;\n  }\n  use(module) {\n    if (!module) throw new Error('You are passing an undefined module! Please check the object you are passing to i18next.use()');\n    if (!module.type) throw new Error('You are passing a wrong module! Please check the object you are passing to i18next.use()');\n    if (module.type === 'backend') {\n      this.modules.backend = module;\n    }\n    if (module.type === 'logger' || module.log && module.warn && module.error) {\n      this.modules.logger = module;\n    }\n    if (module.type === 'languageDetector') {\n      this.modules.languageDetector = module;\n    }\n    if (module.type === 'i18nFormat') {\n      this.modules.i18nFormat = module;\n    }\n    if (module.type === 'postProcessor') {\n      postProcessor.addPostProcessor(module);\n    }\n    if (module.type === 'formatter') {\n      this.modules.formatter = module;\n    }\n    if (module.type === '3rdParty') {\n      this.modules.external.push(module);\n    }\n    return this;\n  }\n  setResolvedLanguage(l) {\n    if (!l || !this.languages) return;\n    if (['cimode', 'dev'].indexOf(l) > -1) return;\n    for (let li = 0; li < this.languages.length; li++) {\n      const lngInLngs = this.languages[li];\n      if (['cimode', 'dev'].indexOf(lngInLngs) > -1) continue;\n      if (this.store.hasLanguageSomeTranslations(lngInLngs)) {\n        this.resolvedLanguage = lngInLngs;\n        break;\n      }\n    }\n  }\n  changeLanguage(lng, callback) {\n    var _this2 = this;\n    this.isLanguageChangingTo = lng;\n    const deferred = defer();\n    this.emit('languageChanging', lng);\n    const setLngProps = l => {\n      this.language = l;\n      this.languages = this.services.languageUtils.toResolveHierarchy(l);\n      this.resolvedLanguage = undefined;\n      this.setResolvedLanguage(l);\n    };\n    const done = (err, l) => {\n      if (l) {\n        setLngProps(l);\n        this.translator.changeLanguage(l);\n        this.isLanguageChangingTo = undefined;\n        this.emit('languageChanged', l);\n        this.logger.log('languageChanged', l);\n      } else {\n        this.isLanguageChangingTo = undefined;\n      }\n      deferred.resolve(function () {\n        return _this2.t(...arguments);\n      });\n      if (callback) callback(err, function () {\n        return _this2.t(...arguments);\n      });\n    };\n    const setLng = lngs => {\n      if (!lng && !lngs && this.services.languageDetector) lngs = [];\n      const l = typeof lngs === 'string' ? lngs : this.services.languageUtils.getBestMatchFromCodes(lngs);\n      if (l) {\n        if (!this.language) {\n          setLngProps(l);\n        }\n        if (!this.translator.language) this.translator.changeLanguage(l);\n        if (this.services.languageDetector && this.services.languageDetector.cacheUserLanguage) this.services.languageDetector.cacheUserLanguage(l);\n      }\n      this.loadResources(l, err => {\n        done(err, l);\n      });\n    };\n    if (!lng && this.services.languageDetector && !this.services.languageDetector.async) {\n      setLng(this.services.languageDetector.detect());\n    } else if (!lng && this.services.languageDetector && this.services.languageDetector.async) {\n      if (this.services.languageDetector.detect.length === 0) {\n        this.services.languageDetector.detect().then(setLng);\n      } else {\n        this.services.languageDetector.detect(setLng);\n      }\n    } else {\n      setLng(lng);\n    }\n    return deferred;\n  }\n  getFixedT(lng, ns, keyPrefix) {\n    var _this3 = this;\n    const fixedT = function (key, opts) {\n      let options;\n      if (typeof opts !== 'object') {\n        for (var _len3 = arguments.length, rest = new Array(_len3 > 2 ? _len3 - 2 : 0), _key3 = 2; _key3 < _len3; _key3++) {\n          rest[_key3 - 2] = arguments[_key3];\n        }\n        options = _this3.options.overloadTranslationOptionHandler([key, opts].concat(rest));\n      } else {\n        options = {\n          ...opts\n        };\n      }\n      options.lng = options.lng || fixedT.lng;\n      options.lngs = options.lngs || fixedT.lngs;\n      options.ns = options.ns || fixedT.ns;\n      options.keyPrefix = options.keyPrefix || keyPrefix || fixedT.keyPrefix;\n      const keySeparator = _this3.options.keySeparator || '.';\n      let resultKey;\n      if (options.keyPrefix && Array.isArray(key)) {\n        resultKey = key.map(k => `${options.keyPrefix}${keySeparator}${k}`);\n      } else {\n        resultKey = options.keyPrefix ? `${options.keyPrefix}${keySeparator}${key}` : key;\n      }\n      return _this3.t(resultKey, options);\n    };\n    if (typeof lng === 'string') {\n      fixedT.lng = lng;\n    } else {\n      fixedT.lngs = lng;\n    }\n    fixedT.ns = ns;\n    fixedT.keyPrefix = keyPrefix;\n    return fixedT;\n  }\n  t() {\n    return this.translator && this.translator.translate(...arguments);\n  }\n  exists() {\n    return this.translator && this.translator.exists(...arguments);\n  }\n  setDefaultNamespace(ns) {\n    this.options.defaultNS = ns;\n  }\n  hasLoadedNamespace(ns) {\n    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n    if (!this.isInitialized) {\n      this.logger.warn('hasLoadedNamespace: i18next was not initialized', this.languages);\n      return false;\n    }\n    if (!this.languages || !this.languages.length) {\n      this.logger.warn('hasLoadedNamespace: i18n.languages were undefined or empty', this.languages);\n      return false;\n    }\n    const lng = options.lng || this.resolvedLanguage || this.languages[0];\n    const fallbackLng = this.options ? this.options.fallbackLng : false;\n    const lastLng = this.languages[this.languages.length - 1];\n    if (lng.toLowerCase() === 'cimode') return true;\n    const loadNotPending = (l, n) => {\n      const loadState = this.services.backendConnector.state[`${l}|${n}`];\n      return loadState === -1 || loadState === 2;\n    };\n    if (options.precheck) {\n      const preResult = options.precheck(this, loadNotPending);\n      if (preResult !== undefined) return preResult;\n    }\n    if (this.hasResourceBundle(lng, ns)) return true;\n    if (!this.services.backendConnector.backend || this.options.resources && !this.options.partialBundledLanguages) return true;\n    if (loadNotPending(lng, ns) && (!fallbackLng || loadNotPending(lastLng, ns))) return true;\n    return false;\n  }\n  loadNamespaces(ns, callback) {\n    const deferred = defer();\n    if (!this.options.ns) {\n      if (callback) callback();\n      return Promise.resolve();\n    }\n    if (typeof ns === 'string') ns = [ns];\n    ns.forEach(n => {\n      if (this.options.ns.indexOf(n) < 0) this.options.ns.push(n);\n    });\n    this.loadResources(err => {\n      deferred.resolve();\n      if (callback) callback(err);\n    });\n    return deferred;\n  }\n  loadLanguages(lngs, callback) {\n    const deferred = defer();\n    if (typeof lngs === 'string') lngs = [lngs];\n    const preloaded = this.options.preload || [];\n    const newLngs = lngs.filter(lng => preloaded.indexOf(lng) < 0);\n    if (!newLngs.length) {\n      if (callback) callback();\n      return Promise.resolve();\n    }\n    this.options.preload = preloaded.concat(newLngs);\n    this.loadResources(err => {\n      deferred.resolve();\n      if (callback) callback(err);\n    });\n    return deferred;\n  }\n  dir(lng) {\n    if (!lng) lng = this.resolvedLanguage || (this.languages && this.languages.length > 0 ? this.languages[0] : this.language);\n    if (!lng) return 'rtl';\n    const rtlLngs = ['ar', 'shu', 'sqr', 'ssh', 'xaa', 'yhd', 'yud', 'aao', 'abh', 'abv', 'acm', 'acq', 'acw', 'acx', 'acy', 'adf', 'ads', 'aeb', 'aec', 'afb', 'ajp', 'apc', 'apd', 'arb', 'arq', 'ars', 'ary', 'arz', 'auz', 'avl', 'ayh', 'ayl', 'ayn', 'ayp', 'bbz', 'pga', 'he', 'iw', 'ps', 'pbt', 'pbu', 'pst', 'prp', 'prd', 'ug', 'ur', 'ydd', 'yds', 'yih', 'ji', 'yi', 'hbo', 'men', 'xmn', 'fa', 'jpr', 'peo', 'pes', 'prs', 'dv', 'sam', 'ckb'];\n    const languageUtils = this.services && this.services.languageUtils || new LanguageUtil(get());\n    return rtlLngs.indexOf(languageUtils.getLanguagePartFromCode(lng)) > -1 || lng.toLowerCase().indexOf('-arab') > 1 ? 'rtl' : 'ltr';\n  }\n  static createInstance() {\n    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n    let callback = arguments.length > 1 ? arguments[1] : undefined;\n    return new I18n(options, callback);\n  }\n  cloneInstance() {\n    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n    let callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : noop;\n    const forkResourceStore = options.forkResourceStore;\n    if (forkResourceStore) delete options.forkResourceStore;\n    const mergedOptions = {\n      ...this.options,\n      ...options,\n      ...{\n        isClone: true\n      }\n    };\n    const clone = new I18n(mergedOptions);\n    if (options.debug !== undefined || options.prefix !== undefined) {\n      clone.logger = clone.logger.clone(options);\n    }\n    const membersToCopy = ['store', 'services', 'language'];\n    membersToCopy.forEach(m => {\n      clone[m] = this[m];\n    });\n    clone.services = {\n      ...this.services\n    };\n    clone.services.utils = {\n      hasLoadedNamespace: clone.hasLoadedNamespace.bind(clone)\n    };\n    if (forkResourceStore) {\n      clone.store = new ResourceStore(this.store.data, mergedOptions);\n      clone.services.resourceStore = clone.store;\n    }\n    clone.translator = new Translator(clone.services, mergedOptions);\n    clone.translator.on('*', function (event) {\n      for (var _len4 = arguments.length, args = new Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {\n        args[_key4 - 1] = arguments[_key4];\n      }\n      clone.emit(event, ...args);\n    });\n    clone.init(mergedOptions, callback);\n    clone.translator.options = mergedOptions;\n    clone.translator.backendConnector.services.utils = {\n      hasLoadedNamespace: clone.hasLoadedNamespace.bind(clone)\n    };\n    return clone;\n  }\n  toJSON() {\n    return {\n      options: this.options,\n      store: this.store,\n      language: this.language,\n      languages: this.languages,\n      resolvedLanguage: this.resolvedLanguage\n    };\n  }\n}\nconst instance = I18n.createInstance();\ninstance.createInstance = I18n.createInstance;\n\nconst createInstance = instance.createInstance;\nconst dir = instance.dir;\nconst init = instance.init;\nconst loadResources = instance.loadResources;\nconst reloadResources = instance.reloadResources;\nconst use = instance.use;\nconst changeLanguage = instance.changeLanguage;\nconst getFixedT = instance.getFixedT;\nconst t = instance.t;\nconst exists = instance.exists;\nconst setDefaultNamespace = instance.setDefaultNamespace;\nconst hasLoadedNamespace = instance.hasLoadedNamespace;\nconst loadNamespaces = instance.loadNamespaces;\nconst loadLanguages = instance.loadLanguages;\n\n\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/i18next/dist/esm/i18next.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/I18nextProvider.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/I18nextProvider.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"I18nextProvider\": () => (/* binding */ I18nextProvider)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var _context_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./context.js */ \"./node_modules/react-i18next/dist/es/context.js\");\n\n\nfunction I18nextProvider(_ref) {\n  let {\n    i18n,\n    defaultNS,\n    children\n  } = _ref;\n  const value = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => ({\n    i18n,\n    defaultNS\n  }), [i18n, defaultNS]);\n  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_context_js__WEBPACK_IMPORTED_MODULE_1__.I18nContext.Provider, {\n    value\n  }, children);\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/I18nextProvider.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/Trans.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/Trans.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Trans\": () => (/* binding */ Trans),\n/* harmony export */   \"nodesToString\": () => (/* reexport safe */ _TransWithoutContext_js__WEBPACK_IMPORTED_MODULE_1__.nodesToString)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var _TransWithoutContext_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TransWithoutContext.js */ \"./node_modules/react-i18next/dist/es/TransWithoutContext.js\");\n/* harmony import */ var _context_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./context.js */ \"./node_modules/react-i18next/dist/es/context.js\");\n\n\n\n\nfunction Trans(_ref) {\n  let {\n    children,\n    count,\n    parent,\n    i18nKey,\n    context,\n    tOptions = {},\n    values,\n    defaults,\n    components,\n    ns,\n    i18n: i18nFromProps,\n    t: tFromProps,\n    shouldUnescape,\n    ...additionalProps\n  } = _ref;\n  const {\n    i18n: i18nFromContext,\n    defaultNS: defaultNSFromContext\n  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_js__WEBPACK_IMPORTED_MODULE_2__.I18nContext) || {};\n  const i18n = i18nFromProps || i18nFromContext || (0,_context_js__WEBPACK_IMPORTED_MODULE_2__.getI18n)();\n  const t = tFromProps || i18n && i18n.t.bind(i18n);\n  return (0,_TransWithoutContext_js__WEBPACK_IMPORTED_MODULE_1__.Trans)({\n    children,\n    count,\n    parent,\n    i18nKey,\n    context,\n    tOptions,\n    values,\n    defaults,\n    components,\n    ns: ns || t && t.ns || defaultNSFromContext || i18n && i18n.options && i18n.options.defaultNS,\n    i18n,\n    t: tFromProps,\n    shouldUnescape,\n    ...additionalProps\n  });\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/Trans.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/TransWithoutContext.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/TransWithoutContext.js ***!
-  \*******************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Trans\": () => (/* binding */ Trans),\n/* harmony export */   \"nodesToString\": () => (/* binding */ nodesToString)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var html_parse_stringify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! html-parse-stringify */ \"./node_modules/html-parse-stringify/dist/html-parse-stringify.module.js\");\n/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils.js */ \"./node_modules/react-i18next/dist/es/utils.js\");\n/* harmony import */ var _defaults_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./defaults.js */ \"./node_modules/react-i18next/dist/es/defaults.js\");\n/* harmony import */ var _i18nInstance_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./i18nInstance.js */ \"./node_modules/react-i18next/dist/es/i18nInstance.js\");\n\n\n\n\n\nfunction hasChildren(node, checkLength) {\n  if (!node) return false;\n  const base = node.props ? node.props.children : node.children;\n  if (checkLength) return base.length > 0;\n  return !!base;\n}\nfunction getChildren(node) {\n  if (!node) return [];\n  return node.props ? node.props.children : node.children;\n}\nfunction hasValidReactChildren(children) {\n  if (Object.prototype.toString.call(children) !== '[object Array]') return false;\n  return children.every(child => (0,react__WEBPACK_IMPORTED_MODULE_0__.isValidElement)(child));\n}\nfunction getAsArray(data) {\n  return Array.isArray(data) ? data : [data];\n}\nfunction mergeProps(source, target) {\n  const newTarget = {\n    ...target\n  };\n  newTarget.props = Object.assign(source.props, target.props);\n  return newTarget;\n}\nfunction nodesToString(children, i18nOptions) {\n  if (!children) return '';\n  let stringNode = '';\n  const childrenArray = getAsArray(children);\n  const keepArray = i18nOptions.transSupportBasicHtmlNodes && i18nOptions.transKeepBasicHtmlNodesFor ? i18nOptions.transKeepBasicHtmlNodesFor : [];\n  childrenArray.forEach((child, childIndex) => {\n    if (typeof child === 'string') {\n      stringNode += `${child}`;\n    } else if ((0,react__WEBPACK_IMPORTED_MODULE_0__.isValidElement)(child)) {\n      const childPropsCount = Object.keys(child.props).length;\n      const shouldKeepChild = keepArray.indexOf(child.type) > -1;\n      const childChildren = child.props.children;\n      if (!childChildren && shouldKeepChild && childPropsCount === 0) {\n        stringNode += `<${child.type}/>`;\n      } else if (!childChildren && (!shouldKeepChild || childPropsCount !== 0)) {\n        stringNode += `<${childIndex}></${childIndex}>`;\n      } else if (child.props.i18nIsDynamicList) {\n        stringNode += `<${childIndex}></${childIndex}>`;\n      } else if (shouldKeepChild && childPropsCount === 1 && typeof childChildren === 'string') {\n        stringNode += `<${child.type}>${childChildren}</${child.type}>`;\n      } else {\n        const content = nodesToString(childChildren, i18nOptions);\n        stringNode += `<${childIndex}>${content}</${childIndex}>`;\n      }\n    } else if (child === null) {\n      (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.warn)(`Trans: the passed in value is invalid - seems you passed in a null child.`);\n    } else if (typeof child === 'object') {\n      const {\n        format,\n        ...clone\n      } = child;\n      const keys = Object.keys(clone);\n      if (keys.length === 1) {\n        const value = format ? `${keys[0]}, ${format}` : keys[0];\n        stringNode += `{{${value}}}`;\n      } else {\n        (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.warn)(`react-i18next: the passed in object contained more than one variable - the object should look like {{ value, format }} where format is optional.`, child);\n      }\n    } else {\n      (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.warn)(`Trans: the passed in value is invalid - seems you passed in a variable like {number} - please pass in variables for interpolation as full objects like {{number}}.`, child);\n    }\n  });\n  return stringNode;\n}\nfunction renderNodes(children, targetString, i18n, i18nOptions, combinedTOpts, shouldUnescape) {\n  if (targetString === '') return [];\n  const keepArray = i18nOptions.transKeepBasicHtmlNodesFor || [];\n  const emptyChildrenButNeedsHandling = targetString && new RegExp(keepArray.join('|')).test(targetString);\n  if (!children && !emptyChildrenButNeedsHandling) return [targetString];\n  const data = {};\n  function getData(childs) {\n    const childrenArray = getAsArray(childs);\n    childrenArray.forEach(child => {\n      if (typeof child === 'string') return;\n      if (hasChildren(child)) getData(getChildren(child));else if (typeof child === 'object' && !(0,react__WEBPACK_IMPORTED_MODULE_0__.isValidElement)(child)) Object.assign(data, child);\n    });\n  }\n  getData(children);\n  const ast = html_parse_stringify__WEBPACK_IMPORTED_MODULE_1__[\"default\"].parse(`<0>${targetString}</0>`);\n  const opts = {\n    ...data,\n    ...combinedTOpts\n  };\n  function renderInner(child, node, rootReactNode) {\n    const childs = getChildren(child);\n    const mappedChildren = mapAST(childs, node.children, rootReactNode);\n    return hasValidReactChildren(childs) && mappedChildren.length === 0 ? childs : mappedChildren;\n  }\n  function pushTranslatedJSX(child, inner, mem, i, isVoid) {\n    if (child.dummy) child.children = inner;\n    mem.push((0,react__WEBPACK_IMPORTED_MODULE_0__.cloneElement)(child, {\n      ...child.props,\n      key: i\n    }, isVoid ? undefined : inner));\n  }\n  function mapAST(reactNode, astNode, rootReactNode) {\n    const reactNodes = getAsArray(reactNode);\n    const astNodes = getAsArray(astNode);\n    return astNodes.reduce((mem, node, i) => {\n      const translationContent = node.children && node.children[0] && node.children[0].content && i18n.services.interpolator.interpolate(node.children[0].content, opts, i18n.language);\n      if (node.type === 'tag') {\n        let tmp = reactNodes[parseInt(node.name, 10)];\n        if (!tmp && rootReactNode.length === 1 && rootReactNode[0][node.name]) tmp = rootReactNode[0][node.name];\n        if (!tmp) tmp = {};\n        const child = Object.keys(node.attrs).length !== 0 ? mergeProps({\n          props: node.attrs\n        }, tmp) : tmp;\n        const isElement = (0,react__WEBPACK_IMPORTED_MODULE_0__.isValidElement)(child);\n        const isValidTranslationWithChildren = isElement && hasChildren(node, true) && !node.voidElement;\n        const isEmptyTransWithHTML = emptyChildrenButNeedsHandling && typeof child === 'object' && child.dummy && !isElement;\n        const isKnownComponent = typeof children === 'object' && children !== null && Object.hasOwnProperty.call(children, node.name);\n        if (typeof child === 'string') {\n          const value = i18n.services.interpolator.interpolate(child, opts, i18n.language);\n          mem.push(value);\n        } else if (hasChildren(child) || isValidTranslationWithChildren) {\n          const inner = renderInner(child, node, rootReactNode);\n          pushTranslatedJSX(child, inner, mem, i);\n        } else if (isEmptyTransWithHTML) {\n          const inner = mapAST(reactNodes, node.children, rootReactNode);\n          mem.push((0,react__WEBPACK_IMPORTED_MODULE_0__.cloneElement)(child, {\n            ...child.props,\n            key: i\n          }, inner));\n        } else if (Number.isNaN(parseFloat(node.name))) {\n          if (isKnownComponent) {\n            const inner = renderInner(child, node, rootReactNode);\n            pushTranslatedJSX(child, inner, mem, i, node.voidElement);\n          } else if (i18nOptions.transSupportBasicHtmlNodes && keepArray.indexOf(node.name) > -1) {\n            if (node.voidElement) {\n              mem.push((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(node.name, {\n                key: `${node.name}-${i}`\n              }));\n            } else {\n              const inner = mapAST(reactNodes, node.children, rootReactNode);\n              mem.push((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(node.name, {\n                key: `${node.name}-${i}`\n              }, inner));\n            }\n          } else if (node.voidElement) {\n            mem.push(`<${node.name} />`);\n          } else {\n            const inner = mapAST(reactNodes, node.children, rootReactNode);\n            mem.push(`<${node.name}>${inner}</${node.name}>`);\n          }\n        } else if (typeof child === 'object' && !isElement) {\n          const content = node.children[0] ? translationContent : null;\n          if (content) mem.push(content);\n        } else if (node.children.length === 1 && translationContent) {\n          mem.push((0,react__WEBPACK_IMPORTED_MODULE_0__.cloneElement)(child, {\n            ...child.props,\n            key: i\n          }, translationContent));\n        } else {\n          mem.push((0,react__WEBPACK_IMPORTED_MODULE_0__.cloneElement)(child, {\n            ...child.props,\n            key: i\n          }));\n        }\n      } else if (node.type === 'text') {\n        const wrapTextNodes = i18nOptions.transWrapTextNodes;\n        const content = shouldUnescape ? i18nOptions.unescape(i18n.services.interpolator.interpolate(node.content, opts, i18n.language)) : i18n.services.interpolator.interpolate(node.content, opts, i18n.language);\n        if (wrapTextNodes) {\n          mem.push((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(wrapTextNodes, {\n            key: `${node.name}-${i}`\n          }, content));\n        } else {\n          mem.push(content);\n        }\n      }\n      return mem;\n    }, []);\n  }\n  const result = mapAST([{\n    dummy: true,\n    children: children || []\n  }], ast, getAsArray(children || []));\n  return getChildren(result[0]);\n}\nfunction Trans(_ref) {\n  let {\n    children,\n    count,\n    parent,\n    i18nKey,\n    context,\n    tOptions = {},\n    values,\n    defaults,\n    components,\n    ns,\n    i18n: i18nFromProps,\n    t: tFromProps,\n    shouldUnescape,\n    ...additionalProps\n  } = _ref;\n  const i18n = i18nFromProps || (0,_i18nInstance_js__WEBPACK_IMPORTED_MODULE_4__.getI18n)();\n  if (!i18n) {\n    (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.warnOnce)('You will need to pass in an i18next instance by using i18nextReactModule');\n    return children;\n  }\n  const t = tFromProps || i18n.t.bind(i18n) || (k => k);\n  if (context) tOptions.context = context;\n  const reactI18nextOptions = {\n    ...(0,_defaults_js__WEBPACK_IMPORTED_MODULE_3__.getDefaults)(),\n    ...(i18n.options && i18n.options.react)\n  };\n  let namespaces = ns || t.ns || i18n.options && i18n.options.defaultNS;\n  namespaces = typeof namespaces === 'string' ? [namespaces] : namespaces || ['translation'];\n  const defaultValue = defaults || nodesToString(children, reactI18nextOptions) || reactI18nextOptions.transEmptyNodeValue || i18nKey;\n  const {\n    hashTransKey\n  } = reactI18nextOptions;\n  const key = i18nKey || (hashTransKey ? hashTransKey(defaultValue) : defaultValue);\n  const interpolationOverride = values ? tOptions.interpolation : {\n    interpolation: {\n      ...tOptions.interpolation,\n      prefix: '#$?',\n      suffix: '?$#'\n    }\n  };\n  const combinedTOpts = {\n    ...tOptions,\n    count,\n    ...values,\n    ...interpolationOverride,\n    defaultValue,\n    ns: namespaces\n  };\n  const translation = key ? t(key, combinedTOpts) : defaultValue;\n  const content = renderNodes(components || children, translation, i18n, reactI18nextOptions, combinedTOpts, shouldUnescape);\n  const useAsParent = parent !== undefined ? parent : reactI18nextOptions.defaultTransParent;\n  return useAsParent ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(useAsParent, additionalProps, content) : content;\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/TransWithoutContext.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/Translation.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/Translation.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Translation\": () => (/* binding */ Translation)\n/* harmony export */ });\n/* harmony import */ var _useTranslation_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useTranslation.js */ \"./node_modules/react-i18next/dist/es/useTranslation.js\");\n\nfunction Translation(props) {\n  const {\n    ns,\n    children,\n    ...options\n  } = props;\n  const [t, i18n, ready] = (0,_useTranslation_js__WEBPACK_IMPORTED_MODULE_0__.useTranslation)(ns, options);\n  return children(t, {\n    i18n,\n    lng: i18n.language\n  }, ready);\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/Translation.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/context.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/context.js ***!
-  \*******************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"I18nContext\": () => (/* binding */ I18nContext),\n/* harmony export */   \"ReportNamespaces\": () => (/* binding */ ReportNamespaces),\n/* harmony export */   \"composeInitialProps\": () => (/* binding */ composeInitialProps),\n/* harmony export */   \"getDefaults\": () => (/* reexport safe */ _defaults_js__WEBPACK_IMPORTED_MODULE_1__.getDefaults),\n/* harmony export */   \"getI18n\": () => (/* reexport safe */ _i18nInstance_js__WEBPACK_IMPORTED_MODULE_2__.getI18n),\n/* harmony export */   \"getInitialProps\": () => (/* binding */ getInitialProps),\n/* harmony export */   \"initReactI18next\": () => (/* reexport safe */ _initReactI18next_js__WEBPACK_IMPORTED_MODULE_3__.initReactI18next),\n/* harmony export */   \"setDefaults\": () => (/* reexport safe */ _defaults_js__WEBPACK_IMPORTED_MODULE_1__.setDefaults),\n/* harmony export */   \"setI18n\": () => (/* reexport safe */ _i18nInstance_js__WEBPACK_IMPORTED_MODULE_2__.setI18n)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var _defaults_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./defaults.js */ \"./node_modules/react-i18next/dist/es/defaults.js\");\n/* harmony import */ var _i18nInstance_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./i18nInstance.js */ \"./node_modules/react-i18next/dist/es/i18nInstance.js\");\n/* harmony import */ var _initReactI18next_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./initReactI18next.js */ \"./node_modules/react-i18next/dist/es/initReactI18next.js\");\n\n\n\n\n\nconst I18nContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)();\nclass ReportNamespaces {\n  constructor() {\n    this.usedNamespaces = {};\n  }\n  addUsedNamespaces(namespaces) {\n    namespaces.forEach(ns => {\n      if (!this.usedNamespaces[ns]) this.usedNamespaces[ns] = true;\n    });\n  }\n  getUsedNamespaces() {\n    return Object.keys(this.usedNamespaces);\n  }\n}\nfunction composeInitialProps(ForComponent) {\n  return ctx => new Promise(resolve => {\n    const i18nInitialProps = getInitialProps();\n    if (ForComponent.getInitialProps) {\n      ForComponent.getInitialProps(ctx).then(componentsInitialProps => {\n        resolve({\n          ...componentsInitialProps,\n          ...i18nInitialProps\n        });\n      });\n    } else {\n      resolve(i18nInitialProps);\n    }\n  });\n}\nfunction getInitialProps() {\n  const i18n = (0,_i18nInstance_js__WEBPACK_IMPORTED_MODULE_2__.getI18n)();\n  const namespaces = i18n.reportNamespaces ? i18n.reportNamespaces.getUsedNamespaces() : [];\n  const ret = {};\n  const initialI18nStore = {};\n  i18n.languages.forEach(l => {\n    initialI18nStore[l] = {};\n    namespaces.forEach(ns => {\n      initialI18nStore[l][ns] = i18n.getResourceBundle(l, ns) || {};\n    });\n  });\n  ret.initialI18nStore = initialI18nStore;\n  ret.initialLanguage = i18n.language;\n  return ret;\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/context.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/defaults.js":
-/*!********************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/defaults.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getDefaults\": () => (/* binding */ getDefaults),\n/* harmony export */   \"setDefaults\": () => (/* binding */ setDefaults)\n/* harmony export */ });\n/* harmony import */ var _unescape_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./unescape.js */ \"./node_modules/react-i18next/dist/es/unescape.js\");\n\nlet defaultOptions = {\n  bindI18n: 'languageChanged',\n  bindI18nStore: '',\n  transEmptyNodeValue: '',\n  transSupportBasicHtmlNodes: true,\n  transWrapTextNodes: '',\n  transKeepBasicHtmlNodesFor: ['br', 'strong', 'i', 'p'],\n  useSuspense: true,\n  unescape: _unescape_js__WEBPACK_IMPORTED_MODULE_0__.unescape\n};\nfunction setDefaults() {\n  let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n  defaultOptions = {\n    ...defaultOptions,\n    ...options\n  };\n}\nfunction getDefaults() {\n  return defaultOptions;\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/defaults.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/i18nInstance.js":
-/*!************************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/i18nInstance.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getI18n\": () => (/* binding */ getI18n),\n/* harmony export */   \"setI18n\": () => (/* binding */ setI18n)\n/* harmony export */ });\nlet i18nInstance;\nfunction setI18n(instance) {\n  i18nInstance = instance;\n}\nfunction getI18n() {\n  return i18nInstance;\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/i18nInstance.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/index.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/index.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"I18nContext\": () => (/* reexport safe */ _context_js__WEBPACK_IMPORTED_MODULE_11__.I18nContext),\n/* harmony export */   \"I18nextProvider\": () => (/* reexport safe */ _I18nextProvider_js__WEBPACK_IMPORTED_MODULE_5__.I18nextProvider),\n/* harmony export */   \"Trans\": () => (/* reexport safe */ _Trans_js__WEBPACK_IMPORTED_MODULE_0__.Trans),\n/* harmony export */   \"TransWithoutContext\": () => (/* reexport safe */ _TransWithoutContext_js__WEBPACK_IMPORTED_MODULE_1__.Trans),\n/* harmony export */   \"Translation\": () => (/* reexport safe */ _Translation_js__WEBPACK_IMPORTED_MODULE_4__.Translation),\n/* harmony export */   \"composeInitialProps\": () => (/* reexport safe */ _context_js__WEBPACK_IMPORTED_MODULE_11__.composeInitialProps),\n/* harmony export */   \"date\": () => (/* binding */ date),\n/* harmony export */   \"getDefaults\": () => (/* reexport safe */ _defaults_js__WEBPACK_IMPORTED_MODULE_9__.getDefaults),\n/* harmony export */   \"getI18n\": () => (/* reexport safe */ _i18nInstance_js__WEBPACK_IMPORTED_MODULE_10__.getI18n),\n/* harmony export */   \"getInitialProps\": () => (/* reexport safe */ _context_js__WEBPACK_IMPORTED_MODULE_11__.getInitialProps),\n/* harmony export */   \"initReactI18next\": () => (/* reexport safe */ _initReactI18next_js__WEBPACK_IMPORTED_MODULE_8__.initReactI18next),\n/* harmony export */   \"number\": () => (/* binding */ number),\n/* harmony export */   \"plural\": () => (/* binding */ plural),\n/* harmony export */   \"select\": () => (/* binding */ select),\n/* harmony export */   \"selectOrdinal\": () => (/* binding */ selectOrdinal),\n/* harmony export */   \"setDefaults\": () => (/* reexport safe */ _defaults_js__WEBPACK_IMPORTED_MODULE_9__.setDefaults),\n/* harmony export */   \"setI18n\": () => (/* reexport safe */ _i18nInstance_js__WEBPACK_IMPORTED_MODULE_10__.setI18n),\n/* harmony export */   \"time\": () => (/* binding */ time),\n/* harmony export */   \"useSSR\": () => (/* reexport safe */ _useSSR_js__WEBPACK_IMPORTED_MODULE_7__.useSSR),\n/* harmony export */   \"useTranslation\": () => (/* reexport safe */ _useTranslation_js__WEBPACK_IMPORTED_MODULE_2__.useTranslation),\n/* harmony export */   \"withSSR\": () => (/* reexport safe */ _withSSR_js__WEBPACK_IMPORTED_MODULE_6__.withSSR),\n/* harmony export */   \"withTranslation\": () => (/* reexport safe */ _withTranslation_js__WEBPACK_IMPORTED_MODULE_3__.withTranslation)\n/* harmony export */ });\n/* harmony import */ var _Trans_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Trans.js */ \"./node_modules/react-i18next/dist/es/Trans.js\");\n/* harmony import */ var _TransWithoutContext_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TransWithoutContext.js */ \"./node_modules/react-i18next/dist/es/TransWithoutContext.js\");\n/* harmony import */ var _useTranslation_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./useTranslation.js */ \"./node_modules/react-i18next/dist/es/useTranslation.js\");\n/* harmony import */ var _withTranslation_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./withTranslation.js */ \"./node_modules/react-i18next/dist/es/withTranslation.js\");\n/* harmony import */ var _Translation_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Translation.js */ \"./node_modules/react-i18next/dist/es/Translation.js\");\n/* harmony import */ var _I18nextProvider_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./I18nextProvider.js */ \"./node_modules/react-i18next/dist/es/I18nextProvider.js\");\n/* harmony import */ var _withSSR_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./withSSR.js */ \"./node_modules/react-i18next/dist/es/withSSR.js\");\n/* harmony import */ var _useSSR_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./useSSR.js */ \"./node_modules/react-i18next/dist/es/useSSR.js\");\n/* harmony import */ var _initReactI18next_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./initReactI18next.js */ \"./node_modules/react-i18next/dist/es/initReactI18next.js\");\n/* harmony import */ var _defaults_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./defaults.js */ \"./node_modules/react-i18next/dist/es/defaults.js\");\n/* harmony import */ var _i18nInstance_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./i18nInstance.js */ \"./node_modules/react-i18next/dist/es/i18nInstance.js\");\n/* harmony import */ var _context_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./context.js */ \"./node_modules/react-i18next/dist/es/context.js\");\n\n\n\n\n\n\n\n\n\n\n\n\nconst date = () => '';\nconst time = () => '';\nconst number = () => '';\nconst select = () => '';\nconst plural = () => '';\nconst selectOrdinal = () => '';\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/index.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/initReactI18next.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/initReactI18next.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"initReactI18next\": () => (/* binding */ initReactI18next)\n/* harmony export */ });\n/* harmony import */ var _defaults_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./defaults.js */ \"./node_modules/react-i18next/dist/es/defaults.js\");\n/* harmony import */ var _i18nInstance_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./i18nInstance.js */ \"./node_modules/react-i18next/dist/es/i18nInstance.js\");\n\n\nconst initReactI18next = {\n  type: '3rdParty',\n  init(instance) {\n    (0,_defaults_js__WEBPACK_IMPORTED_MODULE_0__.setDefaults)(instance.options.react);\n    (0,_i18nInstance_js__WEBPACK_IMPORTED_MODULE_1__.setI18n)(instance);\n  }\n};\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/initReactI18next.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/unescape.js":
-/*!********************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/unescape.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"unescape\": () => (/* binding */ unescape)\n/* harmony export */ });\nconst matchHtmlEntity = /&(?:amp|#38|lt|#60|gt|#62|apos|#39|quot|#34|nbsp|#160|copy|#169|reg|#174|hellip|#8230|#x2F|#47);/g;\nconst htmlEntities = {\n  '&amp;': '&',\n  '&#38;': '&',\n  '&lt;': '<',\n  '&#60;': '<',\n  '&gt;': '>',\n  '&#62;': '>',\n  '&apos;': \"'\",\n  '&#39;': \"'\",\n  '&quot;': '\"',\n  '&#34;': '\"',\n  '&nbsp;': ' ',\n  '&#160;': ' ',\n  '&copy;': '©',\n  '&#169;': '©',\n  '&reg;': '®',\n  '&#174;': '®',\n  '&hellip;': '…',\n  '&#8230;': '…',\n  '&#x2F;': '/',\n  '&#47;': '/'\n};\nconst unescapeHtmlEntity = m => htmlEntities[m];\nconst unescape = text => text.replace(matchHtmlEntity, unescapeHtmlEntity);\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/unescape.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/useSSR.js":
-/*!******************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/useSSR.js ***!
-  \******************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"useSSR\": () => (/* binding */ useSSR)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var _context_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./context.js */ \"./node_modules/react-i18next/dist/es/context.js\");\n\n\nfunction useSSR(initialI18nStore, initialLanguage) {\n  let props = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};\n  const {\n    i18n: i18nFromProps\n  } = props;\n  const {\n    i18n: i18nFromContext\n  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_js__WEBPACK_IMPORTED_MODULE_1__.I18nContext) || {};\n  const i18n = i18nFromProps || i18nFromContext || (0,_context_js__WEBPACK_IMPORTED_MODULE_1__.getI18n)();\n  if (i18n.options && i18n.options.isClone) return;\n  if (initialI18nStore && !i18n.initializedStoreOnce) {\n    i18n.services.resourceStore.data = initialI18nStore;\n    i18n.options.ns = Object.values(initialI18nStore).reduce((mem, lngResources) => {\n      Object.keys(lngResources).forEach(ns => {\n        if (mem.indexOf(ns) < 0) mem.push(ns);\n      });\n      return mem;\n    }, i18n.options.ns);\n    i18n.initializedStoreOnce = true;\n    i18n.isInitialized = true;\n  }\n  if (initialLanguage && !i18n.initializedLanguageOnce) {\n    i18n.changeLanguage(initialLanguage);\n    i18n.initializedLanguageOnce = true;\n  }\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/useSSR.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/useTranslation.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/useTranslation.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"useTranslation\": () => (/* binding */ useTranslation)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var _context_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./context.js */ \"./node_modules/react-i18next/dist/es/context.js\");\n/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils.js */ \"./node_modules/react-i18next/dist/es/utils.js\");\n\n\n\nconst usePrevious = (value, ignore) => {\n  const ref = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    ref.current = ignore ? ref.current : value;\n  }, [value, ignore]);\n  return ref.current;\n};\nfunction useTranslation(ns) {\n  let props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n  const {\n    i18n: i18nFromProps\n  } = props;\n  const {\n    i18n: i18nFromContext,\n    defaultNS: defaultNSFromContext\n  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_js__WEBPACK_IMPORTED_MODULE_1__.I18nContext) || {};\n  const i18n = i18nFromProps || i18nFromContext || (0,_context_js__WEBPACK_IMPORTED_MODULE_1__.getI18n)();\n  if (i18n && !i18n.reportNamespaces) i18n.reportNamespaces = new _context_js__WEBPACK_IMPORTED_MODULE_1__.ReportNamespaces();\n  if (!i18n) {\n    (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.warnOnce)('You will need to pass in an i18next instance by using initReactI18next');\n    const notReadyT = (k, optsOrDefaultValue) => {\n      if (typeof optsOrDefaultValue === 'string') return optsOrDefaultValue;\n      if (optsOrDefaultValue && typeof optsOrDefaultValue === 'object' && typeof optsOrDefaultValue.defaultValue === 'string') return optsOrDefaultValue.defaultValue;\n      return Array.isArray(k) ? k[k.length - 1] : k;\n    };\n    const retNotReady = [notReadyT, {}, false];\n    retNotReady.t = notReadyT;\n    retNotReady.i18n = {};\n    retNotReady.ready = false;\n    return retNotReady;\n  }\n  if (i18n.options.react && i18n.options.react.wait !== undefined) (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.warnOnce)('It seems you are still using the old wait option, you may migrate to the new useSuspense behaviour.');\n  const i18nOptions = {\n    ...(0,_context_js__WEBPACK_IMPORTED_MODULE_1__.getDefaults)(),\n    ...i18n.options.react,\n    ...props\n  };\n  const {\n    useSuspense,\n    keyPrefix\n  } = i18nOptions;\n  let namespaces = ns || defaultNSFromContext || i18n.options && i18n.options.defaultNS;\n  namespaces = typeof namespaces === 'string' ? [namespaces] : namespaces || ['translation'];\n  if (i18n.reportNamespaces.addUsedNamespaces) i18n.reportNamespaces.addUsedNamespaces(namespaces);\n  const ready = (i18n.isInitialized || i18n.initializedStoreOnce) && namespaces.every(n => (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.hasLoadedNamespace)(n, i18n, i18nOptions));\n  function getT() {\n    return i18n.getFixedT(props.lng || null, i18nOptions.nsMode === 'fallback' ? namespaces : namespaces[0], keyPrefix);\n  }\n  const [t, setT] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(getT);\n  let joinedNS = namespaces.join();\n  if (props.lng) joinedNS = `${props.lng}${joinedNS}`;\n  const previousJoinedNS = usePrevious(joinedNS);\n  const isMounted = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(true);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    const {\n      bindI18n,\n      bindI18nStore\n    } = i18nOptions;\n    isMounted.current = true;\n    if (!ready && !useSuspense) {\n      if (props.lng) {\n        (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.loadLanguages)(i18n, props.lng, namespaces, () => {\n          if (isMounted.current) setT(getT);\n        });\n      } else {\n        (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.loadNamespaces)(i18n, namespaces, () => {\n          if (isMounted.current) setT(getT);\n        });\n      }\n    }\n    if (ready && previousJoinedNS && previousJoinedNS !== joinedNS && isMounted.current) {\n      setT(getT);\n    }\n    function boundReset() {\n      if (isMounted.current) setT(getT);\n    }\n    if (bindI18n && i18n) i18n.on(bindI18n, boundReset);\n    if (bindI18nStore && i18n) i18n.store.on(bindI18nStore, boundReset);\n    return () => {\n      isMounted.current = false;\n      if (bindI18n && i18n) bindI18n.split(' ').forEach(e => i18n.off(e, boundReset));\n      if (bindI18nStore && i18n) bindI18nStore.split(' ').forEach(e => i18n.store.off(e, boundReset));\n    };\n  }, [i18n, joinedNS]);\n  const isInitial = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(true);\n  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {\n    if (isMounted.current && !isInitial.current) {\n      setT(getT);\n    }\n    isInitial.current = false;\n  }, [i18n, keyPrefix]);\n  const ret = [t, i18n, ready];\n  ret.t = t;\n  ret.i18n = i18n;\n  ret.ready = ready;\n  if (ready) return ret;\n  if (!ready && !useSuspense) return ret;\n  throw new Promise(resolve => {\n    if (props.lng) {\n      (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.loadLanguages)(i18n, props.lng, namespaces, () => resolve());\n    } else {\n      (0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.loadNamespaces)(i18n, namespaces, () => resolve());\n    }\n  });\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/useTranslation.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/utils.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/utils.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getDisplayName\": () => (/* binding */ getDisplayName),\n/* harmony export */   \"hasLoadedNamespace\": () => (/* binding */ hasLoadedNamespace),\n/* harmony export */   \"loadLanguages\": () => (/* binding */ loadLanguages),\n/* harmony export */   \"loadNamespaces\": () => (/* binding */ loadNamespaces),\n/* harmony export */   \"warn\": () => (/* binding */ warn),\n/* harmony export */   \"warnOnce\": () => (/* binding */ warnOnce)\n/* harmony export */ });\nfunction warn() {\n  if (console && console.warn) {\n    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n      args[_key] = arguments[_key];\n    }\n    if (typeof args[0] === 'string') args[0] = `react-i18next:: ${args[0]}`;\n    console.warn(...args);\n  }\n}\nconst alreadyWarned = {};\nfunction warnOnce() {\n  for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {\n    args[_key2] = arguments[_key2];\n  }\n  if (typeof args[0] === 'string' && alreadyWarned[args[0]]) return;\n  if (typeof args[0] === 'string') alreadyWarned[args[0]] = new Date();\n  warn(...args);\n}\nconst loadedClb = (i18n, cb) => () => {\n  if (i18n.isInitialized) {\n    cb();\n  } else {\n    const initialized = () => {\n      setTimeout(() => {\n        i18n.off('initialized', initialized);\n      }, 0);\n      cb();\n    };\n    i18n.on('initialized', initialized);\n  }\n};\nfunction loadNamespaces(i18n, ns, cb) {\n  i18n.loadNamespaces(ns, loadedClb(i18n, cb));\n}\nfunction loadLanguages(i18n, lng, ns, cb) {\n  if (typeof ns === 'string') ns = [ns];\n  ns.forEach(n => {\n    if (i18n.options.ns.indexOf(n) < 0) i18n.options.ns.push(n);\n  });\n  i18n.loadLanguages(lng, loadedClb(i18n, cb));\n}\nfunction oldI18nextHasLoadedNamespace(ns, i18n) {\n  let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};\n  const lng = i18n.languages[0];\n  const fallbackLng = i18n.options ? i18n.options.fallbackLng : false;\n  const lastLng = i18n.languages[i18n.languages.length - 1];\n  if (lng.toLowerCase() === 'cimode') return true;\n  const loadNotPending = (l, n) => {\n    const loadState = i18n.services.backendConnector.state[`${l}|${n}`];\n    return loadState === -1 || loadState === 2;\n  };\n  if (options.bindI18n && options.bindI18n.indexOf('languageChanging') > -1 && i18n.services.backendConnector.backend && i18n.isLanguageChangingTo && !loadNotPending(i18n.isLanguageChangingTo, ns)) return false;\n  if (i18n.hasResourceBundle(lng, ns)) return true;\n  if (!i18n.services.backendConnector.backend || i18n.options.resources && !i18n.options.partialBundledLanguages) return true;\n  if (loadNotPending(lng, ns) && (!fallbackLng || loadNotPending(lastLng, ns))) return true;\n  return false;\n}\nfunction hasLoadedNamespace(ns, i18n) {\n  let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};\n  if (!i18n.languages || !i18n.languages.length) {\n    warnOnce('i18n.languages were undefined or empty', i18n.languages);\n    return true;\n  }\n  const isNewerI18next = i18n.options.ignoreJSONStructure !== undefined;\n  if (!isNewerI18next) {\n    return oldI18nextHasLoadedNamespace(ns, i18n, options);\n  }\n  return i18n.hasLoadedNamespace(ns, {\n    lng: options.lng,\n    precheck: (i18nInstance, loadNotPending) => {\n      if (options.bindI18n && options.bindI18n.indexOf('languageChanging') > -1 && i18nInstance.services.backendConnector.backend && i18nInstance.isLanguageChangingTo && !loadNotPending(i18nInstance.isLanguageChangingTo, ns)) return false;\n    }\n  });\n}\nfunction getDisplayName(Component) {\n  return Component.displayName || Component.name || (typeof Component === 'string' && Component.length > 0 ? Component : 'Unknown');\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/utils.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/withSSR.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/withSSR.js ***!
-  \*******************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"withSSR\": () => (/* binding */ withSSR)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var _useSSR_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useSSR.js */ \"./node_modules/react-i18next/dist/es/useSSR.js\");\n/* harmony import */ var _context_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./context.js */ \"./node_modules/react-i18next/dist/es/context.js\");\n/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils.js */ \"./node_modules/react-i18next/dist/es/utils.js\");\n\n\n\n\nfunction withSSR() {\n  return function Extend(WrappedComponent) {\n    function I18nextWithSSR(_ref) {\n      let {\n        initialI18nStore,\n        initialLanguage,\n        ...rest\n      } = _ref;\n      (0,_useSSR_js__WEBPACK_IMPORTED_MODULE_1__.useSSR)(initialI18nStore, initialLanguage);\n      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(WrappedComponent, {\n        ...rest\n      });\n    }\n    I18nextWithSSR.getInitialProps = (0,_context_js__WEBPACK_IMPORTED_MODULE_2__.composeInitialProps)(WrappedComponent);\n    I18nextWithSSR.displayName = `withI18nextSSR(${(0,_utils_js__WEBPACK_IMPORTED_MODULE_3__.getDisplayName)(WrappedComponent)})`;\n    I18nextWithSSR.WrappedComponent = WrappedComponent;\n    return I18nextWithSSR;\n  };\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/withSSR.js?");
-
-/***/ }),
-
-/***/ "./node_modules/react-i18next/dist/es/withTranslation.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/react-i18next/dist/es/withTranslation.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"withTranslation\": () => (/* binding */ withTranslation)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var _useTranslation_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useTranslation.js */ \"./node_modules/react-i18next/dist/es/useTranslation.js\");\n/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils.js */ \"./node_modules/react-i18next/dist/es/utils.js\");\n\n\n\nfunction withTranslation(ns) {\n  let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};\n  return function Extend(WrappedComponent) {\n    function I18nextWithTranslation(_ref) {\n      let {\n        forwardedRef,\n        ...rest\n      } = _ref;\n      const [t, i18n, ready] = (0,_useTranslation_js__WEBPACK_IMPORTED_MODULE_1__.useTranslation)(ns, {\n        ...rest,\n        keyPrefix: options.keyPrefix\n      });\n      const passDownProps = {\n        ...rest,\n        t,\n        i18n,\n        tReady: ready\n      };\n      if (options.withRef && forwardedRef) {\n        passDownProps.ref = forwardedRef;\n      } else if (!options.withRef && forwardedRef) {\n        passDownProps.forwardedRef = forwardedRef;\n      }\n      return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(WrappedComponent, passDownProps);\n    }\n    I18nextWithTranslation.displayName = `withI18nextTranslation(${(0,_utils_js__WEBPACK_IMPORTED_MODULE_2__.getDisplayName)(WrappedComponent)})`;\n    I18nextWithTranslation.WrappedComponent = WrappedComponent;\n    const forwardRef = (props, ref) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(I18nextWithTranslation, Object.assign({}, props, {\n      forwardedRef: ref\n    }));\n    return options.withRef ? (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(forwardRef) : I18nextWithTranslation;\n  };\n}\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/react-i18next/dist/es/withTranslation.js?");
-
-/***/ }),
-
-/***/ "./node_modules/zustand/esm/index.mjs":
-/*!********************************************!*\
-  !*** ./node_modules/zustand/esm/index.mjs ***!
-  \********************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"create\": () => (/* binding */ create),\n/* harmony export */   \"createStore\": () => (/* reexport safe */ zustand_vanilla__WEBPACK_IMPORTED_MODULE_0__.createStore),\n/* harmony export */   \"default\": () => (/* binding */ react),\n/* harmony export */   \"useStore\": () => (/* binding */ useStore)\n/* harmony export */ });\n/* harmony import */ var zustand_vanilla__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! zustand/vanilla */ \"./node_modules/zustand/esm/vanilla.mjs\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var use_sync_external_store_shim_with_selector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! use-sync-external-store/shim/with-selector.js */ \"./node_modules/use-sync-external-store/shim/with-selector.js\");\n\n\n\n\n\nconst { useSyncExternalStoreWithSelector } = use_sync_external_store_shim_with_selector_js__WEBPACK_IMPORTED_MODULE_2__;\nfunction useStore(api, selector = api.getState, equalityFn) {\n  const slice = useSyncExternalStoreWithSelector(\n    api.subscribe,\n    api.getState,\n    api.getServerState || api.getState,\n    selector,\n    equalityFn\n  );\n  (0,react__WEBPACK_IMPORTED_MODULE_1__.useDebugValue)(slice);\n  return slice;\n}\nconst createImpl = (createState) => {\n  if ( true && typeof createState !== \"function\") {\n    console.warn(\n      \"[DEPRECATED] Passing a vanilla store will be unsupported in a future version. Instead use `import { useStore } from 'zustand'`.\"\n    );\n  }\n  const api = typeof createState === \"function\" ? (0,zustand_vanilla__WEBPACK_IMPORTED_MODULE_0__.createStore)(createState) : createState;\n  const useBoundStore = (selector, equalityFn) => useStore(api, selector, equalityFn);\n  Object.assign(useBoundStore, api);\n  return useBoundStore;\n};\nconst create = (createState) => createState ? createImpl(createState) : createImpl;\nvar react = (createState) => {\n  if (true) {\n    console.warn(\n      \"[DEPRECATED] Default export is deprecated. Instead use `import { create } from 'zustand'`.\"\n    );\n  }\n  return create(createState);\n};\n\n\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/zustand/esm/index.mjs?");
-
-/***/ }),
-
-/***/ "./node_modules/zustand/esm/middleware.mjs":
-/*!*************************************************!*\
-  !*** ./node_modules/zustand/esm/middleware.mjs ***!
-  \*************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"combine\": () => (/* binding */ combine),\n/* harmony export */   \"createJSONStorage\": () => (/* binding */ createJSONStorage),\n/* harmony export */   \"devtools\": () => (/* binding */ devtools),\n/* harmony export */   \"persist\": () => (/* binding */ persist),\n/* harmony export */   \"redux\": () => (/* binding */ redux),\n/* harmony export */   \"subscribeWithSelector\": () => (/* binding */ subscribeWithSelector)\n/* harmony export */ });\nconst reduxImpl = (reducer, initial) => (set, _get, api) => {\n  api.dispatch = (action) => {\n    set((state) => reducer(state, action), false, action);\n    return action;\n  };\n  api.dispatchFromDevtools = true;\n  return { dispatch: (...a) => api.dispatch(...a), ...initial };\n};\nconst redux = reduxImpl;\n\nconst trackedConnections = /* @__PURE__ */ new Map();\nconst getTrackedConnectionState = (name) => {\n  const api = trackedConnections.get(name);\n  if (!api)\n    return {};\n  return Object.fromEntries(\n    Object.entries(api.stores).map(([key, api2]) => [key, api2.getState()])\n  );\n};\nconst extractConnectionInformation = (store, extensionConnector, options) => {\n  if (store === void 0) {\n    return {\n      type: \"untracked\",\n      connection: extensionConnector.connect(options)\n    };\n  }\n  const existingConnection = trackedConnections.get(options.name);\n  if (existingConnection) {\n    return { type: \"tracked\", store, ...existingConnection };\n  }\n  const newConnection = {\n    connection: extensionConnector.connect(options),\n    stores: {}\n  };\n  trackedConnections.set(options.name, newConnection);\n  return { type: \"tracked\", store, ...newConnection };\n};\nconst devtoolsImpl = (fn, devtoolsOptions = {}) => (set, get, api) => {\n  const { enabled, anonymousActionType, store, ...options } = devtoolsOptions;\n  let extensionConnector;\n  try {\n    extensionConnector = (enabled != null ? enabled : (/* unsupported import.meta.env */ undefined && 0) !== \"production\") && window.__REDUX_DEVTOOLS_EXTENSION__;\n  } catch (e) {\n  }\n  if (!extensionConnector) {\n    if ( true && enabled) {\n      console.warn(\n        \"[zustand devtools middleware] Please install/enable Redux devtools extension\"\n      );\n    }\n    return fn(set, get, api);\n  }\n  const { connection, ...connectionInformation } = extractConnectionInformation(store, extensionConnector, options);\n  let isRecording = true;\n  api.setState = (state, replace, nameOrAction) => {\n    const r = set(state, replace);\n    if (!isRecording)\n      return r;\n    const action = nameOrAction === void 0 ? { type: anonymousActionType || \"anonymous\" } : typeof nameOrAction === \"string\" ? { type: nameOrAction } : nameOrAction;\n    if (store === void 0) {\n      connection == null ? void 0 : connection.send(action, get());\n      return r;\n    }\n    connection == null ? void 0 : connection.send(\n      {\n        ...action,\n        type: `${store}/${action.type}`\n      },\n      {\n        ...getTrackedConnectionState(options.name),\n        [store]: api.getState()\n      }\n    );\n    return r;\n  };\n  const setStateFromDevtools = (...a) => {\n    const originalIsRecording = isRecording;\n    isRecording = false;\n    set(...a);\n    isRecording = originalIsRecording;\n  };\n  const initialState = fn(api.setState, get, api);\n  if (connectionInformation.type === \"untracked\") {\n    connection == null ? void 0 : connection.init(initialState);\n  } else {\n    connectionInformation.stores[connectionInformation.store] = api;\n    connection == null ? void 0 : connection.init(\n      Object.fromEntries(\n        Object.entries(connectionInformation.stores).map(([key, store2]) => [\n          key,\n          key === connectionInformation.store ? initialState : store2.getState()\n        ])\n      )\n    );\n  }\n  if (api.dispatchFromDevtools && typeof api.dispatch === \"function\") {\n    let didWarnAboutReservedActionType = false;\n    const originalDispatch = api.dispatch;\n    api.dispatch = (...a) => {\n      if ( true && a[0].type === \"__setState\" && !didWarnAboutReservedActionType) {\n        console.warn(\n          '[zustand devtools middleware] \"__setState\" action type is reserved to set state from the devtools. Avoid using it.'\n        );\n        didWarnAboutReservedActionType = true;\n      }\n      originalDispatch(...a);\n    };\n  }\n  connection.subscribe((message) => {\n    var _a;\n    switch (message.type) {\n      case \"ACTION\":\n        if (typeof message.payload !== \"string\") {\n          console.error(\n            \"[zustand devtools middleware] Unsupported action format\"\n          );\n          return;\n        }\n        return parseJsonThen(\n          message.payload,\n          (action) => {\n            if (action.type === \"__setState\") {\n              if (store === void 0) {\n                setStateFromDevtools(action.state);\n                return;\n              }\n              if (Object.keys(action.state).length !== 1) {\n                console.error(\n                  `\n                    [zustand devtools middleware] Unsupported __setState action format. \n                    When using 'store' option in devtools(), the 'state' should have only one key, which is a value of 'store' that was passed in devtools(),\n                    and value of this only key should be a state object. Example: { \"type\": \"__setState\", \"state\": { \"abc123Store\": { \"foo\": \"bar\" } } }\n                    `\n                );\n              }\n              const stateFromDevtools = action.state[store];\n              if (stateFromDevtools === void 0 || stateFromDevtools === null) {\n                return;\n              }\n              if (JSON.stringify(api.getState()) !== JSON.stringify(stateFromDevtools)) {\n                setStateFromDevtools(stateFromDevtools);\n              }\n              return;\n            }\n            if (!api.dispatchFromDevtools)\n              return;\n            if (typeof api.dispatch !== \"function\")\n              return;\n            api.dispatch(action);\n          }\n        );\n      case \"DISPATCH\":\n        switch (message.payload.type) {\n          case \"RESET\":\n            setStateFromDevtools(initialState);\n            if (store === void 0) {\n              return connection == null ? void 0 : connection.init(api.getState());\n            }\n            return connection == null ? void 0 : connection.init(getTrackedConnectionState(options.name));\n          case \"COMMIT\":\n            if (store === void 0) {\n              connection == null ? void 0 : connection.init(api.getState());\n              return;\n            }\n            return connection == null ? void 0 : connection.init(getTrackedConnectionState(options.name));\n          case \"ROLLBACK\":\n            return parseJsonThen(message.state, (state) => {\n              if (store === void 0) {\n                setStateFromDevtools(state);\n                connection == null ? void 0 : connection.init(api.getState());\n                return;\n              }\n              setStateFromDevtools(state[store]);\n              connection == null ? void 0 : connection.init(getTrackedConnectionState(options.name));\n            });\n          case \"JUMP_TO_STATE\":\n          case \"JUMP_TO_ACTION\":\n            return parseJsonThen(message.state, (state) => {\n              if (store === void 0) {\n                setStateFromDevtools(state);\n                return;\n              }\n              if (JSON.stringify(api.getState()) !== JSON.stringify(state[store])) {\n                setStateFromDevtools(state[store]);\n              }\n            });\n          case \"IMPORT_STATE\": {\n            const { nextLiftedState } = message.payload;\n            const lastComputedState = (_a = nextLiftedState.computedStates.slice(-1)[0]) == null ? void 0 : _a.state;\n            if (!lastComputedState)\n              return;\n            if (store === void 0) {\n              setStateFromDevtools(lastComputedState);\n            } else {\n              setStateFromDevtools(lastComputedState[store]);\n            }\n            connection == null ? void 0 : connection.send(\n              null,\n              // FIXME no-any\n              nextLiftedState\n            );\n            return;\n          }\n          case \"PAUSE_RECORDING\":\n            return isRecording = !isRecording;\n        }\n        return;\n    }\n  });\n  return initialState;\n};\nconst devtools = devtoolsImpl;\nconst parseJsonThen = (stringified, f) => {\n  let parsed;\n  try {\n    parsed = JSON.parse(stringified);\n  } catch (e) {\n    console.error(\n      \"[zustand devtools middleware] Could not parse the received json\",\n      e\n    );\n  }\n  if (parsed !== void 0)\n    f(parsed);\n};\n\nconst subscribeWithSelectorImpl = (fn) => (set, get, api) => {\n  const origSubscribe = api.subscribe;\n  api.subscribe = (selector, optListener, options) => {\n    let listener = selector;\n    if (optListener) {\n      const equalityFn = (options == null ? void 0 : options.equalityFn) || Object.is;\n      let currentSlice = selector(api.getState());\n      listener = (state) => {\n        const nextSlice = selector(state);\n        if (!equalityFn(currentSlice, nextSlice)) {\n          const previousSlice = currentSlice;\n          optListener(currentSlice = nextSlice, previousSlice);\n        }\n      };\n      if (options == null ? void 0 : options.fireImmediately) {\n        optListener(currentSlice, currentSlice);\n      }\n    }\n    return origSubscribe(listener);\n  };\n  const initialState = fn(set, get, api);\n  return initialState;\n};\nconst subscribeWithSelector = subscribeWithSelectorImpl;\n\nconst combine = (initialState, create) => (...a) => Object.assign({}, initialState, create(...a));\n\nfunction createJSONStorage(getStorage) {\n  let storage;\n  try {\n    storage = getStorage();\n  } catch (e) {\n    return;\n  }\n  const persistStorage = {\n    getItem: (name) => {\n      var _a;\n      const parse = (str2) => {\n        if (str2 === null) {\n          return null;\n        }\n        return JSON.parse(str2);\n      };\n      const str = (_a = storage.getItem(name)) != null ? _a : null;\n      if (str instanceof Promise) {\n        return str.then(parse);\n      }\n      return parse(str);\n    },\n    setItem: (name, newValue) => storage.setItem(name, JSON.stringify(newValue)),\n    removeItem: (name) => storage.removeItem(name)\n  };\n  return persistStorage;\n}\nconst toThenable = (fn) => (input) => {\n  try {\n    const result = fn(input);\n    if (result instanceof Promise) {\n      return result;\n    }\n    return {\n      then(onFulfilled) {\n        return toThenable(onFulfilled)(result);\n      },\n      catch(_onRejected) {\n        return this;\n      }\n    };\n  } catch (e) {\n    return {\n      then(_onFulfilled) {\n        return this;\n      },\n      catch(onRejected) {\n        return toThenable(onRejected)(e);\n      }\n    };\n  }\n};\nconst oldImpl = (config, baseOptions) => (set, get, api) => {\n  let options = {\n    getStorage: () => localStorage,\n    serialize: JSON.stringify,\n    deserialize: JSON.parse,\n    partialize: (state) => state,\n    version: 0,\n    merge: (persistedState, currentState) => ({\n      ...currentState,\n      ...persistedState\n    }),\n    ...baseOptions\n  };\n  let hasHydrated = false;\n  const hydrationListeners = /* @__PURE__ */ new Set();\n  const finishHydrationListeners = /* @__PURE__ */ new Set();\n  let storage;\n  try {\n    storage = options.getStorage();\n  } catch (e) {\n  }\n  if (!storage) {\n    return config(\n      (...args) => {\n        console.warn(\n          `[zustand persist middleware] Unable to update item '${options.name}', the given storage is currently unavailable.`\n        );\n        set(...args);\n      },\n      get,\n      api\n    );\n  }\n  const thenableSerialize = toThenable(options.serialize);\n  const setItem = () => {\n    const state = options.partialize({ ...get() });\n    let errorInSync;\n    const thenable = thenableSerialize({ state, version: options.version }).then(\n      (serializedValue) => storage.setItem(options.name, serializedValue)\n    ).catch((e) => {\n      errorInSync = e;\n    });\n    if (errorInSync) {\n      throw errorInSync;\n    }\n    return thenable;\n  };\n  const savedSetState = api.setState;\n  api.setState = (state, replace) => {\n    savedSetState(state, replace);\n    void setItem();\n  };\n  const configResult = config(\n    (...args) => {\n      set(...args);\n      void setItem();\n    },\n    get,\n    api\n  );\n  let stateFromStorage;\n  const hydrate = () => {\n    var _a;\n    if (!storage)\n      return;\n    hasHydrated = false;\n    hydrationListeners.forEach((cb) => cb(get()));\n    const postRehydrationCallback = ((_a = options.onRehydrateStorage) == null ? void 0 : _a.call(options, get())) || void 0;\n    return toThenable(storage.getItem.bind(storage))(options.name).then((storageValue) => {\n      if (storageValue) {\n        return options.deserialize(storageValue);\n      }\n    }).then((deserializedStorageValue) => {\n      if (deserializedStorageValue) {\n        if (typeof deserializedStorageValue.version === \"number\" && deserializedStorageValue.version !== options.version) {\n          if (options.migrate) {\n            return options.migrate(\n              deserializedStorageValue.state,\n              deserializedStorageValue.version\n            );\n          }\n          console.error(\n            `State loaded from storage couldn't be migrated since no migrate function was provided`\n          );\n        } else {\n          return deserializedStorageValue.state;\n        }\n      }\n    }).then((migratedState) => {\n      var _a2;\n      stateFromStorage = options.merge(\n        migratedState,\n        (_a2 = get()) != null ? _a2 : configResult\n      );\n      set(stateFromStorage, true);\n      return setItem();\n    }).then(() => {\n      postRehydrationCallback == null ? void 0 : postRehydrationCallback(stateFromStorage, void 0);\n      hasHydrated = true;\n      finishHydrationListeners.forEach((cb) => cb(stateFromStorage));\n    }).catch((e) => {\n      postRehydrationCallback == null ? void 0 : postRehydrationCallback(void 0, e);\n    });\n  };\n  api.persist = {\n    setOptions: (newOptions) => {\n      options = {\n        ...options,\n        ...newOptions\n      };\n      if (newOptions.getStorage) {\n        storage = newOptions.getStorage();\n      }\n    },\n    clearStorage: () => {\n      storage == null ? void 0 : storage.removeItem(options.name);\n    },\n    getOptions: () => options,\n    rehydrate: () => hydrate(),\n    hasHydrated: () => hasHydrated,\n    onHydrate: (cb) => {\n      hydrationListeners.add(cb);\n      return () => {\n        hydrationListeners.delete(cb);\n      };\n    },\n    onFinishHydration: (cb) => {\n      finishHydrationListeners.add(cb);\n      return () => {\n        finishHydrationListeners.delete(cb);\n      };\n    }\n  };\n  hydrate();\n  return stateFromStorage || configResult;\n};\nconst newImpl = (config, baseOptions) => (set, get, api) => {\n  let options = {\n    storage: createJSONStorage(() => localStorage),\n    partialize: (state) => state,\n    version: 0,\n    merge: (persistedState, currentState) => ({\n      ...currentState,\n      ...persistedState\n    }),\n    ...baseOptions\n  };\n  let hasHydrated = false;\n  const hydrationListeners = /* @__PURE__ */ new Set();\n  const finishHydrationListeners = /* @__PURE__ */ new Set();\n  let storage = options.storage;\n  if (!storage) {\n    return config(\n      (...args) => {\n        console.warn(\n          `[zustand persist middleware] Unable to update item '${options.name}', the given storage is currently unavailable.`\n        );\n        set(...args);\n      },\n      get,\n      api\n    );\n  }\n  const setItem = () => {\n    const state = options.partialize({ ...get() });\n    return storage.setItem(options.name, {\n      state,\n      version: options.version\n    });\n  };\n  const savedSetState = api.setState;\n  api.setState = (state, replace) => {\n    savedSetState(state, replace);\n    void setItem();\n  };\n  const configResult = config(\n    (...args) => {\n      set(...args);\n      void setItem();\n    },\n    get,\n    api\n  );\n  let stateFromStorage;\n  const hydrate = () => {\n    var _a;\n    if (!storage)\n      return;\n    hasHydrated = false;\n    hydrationListeners.forEach((cb) => cb(get()));\n    const postRehydrationCallback = ((_a = options.onRehydrateStorage) == null ? void 0 : _a.call(options, get())) || void 0;\n    return toThenable(storage.getItem.bind(storage))(options.name).then((deserializedStorageValue) => {\n      if (deserializedStorageValue) {\n        if (typeof deserializedStorageValue.version === \"number\" && deserializedStorageValue.version !== options.version) {\n          if (options.migrate) {\n            return options.migrate(\n              deserializedStorageValue.state,\n              deserializedStorageValue.version\n            );\n          }\n          console.error(\n            `State loaded from storage couldn't be migrated since no migrate function was provided`\n          );\n        } else {\n          return deserializedStorageValue.state;\n        }\n      }\n    }).then((migratedState) => {\n      var _a2;\n      stateFromStorage = options.merge(\n        migratedState,\n        (_a2 = get()) != null ? _a2 : configResult\n      );\n      set(stateFromStorage, true);\n      return setItem();\n    }).then(() => {\n      postRehydrationCallback == null ? void 0 : postRehydrationCallback(stateFromStorage, void 0);\n      hasHydrated = true;\n      finishHydrationListeners.forEach((cb) => cb(stateFromStorage));\n    }).catch((e) => {\n      postRehydrationCallback == null ? void 0 : postRehydrationCallback(void 0, e);\n    });\n  };\n  api.persist = {\n    setOptions: (newOptions) => {\n      options = {\n        ...options,\n        ...newOptions\n      };\n      if (newOptions.storage) {\n        storage = newOptions.storage;\n      }\n    },\n    clearStorage: () => {\n      storage == null ? void 0 : storage.removeItem(options.name);\n    },\n    getOptions: () => options,\n    rehydrate: () => hydrate(),\n    hasHydrated: () => hasHydrated,\n    onHydrate: (cb) => {\n      hydrationListeners.add(cb);\n      return () => {\n        hydrationListeners.delete(cb);\n      };\n    },\n    onFinishHydration: (cb) => {\n      finishHydrationListeners.add(cb);\n      return () => {\n        finishHydrationListeners.delete(cb);\n      };\n    }\n  };\n  hydrate();\n  return stateFromStorage || configResult;\n};\nconst persistImpl = (config, baseOptions) => {\n  if (\"getStorage\" in baseOptions || \"serialize\" in baseOptions || \"deserialize\" in baseOptions) {\n    if (true) {\n      console.warn(\n        \"[DEPRECATED] `getStorage`, `serialize` and `deserialize` options are deprecated. Use `storage` option instead.\"\n      );\n    }\n    return oldImpl(config, baseOptions);\n  }\n  return newImpl(config, baseOptions);\n};\nconst persist = persistImpl;\n\n\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/zustand/esm/middleware.mjs?");
-
-/***/ }),
-
-/***/ "./node_modules/zustand/esm/shallow.mjs":
-/*!**********************************************!*\
-  !*** ./node_modules/zustand/esm/shallow.mjs ***!
-  \**********************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ shallow$1),\n/* harmony export */   \"shallow\": () => (/* binding */ shallow)\n/* harmony export */ });\nfunction shallow(objA, objB) {\n  if (Object.is(objA, objB)) {\n    return true;\n  }\n  if (typeof objA !== \"object\" || objA === null || typeof objB !== \"object\" || objB === null) {\n    return false;\n  }\n  if (objA instanceof Map && objB instanceof Map) {\n    if (objA.size !== objB.size)\n      return false;\n    for (const [key, value] of objA) {\n      if (!Object.is(value, objB.get(key))) {\n        return false;\n      }\n    }\n    return true;\n  }\n  if (objA instanceof Set && objB instanceof Set) {\n    if (objA.size !== objB.size)\n      return false;\n    for (const value of objA) {\n      if (!objB.has(value)) {\n        return false;\n      }\n    }\n    return true;\n  }\n  const keysA = Object.keys(objA);\n  if (keysA.length !== Object.keys(objB).length) {\n    return false;\n  }\n  for (let i = 0; i < keysA.length; i++) {\n    if (!Object.prototype.hasOwnProperty.call(objB, keysA[i]) || !Object.is(objA[keysA[i]], objB[keysA[i]])) {\n      return false;\n    }\n  }\n  return true;\n}\nvar shallow$1 = (objA, objB) => {\n  if (true) {\n    console.warn(\n      \"[DEPRECATED] Default export is deprecated. Instead use `import { shallow } from 'zustand/shallow'`.\"\n    );\n  }\n  return shallow(objA, objB);\n};\n\n\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/zustand/esm/shallow.mjs?");
-
-/***/ }),
-
-/***/ "./node_modules/zustand/esm/vanilla.mjs":
-/*!**********************************************!*\
-  !*** ./node_modules/zustand/esm/vanilla.mjs ***!
-  \**********************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createStore\": () => (/* binding */ createStore),\n/* harmony export */   \"default\": () => (/* binding */ vanilla)\n/* harmony export */ });\nconst createStoreImpl = (createState) => {\n  let state;\n  const listeners = /* @__PURE__ */ new Set();\n  const setState = (partial, replace) => {\n    const nextState = typeof partial === \"function\" ? partial(state) : partial;\n    if (!Object.is(nextState, state)) {\n      const previousState = state;\n      state = (replace != null ? replace : typeof nextState !== \"object\") ? nextState : Object.assign({}, state, nextState);\n      listeners.forEach((listener) => listener(state, previousState));\n    }\n  };\n  const getState = () => state;\n  const subscribe = (listener) => {\n    listeners.add(listener);\n    return () => listeners.delete(listener);\n  };\n  const destroy = () => {\n    if (true) {\n      console.warn(\n        \"[DEPRECATED] The `destroy` method will be unsupported in a future version. Instead use unsubscribe function returned by subscribe. Everything will be garbage-collected if store is garbage-collected.\"\n      );\n    }\n    listeners.clear();\n  };\n  const api = { setState, getState, subscribe, destroy };\n  state = createState(setState, getState, api);\n  return api;\n};\nconst createStore = (createState) => createState ? createStoreImpl(createState) : createStoreImpl;\nvar vanilla = (createState) => {\n  if (true) {\n    console.warn(\n      \"[DEPRECATED] Default export is deprecated. Instead use import { createStore } from 'zustand/vanilla'.\"\n    );\n  }\n  return createStore(createState);\n};\n\n\n\n\n//# sourceURL=webpack://@ainias42/react-windows/./node_modules/zustand/esm/vanilla.mjs?");
-
-/***/ }),
-
-/***/ "./locales/de/common.json":
-/*!********************************!*\
-  !*** ./locales/de/common.json ***!
-  \********************************/
-/***/ ((module) => {
-
-"use strict";
-eval("module.exports = JSON.parse('{\"window\":{\"button\":{\"close\":\"Schließen\",\"maximize\":\"Maxmieren\",\"minimize\":\"Minimieren\",\"restore\":\"Wiederherstellen\",\"unlock\":\"Fenster lösen\"},\"menu-item\":{\"open-window\":\"In neuem Fenster öffnen\",\"resize\":\"An Inhalt anpassen\",\"lock\":\"Fenster fixieren\"}}}');\n\n//# sourceURL=webpack://@ainias42/react-windows/./locales/de/common.json?");
-
-/***/ }),
-
-/***/ "./locales/en/common.json":
-/*!********************************!*\
-  !*** ./locales/en/common.json ***!
-  \********************************/
-/***/ ((module) => {
-
-"use strict";
-eval("module.exports = JSON.parse('{\"window\":{\"button\":{\"close\":\"Close\",\"maximize\":\"Maximize\",\"minimize\":\"Minimize\",\"restore\":\"Restore\",\"unlock\":\"Unlock\"},\"menu-item\":{\"open-window\":\"Open in new Window\",\"resize\":\"Fit to content\",\"lock\":\"Fix Window\"}}}');\n\n//# sourceURL=webpack://@ainias42/react-windows/./locales/en/common.json?");
 
 /***/ })
 
@@ -948,12 +1643,6581 @@ eval("module.exports = JSON.parse('{\"window\":{\"button\":{\"close\":\"Close\",
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./reactWindows.ts");
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "ContainerState": () => (/* reexport */ ContainerState),
+  "ResizeToContentEnum": () => (/* reexport */ ResizeToContentEnum),
+  "TitleTab": () => (/* reexport */ TitleTab),
+  "TitleTabBar": () => (/* reexport */ TitleTabBar),
+  "WINDOW_CONTAINER_MIN_HEIGHT": () => (/* reexport */ WINDOW_CONTAINER_MIN_HEIGHT),
+  "WINDOW_CONTAINER_MIN_WIDTH": () => (/* reexport */ WINDOW_CONTAINER_MIN_WIDTH),
+  "Window": () => (/* reexport */ Window),
+  "WindowButton": () => (/* reexport */ WindowButton),
+  "WindowConstants": () => (/* reexport */ WindowConstants),
+  "WindowContainer": () => (/* reexport */ WindowContainer),
+  "WindowContainerFromStore": () => (/* reexport */ WindowContainerFromStore),
+  "WindowContainerRefContext": () => (/* reexport */ WindowContainerRefContext),
+  "WindowList": () => (/* reexport */ WindowList),
+  "changeDimension": () => (/* reexport */ changeDimension),
+  "changeDimensionHeight": () => (/* reexport */ changeDimensionHeight),
+  "changeDimensionWidth": () => (/* reexport */ changeDimensionWidth),
+  "checkOverContainerAndTabPosition": () => (/* reexport */ checkOverContainerAndTabPosition),
+  "checkWindowDimension": () => (/* reexport */ checkWindowDimension),
+  "getWindowStore": () => (/* reexport */ getWindowStore),
+  "reactWindowsI18n": () => (/* reexport */ instance),
+  "selectActiveWindowForContainer": () => (/* reexport */ selectActiveWindowForContainer),
+  "selectActiveWindowIdForContainer": () => (/* reexport */ selectActiveWindowIdForContainer),
+  "selectTitleInfos": () => (/* reexport */ selectTitleInfos),
+  "updateDimensions": () => (/* reexport */ updateDimensions),
+  "useCloseButton": () => (/* reexport */ useCloseButton),
+  "useOnMouseDrag": () => (/* reexport */ useOnMouseDrag),
+  "useWindowContainerRef": () => (/* reexport */ useWindowContainerRef)
+});
+
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__(689);
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
+;// CONCATENATED MODULE: external "@ainias42/react-bootstrap-mobile"
+const react_bootstrap_mobile_namespaceObject = require("@ainias42/react-bootstrap-mobile");
+;// CONCATENATED MODULE: ./node_modules/zustand/esm/vanilla.mjs
+const createStoreImpl = (createState) => {
+  let state;
+  const listeners = /* @__PURE__ */ new Set();
+  const setState = (partial, replace) => {
+    const nextState = typeof partial === "function" ? partial(state) : partial;
+    if (!Object.is(nextState, state)) {
+      const previousState = state;
+      state = (replace != null ? replace : typeof nextState !== "object") ? nextState : Object.assign({}, state, nextState);
+      listeners.forEach((listener) => listener(state, previousState));
+    }
+  };
+  const getState = () => state;
+  const subscribe = (listener) => {
+    listeners.add(listener);
+    return () => listeners.delete(listener);
+  };
+  const destroy = () => {
+    if (true) {
+      console.warn(
+        "[DEPRECATED] The `destroy` method will be unsupported in a future version. Instead use unsubscribe function returned by subscribe. Everything will be garbage-collected if store is garbage-collected."
+      );
+    }
+    listeners.clear();
+  };
+  const api = { setState, getState, subscribe, destroy };
+  state = createState(setState, getState, api);
+  return api;
+};
+const createStore = (createState) => createState ? createStoreImpl(createState) : createStoreImpl;
+var vanilla = (createState) => {
+  if (true) {
+    console.warn(
+      "[DEPRECATED] Default export is deprecated. Instead use import { createStore } from 'zustand/vanilla'."
+    );
+  }
+  return createStore(createState);
+};
+
+
+
+// EXTERNAL MODULE: ./node_modules/use-sync-external-store/shim/with-selector.js
+var with_selector = __webpack_require__(798);
+;// CONCATENATED MODULE: ./node_modules/zustand/esm/index.mjs
+
+
+
+
+
+const { useSyncExternalStoreWithSelector } = with_selector;
+function useStore(api, selector = api.getState, equalityFn) {
+  const slice = useSyncExternalStoreWithSelector(
+    api.subscribe,
+    api.getState,
+    api.getServerState || api.getState,
+    selector,
+    equalityFn
+  );
+  (0,external_react_.useDebugValue)(slice);
+  return slice;
+}
+const createImpl = (createState) => {
+  if ( true && typeof createState !== "function") {
+    console.warn(
+      "[DEPRECATED] Passing a vanilla store will be unsupported in a future version. Instead use `import { useStore } from 'zustand'`."
+    );
+  }
+  const api = typeof createState === "function" ? createStore(createState) : createState;
+  const useBoundStore = (selector, equalityFn) => useStore(api, selector, equalityFn);
+  Object.assign(useBoundStore, api);
+  return useBoundStore;
+};
+const create = (createState) => createState ? createImpl(createState) : createImpl;
+var react = (createState) => {
+  if (true) {
+    console.warn(
+      "[DEPRECATED] Default export is deprecated. Instead use `import { create } from 'zustand'`."
+    );
+  }
+  return create(createState);
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/zustand/esm/middleware.mjs
+const reduxImpl = (reducer, initial) => (set, _get, api) => {
+  api.dispatch = (action) => {
+    set((state) => reducer(state, action), false, action);
+    return action;
+  };
+  api.dispatchFromDevtools = true;
+  return { dispatch: (...a) => api.dispatch(...a), ...initial };
+};
+const redux = (/* unused pure expression or super */ null && (reduxImpl));
+
+const trackedConnections = /* @__PURE__ */ new Map();
+const getTrackedConnectionState = (name) => {
+  const api = trackedConnections.get(name);
+  if (!api)
+    return {};
+  return Object.fromEntries(
+    Object.entries(api.stores).map(([key, api2]) => [key, api2.getState()])
+  );
+};
+const extractConnectionInformation = (store, extensionConnector, options) => {
+  if (store === void 0) {
+    return {
+      type: "untracked",
+      connection: extensionConnector.connect(options)
+    };
+  }
+  const existingConnection = trackedConnections.get(options.name);
+  if (existingConnection) {
+    return { type: "tracked", store, ...existingConnection };
+  }
+  const newConnection = {
+    connection: extensionConnector.connect(options),
+    stores: {}
+  };
+  trackedConnections.set(options.name, newConnection);
+  return { type: "tracked", store, ...newConnection };
+};
+const devtoolsImpl = (fn, devtoolsOptions = {}) => (set, get, api) => {
+  const { enabled, anonymousActionType, store, ...options } = devtoolsOptions;
+  let extensionConnector;
+  try {
+    extensionConnector = (enabled != null ? enabled : (/* unsupported import.meta.env */ undefined && 0) !== "production") && window.__REDUX_DEVTOOLS_EXTENSION__;
+  } catch (e) {
+  }
+  if (!extensionConnector) {
+    if ( true && enabled) {
+      console.warn(
+        "[zustand devtools middleware] Please install/enable Redux devtools extension"
+      );
+    }
+    return fn(set, get, api);
+  }
+  const { connection, ...connectionInformation } = extractConnectionInformation(store, extensionConnector, options);
+  let isRecording = true;
+  api.setState = (state, replace, nameOrAction) => {
+    const r = set(state, replace);
+    if (!isRecording)
+      return r;
+    const action = nameOrAction === void 0 ? { type: anonymousActionType || "anonymous" } : typeof nameOrAction === "string" ? { type: nameOrAction } : nameOrAction;
+    if (store === void 0) {
+      connection == null ? void 0 : connection.send(action, get());
+      return r;
+    }
+    connection == null ? void 0 : connection.send(
+      {
+        ...action,
+        type: `${store}/${action.type}`
+      },
+      {
+        ...getTrackedConnectionState(options.name),
+        [store]: api.getState()
+      }
+    );
+    return r;
+  };
+  const setStateFromDevtools = (...a) => {
+    const originalIsRecording = isRecording;
+    isRecording = false;
+    set(...a);
+    isRecording = originalIsRecording;
+  };
+  const initialState = fn(api.setState, get, api);
+  if (connectionInformation.type === "untracked") {
+    connection == null ? void 0 : connection.init(initialState);
+  } else {
+    connectionInformation.stores[connectionInformation.store] = api;
+    connection == null ? void 0 : connection.init(
+      Object.fromEntries(
+        Object.entries(connectionInformation.stores).map(([key, store2]) => [
+          key,
+          key === connectionInformation.store ? initialState : store2.getState()
+        ])
+      )
+    );
+  }
+  if (api.dispatchFromDevtools && typeof api.dispatch === "function") {
+    let didWarnAboutReservedActionType = false;
+    const originalDispatch = api.dispatch;
+    api.dispatch = (...a) => {
+      if ( true && a[0].type === "__setState" && !didWarnAboutReservedActionType) {
+        console.warn(
+          '[zustand devtools middleware] "__setState" action type is reserved to set state from the devtools. Avoid using it.'
+        );
+        didWarnAboutReservedActionType = true;
+      }
+      originalDispatch(...a);
+    };
+  }
+  connection.subscribe((message) => {
+    var _a;
+    switch (message.type) {
+      case "ACTION":
+        if (typeof message.payload !== "string") {
+          console.error(
+            "[zustand devtools middleware] Unsupported action format"
+          );
+          return;
+        }
+        return parseJsonThen(
+          message.payload,
+          (action) => {
+            if (action.type === "__setState") {
+              if (store === void 0) {
+                setStateFromDevtools(action.state);
+                return;
+              }
+              if (Object.keys(action.state).length !== 1) {
+                console.error(
+                  `
+                    [zustand devtools middleware] Unsupported __setState action format. 
+                    When using 'store' option in devtools(), the 'state' should have only one key, which is a value of 'store' that was passed in devtools(),
+                    and value of this only key should be a state object. Example: { "type": "__setState", "state": { "abc123Store": { "foo": "bar" } } }
+                    `
+                );
+              }
+              const stateFromDevtools = action.state[store];
+              if (stateFromDevtools === void 0 || stateFromDevtools === null) {
+                return;
+              }
+              if (JSON.stringify(api.getState()) !== JSON.stringify(stateFromDevtools)) {
+                setStateFromDevtools(stateFromDevtools);
+              }
+              return;
+            }
+            if (!api.dispatchFromDevtools)
+              return;
+            if (typeof api.dispatch !== "function")
+              return;
+            api.dispatch(action);
+          }
+        );
+      case "DISPATCH":
+        switch (message.payload.type) {
+          case "RESET":
+            setStateFromDevtools(initialState);
+            if (store === void 0) {
+              return connection == null ? void 0 : connection.init(api.getState());
+            }
+            return connection == null ? void 0 : connection.init(getTrackedConnectionState(options.name));
+          case "COMMIT":
+            if (store === void 0) {
+              connection == null ? void 0 : connection.init(api.getState());
+              return;
+            }
+            return connection == null ? void 0 : connection.init(getTrackedConnectionState(options.name));
+          case "ROLLBACK":
+            return parseJsonThen(message.state, (state) => {
+              if (store === void 0) {
+                setStateFromDevtools(state);
+                connection == null ? void 0 : connection.init(api.getState());
+                return;
+              }
+              setStateFromDevtools(state[store]);
+              connection == null ? void 0 : connection.init(getTrackedConnectionState(options.name));
+            });
+          case "JUMP_TO_STATE":
+          case "JUMP_TO_ACTION":
+            return parseJsonThen(message.state, (state) => {
+              if (store === void 0) {
+                setStateFromDevtools(state);
+                return;
+              }
+              if (JSON.stringify(api.getState()) !== JSON.stringify(state[store])) {
+                setStateFromDevtools(state[store]);
+              }
+            });
+          case "IMPORT_STATE": {
+            const { nextLiftedState } = message.payload;
+            const lastComputedState = (_a = nextLiftedState.computedStates.slice(-1)[0]) == null ? void 0 : _a.state;
+            if (!lastComputedState)
+              return;
+            if (store === void 0) {
+              setStateFromDevtools(lastComputedState);
+            } else {
+              setStateFromDevtools(lastComputedState[store]);
+            }
+            connection == null ? void 0 : connection.send(
+              null,
+              // FIXME no-any
+              nextLiftedState
+            );
+            return;
+          }
+          case "PAUSE_RECORDING":
+            return isRecording = !isRecording;
+        }
+        return;
+    }
+  });
+  return initialState;
+};
+const devtools = (/* unused pure expression or super */ null && (devtoolsImpl));
+const parseJsonThen = (stringified, f) => {
+  let parsed;
+  try {
+    parsed = JSON.parse(stringified);
+  } catch (e) {
+    console.error(
+      "[zustand devtools middleware] Could not parse the received json",
+      e
+    );
+  }
+  if (parsed !== void 0)
+    f(parsed);
+};
+
+const subscribeWithSelectorImpl = (fn) => (set, get, api) => {
+  const origSubscribe = api.subscribe;
+  api.subscribe = (selector, optListener, options) => {
+    let listener = selector;
+    if (optListener) {
+      const equalityFn = (options == null ? void 0 : options.equalityFn) || Object.is;
+      let currentSlice = selector(api.getState());
+      listener = (state) => {
+        const nextSlice = selector(state);
+        if (!equalityFn(currentSlice, nextSlice)) {
+          const previousSlice = currentSlice;
+          optListener(currentSlice = nextSlice, previousSlice);
+        }
+      };
+      if (options == null ? void 0 : options.fireImmediately) {
+        optListener(currentSlice, currentSlice);
+      }
+    }
+    return origSubscribe(listener);
+  };
+  const initialState = fn(set, get, api);
+  return initialState;
+};
+const subscribeWithSelector = (/* unused pure expression or super */ null && (subscribeWithSelectorImpl));
+
+const combine = (initialState, create) => (...a) => Object.assign({}, initialState, create(...a));
+
+function createJSONStorage(getStorage) {
+  let storage;
+  try {
+    storage = getStorage();
+  } catch (e) {
+    return;
+  }
+  const persistStorage = {
+    getItem: (name) => {
+      var _a;
+      const parse = (str2) => {
+        if (str2 === null) {
+          return null;
+        }
+        return JSON.parse(str2);
+      };
+      const str = (_a = storage.getItem(name)) != null ? _a : null;
+      if (str instanceof Promise) {
+        return str.then(parse);
+      }
+      return parse(str);
+    },
+    setItem: (name, newValue) => storage.setItem(name, JSON.stringify(newValue)),
+    removeItem: (name) => storage.removeItem(name)
+  };
+  return persistStorage;
+}
+const toThenable = (fn) => (input) => {
+  try {
+    const result = fn(input);
+    if (result instanceof Promise) {
+      return result;
+    }
+    return {
+      then(onFulfilled) {
+        return toThenable(onFulfilled)(result);
+      },
+      catch(_onRejected) {
+        return this;
+      }
+    };
+  } catch (e) {
+    return {
+      then(_onFulfilled) {
+        return this;
+      },
+      catch(onRejected) {
+        return toThenable(onRejected)(e);
+      }
+    };
+  }
+};
+const oldImpl = (config, baseOptions) => (set, get, api) => {
+  let options = {
+    getStorage: () => localStorage,
+    serialize: JSON.stringify,
+    deserialize: JSON.parse,
+    partialize: (state) => state,
+    version: 0,
+    merge: (persistedState, currentState) => ({
+      ...currentState,
+      ...persistedState
+    }),
+    ...baseOptions
+  };
+  let hasHydrated = false;
+  const hydrationListeners = /* @__PURE__ */ new Set();
+  const finishHydrationListeners = /* @__PURE__ */ new Set();
+  let storage;
+  try {
+    storage = options.getStorage();
+  } catch (e) {
+  }
+  if (!storage) {
+    return config(
+      (...args) => {
+        console.warn(
+          `[zustand persist middleware] Unable to update item '${options.name}', the given storage is currently unavailable.`
+        );
+        set(...args);
+      },
+      get,
+      api
+    );
+  }
+  const thenableSerialize = toThenable(options.serialize);
+  const setItem = () => {
+    const state = options.partialize({ ...get() });
+    let errorInSync;
+    const thenable = thenableSerialize({ state, version: options.version }).then(
+      (serializedValue) => storage.setItem(options.name, serializedValue)
+    ).catch((e) => {
+      errorInSync = e;
+    });
+    if (errorInSync) {
+      throw errorInSync;
+    }
+    return thenable;
+  };
+  const savedSetState = api.setState;
+  api.setState = (state, replace) => {
+    savedSetState(state, replace);
+    void setItem();
+  };
+  const configResult = config(
+    (...args) => {
+      set(...args);
+      void setItem();
+    },
+    get,
+    api
+  );
+  let stateFromStorage;
+  const hydrate = () => {
+    var _a;
+    if (!storage)
+      return;
+    hasHydrated = false;
+    hydrationListeners.forEach((cb) => cb(get()));
+    const postRehydrationCallback = ((_a = options.onRehydrateStorage) == null ? void 0 : _a.call(options, get())) || void 0;
+    return toThenable(storage.getItem.bind(storage))(options.name).then((storageValue) => {
+      if (storageValue) {
+        return options.deserialize(storageValue);
+      }
+    }).then((deserializedStorageValue) => {
+      if (deserializedStorageValue) {
+        if (typeof deserializedStorageValue.version === "number" && deserializedStorageValue.version !== options.version) {
+          if (options.migrate) {
+            return options.migrate(
+              deserializedStorageValue.state,
+              deserializedStorageValue.version
+            );
+          }
+          console.error(
+            `State loaded from storage couldn't be migrated since no migrate function was provided`
+          );
+        } else {
+          return deserializedStorageValue.state;
+        }
+      }
+    }).then((migratedState) => {
+      var _a2;
+      stateFromStorage = options.merge(
+        migratedState,
+        (_a2 = get()) != null ? _a2 : configResult
+      );
+      set(stateFromStorage, true);
+      return setItem();
+    }).then(() => {
+      postRehydrationCallback == null ? void 0 : postRehydrationCallback(stateFromStorage, void 0);
+      hasHydrated = true;
+      finishHydrationListeners.forEach((cb) => cb(stateFromStorage));
+    }).catch((e) => {
+      postRehydrationCallback == null ? void 0 : postRehydrationCallback(void 0, e);
+    });
+  };
+  api.persist = {
+    setOptions: (newOptions) => {
+      options = {
+        ...options,
+        ...newOptions
+      };
+      if (newOptions.getStorage) {
+        storage = newOptions.getStorage();
+      }
+    },
+    clearStorage: () => {
+      storage == null ? void 0 : storage.removeItem(options.name);
+    },
+    getOptions: () => options,
+    rehydrate: () => hydrate(),
+    hasHydrated: () => hasHydrated,
+    onHydrate: (cb) => {
+      hydrationListeners.add(cb);
+      return () => {
+        hydrationListeners.delete(cb);
+      };
+    },
+    onFinishHydration: (cb) => {
+      finishHydrationListeners.add(cb);
+      return () => {
+        finishHydrationListeners.delete(cb);
+      };
+    }
+  };
+  hydrate();
+  return stateFromStorage || configResult;
+};
+const newImpl = (config, baseOptions) => (set, get, api) => {
+  let options = {
+    storage: createJSONStorage(() => localStorage),
+    partialize: (state) => state,
+    version: 0,
+    merge: (persistedState, currentState) => ({
+      ...currentState,
+      ...persistedState
+    }),
+    ...baseOptions
+  };
+  let hasHydrated = false;
+  const hydrationListeners = /* @__PURE__ */ new Set();
+  const finishHydrationListeners = /* @__PURE__ */ new Set();
+  let storage = options.storage;
+  if (!storage) {
+    return config(
+      (...args) => {
+        console.warn(
+          `[zustand persist middleware] Unable to update item '${options.name}', the given storage is currently unavailable.`
+        );
+        set(...args);
+      },
+      get,
+      api
+    );
+  }
+  const setItem = () => {
+    const state = options.partialize({ ...get() });
+    return storage.setItem(options.name, {
+      state,
+      version: options.version
+    });
+  };
+  const savedSetState = api.setState;
+  api.setState = (state, replace) => {
+    savedSetState(state, replace);
+    void setItem();
+  };
+  const configResult = config(
+    (...args) => {
+      set(...args);
+      void setItem();
+    },
+    get,
+    api
+  );
+  let stateFromStorage;
+  const hydrate = () => {
+    var _a;
+    if (!storage)
+      return;
+    hasHydrated = false;
+    hydrationListeners.forEach((cb) => cb(get()));
+    const postRehydrationCallback = ((_a = options.onRehydrateStorage) == null ? void 0 : _a.call(options, get())) || void 0;
+    return toThenable(storage.getItem.bind(storage))(options.name).then((deserializedStorageValue) => {
+      if (deserializedStorageValue) {
+        if (typeof deserializedStorageValue.version === "number" && deserializedStorageValue.version !== options.version) {
+          if (options.migrate) {
+            return options.migrate(
+              deserializedStorageValue.state,
+              deserializedStorageValue.version
+            );
+          }
+          console.error(
+            `State loaded from storage couldn't be migrated since no migrate function was provided`
+          );
+        } else {
+          return deserializedStorageValue.state;
+        }
+      }
+    }).then((migratedState) => {
+      var _a2;
+      stateFromStorage = options.merge(
+        migratedState,
+        (_a2 = get()) != null ? _a2 : configResult
+      );
+      set(stateFromStorage, true);
+      return setItem();
+    }).then(() => {
+      postRehydrationCallback == null ? void 0 : postRehydrationCallback(stateFromStorage, void 0);
+      hasHydrated = true;
+      finishHydrationListeners.forEach((cb) => cb(stateFromStorage));
+    }).catch((e) => {
+      postRehydrationCallback == null ? void 0 : postRehydrationCallback(void 0, e);
+    });
+  };
+  api.persist = {
+    setOptions: (newOptions) => {
+      options = {
+        ...options,
+        ...newOptions
+      };
+      if (newOptions.storage) {
+        storage = newOptions.storage;
+      }
+    },
+    clearStorage: () => {
+      storage == null ? void 0 : storage.removeItem(options.name);
+    },
+    getOptions: () => options,
+    rehydrate: () => hydrate(),
+    hasHydrated: () => hasHydrated,
+    onHydrate: (cb) => {
+      hydrationListeners.add(cb);
+      return () => {
+        hydrationListeners.delete(cb);
+      };
+    },
+    onFinishHydration: (cb) => {
+      finishHydrationListeners.add(cb);
+      return () => {
+        finishHydrationListeners.delete(cb);
+      };
+    }
+  };
+  hydrate();
+  return stateFromStorage || configResult;
+};
+const persistImpl = (config, baseOptions) => {
+  if ("getStorage" in baseOptions || "serialize" in baseOptions || "deserialize" in baseOptions) {
+    if (true) {
+      console.warn(
+        "[DEPRECATED] `getStorage`, `serialize` and `deserialize` options are deprecated. Use `storage` option instead."
+      );
+    }
+    return oldImpl(config, baseOptions);
+  }
+  return newImpl(config, baseOptions);
+};
+const persist = persistImpl;
+
+
+
+// EXTERNAL MODULE: ./node_modules/@ainias42/js-helper/dist/js-helper.js
+var js_helper = __webpack_require__(355);
+;// CONCATENATED MODULE: ./src/Components/WindowContainer/changeDimension.ts
+function changeDimension(dimension, addWidth, addHeight) {
+  if (dimension.right >= dimension.left) {
+    dimension.right -= addWidth;
+  } else {
+    dimension.left -= addWidth;
+  }
+  if (dimension.bottom >= dimension.top) {
+    dimension.bottom -= addHeight;
+  } else {
+    dimension.top -= addHeight;
+  }
+  return dimension;
+}
+function changeDimensionWidth(dimension, addWidth) {
+  return changeDimension(dimension, addWidth, 0);
+}
+function changeDimensionHeight(dimension, addHeight) {
+  return changeDimension(dimension, 0, addHeight);
+}
+;// CONCATENATED MODULE: ./src/Components/WindowContainer/WindowContainerDimension.ts
+const WINDOW_CONTAINER_MIN_WIDTH = 150;
+const WINDOW_CONTAINER_MIN_HEIGHT = 50;
+;// CONCATENATED MODULE: ./src/Components/WindowContainer/checkWindowDimension.ts
+
+function checkWindowDimension(dimension, minWidth = WINDOW_CONTAINER_MIN_WIDTH, minHeight = WINDOW_CONTAINER_MIN_HEIGHT) {
+  dimension.top = Math.max(dimension.top, 0);
+  dimension.left = Math.max(dimension.left, 0);
+  dimension.right = Math.max(dimension.right, 0);
+  dimension.bottom = Math.max(dimension.bottom, 0);
+  if (window.innerWidth < minWidth + dimension.left + dimension.right) {
+    if (dimension.right >= dimension.left) {
+      dimension.right = window.innerWidth - minWidth - dimension.left;
+    } else {
+      dimension.left = window.innerWidth - minWidth - dimension.right;
+    }
+  }
+  if (window.innerHeight < minHeight + dimension.top + dimension.bottom) {
+    if (dimension.bottom >= dimension.top) {
+      dimension.bottom = window.innerHeight - minHeight - dimension.top;
+    } else {
+      dimension.top = window.innerHeight - minHeight - dimension.bottom;
+    }
+  }
+  return dimension;
+}
+;// CONCATENATED MODULE: ./src/Components/helper/updateDimensions.ts
+
+
+
+function updateDimensions(containers, oldWindowDimension, newWindowDimension) {
+  if (oldWindowDimension.x === newWindowDimension.x && oldWindowDimension.y === newWindowDimension.y || oldWindowDimension.x === 0 && oldWindowDimension.y === 0) {
+    return containers;
+  }
+  const diff = {
+    x: oldWindowDimension.x - newWindowDimension.x,
+    y: oldWindowDimension.y - newWindowDimension.y
+  };
+  const changedContainers = Object.values(containers).map(container => {
+    const {
+      dimension
+    } = container;
+    if (!dimension) {
+      return container;
+    }
+    const newDimension = checkWindowDimension(changeDimension(Object.assign({}, dimension), diff.x, diff.y));
+    return Object.assign(Object.assign({}, container), {
+      dimension: newDimension
+    });
+  });
+  return js_helper.ArrayHelper.arrayToObject(changedContainers, container => container.id);
+}
+;// CONCATENATED MODULE: ./src/Components/types/ContainerState.ts
+var ContainerState;
+(function (ContainerState) {
+  ContainerState[ContainerState["NORMAL"] = 0] = "NORMAL";
+  ContainerState[ContainerState["MINIMIZED"] = 1] = "MINIMIZED";
+  ContainerState[ContainerState["MAXIMIZED"] = 2] = "MAXIMIZED";
+  ContainerState[ContainerState["POPUP"] = 3] = "POPUP";
+})(ContainerState || (ContainerState = {}));
+;// CONCATENATED MODULE: ./src/Components/helper/WindowConstants.ts
+const WindowConstants = {
+  TITLE_HEIGHT: 38,
+  TAB_BAR_GRAB_WIDTH: 24,
+  TITLE_PADDING: 8
+};
+;// CONCATENATED MODULE: ./src/Components/helper/checkOverContainerAndTabPosition.ts
+
+function checkOverContainerAndTabPosition(containers, position, windows, excludedContainerId) {
+  let foundContainer;
+  let index;
+  containers.some(container => {
+    if (!container.dimension || container.id === excludedContainerId || container.windowIds.length === 0) {
+      return false;
+    }
+    if (container.dimension.left <= position.x && container.dimension.right <= window.innerWidth - position.x && container.dimension.top <= position.y && container.dimension.top + WindowConstants.TITLE_HEIGHT >= position.y && container.windowIds.some(windowId => !!windows[windowId])) {
+      foundContainer = container.id;
+      const width = window.innerWidth - container.dimension.left - container.dimension.right - container.buttonWidth - WindowConstants.TAB_BAR_GRAB_WIDTH - 2 * WindowConstants.TITLE_PADDING;
+      const tabWidth = width / container.windowIds.length;
+      const relativeXPosition = position.x - container.dimension.left + WindowConstants.TITLE_PADDING;
+      index = Math.floor(relativeXPosition / tabWidth);
+      return true;
+    }
+    return false;
+  });
+  if (foundContainer) {
+    return {
+      container: foundContainer,
+      index: index
+    };
+  }
+  return undefined;
+}
+;// CONCATENATED MODULE: ./src/Components/WindowContainer/ResizeToContentEnum.ts
+var ResizeToContentEnum;
+(function (ResizeToContentEnum) {
+  ResizeToContentEnum[ResizeToContentEnum["NONE"] = 0] = "NONE";
+  ResizeToContentEnum[ResizeToContentEnum["RESIZE"] = 1] = "RESIZE";
+  ResizeToContentEnum[ResizeToContentEnum["HEIGHT_ONLY"] = 2] = "HEIGHT_ONLY";
+  ResizeToContentEnum[ResizeToContentEnum["WIDTH_ONLY"] = 3] = "WIDTH_ONLY";
+})(ResizeToContentEnum || (ResizeToContentEnum = {}));
+;// CONCATENATED MODULE: ./src/Components/store/createWindowStore.ts
+
+
+
+
+
+
+
+
+const initialState = {
+  activeContainerId: '',
+  containers: {},
+  draggingWindowId: '',
+  windowContainerMapping: {},
+  windowSize: {
+    x: 0,
+    y: 0
+  },
+  windows: {}
+};
+const actionsGenerator = (set, get) => {
+  function generateDefaultContainer() {
+    return {
+      state: ContainerState.NORMAL,
+      windowIds: [],
+      activeWindowId: "",
+      buttonWidth: 0,
+      isLocked: false,
+      isMoving: false,
+      shouldResizeToContent: ResizeToContentEnum.RESIZE
+    };
+  }
+  function generateUnusedContainerId() {
+    const {
+      containers
+    } = get();
+    for (let i = 0; i < 50; i++) {
+      const id = js_helper.Random.getStringRandom(16);
+      if (!containers[id]) {
+        return id;
+      }
+    }
+    return undefined;
+  }
+  function removeWindowFromContainer(windowId) {
+    const {
+      windowContainerMapping,
+      containers
+    } = get();
+    const container = containers[windowContainerMapping[windowId]];
+    if (!container) {
+      return;
+    }
+    container.windowIds = container.windowIds.filter(id => id !== windowId);
+    if (container.activeWindowId === windowId) {
+      container.activeWindowId = '';
+    }
+    const newMapping = Object.assign({}, windowContainerMapping);
+    delete newMapping[windowId];
+    const newContainers = Object.assign(Object.assign({}, containers), {
+      [container.id]: container
+    });
+    if (container.windowIds.length === 0) {
+      delete newContainers[container.id];
+    }
+    set({
+      containers: newContainers,
+      windowContainerMapping: newMapping
+    });
+  }
+  function setWindow(window, defaultContainerId, isActiveOnOpen) {
+    var _a, _b;
+    const {
+      containers,
+      windows,
+      windowContainerMapping
+    } = get();
+    const containerId = (_b = (_a = windowContainerMapping[window.id]) !== null && _a !== void 0 ? _a : defaultContainerId) !== null && _b !== void 0 ? _b : generateUnusedContainerId();
+    let container = containers[containerId];
+    if (!container) {
+      container = Object.assign(Object.assign({}, generateDefaultContainer()), {
+        activeWindowId: window.id,
+        id: containerId
+      });
+    }
+    if (windowContainerMapping[window.id] !== containerId) {
+      container.windowIds = [...container.windowIds, window.id];
+    }
+    if (!windows[window.id] && isActiveOnOpen) {
+      container.activeWindowId = window.id;
+      set({
+        activeContainerId: container.id
+      });
+    }
+    set({
+      containers: Object.assign(Object.assign({}, containers), {
+        [containerId]: container
+      }),
+      windows: Object.assign(Object.assign({}, windows), {
+        [window.id]: window
+      }),
+      windowContainerMapping: Object.assign(Object.assign({}, windowContainerMapping), {
+        [window.id]: containerId
+      })
+    });
+  }
+  function moveWindowToOwnContainer(windowId, position) {
+    const {
+      windows,
+      containers,
+      windowContainerMapping
+    } = get();
+    const window = windows[windowId];
+    const container = containers[windowContainerMapping[windowId]];
+    if (!window || !container) {
+      return;
+    }
+    const dimension = container.dimension ? Object.assign({}, container.dimension) : undefined;
+    removeWindowFromContainer(windowId);
+    setWindow(window);
+    if (dimension && position) {
+      const {
+        windowContainerMapping: newMapping,
+        containers: newContainers
+      } = get();
+      const newContainer = newContainers[newMapping[windowId]];
+      dimension.right += dimension.left - position.x;
+      dimension.bottom += dimension.top - position.y;
+      dimension.left = position.x;
+      dimension.top = position.y;
+      newContainer.dimension = checkWindowDimension(dimension);
+      newContainer.buttonWidth = container.buttonWidth;
+      set({
+        containers: Object.assign(Object.assign({}, containers), {
+          [newContainer.id]: newContainer
+        }),
+        activeContainerId: newContainer.id
+      });
+    }
+  }
+  function moveWindow(windowId, newContainerId, newIndex) {
+    const {
+      containers,
+      windowContainerMapping
+    } = get();
+    const newContainer = containers[newContainerId];
+    const container = containers[windowContainerMapping[windowId]];
+    if (!newContainer || newContainer.id === container.id && container.windowIds.indexOf(windowId) === newIndex) {
+      return;
+    }
+    removeWindowFromContainer(windowId);
+    newContainer.windowIds = [...newContainer.windowIds];
+    newContainer.windowIds.splice(newIndex, 0, windowId);
+    newContainer.activeWindowId = windowId;
+    set({
+      containers: Object.assign(Object.assign({}, containers), {
+        [newContainerId]: newContainer
+      }),
+      windowContainerMapping: Object.assign(Object.assign({}, windowContainerMapping), {
+        [windowId]: newContainerId
+      }),
+      activeContainerId: newContainerId
+    });
+  }
+  function updateContainerDimension(id, dimension) {
+    const container = get().containers[id];
+    if (!container) {
+      return;
+    }
+    set(({
+      containers
+    }) => ({
+      containers: Object.assign(Object.assign({}, containers), {
+        [id]: Object.assign(Object.assign({}, container), {
+          dimension
+        })
+      })
+    }));
+  }
+  return {
+    clear() {
+      set(Object.assign({}, actionsGenerator(set, get)), true);
+    },
+    setWindow(window, defaultContainerId, isActiveOnOpen) {
+      setWindow(window, defaultContainerId, isActiveOnOpen);
+    },
+    removeWindow(windowId) {
+      const {
+        windows
+      } = get();
+      const newWindows = Object.assign({}, windows);
+      delete newWindows[windowId];
+      set({
+        windows: newWindows
+      });
+    },
+    updateContainerDimension(id, dimension) {
+      updateContainerDimension(id, dimension);
+    },
+    updateContainerState(id, state) {
+      const container = get().containers[id];
+      if (!container) {
+        return;
+      }
+      const newState = typeof state === 'function' ? state(container.state) : state;
+      set(({
+        containers
+      }) => ({
+        containers: Object.assign(Object.assign({}, containers), {
+          [id]: Object.assign(Object.assign({}, container), {
+            state: newState
+          })
+        })
+      }));
+    },
+    updateContainerActiveWindow(id, activeWindowId) {
+      const container = get().containers[id];
+      if (!container) {
+        return;
+      }
+      if (container.state === ContainerState.MINIMIZED) {
+        container.state = ContainerState.NORMAL;
+      }
+      set(({
+        containers
+      }) => ({
+        containers: Object.assign(Object.assign({}, containers), {
+          [id]: Object.assign(Object.assign({}, container), {
+            activeWindowId
+          })
+        }),
+        activeContainerId: id
+      }));
+    },
+    setActiveContainer(id) {
+      const container = get().containers[id];
+      if (!container) {
+        return;
+      }
+      set({
+        activeContainerId: id
+      });
+    },
+    setWindowSize(x, y) {
+      const {
+        containers,
+        windowSize
+      } = get();
+      const newWindowSize = {
+        x,
+        y
+      };
+      const newContainers = updateDimensions(containers, windowSize, newWindowSize);
+      set({
+        containers: newContainers,
+        windowSize: newWindowSize
+      });
+    },
+    setButtonWidth(containerId, buttonWidth) {
+      const {
+        containers
+      } = get();
+      const container = containers[containerId];
+      if (!container) {
+        return;
+      }
+      container.buttonWidth = buttonWidth;
+      set({
+        containers: Object.assign(Object.assign({}, containers), {
+          [containerId]: Object.assign({}, container)
+        })
+      });
+    },
+    setContainerIsMoving(containerId, isMoving) {
+      const {
+        containers
+      } = get();
+      const container = containers[containerId];
+      if (!container) {
+        return;
+      }
+      container.isMoving = isMoving;
+      set({
+        containers: Object.assign(Object.assign({}, containers), {
+          [containerId]: Object.assign({}, container)
+        })
+      });
+    },
+    setContainerIsLocked(containerId, isLocked) {
+      const {
+        containers
+      } = get();
+      const container = containers[containerId];
+      if (!container) {
+        return;
+      }
+      container.isLocked = isLocked;
+      set({
+        containers: Object.assign(Object.assign({}, containers), {
+          [containerId]: Object.assign({}, container)
+        })
+      });
+    },
+    setShouldResizeToContent(containerId, shouldResizeToContent) {
+      const {
+        containers
+      } = get();
+      const container = containers[containerId];
+      if (!container) {
+        return;
+      }
+      container.shouldResizeToContent = shouldResizeToContent;
+      set({
+        containers: Object.assign(Object.assign({}, containers), {
+          [containerId]: Object.assign({}, container)
+        })
+      });
+    },
+    setDefaultContainerData(containerId, defaultContainerData) {
+      const {
+        containers
+      } = get();
+      let container = containers[containerId];
+      if (container) {
+        return;
+      }
+      container = Object.assign(Object.assign(Object.assign({}, generateDefaultContainer()), defaultContainerData), {
+        id: containerId
+      });
+      set({
+        containers: Object.assign(Object.assign({}, containers), {
+          [containerId]: container
+        })
+      });
+    },
+    updateDragging(windowId, mousePosition, dimension, ignoredContainer) {
+      set({
+        draggingWindowId: windowId
+      });
+      const {
+        containers,
+        windows,
+        windowContainerMapping
+      } = get();
+      const newContainerData = checkOverContainerAndTabPosition(Object.values(containers), mousePosition, windows, ignoredContainer);
+      if (newContainerData) {
+        moveWindow(windowId, newContainerData.container, newContainerData.index);
+        return undefined;
+      }
+      const currentContainerId = windowContainerMapping[windowId];
+      if (ignoredContainer !== currentContainerId) {
+        moveWindowToOwnContainer(windowId, {
+          x: dimension.left,
+          y: dimension.top
+        });
+      }
+      const {
+        windowContainerMapping: newWindowContainerMapping,
+        containers: newContainers
+      } = get();
+      const newId = newWindowContainerMapping[windowId];
+      updateContainerDimension(newId, dimension);
+      if (!newContainers[newId].isMoving) {
+        set({
+          containers: Object.assign(Object.assign({}, newContainers), {
+            [newId]: Object.assign(Object.assign({}, newContainers[newId]), {
+              isMoving: true
+            })
+          })
+        });
+      }
+      set({
+        activeContainerId: newId
+      });
+      return newId;
+    },
+    clearDraggingWindow() {
+      set({
+        draggingWindowId: ''
+      });
+    }
+  };
+};
+const stores = {};
+function createWindowStore(name) {
+  return create()(persist((set, get) => Object.assign(Object.assign({}, initialState), actionsGenerator(set, get)), {
+    name: `window-store-${name}`,
+    version: 0,
+    partialize: ({
+      containers,
+      windowContainerMapping,
+      windowSize
+    }) => ({
+      containers,
+      windowContainerMapping,
+      windowSize
+    }),
+    onRehydrateStorage: () => {
+      return state => {
+        // can change state directly here
+        if (state) {
+          const newWindowSize = {
+            x: window.innerWidth,
+            y: window.innerHeight
+          };
+          state.containers = updateDimensions(state.containers, state.windowSize, newWindowSize);
+          // remove duplicates
+          Object.values(state.containers).forEach(container => container.windowIds = [...new Set(container.windowIds)]);
+          // ensure every existing connection is in both directions
+          Object.entries(state.windowContainerMapping).forEach(([windowId, containerId]) => {
+            var _a;
+            const container = state.containers[containerId];
+            const index = (_a = container === null || container === void 0 ? void 0 : container.windowIds.indexOf(windowId)) !== null && _a !== void 0 ? _a : 0;
+            if (index === -1) {
+              container.windowIds.push(windowId);
+            }
+          });
+          state.windowSize = newWindowSize;
+        }
+      };
+    }
+  }));
+}
+function getWindowStore(name = 'default') {
+  if (!stores[name]) {
+    stores[name] = createWindowStore(name);
+  }
+  return stores[name];
+}
+;// CONCATENATED MODULE: external "@fortawesome/free-solid-svg-icons"
+const free_solid_svg_icons_namespaceObject = require("@fortawesome/free-solid-svg-icons");
+// EXTERNAL MODULE: ./node_modules/void-elements/index.js
+var void_elements = __webpack_require__(739);
+var void_elements_default = /*#__PURE__*/__webpack_require__.n(void_elements);
+;// CONCATENATED MODULE: ./node_modules/html-parse-stringify/dist/html-parse-stringify.module.js
+var t=/\s([^'"/\s><]+?)[\s/>]|([^\s=]+)=\s?(".*?"|'.*?')/g;function n(n){var r={type:"tag",name:"",voidElement:!1,attrs:{},children:[]},i=n.match(/<\/?([^\s]+?)[/\s>]/);if(i&&(r.name=i[1],((void_elements_default())[i[1]]||"/"===n.charAt(n.length-2))&&(r.voidElement=!0),r.name.startsWith("!--"))){var s=n.indexOf("--\x3e");return{type:"comment",comment:-1!==s?n.slice(4,s):""}}for(var a=new RegExp(t),c=null;null!==(c=a.exec(n));)if(c[0].trim())if(c[1]){var o=c[1].trim(),l=[o,""];o.indexOf("=")>-1&&(l=o.split("=")),r.attrs[l[0]]=l[1],a.lastIndex--}else c[2]&&(r.attrs[c[2]]=c[3].trim().substring(1,c[3].length-1));return r}var r=/<[a-zA-Z0-9\-\!\/](?:"[^"]*"|'[^']*'|[^'">])*>/g,i=/^\s*$/,s=Object.create(null);function a(e,t){switch(t.type){case"text":return e+t.content;case"tag":return e+="<"+t.name+(t.attrs?function(e){var t=[];for(var n in e)t.push(n+'="'+e[n]+'"');return t.length?" "+t.join(" "):""}(t.attrs):"")+(t.voidElement?"/>":">"),t.voidElement?e:e+t.children.reduce(a,"")+"</"+t.name+">";case"comment":return e+"\x3c!--"+t.comment+"--\x3e"}}var c={parse:function(e,t){t||(t={}),t.components||(t.components=s);var a,c=[],o=[],l=-1,m=!1;if(0!==e.indexOf("<")){var u=e.indexOf("<");c.push({type:"text",content:-1===u?e:e.substring(0,u)})}return e.replace(r,function(r,s){if(m){if(r!=="</"+a.name+">")return;m=!1}var u,f="/"!==r.charAt(1),h=r.startsWith("\x3c!--"),p=s+r.length,d=e.charAt(p);if(h){var v=n(r);return l<0?(c.push(v),c):((u=o[l]).children.push(v),c)}if(f&&(l++,"tag"===(a=n(r)).type&&t.components[a.name]&&(a.type="component",m=!0),a.voidElement||m||!d||"<"===d||a.children.push({type:"text",content:e.slice(p,e.indexOf("<",p))}),0===l&&c.push(a),(u=o[l-1])&&u.children.push(a),o[l]=a),(!f||a.voidElement)&&(l>-1&&(a.voidElement||a.name===r.slice(2,-1))&&(l--,a=-1===l?c:o[l]),!m&&"<"!==d&&d)){u=-1===l?c:o[l].children;var x=e.indexOf("<",p),g=e.slice(p,-1===x?void 0:x);i.test(g)&&(g=" "),(x>-1&&l+u.length>=0||" "!==g)&&u.push({type:"text",content:g})}}),c},stringify:function(e){return e.reduce(function(e,t){return e+a("",t)},"")}};/* harmony default export */ const html_parse_stringify_module = ((/* unused pure expression or super */ null && (c)));
+//# sourceMappingURL=html-parse-stringify.module.js.map
+
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/utils.js
+function utils_warn() {
+  if (console && console.warn) {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    if (typeof args[0] === 'string') args[0] = `react-i18next:: ${args[0]}`;
+    console.warn(...args);
+  }
+}
+const alreadyWarned = {};
+function utils_warnOnce() {
+  for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    args[_key2] = arguments[_key2];
+  }
+  if (typeof args[0] === 'string' && alreadyWarned[args[0]]) return;
+  if (typeof args[0] === 'string') alreadyWarned[args[0]] = new Date();
+  utils_warn(...args);
+}
+const loadedClb = (i18n, cb) => () => {
+  if (i18n.isInitialized) {
+    cb();
+  } else {
+    const initialized = () => {
+      setTimeout(() => {
+        i18n.off('initialized', initialized);
+      }, 0);
+      cb();
+    };
+    i18n.on('initialized', initialized);
+  }
+};
+function loadNamespaces(i18n, ns, cb) {
+  i18n.loadNamespaces(ns, loadedClb(i18n, cb));
+}
+function loadLanguages(i18n, lng, ns, cb) {
+  if (typeof ns === 'string') ns = [ns];
+  ns.forEach(n => {
+    if (i18n.options.ns.indexOf(n) < 0) i18n.options.ns.push(n);
+  });
+  i18n.loadLanguages(lng, loadedClb(i18n, cb));
+}
+function oldI18nextHasLoadedNamespace(ns, i18n) {
+  let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  const lng = i18n.languages[0];
+  const fallbackLng = i18n.options ? i18n.options.fallbackLng : false;
+  const lastLng = i18n.languages[i18n.languages.length - 1];
+  if (lng.toLowerCase() === 'cimode') return true;
+  const loadNotPending = (l, n) => {
+    const loadState = i18n.services.backendConnector.state[`${l}|${n}`];
+    return loadState === -1 || loadState === 2;
+  };
+  if (options.bindI18n && options.bindI18n.indexOf('languageChanging') > -1 && i18n.services.backendConnector.backend && i18n.isLanguageChangingTo && !loadNotPending(i18n.isLanguageChangingTo, ns)) return false;
+  if (i18n.hasResourceBundle(lng, ns)) return true;
+  if (!i18n.services.backendConnector.backend || i18n.options.resources && !i18n.options.partialBundledLanguages) return true;
+  if (loadNotPending(lng, ns) && (!fallbackLng || loadNotPending(lastLng, ns))) return true;
+  return false;
+}
+function hasLoadedNamespace(ns, i18n) {
+  let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  if (!i18n.languages || !i18n.languages.length) {
+    utils_warnOnce('i18n.languages were undefined or empty', i18n.languages);
+    return true;
+  }
+  const isNewerI18next = i18n.options.ignoreJSONStructure !== undefined;
+  if (!isNewerI18next) {
+    return oldI18nextHasLoadedNamespace(ns, i18n, options);
+  }
+  return i18n.hasLoadedNamespace(ns, {
+    lng: options.lng,
+    precheck: (i18nInstance, loadNotPending) => {
+      if (options.bindI18n && options.bindI18n.indexOf('languageChanging') > -1 && i18nInstance.services.backendConnector.backend && i18nInstance.isLanguageChangingTo && !loadNotPending(i18nInstance.isLanguageChangingTo, ns)) return false;
+    }
+  });
+}
+function utils_getDisplayName(Component) {
+  return Component.displayName || Component.name || (typeof Component === 'string' && Component.length > 0 ? Component : 'Unknown');
+}
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/unescape.js
+const matchHtmlEntity = /&(?:amp|#38|lt|#60|gt|#62|apos|#39|quot|#34|nbsp|#160|copy|#169|reg|#174|hellip|#8230|#x2F|#47);/g;
+const htmlEntities = {
+  '&amp;': '&',
+  '&#38;': '&',
+  '&lt;': '<',
+  '&#60;': '<',
+  '&gt;': '>',
+  '&#62;': '>',
+  '&apos;': "'",
+  '&#39;': "'",
+  '&quot;': '"',
+  '&#34;': '"',
+  '&nbsp;': ' ',
+  '&#160;': ' ',
+  '&copy;': '©',
+  '&#169;': '©',
+  '&reg;': '®',
+  '&#174;': '®',
+  '&hellip;': '…',
+  '&#8230;': '…',
+  '&#x2F;': '/',
+  '&#47;': '/'
+};
+const unescapeHtmlEntity = m => htmlEntities[m];
+const unescape_unescape = text => text.replace(matchHtmlEntity, unescapeHtmlEntity);
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/defaults.js
+
+let defaultOptions = {
+  bindI18n: 'languageChanged',
+  bindI18nStore: '',
+  transEmptyNodeValue: '',
+  transSupportBasicHtmlNodes: true,
+  transWrapTextNodes: '',
+  transKeepBasicHtmlNodesFor: ['br', 'strong', 'i', 'p'],
+  useSuspense: true,
+  unescape: unescape_unescape
+};
+function setDefaults() {
+  let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  defaultOptions = {
+    ...defaultOptions,
+    ...options
+  };
+}
+function defaults_getDefaults() {
+  return defaultOptions;
+}
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/TransWithoutContext.js
+
+
+
+
+
+function hasChildren(node, checkLength) {
+  if (!node) return false;
+  const base = node.props ? node.props.children : node.children;
+  if (checkLength) return base.length > 0;
+  return !!base;
+}
+function getChildren(node) {
+  if (!node) return [];
+  return node.props ? node.props.children : node.children;
+}
+function hasValidReactChildren(children) {
+  if (Object.prototype.toString.call(children) !== '[object Array]') return false;
+  return children.every(child => isValidElement(child));
+}
+function getAsArray(data) {
+  return Array.isArray(data) ? data : [data];
+}
+function mergeProps(source, target) {
+  const newTarget = {
+    ...target
+  };
+  newTarget.props = Object.assign(source.props, target.props);
+  return newTarget;
+}
+function nodesToString(children, i18nOptions) {
+  if (!children) return '';
+  let stringNode = '';
+  const childrenArray = getAsArray(children);
+  const keepArray = i18nOptions.transSupportBasicHtmlNodes && i18nOptions.transKeepBasicHtmlNodesFor ? i18nOptions.transKeepBasicHtmlNodesFor : [];
+  childrenArray.forEach((child, childIndex) => {
+    if (typeof child === 'string') {
+      stringNode += `${child}`;
+    } else if (isValidElement(child)) {
+      const childPropsCount = Object.keys(child.props).length;
+      const shouldKeepChild = keepArray.indexOf(child.type) > -1;
+      const childChildren = child.props.children;
+      if (!childChildren && shouldKeepChild && childPropsCount === 0) {
+        stringNode += `<${child.type}/>`;
+      } else if (!childChildren && (!shouldKeepChild || childPropsCount !== 0)) {
+        stringNode += `<${childIndex}></${childIndex}>`;
+      } else if (child.props.i18nIsDynamicList) {
+        stringNode += `<${childIndex}></${childIndex}>`;
+      } else if (shouldKeepChild && childPropsCount === 1 && typeof childChildren === 'string') {
+        stringNode += `<${child.type}>${childChildren}</${child.type}>`;
+      } else {
+        const content = nodesToString(childChildren, i18nOptions);
+        stringNode += `<${childIndex}>${content}</${childIndex}>`;
+      }
+    } else if (child === null) {
+      warn(`Trans: the passed in value is invalid - seems you passed in a null child.`);
+    } else if (typeof child === 'object') {
+      const {
+        format,
+        ...clone
+      } = child;
+      const keys = Object.keys(clone);
+      if (keys.length === 1) {
+        const value = format ? `${keys[0]}, ${format}` : keys[0];
+        stringNode += `{{${value}}}`;
+      } else {
+        warn(`react-i18next: the passed in object contained more than one variable - the object should look like {{ value, format }} where format is optional.`, child);
+      }
+    } else {
+      warn(`Trans: the passed in value is invalid - seems you passed in a variable like {number} - please pass in variables for interpolation as full objects like {{number}}.`, child);
+    }
+  });
+  return stringNode;
+}
+function renderNodes(children, targetString, i18n, i18nOptions, combinedTOpts, shouldUnescape) {
+  if (targetString === '') return [];
+  const keepArray = i18nOptions.transKeepBasicHtmlNodesFor || [];
+  const emptyChildrenButNeedsHandling = targetString && new RegExp(keepArray.join('|')).test(targetString);
+  if (!children && !emptyChildrenButNeedsHandling) return [targetString];
+  const data = {};
+  function getData(childs) {
+    const childrenArray = getAsArray(childs);
+    childrenArray.forEach(child => {
+      if (typeof child === 'string') return;
+      if (hasChildren(child)) getData(getChildren(child));else if (typeof child === 'object' && !isValidElement(child)) Object.assign(data, child);
+    });
+  }
+  getData(children);
+  const ast = HTML.parse(`<0>${targetString}</0>`);
+  const opts = {
+    ...data,
+    ...combinedTOpts
+  };
+  function renderInner(child, node, rootReactNode) {
+    const childs = getChildren(child);
+    const mappedChildren = mapAST(childs, node.children, rootReactNode);
+    return hasValidReactChildren(childs) && mappedChildren.length === 0 ? childs : mappedChildren;
+  }
+  function pushTranslatedJSX(child, inner, mem, i, isVoid) {
+    if (child.dummy) child.children = inner;
+    mem.push(cloneElement(child, {
+      ...child.props,
+      key: i
+    }, isVoid ? undefined : inner));
+  }
+  function mapAST(reactNode, astNode, rootReactNode) {
+    const reactNodes = getAsArray(reactNode);
+    const astNodes = getAsArray(astNode);
+    return astNodes.reduce((mem, node, i) => {
+      const translationContent = node.children && node.children[0] && node.children[0].content && i18n.services.interpolator.interpolate(node.children[0].content, opts, i18n.language);
+      if (node.type === 'tag') {
+        let tmp = reactNodes[parseInt(node.name, 10)];
+        if (!tmp && rootReactNode.length === 1 && rootReactNode[0][node.name]) tmp = rootReactNode[0][node.name];
+        if (!tmp) tmp = {};
+        const child = Object.keys(node.attrs).length !== 0 ? mergeProps({
+          props: node.attrs
+        }, tmp) : tmp;
+        const isElement = isValidElement(child);
+        const isValidTranslationWithChildren = isElement && hasChildren(node, true) && !node.voidElement;
+        const isEmptyTransWithHTML = emptyChildrenButNeedsHandling && typeof child === 'object' && child.dummy && !isElement;
+        const isKnownComponent = typeof children === 'object' && children !== null && Object.hasOwnProperty.call(children, node.name);
+        if (typeof child === 'string') {
+          const value = i18n.services.interpolator.interpolate(child, opts, i18n.language);
+          mem.push(value);
+        } else if (hasChildren(child) || isValidTranslationWithChildren) {
+          const inner = renderInner(child, node, rootReactNode);
+          pushTranslatedJSX(child, inner, mem, i);
+        } else if (isEmptyTransWithHTML) {
+          const inner = mapAST(reactNodes, node.children, rootReactNode);
+          mem.push(cloneElement(child, {
+            ...child.props,
+            key: i
+          }, inner));
+        } else if (Number.isNaN(parseFloat(node.name))) {
+          if (isKnownComponent) {
+            const inner = renderInner(child, node, rootReactNode);
+            pushTranslatedJSX(child, inner, mem, i, node.voidElement);
+          } else if (i18nOptions.transSupportBasicHtmlNodes && keepArray.indexOf(node.name) > -1) {
+            if (node.voidElement) {
+              mem.push(createElement(node.name, {
+                key: `${node.name}-${i}`
+              }));
+            } else {
+              const inner = mapAST(reactNodes, node.children, rootReactNode);
+              mem.push(createElement(node.name, {
+                key: `${node.name}-${i}`
+              }, inner));
+            }
+          } else if (node.voidElement) {
+            mem.push(`<${node.name} />`);
+          } else {
+            const inner = mapAST(reactNodes, node.children, rootReactNode);
+            mem.push(`<${node.name}>${inner}</${node.name}>`);
+          }
+        } else if (typeof child === 'object' && !isElement) {
+          const content = node.children[0] ? translationContent : null;
+          if (content) mem.push(content);
+        } else if (node.children.length === 1 && translationContent) {
+          mem.push(cloneElement(child, {
+            ...child.props,
+            key: i
+          }, translationContent));
+        } else {
+          mem.push(cloneElement(child, {
+            ...child.props,
+            key: i
+          }));
+        }
+      } else if (node.type === 'text') {
+        const wrapTextNodes = i18nOptions.transWrapTextNodes;
+        const content = shouldUnescape ? i18nOptions.unescape(i18n.services.interpolator.interpolate(node.content, opts, i18n.language)) : i18n.services.interpolator.interpolate(node.content, opts, i18n.language);
+        if (wrapTextNodes) {
+          mem.push(createElement(wrapTextNodes, {
+            key: `${node.name}-${i}`
+          }, content));
+        } else {
+          mem.push(content);
+        }
+      }
+      return mem;
+    }, []);
+  }
+  const result = mapAST([{
+    dummy: true,
+    children: children || []
+  }], ast, getAsArray(children || []));
+  return getChildren(result[0]);
+}
+function Trans(_ref) {
+  let {
+    children,
+    count,
+    parent,
+    i18nKey,
+    context,
+    tOptions = {},
+    values,
+    defaults,
+    components,
+    ns,
+    i18n: i18nFromProps,
+    t: tFromProps,
+    shouldUnescape,
+    ...additionalProps
+  } = _ref;
+  const i18n = i18nFromProps || getI18n();
+  if (!i18n) {
+    warnOnce('You will need to pass in an i18next instance by using i18nextReactModule');
+    return children;
+  }
+  const t = tFromProps || i18n.t.bind(i18n) || (k => k);
+  if (context) tOptions.context = context;
+  const reactI18nextOptions = {
+    ...getDefaults(),
+    ...(i18n.options && i18n.options.react)
+  };
+  let namespaces = ns || t.ns || i18n.options && i18n.options.defaultNS;
+  namespaces = typeof namespaces === 'string' ? [namespaces] : namespaces || ['translation'];
+  const defaultValue = defaults || nodesToString(children, reactI18nextOptions) || reactI18nextOptions.transEmptyNodeValue || i18nKey;
+  const {
+    hashTransKey
+  } = reactI18nextOptions;
+  const key = i18nKey || (hashTransKey ? hashTransKey(defaultValue) : defaultValue);
+  const interpolationOverride = values ? tOptions.interpolation : {
+    interpolation: {
+      ...tOptions.interpolation,
+      prefix: '#$?',
+      suffix: '?$#'
+    }
+  };
+  const combinedTOpts = {
+    ...tOptions,
+    count,
+    ...values,
+    ...interpolationOverride,
+    defaultValue,
+    ns: namespaces
+  };
+  const translation = key ? t(key, combinedTOpts) : defaultValue;
+  const content = renderNodes(components || children, translation, i18n, reactI18nextOptions, combinedTOpts, shouldUnescape);
+  const useAsParent = parent !== undefined ? parent : reactI18nextOptions.defaultTransParent;
+  return useAsParent ? createElement(useAsParent, additionalProps, content) : content;
+}
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/i18nInstance.js
+let i18nInstance;
+function setI18n(instance) {
+  i18nInstance = instance;
+}
+function i18nInstance_getI18n() {
+  return i18nInstance;
+}
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/initReactI18next.js
+
+
+const initReactI18next = {
+  type: '3rdParty',
+  init(instance) {
+    setDefaults(instance.options.react);
+    setI18n(instance);
+  }
+};
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/context.js
+
+
+
+
+
+const context_I18nContext = (0,external_react_.createContext)();
+class ReportNamespaces {
+  constructor() {
+    this.usedNamespaces = {};
+  }
+  addUsedNamespaces(namespaces) {
+    namespaces.forEach(ns => {
+      if (!this.usedNamespaces[ns]) this.usedNamespaces[ns] = true;
+    });
+  }
+  getUsedNamespaces() {
+    return Object.keys(this.usedNamespaces);
+  }
+}
+function context_composeInitialProps(ForComponent) {
+  return ctx => new Promise(resolve => {
+    const i18nInitialProps = getInitialProps();
+    if (ForComponent.getInitialProps) {
+      ForComponent.getInitialProps(ctx).then(componentsInitialProps => {
+        resolve({
+          ...componentsInitialProps,
+          ...i18nInitialProps
+        });
+      });
+    } else {
+      resolve(i18nInitialProps);
+    }
+  });
+}
+function getInitialProps() {
+  const i18n = getI18n();
+  const namespaces = i18n.reportNamespaces ? i18n.reportNamespaces.getUsedNamespaces() : [];
+  const ret = {};
+  const initialI18nStore = {};
+  i18n.languages.forEach(l => {
+    initialI18nStore[l] = {};
+    namespaces.forEach(ns => {
+      initialI18nStore[l][ns] = i18n.getResourceBundle(l, ns) || {};
+    });
+  });
+  ret.initialI18nStore = initialI18nStore;
+  ret.initialLanguage = i18n.language;
+  return ret;
+}
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/Trans.js
+
+
+
+
+function Trans_Trans(_ref) {
+  let {
+    children,
+    count,
+    parent,
+    i18nKey,
+    context,
+    tOptions = {},
+    values,
+    defaults,
+    components,
+    ns,
+    i18n: i18nFromProps,
+    t: tFromProps,
+    shouldUnescape,
+    ...additionalProps
+  } = _ref;
+  const {
+    i18n: i18nFromContext,
+    defaultNS: defaultNSFromContext
+  } = useContext(I18nContext) || {};
+  const i18n = i18nFromProps || i18nFromContext || getI18n();
+  const t = tFromProps || i18n && i18n.t.bind(i18n);
+  return TransWithoutContext({
+    children,
+    count,
+    parent,
+    i18nKey,
+    context,
+    tOptions,
+    values,
+    defaults,
+    components,
+    ns: ns || t && t.ns || defaultNSFromContext || i18n && i18n.options && i18n.options.defaultNS,
+    i18n,
+    t: tFromProps,
+    shouldUnescape,
+    ...additionalProps
+  });
+}
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/useTranslation.js
+
+
+
+const usePrevious = (value, ignore) => {
+  const ref = (0,external_react_.useRef)();
+  (0,external_react_.useEffect)(() => {
+    ref.current = ignore ? ref.current : value;
+  }, [value, ignore]);
+  return ref.current;
+};
+function useTranslation_useTranslation(ns) {
+  let props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  const {
+    i18n: i18nFromProps
+  } = props;
+  const {
+    i18n: i18nFromContext,
+    defaultNS: defaultNSFromContext
+  } = (0,external_react_.useContext)(context_I18nContext) || {};
+  const i18n = i18nFromProps || i18nFromContext || i18nInstance_getI18n();
+  if (i18n && !i18n.reportNamespaces) i18n.reportNamespaces = new ReportNamespaces();
+  if (!i18n) {
+    utils_warnOnce('You will need to pass in an i18next instance by using initReactI18next');
+    const notReadyT = (k, optsOrDefaultValue) => {
+      if (typeof optsOrDefaultValue === 'string') return optsOrDefaultValue;
+      if (optsOrDefaultValue && typeof optsOrDefaultValue === 'object' && typeof optsOrDefaultValue.defaultValue === 'string') return optsOrDefaultValue.defaultValue;
+      return Array.isArray(k) ? k[k.length - 1] : k;
+    };
+    const retNotReady = [notReadyT, {}, false];
+    retNotReady.t = notReadyT;
+    retNotReady.i18n = {};
+    retNotReady.ready = false;
+    return retNotReady;
+  }
+  if (i18n.options.react && i18n.options.react.wait !== undefined) utils_warnOnce('It seems you are still using the old wait option, you may migrate to the new useSuspense behaviour.');
+  const i18nOptions = {
+    ...defaults_getDefaults(),
+    ...i18n.options.react,
+    ...props
+  };
+  const {
+    useSuspense,
+    keyPrefix
+  } = i18nOptions;
+  let namespaces = ns || defaultNSFromContext || i18n.options && i18n.options.defaultNS;
+  namespaces = typeof namespaces === 'string' ? [namespaces] : namespaces || ['translation'];
+  if (i18n.reportNamespaces.addUsedNamespaces) i18n.reportNamespaces.addUsedNamespaces(namespaces);
+  const ready = (i18n.isInitialized || i18n.initializedStoreOnce) && namespaces.every(n => hasLoadedNamespace(n, i18n, i18nOptions));
+  function getT() {
+    return i18n.getFixedT(props.lng || null, i18nOptions.nsMode === 'fallback' ? namespaces : namespaces[0], keyPrefix);
+  }
+  const [t, setT] = (0,external_react_.useState)(getT);
+  let joinedNS = namespaces.join();
+  if (props.lng) joinedNS = `${props.lng}${joinedNS}`;
+  const previousJoinedNS = usePrevious(joinedNS);
+  const isMounted = (0,external_react_.useRef)(true);
+  (0,external_react_.useEffect)(() => {
+    const {
+      bindI18n,
+      bindI18nStore
+    } = i18nOptions;
+    isMounted.current = true;
+    if (!ready && !useSuspense) {
+      if (props.lng) {
+        loadLanguages(i18n, props.lng, namespaces, () => {
+          if (isMounted.current) setT(getT);
+        });
+      } else {
+        loadNamespaces(i18n, namespaces, () => {
+          if (isMounted.current) setT(getT);
+        });
+      }
+    }
+    if (ready && previousJoinedNS && previousJoinedNS !== joinedNS && isMounted.current) {
+      setT(getT);
+    }
+    function boundReset() {
+      if (isMounted.current) setT(getT);
+    }
+    if (bindI18n && i18n) i18n.on(bindI18n, boundReset);
+    if (bindI18nStore && i18n) i18n.store.on(bindI18nStore, boundReset);
+    return () => {
+      isMounted.current = false;
+      if (bindI18n && i18n) bindI18n.split(' ').forEach(e => i18n.off(e, boundReset));
+      if (bindI18nStore && i18n) bindI18nStore.split(' ').forEach(e => i18n.store.off(e, boundReset));
+    };
+  }, [i18n, joinedNS]);
+  const isInitial = (0,external_react_.useRef)(true);
+  (0,external_react_.useEffect)(() => {
+    if (isMounted.current && !isInitial.current) {
+      setT(getT);
+    }
+    isInitial.current = false;
+  }, [i18n, keyPrefix]);
+  const ret = [t, i18n, ready];
+  ret.t = t;
+  ret.i18n = i18n;
+  ret.ready = ready;
+  if (ready) return ret;
+  if (!ready && !useSuspense) return ret;
+  throw new Promise(resolve => {
+    if (props.lng) {
+      loadLanguages(i18n, props.lng, namespaces, () => resolve());
+    } else {
+      loadNamespaces(i18n, namespaces, () => resolve());
+    }
+  });
+}
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/withTranslation.js
+
+
+
+function withTranslation(ns) {
+  let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  return function Extend(WrappedComponent) {
+    function I18nextWithTranslation(_ref) {
+      let {
+        forwardedRef,
+        ...rest
+      } = _ref;
+      const [t, i18n, ready] = useTranslation(ns, {
+        ...rest,
+        keyPrefix: options.keyPrefix
+      });
+      const passDownProps = {
+        ...rest,
+        t,
+        i18n,
+        tReady: ready
+      };
+      if (options.withRef && forwardedRef) {
+        passDownProps.ref = forwardedRef;
+      } else if (!options.withRef && forwardedRef) {
+        passDownProps.forwardedRef = forwardedRef;
+      }
+      return createElement(WrappedComponent, passDownProps);
+    }
+    I18nextWithTranslation.displayName = `withI18nextTranslation(${getDisplayName(WrappedComponent)})`;
+    I18nextWithTranslation.WrappedComponent = WrappedComponent;
+    const forwardRef = (props, ref) => createElement(I18nextWithTranslation, Object.assign({}, props, {
+      forwardedRef: ref
+    }));
+    return options.withRef ? forwardRefReact(forwardRef) : I18nextWithTranslation;
+  };
+}
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/Translation.js
+
+function Translation(props) {
+  const {
+    ns,
+    children,
+    ...options
+  } = props;
+  const [t, i18n, ready] = useTranslation(ns, options);
+  return children(t, {
+    i18n,
+    lng: i18n.language
+  }, ready);
+}
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/I18nextProvider.js
+
+
+function I18nextProvider(_ref) {
+  let {
+    i18n,
+    defaultNS,
+    children
+  } = _ref;
+  const value = useMemo(() => ({
+    i18n,
+    defaultNS
+  }), [i18n, defaultNS]);
+  return createElement(I18nContext.Provider, {
+    value
+  }, children);
+}
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/useSSR.js
+
+
+function useSSR_useSSR(initialI18nStore, initialLanguage) {
+  let props = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  const {
+    i18n: i18nFromProps
+  } = props;
+  const {
+    i18n: i18nFromContext
+  } = useContext(I18nContext) || {};
+  const i18n = i18nFromProps || i18nFromContext || getI18n();
+  if (i18n.options && i18n.options.isClone) return;
+  if (initialI18nStore && !i18n.initializedStoreOnce) {
+    i18n.services.resourceStore.data = initialI18nStore;
+    i18n.options.ns = Object.values(initialI18nStore).reduce((mem, lngResources) => {
+      Object.keys(lngResources).forEach(ns => {
+        if (mem.indexOf(ns) < 0) mem.push(ns);
+      });
+      return mem;
+    }, i18n.options.ns);
+    i18n.initializedStoreOnce = true;
+    i18n.isInitialized = true;
+  }
+  if (initialLanguage && !i18n.initializedLanguageOnce) {
+    i18n.changeLanguage(initialLanguage);
+    i18n.initializedLanguageOnce = true;
+  }
+}
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/withSSR.js
+
+
+
+
+function withSSR() {
+  return function Extend(WrappedComponent) {
+    function I18nextWithSSR(_ref) {
+      let {
+        initialI18nStore,
+        initialLanguage,
+        ...rest
+      } = _ref;
+      useSSR(initialI18nStore, initialLanguage);
+      return createElement(WrappedComponent, {
+        ...rest
+      });
+    }
+    I18nextWithSSR.getInitialProps = composeInitialProps(WrappedComponent);
+    I18nextWithSSR.displayName = `withI18nextSSR(${getDisplayName(WrappedComponent)})`;
+    I18nextWithSSR.WrappedComponent = WrappedComponent;
+    return I18nextWithSSR;
+  };
+}
+;// CONCATENATED MODULE: ./node_modules/react-i18next/dist/es/index.js
+
+
+
+
+
+
+
+
+
+
+
+
+const date = () => '';
+const time = () => '';
+const number = () => '';
+const es_select = () => '';
+const plural = () => '';
+const selectOrdinal = () => '';
+;// CONCATENATED MODULE: ./src/hooks/useCloseButton.ts
+
+
+
+
+function useCloseButton(windowId, storeId = 'default', onClose) {
+  const {
+    t
+  } = useTranslation_useTranslation();
+  return (0,external_react_.useMemo)(() => ({
+    key: 'close-button',
+    icon: free_solid_svg_icons_namespaceObject.faTimes,
+    order: 30,
+    title: t("window.button.close"),
+    onClick: () => {
+      getWindowStore(storeId).getState().removeWindow(windowId);
+      onClose === null || onClose === void 0 ? void 0 : onClose();
+    }
+  }), [onClose, storeId, t, windowId]);
+}
+;// CONCATENATED MODULE: ./src/Components/Window/Window.tsx
+
+
+
+
+const emptyButtons = [];
+const Window = (0,react_bootstrap_mobile_namespaceObject.withMemo)(function Window({
+  storeId = 'default',
+  fillHeight = false,
+  buttons = emptyButtons,
+  id,
+  defaultContainerId,
+  title,
+  defaultWidth,
+  children,
+  onClose,
+  className,
+  style,
+  isActiveOnOpen = true
+}) {
+  // Variables
+  const useStore = getWindowStore(storeId);
+  const setWindow = useStore(s => s.setWindow);
+  const removeWindow = useStore(s => s.removeWindow);
+  const onCloseButton = useCloseButton(id, storeId, onClose);
+  // Refs
+  // States
+  // Selectors
+  // Callbacks
+  // Effects
+  (0,external_react_.useLayoutEffect)(() => {
+    let buttonFunction;
+    if (Array.isArray(buttons)) {
+      buttonFunction = (_, defaultButtons) => [...defaultButtons, ...buttons];
+    } else {
+      buttonFunction = buttons;
+    }
+    if (onClose) {
+      const oldButtons = buttonFunction;
+      buttonFunction = (containerState, defaultButtons) => [onCloseButton, ...oldButtons(containerState, defaultButtons)];
+    }
+    setWindow({
+      id,
+      title,
+      fillHeight,
+      defaultWidth,
+      buttons: buttonFunction,
+      children,
+      className,
+      style
+    }, defaultContainerId, isActiveOnOpen);
+  }, [id, defaultContainerId, title, fillHeight, defaultWidth, buttons, children, onCloseButton, onClose, setWindow, className, style, isActiveOnOpen]);
+  // remove window only if id changes or component is unmounted
+  (0,react_bootstrap_mobile_namespaceObject.useOnMount)(() => {
+    return () => {
+      removeWindow(id);
+      onClose === null || onClose === void 0 ? void 0 : onClose();
+    };
+  });
+  // Other
+  // Render Functions
+  return null;
+});
+// EXTERNAL MODULE: ./src/Components/WindowButton/windowButton.scss
+var windowButton = __webpack_require__(291);
+var windowButton_default = /*#__PURE__*/__webpack_require__.n(windowButton);
+;// CONCATENATED MODULE: ./src/Components/WindowButton/WindowButton.tsx
+var __rest = undefined && undefined.__rest || function (s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+
+
+
+
+const WindowButton = (0,react_bootstrap_mobile_namespaceObject.withMemo)(function WindowButton(_a) {
+  // Variables
+  var {
+      icon,
+      title,
+      containerState,
+      hideWhenMaximized,
+      hideWhenMinimized
+    } = _a,
+    listenerProps = __rest(_a, ["icon", "title", "containerState", "hideWhenMaximized", "hideWhenMinimized"]);
+  // Refs
+  // States
+  // Selectors
+  // Callbacks
+  const onClick = (0,react_bootstrap_mobile_namespaceObject.useListener)('onClick', listenerProps);
+  // Effects
+  // Other
+  // Render Functions
+  if (hideWhenMaximized && containerState === ContainerState.MAXIMIZED) {
+    return null;
+  }
+  if (hideWhenMinimized && containerState === ContainerState.MINIMIZED) {
+    return null;
+  }
+  return /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Clickable, {
+    onClick: onClick,
+    className: (windowButton_default()).windowButton
+  }, /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Icon, {
+    icon: icon,
+    title: title
+  }));
+}, (windowButton_default()));
+// EXTERNAL MODULE: ./node_modules/classnames/index.js
+var classnames = __webpack_require__(184);
+var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
+// EXTERNAL MODULE: ./src/Components/WindowContainer/windowContainer.scss
+var windowContainer = __webpack_require__(5);
+var windowContainer_default = /*#__PURE__*/__webpack_require__.n(windowContainer);
+;// CONCATENATED MODULE: ./src/Components/hooks/useOnMouseDrag.ts
+
+
+function useOnMouseDrag({
+  onMouseDown,
+  onMouseUp,
+  onMouseMove
+}) {
+  const mouseDownPos = (0,external_react_.useRef)(undefined);
+  const window = (0,react_bootstrap_mobile_namespaceObject.useWindow)();
+  const onMoveStart = (0,external_react_.useCallback)(e => {
+    mouseDownPos.current = {
+      x: e.clientX,
+      y: e.clientY
+    };
+    return onMouseDown === null || onMouseDown === void 0 ? void 0 : onMouseDown(mouseDownPos.current, e);
+  }, [onMouseDown]);
+  const onMove = (0,react_bootstrap_mobile_namespaceObject.useDelayed)(e => {
+    if (!mouseDownPos.current) {
+      return;
+    }
+    const currentPosition = {
+      x: e.clientX,
+      y: e.clientY
+    };
+    const diff = {
+      x: currentPosition.x - mouseDownPos.current.x,
+      y: currentPosition.y - mouseDownPos.current.y
+    };
+    onMouseMove === null || onMouseMove === void 0 ? void 0 : onMouseMove(diff, currentPosition, e);
+  }, [onMouseMove], 16, 16);
+  const onMoveStop = (0,external_react_.useCallback)(e => {
+    if (!mouseDownPos.current) {
+      return;
+    }
+    const currentPosition = {
+      x: e.clientX,
+      y: e.clientY
+    };
+    const diff = {
+      x: currentPosition.x - mouseDownPos.current.x,
+      y: currentPosition.y - mouseDownPos.current.y
+    };
+    onMouseUp === null || onMouseUp === void 0 ? void 0 : onMouseUp(diff, currentPosition, e);
+    mouseDownPos.current = undefined;
+  }, [onMouseUp]);
+  (0,external_react_.useEffect)(() => {
+    window === null || window === void 0 ? void 0 : window.addEventListener('mousemove', onMove);
+    return () => window === null || window === void 0 ? void 0 : window.removeEventListener('mousemove', onMove);
+  }, [onMove, window]);
+  (0,external_react_.useEffect)(() => {
+    window === null || window === void 0 ? void 0 : window.addEventListener('mouseup', onMoveStop);
+    return () => window === null || window === void 0 ? void 0 : window.removeEventListener('mouseup', onMoveStop);
+  }, [onMoveStop, window]);
+  return onMoveStart;
+}
+;// CONCATENATED MODULE: ./node_modules/zustand/esm/shallow.mjs
+function shallow(objA, objB) {
+  if (Object.is(objA, objB)) {
+    return true;
+  }
+  if (typeof objA !== "object" || objA === null || typeof objB !== "object" || objB === null) {
+    return false;
+  }
+  if (objA instanceof Map && objB instanceof Map) {
+    if (objA.size !== objB.size)
+      return false;
+    for (const [key, value] of objA) {
+      if (!Object.is(value, objB.get(key))) {
+        return false;
+      }
+    }
+    return true;
+  }
+  if (objA instanceof Set && objB instanceof Set) {
+    if (objA.size !== objB.size)
+      return false;
+    for (const value of objA) {
+      if (!objB.has(value)) {
+        return false;
+      }
+    }
+    return true;
+  }
+  const keysA = Object.keys(objA);
+  if (keysA.length !== Object.keys(objB).length) {
+    return false;
+  }
+  for (let i = 0; i < keysA.length; i++) {
+    if (!Object.prototype.hasOwnProperty.call(objB, keysA[i]) || !Object.is(objA[keysA[i]], objB[keysA[i]])) {
+      return false;
+    }
+  }
+  return true;
+}
+var shallow$1 = (objA, objB) => {
+  if (true) {
+    console.warn(
+      "[DEPRECATED] Default export is deprecated. Instead use `import { shallow } from 'zustand/shallow'`."
+    );
+  }
+  return shallow(objA, objB);
+};
+
+
+
+;// CONCATENATED MODULE: ./src/Components/WindowContainer/TitleTab.tsx
+
+
+
+
+
+
+
+
+const TitleTab = (0,react_bootstrap_mobile_namespaceObject.withMemo)(function TitleTab({
+  id,
+  children,
+  isActive,
+  onClick,
+  className,
+  style,
+  isHidden = false,
+  storeId,
+  disableDrag
+}) {
+  // Variables
+  // Refs
+  const useStore = getWindowStore(storeId);
+  const dimension = useStore(s => {
+    var _a;
+    return (_a = s.containers[s.windowContainerMapping[id]]) === null || _a === void 0 ? void 0 : _a.dimension;
+  });
+  const canDrag = useStore(s => {
+    var _a;
+    return ((_a = s.containers[s.windowContainerMapping[id]]) === null || _a === void 0 ? void 0 : _a.state) !== ContainerState.POPUP;
+  });
+  const singleTabContainerId = useStore(s => {
+    var _a;
+    if (((_a = s.containers[s.windowContainerMapping[id]]) === null || _a === void 0 ? void 0 : _a.windowIds.length) === 1) {
+      return s.windowContainerMapping[id];
+    }
+    return undefined;
+  });
+  const [updateDragging, setContainerIsMoving, clearDragging] = useStore(s => [s.updateDragging, s.setContainerIsMoving, s.clearDraggingWindow], shallow);
+  const window = (0,react_bootstrap_mobile_namespaceObject.useWindow)();
+  const dragStartPosition = (0,external_react_.useRef)(undefined);
+  const ignoredContainerId = (0,external_react_.useRef)(undefined);
+  // States
+  // Selectors
+  // Callbacks
+  const onDrag = (0,react_bootstrap_mobile_namespaceObject.useDelayed)(e => {
+    if (!dimension || !dragStartPosition.current) {
+      return;
+    }
+    const position = {
+      x: e.clientX,
+      y: e.clientY
+    };
+    const diff = {
+      x: position.x - dragStartPosition.current.x,
+      y: position.y - dragStartPosition.current.y
+    };
+    const newDimension = Object.assign({}, dimension);
+    diff.y = Math.min(Math.max(diff.y, -dimension.top), dimension.bottom);
+    diff.x = Math.min(Math.max(diff.x, -dimension.left), dimension.right);
+    newDimension.top += diff.y;
+    newDimension.left += diff.x;
+    newDimension.bottom -= diff.y;
+    newDimension.right -= diff.x;
+    ignoredContainerId.current = updateDragging(id, position, newDimension, ignoredContainerId.current);
+  }, [dimension, id, updateDragging], 16, 16);
+  const onDragStop = (0,external_react_.useCallback)(() => {
+    if (ignoredContainerId.current) {
+      setContainerIsMoving(ignoredContainerId.current, false);
+    }
+    dragStartPosition.current = undefined;
+    ignoredContainerId.current = undefined;
+    window === null || window === void 0 ? void 0 : window.removeEventListener('mousemove', onDrag);
+    window === null || window === void 0 ? void 0 : window.removeEventListener('mouseup', onDragStop);
+    window === null || window === void 0 ? void 0 : window.document.body.classList.remove((windowContainer_default()).noSelect);
+    clearDragging();
+  }, [clearDragging, onDrag, setContainerIsMoving, window]);
+  const onDragStart = (0,external_react_.useCallback)((e, startPosition) => {
+    if (disableDrag) {
+      return;
+    }
+    dragStartPosition.current = startPosition;
+    ignoredContainerId.current = singleTabContainerId;
+    onDrag(e);
+    window === null || window === void 0 ? void 0 : window.addEventListener('mousemove', onDrag);
+    window === null || window === void 0 ? void 0 : window.addEventListener('mouseup', onDragStop);
+    window === null || window === void 0 ? void 0 : window.document.body.classList.add((windowContainer_default()).noSelect);
+  }, [disableDrag, onDrag, onDragStop, singleTabContainerId, window]);
+  const onClickInner = (0,external_react_.useCallback)(() => {
+    onClick(id);
+  }, [id, onClick]);
+  const onMouseMove = (0,external_react_.useCallback)((diff, currentPosition, event) => {
+    if (!canDrag || dragStartPosition.current || Math.abs(diff.x) < 5 && Math.abs(diff.y) < 5) {
+      return;
+    }
+    onDragStart(event, {
+      x: currentPosition.x - diff.x,
+      y: currentPosition.y - diff.y
+    });
+  }, [canDrag, onDragStart]);
+  // Effects
+  const onMouseDown = useOnMouseDrag({
+    onMouseMove
+  });
+  // Other
+  // Render Functions
+  return /*#__PURE__*/external_react_default().createElement(react_bootstrap_mobile_namespaceObject.InlineBlock, {
+    className: classnames_default()((windowContainer_default()).titleTab, {
+      [(windowContainer_default()).titleTabActive]: isActive,
+      [(windowContainer_default()).titleTabHidden]: isHidden
+    }, className),
+    style: style
+  }, /*#__PURE__*/external_react_default().createElement(react_bootstrap_mobile_namespaceObject.Clickable, {
+    onClick: onClickInner,
+    onMouseDown: onMouseDown,
+    preventDefault: false
+  }, /*#__PURE__*/external_react_default().createElement(react_bootstrap_mobile_namespaceObject.Text, {
+    className: (windowContainer_default()).titleText
+  }, children)));
+}, (windowContainer_default()), 'text');
+;// CONCATENATED MODULE: ./src/Components/store/selectAvticeWindowIdForContainer.ts
+function selectActiveWindowIdForContainer({
+  containers,
+  windows
+}, containerId) {
+  const container = containers[containerId];
+  if (!container) {
+    return undefined;
+  }
+  return [container.activeWindowId, ...container.windowIds].find(id => windows[id]);
+}
+;// CONCATENATED MODULE: ./src/Components/WindowContainer/TitleTabBar.tsx
+
+
+
+
+
+
+
+
+
+const TitleTabBar = (0,react_bootstrap_mobile_namespaceObject.withMemo)(function TitleTabBar({
+  storeId,
+  containerId,
+  style,
+  className,
+  titleInfos,
+  onMoveUpdate,
+  isLocked
+}) {
+  // Variables
+  // States
+  const useStore = getWindowStore(storeId);
+  const activeWindowId = useStore(s => selectActiveWindowIdForContainer(s, containerId));
+  const dimension = useStore(s => {
+    var _a;
+    return (_a = s.containers[containerId]) === null || _a === void 0 ? void 0 : _a.dimension;
+  });
+  const [updateContainerActiveWindow, setActiveContainer, updateContainerDimension] = useStore(s => [s.updateContainerActiveWindow, s.setActiveContainer, s.updateContainerDimension], shallow);
+  const moveStartDimension = (0,external_react_.useRef)(undefined);
+  // Refs
+  // Selectors
+  // Callbacks
+  const setActive = (0,external_react_.useCallback)(() => setActiveContainer(containerId), [containerId, setActiveContainer]);
+  const setDimension = (0,external_react_.useCallback)(newDimension => updateContainerDimension(containerId, newDimension), [containerId, updateContainerDimension]);
+  const onMouseDown = (0,external_react_.useCallback)(() => {
+    if (isLocked) {
+      return;
+    }
+    moveStartDimension.current = dimension;
+    onMoveUpdate(true);
+    setActive();
+  }, [dimension, isLocked, onMoveUpdate, setActive]);
+  const onMouseMove = (0,external_react_.useCallback)(diff => {
+    const startDimension = moveStartDimension.current;
+    if (!startDimension) {
+      return;
+    }
+    const newDimension = Object.assign({}, startDimension);
+    diff.y = Math.min(Math.max(diff.y, -startDimension.top), startDimension.bottom);
+    diff.x = Math.min(Math.max(diff.x, -startDimension.left), startDimension.right);
+    newDimension.top += diff.y;
+    newDimension.left += diff.x;
+    newDimension.bottom -= diff.y;
+    newDimension.right -= diff.x;
+    setDimension(newDimension);
+  }, [setDimension]);
+  const onMouseUp = (0,external_react_.useCallback)(() => {
+    moveStartDimension.current = undefined;
+    onMoveUpdate(false);
+  }, [onMoveUpdate]);
+  const setActiveWindow = (0,external_react_.useCallback)(activeWindow => updateContainerActiveWindow(containerId, activeWindow), [containerId, updateContainerActiveWindow]);
+  const onMoveStart = useOnMouseDrag({
+    onMouseDown,
+    onMouseMove,
+    onMouseUp
+  });
+  // Effects
+  // Other
+  // Render Functions
+  // prevent division by zero
+  const tabLength = titleInfos.length;
+  return /*#__PURE__*/external_react_default().createElement(react_bootstrap_mobile_namespaceObject.Clickable, {
+    onMouseDown: onMoveStart,
+    style: style,
+    className: classnames_default()(className, (windowContainer_default()).titleTabBar, {
+      [(windowContainer_default()).singleTab]: tabLength === 1
+    })
+  }, titleInfos.map(info => /*#__PURE__*/external_react_default().createElement(TitleTab, {
+    key: info.id,
+    id: info.id,
+    isActive: info.id === activeWindowId,
+    onClick: setActiveWindow,
+    style: {
+      width: `${Math.floor(100 / tabLength)}%`
+    },
+    isHidden: false,
+    storeId: storeId,
+    disableDrag: isLocked && titleInfos.length === 1
+  }, info.title)));
+}, (windowContainer_default()));
+;// CONCATENATED MODULE: ./node_modules/@fortawesome/free-regular-svg-icons/index.mjs
+var prefix = "far";
+var faTrashCan = {
+  prefix: 'far',
+  iconName: 'trash-can',
+  icon: [448, 512, [61460, "trash-alt"], "f2ed", "M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"]
+};
+var faTrashAlt = faTrashCan;
+var faMessage = {
+  prefix: 'far',
+  iconName: 'message',
+  icon: [512, 512, ["comment-alt"], "f27a", "M160 368c26.5 0 48 21.5 48 48v16l72.5-54.4c8.3-6.2 18.4-9.6 28.8-9.6H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16V352c0 8.8 7.2 16 16 16h96zm48 124l-.2 .2-5.1 3.8-17.1 12.8c-4.8 3.6-11.3 4.2-16.8 1.5s-8.8-8.2-8.8-14.3V474.7v-6.4V468v-4V416H112 64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0H448c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H309.3L208 492z"]
+};
+var faCommentAlt = faMessage;
+var faFileLines = {
+  prefix: 'far',
+  iconName: 'file-lines',
+  icon: [384, 512, [128441, 128462, 61686, "file-alt", "file-text"], "f15c", "M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z"]
+};
+var faFileAlt = faFileLines;
+var faFileText = faFileLines;
+var faCalendarDays = {
+  prefix: 'far',
+  iconName: 'calendar-days',
+  icon: [448, 512, ["calendar-alt"], "f073", "M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192h80v56H48V192zm0 104h80v64H48V296zm128 0h96v64H176V296zm144 0h80v64H320V296zm80-48H320V192h80v56zm0 160v40c0 8.8-7.2 16-16 16H320V408h80zm-128 0v56H176V408h96zm-144 0v56H64c-8.8 0-16-7.2-16-16V408h80zM272 248H176V192h96v56z"]
+};
+var faCalendarAlt = faCalendarDays;
+var faHandPointRight = {
+  prefix: 'far',
+  iconName: 'hand-point-right',
+  icon: [512, 512, [], "f0a4", "M448 128l-177.6 0c1 5.2 1.6 10.5 1.6 16l0 16 32 0 144 0c8.8 0 16-7.2 16-16s-7.2-16-16-16zM224 144c0-17.7-14.3-32-32-32c0 0 0 0 0 0l-24 0c-66.3 0-120 53.7-120 120l0 48c0 52.5 33.7 97.1 80.7 113.4c-.5-3.1-.7-6.2-.7-9.4c0-20 9.2-37.9 23.6-49.7c-4.9-9-7.6-19.4-7.6-30.3c0-15.1 5.3-29 14-40c-8.8-11-14-24.9-14-40l0-40c0-13.3 10.7-24 24-24s24 10.7 24 24l0 40c0 8.8 7.2 16 16 16s16-7.2 16-16l0-40 0-40zM192 64s0 0 0 0c18 0 34.6 6 48 16l208 0c35.3 0 64 28.7 64 64s-28.7 64-64 64l-82 0c1.3 5.1 2 10.5 2 16c0 25.3-14.7 47.2-36 57.6c2.6 7 4 14.5 4 22.4c0 20-9.2 37.9-23.6 49.7c4.9 9 7.6 19.4 7.6 30.3c0 35.3-28.7 64-64 64l-64 0-24 0C75.2 448 0 372.8 0 280l0-48C0 139.2 75.2 64 168 64l24 0zm64 336c8.8 0 16-7.2 16-16s-7.2-16-16-16l-48 0-16 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l64 0zm16-176c0 5.5-.7 10.9-2 16l2 0 32 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-32 0 0 16zm-24 64l-40 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l48 0 16 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-24 0z"]
+};
+var faFaceSmileBeam = {
+  prefix: 'far',
+  iconName: 'face-smile-beam',
+  icon: [512, 512, [128522, "smile-beam"], "f5b8", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm177.6 62.1C192.8 334.5 218.8 352 256 352s63.2-17.5 78.4-33.9c9-9.7 24.2-10.4 33.9-1.4s10.4 24.2 1.4 33.9c-22 23.8-60 49.4-113.6 49.4s-91.7-25.5-113.6-49.4c-9-9.7-8.4-24.9 1.4-33.9s24.9-8.4 33.9 1.4zm40-89.3l0 0 0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0zm160 0l0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0 0 0z"]
+};
+var faSmileBeam = faFaceSmileBeam;
+var faFaceGrinStars = {
+  prefix: 'far',
+  iconName: 'face-grin-stars',
+  icon: [512, 512, [129321, "grin-stars"], "f587", "M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM183.2 132.6c-1.3-2.8-4.1-4.6-7.2-4.6s-5.9 1.8-7.2 4.6l-16.6 34.7-38.1 5c-3.1 .4-5.6 2.5-6.6 5.5s-.1 6.2 2.1 8.3l27.9 26.5-7 37.8c-.6 3 .7 6.1 3.2 7.9s5.8 2 8.5 .6L176 240.5l33.8 18.3c2.7 1.5 6 1.3 8.5-.6s3.7-4.9 3.2-7.9l-7-37.8L242.4 186c2.2-2.1 3.1-5.3 2.1-8.3s-3.5-5.1-6.6-5.5l-38.1-5-16.6-34.7zm160 0c-1.3-2.8-4.1-4.6-7.2-4.6s-5.9 1.8-7.2 4.6l-16.6 34.7-38.1 5c-3.1 .4-5.6 2.5-6.6 5.5s-.1 6.2 2.1 8.3l27.9 26.5-7 37.8c-.6 3 .7 6.1 3.2 7.9s5.8 2 8.5 .6L336 240.5l33.8 18.3c2.7 1.5 6 1.3 8.5-.6s3.7-4.9 3.2-7.9l-7-37.8L402.4 186c2.2-2.1 3.1-5.3 2.1-8.3s-3.5-5.1-6.6-5.5l-38.1-5-16.6-34.7zm6.3 175.8c-28.9 6.8-60.5 10.5-93.6 10.5s-64.7-3.7-93.6-10.5c-18.7-4.4-35.9 12-25.5 28.1c24.6 38.1 68.7 63.5 119.1 63.5s94.5-25.4 119.1-63.5c10.4-16.1-6.8-32.5-25.5-28.1z"]
+};
+var faGrinStars = faFaceGrinStars;
+var faAddressBook = {
+  prefix: 'far',
+  iconName: 'address-book',
+  icon: [512, 512, [62138, "contact-book"], "f2b9", "M384 48c8.8 0 16 7.2 16 16V448c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H384zM96 0C60.7 0 32 28.7 32 64V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H96zM240 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128zm-32 32c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16H336c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80H208zM512 80c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V80zM496 192c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm16 144c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V336z"]
+};
+var faContactBook = faAddressBook;
+var faComments = {
+  prefix: 'far',
+  iconName: 'comments',
+  icon: [640, 512, [128490, 61670], "f086", "M88.2 309.1c9.8-18.3 6.8-40.8-7.5-55.8C59.4 230.9 48 204 48 176c0-63.5 63.8-128 160-128s160 64.5 160 128s-63.8 128-160 128c-13.1 0-25.8-1.3-37.8-3.6c-10.4-2-21.2-.6-30.7 4.2c-4.1 2.1-8.3 4.1-12.6 6c-16 7.2-32.9 13.5-49.9 18c2.8-4.6 5.4-9.1 7.9-13.6c1.1-1.9 2.2-3.9 3.2-5.9zM0 176c0 41.8 17.2 80.1 45.9 110.3c-.9 1.7-1.9 3.5-2.8 5.1c-10.3 18.4-22.3 36.5-36.6 52.1c-6.6 7-8.3 17.2-4.6 25.9C5.8 378.3 14.4 384 24 384c43 0 86.5-13.3 122.7-29.7c4.8-2.2 9.6-4.5 14.2-6.8c15.1 3 30.9 4.5 47.1 4.5c114.9 0 208-78.8 208-176S322.9 0 208 0S0 78.8 0 176zM432 480c16.2 0 31.9-1.6 47.1-4.5c4.6 2.3 9.4 4.6 14.2 6.8C529.5 498.7 573 512 616 512c9.6 0 18.2-5.7 22-14.5c3.8-8.8 2-19-4.6-25.9c-14.2-15.6-26.2-33.7-36.6-52.1c-.9-1.7-1.9-3.4-2.8-5.1C622.8 384.1 640 345.8 640 304c0-94.4-87.9-171.5-198.2-175.8c4.1 15.2 6.2 31.2 6.2 47.8l0 .6c87.2 6.7 144 67.5 144 127.4c0 28-11.4 54.9-32.7 77.2c-14.3 15-17.3 37.6-7.5 55.8c1.1 2 2.2 4 3.2 5.9c2.5 4.5 5.2 9 7.9 13.6c-17-4.5-33.9-10.7-49.9-18c-4.3-1.9-8.5-3.9-12.6-6c-9.5-4.8-20.3-6.2-30.7-4.2c-12.1 2.4-24.7 3.6-37.8 3.6c-61.7 0-110-26.5-136.8-62.3c-16 5.4-32.8 9.4-50 11.8C279 439.8 350 480 432 480z"]
+};
+var faPaste = {
+  prefix: 'far',
+  iconName: 'paste',
+  icon: [512, 512, ["file-clipboard"], "f0ea", "M80 96v16c0 17.7 14.3 32 32 32h60.8c16.6-28.7 47.6-48 83.2-48h62c-7.1-27.6-32.2-48-62-48H215.4C211.6 20.9 188.2 0 160 0s-51.6 20.9-55.4 48H64C28.7 48 0 76.7 0 112V384c0 35.3 28.7 64 64 64h96V400H64c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H80zm64-40a16 16 0 1 1 32 0 16 16 0 1 1 -32 0zM256 464c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H384v48c0 17.7 14.3 32 32 32h48V448c0 8.8-7.2 16-16 16H256zm192 48c35.3 0 64-28.7 64-64V227.9c0-12.7-5.1-24.9-14.1-33.9l-51.9-51.9c-9-9-21.2-14.1-33.9-14.1H256c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H448z"]
+};
+var faFileClipboard = faPaste;
+var faFaceGrinTongueSquint = {
+  prefix: 'far',
+  iconName: 'face-grin-tongue-squint',
+  icon: [512, 512, [128541, "grin-tongue-squint"], "f58a", "M464 256c0-114.9-93.1-208-208-208S48 141.1 48 256c0 81.7 47.1 152.4 115.7 186.4c-2.4-8.4-3.7-17.3-3.7-26.4V392.7c-24-17.5-43.1-41.4-54.8-69.2c-5-11.8 7-22.5 19.3-18.7c39.7 12.2 84.5 19 131.8 19s92.1-6.8 131.8-19c12.3-3.8 24.3 6.9 19.3 18.7c-11.8 28-31.1 52-55.4 69.6V416c0 9.2-1.3 18-3.7 26.4C416.9 408.4 464 337.7 464 256zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm116-98.9c0-9 9.6-14.7 17.5-10.5l89.9 47.9c10.7 5.7 10.7 21.1 0 26.8l-89.9 47.9c-7.9 4.2-17.5-1.5-17.5-10.5c0-2.8 1-5.5 2.8-7.6l36-43.2-36-43.2c-1.8-2.1-2.8-4.8-2.8-7.6zm262.5-10.5c7.9-4.2 17.5 1.5 17.5 10.5c0 2.8-1 5.5-2.8 7.6l-36 43.2 36 43.2c1.8 2.1 2.8 4.8 2.8 7.6c0 9-9.6 14.7-17.5 10.5l-89.9-47.9c-10.7-5.7-10.7-21.1 0-26.8l89.9-47.9zM320 416V378.6c0-14.7-11.9-26.6-26.6-26.6h-2c-11.3 0-21.1 7.9-23.6 18.9c-2.8 12.6-20.8 12.6-23.6 0c-2.5-11.1-12.3-18.9-23.6-18.9h-2c-14.7 0-26.6 11.9-26.6 26.6V416c0 35.3 28.7 64 64 64s64-28.7 64-64z"]
+};
+var faGrinTongueSquint = faFaceGrinTongueSquint;
+var faFaceFlushed = {
+  prefix: 'far',
+  iconName: 'face-flushed',
+  icon: [512, 512, [128563, "flushed"], "f579", "M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM160.4 248a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm216-24a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM192 336c-13.3 0-24 10.7-24 24s10.7 24 24 24H320c13.3 0 24-10.7 24-24s-10.7-24-24-24H192zM160 176a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm0 128a80 80 0 1 0 0-160 80 80 0 1 0 0 160zm144-80a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm128 0a80 80 0 1 0 -160 0 80 80 0 1 0 160 0z"]
+};
+var faFlushed = faFaceFlushed;
+var faSquareCaretRight = {
+  prefix: 'far',
+  iconName: 'square-caret-right',
+  icon: [448, 512, ["caret-square-right"], "f152", "M400 96c0-8.8-7.2-16-16-16L64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320zM384 32c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l320 0zM320 256c0 6.7-2.8 13-7.7 17.6l-112 104c-7 6.5-17.2 8.2-25.9 4.4s-14.4-12.5-14.4-22l0-208c0-9.5 5.7-18.2 14.4-22s18.9-2.1 25.9 4.4l112 104c4.9 4.5 7.7 10.9 7.7 17.6z"]
+};
+var faCaretSquareRight = faSquareCaretRight;
+var faSquareMinus = {
+  prefix: 'far',
+  iconName: 'square-minus',
+  icon: [448, 512, [61767, "minus-square"], "f146", "M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM152 232H296c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24z"]
+};
+var faMinusSquare = faSquareMinus;
+var faCompass = {
+  prefix: 'far',
+  iconName: 'compass',
+  icon: [512, 512, [129517], "f14e", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm306.7 69.1L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"]
+};
+var faSquareCaretDown = {
+  prefix: 'far',
+  iconName: 'square-caret-down',
+  icon: [448, 512, ["caret-square-down"], "f150", "M384 432c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0zm64-16c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320zM224 352c-6.7 0-13-2.8-17.6-7.7l-104-112c-6.5-7-8.2-17.2-4.4-25.9s12.5-14.4 22-14.4l208 0c9.5 0 18.2 5.7 22 14.4s2.1 18.9-4.4 25.9l-104 112c-4.5 4.9-10.9 7.7-17.6 7.7z"]
+};
+var faCaretSquareDown = faSquareCaretDown;
+var faFaceKissBeam = {
+  prefix: 'far',
+  iconName: 'face-kiss-beam',
+  icon: [512, 512, [128537, "kiss-beam"], "f597", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm304.7 41.7c4.3 5.1 7.3 11.4 7.3 18.3s-3.1 13.2-7.3 18.3c-4.3 5.2-10.1 9.7-16.7 13.4c-2.7 1.5-5.7 3-8.7 4.3c3.1 1.3 6 2.7 8.7 4.3c6.6 3.7 12.5 8.2 16.7 13.4c4.3 5.1 7.3 11.4 7.3 18.3s-3.1 13.2-7.3 18.3c-4.3 5.2-10.1 9.7-16.7 13.4C274.7 427.1 257.4 432 240 432c-3.6 0-6.8-2.5-7.7-6s.6-7.2 3.8-9l0 0 0 0 0 0 0 0 .2-.1c.2-.1 .5-.3 .9-.5c.8-.5 2-1.2 3.4-2.1c2.8-1.9 6.5-4.5 10.2-7.6c3.7-3.1 7.2-6.6 9.6-10.1c2.5-3.5 3.5-6.4 3.5-8.6s-1-5-3.5-8.6c-2.5-3.5-5.9-6.9-9.6-10.1c-3.7-3.1-7.4-5.7-10.2-7.6c-1.4-.9-2.6-1.6-3.4-2.1c-.4-.2-.7-.4-.9-.5l-.2-.1 0 0 0 0 0 0c-2.5-1.4-4.1-4.1-4.1-7s1.6-5.6 4.1-7l0 0 0 0 0 0 0 0 0 0 .2-.1c.2-.1 .5-.3 .9-.5c.8-.5 2-1.2 3.4-2.1c2.8-1.9 6.5-4.5 10.2-7.6c3.7-3.1 7.2-6.6 9.6-10.1c2.5-3.5 3.5-6.4 3.5-8.6s-1-5-3.5-8.6c-2.5-3.5-5.9-6.9-9.6-10.1c-3.7-3.1-7.4-5.7-10.2-7.6c-1.4-.9-2.6-1.6-3.4-2.1c-.4-.2-.7-.4-.9-.5l-.2-.1 0 0 0 0 0 0c-3.2-1.8-4.7-5.5-3.8-9s4.1-6 7.7-6c17.4 0 34.7 4.9 47.9 12.3c6.6 3.7 12.5 8.2 16.7 13.4zm-87.1-68.9l0 0 0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0zm160 0l0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0 0 0z"]
+};
+var faKissBeam = faFaceKissBeam;
+var faLightbulb = {
+  prefix: 'far',
+  iconName: 'lightbulb',
+  icon: [384, 512, [128161], "f0eb", "M297.2 248.9C311.6 228.3 320 203.2 320 176c0-70.7-57.3-128-128-128S64 105.3 64 176c0 27.2 8.4 52.3 22.8 72.9c3.7 5.3 8.1 11.3 12.8 17.7l0 0c12.9 17.7 28.3 38.9 39.8 59.8c10.4 19 15.7 38.8 18.3 57.5H109c-2.2-12-5.9-23.7-11.8-34.5c-9.9-18-22.2-34.9-34.5-51.8l0 0 0 0c-5.2-7.1-10.4-14.2-15.4-21.4C27.6 247.9 16 213.3 16 176C16 78.8 94.8 0 192 0s176 78.8 176 176c0 37.3-11.6 71.9-31.4 100.3c-5 7.2-10.2 14.3-15.4 21.4l0 0 0 0c-12.3 16.8-24.6 33.7-34.5 51.8c-5.9 10.8-9.6 22.5-11.8 34.5H226.4c2.6-18.7 7.9-38.6 18.3-57.5c11.5-20.9 26.9-42.1 39.8-59.8l0 0 0 0 0 0c4.7-6.4 9-12.4 12.7-17.7zM192 128c-26.5 0-48 21.5-48 48c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-44.2 35.8-80 80-80c8.8 0 16 7.2 16 16s-7.2 16-16 16zm0 384c-44.2 0-80-35.8-80-80V416H272v16c0 44.2-35.8 80-80 80z"]
+};
+var faFlag = {
+  prefix: 'far',
+  iconName: 'flag',
+  icon: [448, 512, [127988, 61725], "f024", "M48 24C48 10.7 37.3 0 24 0S0 10.7 0 24V64 350.5 400v88c0 13.3 10.7 24 24 24s24-10.7 24-24V388l80.3-20.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L48 52V24zm0 77.5l96.6-24.2c27-6.7 55.5-3.6 80.4 8.8c54.9 27.4 118.7 29.7 175 6.8V334.7l-24.4 9.1c-33.7 12.6-71.2 10.7-103.4-5.4c-48.2-24.1-103.3-30.1-155.6-17.1L48 338.5v-237z"]
+};
+var faSquareCheck = {
+  prefix: 'far',
+  iconName: 'square-check',
+  icon: [448, 512, [9745, 9989, 61510, "check-square"], "f14a", "M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"]
+};
+var faCheckSquare = faSquareCheck;
+var faCircleDot = {
+  prefix: 'far',
+  iconName: 'circle-dot',
+  icon: [512, 512, [128280, "dot-circle"], "f192", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256-96a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"]
+};
+var faDotCircle = faCircleDot;
+var faFaceDizzy = {
+  prefix: 'far',
+  iconName: 'face-dizzy',
+  icon: [512, 512, ["dizzy"], "f567", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM103 135c9.4-9.4 24.6-9.4 33.9 0l23 23 23-23c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-23 23 23 23c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-23-23-23 23c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l23-23-23-23c-9.4-9.4-9.4-24.6 0-33.9zm192 0c9.4-9.4 24.6-9.4 33.9 0l23 23 23-23c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-23 23 23 23c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-23-23-23 23c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l23-23-23-23c-9.4-9.4-9.4-24.6 0-33.9z"]
+};
+var faDizzy = faFaceDizzy;
+var faFutbol = {
+  prefix: 'far',
+  iconName: 'futbol',
+  icon: [512, 512, [9917, "futbol-ball", "soccer-ball"], "f1e3", "M435.4 361.3l-89.7-6c-5.2-.3-10.3 1.1-14.5 4.2s-7.2 7.4-8.4 12.5l-22 87.2c-14.4 3.2-29.4 4.8-44.8 4.8s-30.3-1.7-44.8-4.8l-22-87.2c-1.3-5-4.3-9.4-8.4-12.5s-9.3-4.5-14.5-4.2l-89.7 6C61.7 335.9 51.9 307 49 276.2L125 228.3c4.4-2.8 7.6-7 9.2-11.9s1.4-10.2-.5-15L100.4 118c19.9-22.4 44.6-40.5 72.4-52.7l69.1 57.6c4 3.3 9 5.1 14.1 5.1s10.2-1.8 14.1-5.1l69.1-57.6c27.8 12.2 52.5 30.3 72.4 52.7l-33.4 83.4c-1.9 4.8-2.1 10.1-.5 15s4.9 9.1 9.2 11.9L463 276.2c-3 30.8-12.7 59.7-27.6 85.1zM256 48l.9 0h-1.8l.9 0zM56.7 196.2c.9-3 1.9-6.1 2.9-9.1l-2.9 9.1zM132 423l3.8 2.7c-1.3-.9-2.5-1.8-3.8-2.7zm248.1-.1c-1.3 1-2.7 2-4 2.9l4-2.9zm75.2-226.6l-3-9.2c1.1 3 2.1 6.1 3 9.2zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm14.1-325.7c-8.4-6.1-19.8-6.1-28.2 0L194 221c-8.4 6.1-11.9 16.9-8.7 26.8l18.3 56.3c3.2 9.9 12.4 16.6 22.8 16.6h59.2c10.4 0 19.6-6.7 22.8-16.6l18.3-56.3c3.2-9.9-.3-20.7-8.7-26.8l-47.9-34.8z"]
+};
+var faFutbolBall = faFutbol;
+var faSoccerBall = faFutbol;
+var faPenToSquare = {
+  prefix: 'far',
+  iconName: 'pen-to-square',
+  icon: [512, 512, ["edit"], "f044", "M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"]
+};
+var faEdit = faPenToSquare;
+var faHourglassHalf = {
+  prefix: 'far',
+  iconName: 'hourglass-half',
+  icon: [384, 512, ["hourglass-2"], "f252", "M0 24C0 10.7 10.7 0 24 0H360c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V67c0 40.3-16 79-44.5 107.5L225.9 256l81.5 81.5C336 366 352 404.7 352 445v19h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H24c-13.3 0-24-10.7-24-24s10.7-24 24-24h8V445c0-40.3 16-79 44.5-107.5L158.1 256 76.5 174.5C48 146 32 107.3 32 67V48H24C10.7 48 0 37.3 0 24zM110.5 371.5c-3.9 3.9-7.5 8.1-10.7 12.5H284.2c-3.2-4.4-6.8-8.6-10.7-12.5L192 289.9l-81.5 81.5zM284.2 128C297 110.4 304 89 304 67V48H80V67c0 22.1 7 43.4 19.8 61H284.2z"]
+};
+var faHourglass2 = faHourglassHalf;
+var faEyeSlash = {
+  prefix: 'far',
+  iconName: 'eye-slash',
+  icon: [640, 512, [], "f070", "M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zm151 118.3C226 97.7 269.5 80 320 80c65.2 0 118.8 29.6 159.9 67.7C518.4 183.5 545 226 558.6 256c-12.6 28-36.6 66.8-70.9 100.9l-53.8-42.2c9.1-17.6 14.2-37.5 14.2-58.7c0-70.7-57.3-128-128-128c-32.2 0-61.7 11.9-84.2 31.5l-46.1-36.1zM394.9 284.2l-81.5-63.9c4.2-8.5 6.6-18.2 6.6-28.3c0-5.5-.7-10.9-2-16c.7 0 1.3 0 2 0c44.2 0 80 35.8 80 80c0 9.9-1.8 19.4-5.1 28.2zm9.4 130.3C378.8 425.4 350.7 432 320 432c-65.2 0-118.8-29.6-159.9-67.7C121.6 328.5 95 286 81.4 256c8.3-18.4 21.5-41.5 39.4-64.8L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5l-41.9-33zM192 256c0 70.7 57.3 128 128 128c13.3 0 26.1-2 38.2-5.8L302 334c-23.5-5.4-43.1-21.2-53.7-42.3l-56.1-44.2c-.2 2.8-.3 5.6-.3 8.5z"]
+};
+var faHand = {
+  prefix: 'far',
+  iconName: 'hand',
+  icon: [512, 512, [129306, 9995, "hand-paper"], "f256", "M256 0c-25.3 0-47.2 14.7-57.6 36c-7-2.6-14.5-4-22.4-4c-35.3 0-64 28.7-64 64V261.5l-2.7-2.7c-25-25-65.5-25-90.5 0s-25 65.5 0 90.5L106.5 437c48 48 113.1 75 181 75H296h8c1.5 0 3-.1 4.5-.4c91.7-6.2 165-79.4 171.1-171.1c.3-1.5 .4-3 .4-4.5V160c0-35.3-28.7-64-64-64c-5.5 0-10.9 .7-16 2V96c0-35.3-28.7-64-64-64c-7.9 0-15.4 1.4-22.4 4C303.2 14.7 281.3 0 256 0zM240 96.1c0 0 0-.1 0-.1V64c0-8.8 7.2-16 16-16s16 7.2 16 16V95.9c0 0 0 .1 0 .1V232c0 13.3 10.7 24 24 24s24-10.7 24-24V96c0 0 0 0 0-.1c0-8.8 7.2-16 16-16s16 7.2 16 16v55.9c0 0 0 .1 0 .1v80c0 13.3 10.7 24 24 24s24-10.7 24-24V160.1c0 0 0-.1 0-.1c0-8.8 7.2-16 16-16s16 7.2 16 16V332.9c-.1 .6-.1 1.3-.2 1.9c-3.4 69.7-59.3 125.6-129 129c-.6 0-1.3 .1-1.9 .2H296h-8.5c-55.2 0-108.1-21.9-147.1-60.9L52.7 315.3c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L119 336.4c6.9 6.9 17.2 8.9 26.2 5.2s14.8-12.5 14.8-22.2V96c0-8.8 7.2-16 16-16c8.8 0 16 7.1 16 15.9V232c0 13.3 10.7 24 24 24s24-10.7 24-24V96.1z"]
+};
+var faHandPaper = faHand;
+var faHandSpock = {
+  prefix: 'far',
+  iconName: 'hand-spock',
+  icon: [576, 512, [128406], "f259", "M170.2 80.8C161 47 180.8 12 214.6 2.4c34-9.6 69.4 10.2 79 44.2l30.3 107.1L337.1 84c6.6-34.7 40.1-57.5 74.8-50.9c31.4 6 53 33.9 52 64.9c10-2.6 20.8-2.8 31.5-.1c34.3 8.6 55.1 43.3 46.6 77.6L486.7 397.2C469.8 464.7 409.2 512 339.6 512c-11.2 0-22.5 0-33.7 0c-56.9 0-112.2-19-157.2-53.9l-92-71.6c-27.9-21.7-32.9-61.9-11.2-89.8s61.9-32.9 89.8-11.2l17 13.2L100.5 167.5c-13-32.9 3.2-70.1 36-83c11.1-4.4 22.7-5.4 33.7-3.7zm77.1-21.2c-2.4-8.5-11.2-13.4-19.7-11s-13.4 11.2-11 19.7l54.8 182.4c3.5 12.3-3.3 25.2-15.4 29.3s-25.3-2-30-13.9L174.9 138.1c-3.2-8.2-12.5-12.3-20.8-9s-12.3 12.5-9 20.8l73.3 185.6c12 30.3-23.7 57-49.4 37l-63.1-49.1c-7-5.4-17-4.2-22.5 2.8s-4.2 17 2.8 22.5l92 71.6c36.5 28.4 81.4 43.8 127.7 43.8c11.2 0 22.5 0 33.7 0c47.5 0 89-32.4 100.5-78.5l55.4-221.6c2.1-8.6-3.1-17.3-11.6-19.4s-17.3 3.1-19.4 11.6l-26 104C435.6 271.8 425 280 413 280c-16.5 0-28.9-15-25.8-31.2L415.7 99c1.7-8.7-4-17.1-12.7-18.7s-17.1 4-18.7 12.7L352.5 260c-2.2 11.6-12.4 20-24.2 20c-11 0-20.7-7.3-23.7-17.9L247.4 59.6z"]
+};
+var faFaceKiss = {
+  prefix: 'far',
+  iconName: 'face-kiss',
+  icon: [512, 512, [128535, "kiss"], "f596", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm304.7 25.7c4.3 5.1 7.3 11.4 7.3 18.3s-3.1 13.2-7.3 18.3c-4.3 5.2-10.1 9.7-16.7 13.4c-2.7 1.5-5.7 3-8.7 4.3c3.1 1.3 6 2.7 8.7 4.3c6.6 3.7 12.5 8.2 16.7 13.4c4.3 5.1 7.3 11.4 7.3 18.3s-3.1 13.2-7.3 18.3c-4.3 5.2-10.1 9.7-16.7 13.4C274.7 411.1 257.4 416 240 416c-3.6 0-6.8-2.5-7.7-6s.6-7.2 3.8-9l0 0 0 0 0 0 0 0 .2-.1c.2-.1 .5-.3 .9-.5c.8-.5 2-1.2 3.4-2.1c2.8-1.9 6.5-4.5 10.2-7.6c3.7-3.1 7.2-6.6 9.6-10.1c2.5-3.5 3.5-6.4 3.5-8.6s-1-5-3.5-8.6c-2.5-3.5-5.9-6.9-9.6-10.1c-3.7-3.1-7.4-5.7-10.2-7.6c-1.4-.9-2.6-1.6-3.4-2.1l-.8-.5-.1-.1-.2-.1 0 0 0 0 0 0c-2.5-1.4-4.1-4.1-4.1-7s1.6-5.6 4.1-7l0 0 0 0 0 0 0 0 0 0 .2-.1c.2-.1 .5-.3 .9-.5c.8-.5 2-1.2 3.4-2.1c2.8-1.9 6.5-4.5 10.2-7.6c3.7-3.1 7.2-6.6 9.6-10.1c2.5-3.5 3.5-6.4 3.5-8.6s-1-5-3.5-8.6c-2.5-3.5-5.9-6.9-9.6-10.1c-3.7-3.1-7.4-5.7-10.2-7.6c-1.4-.9-2.6-1.6-3.4-2.1c-.4-.2-.7-.4-.9-.5l-.2-.1 0 0 0 0 0 0c-3.2-1.8-4.7-5.5-3.8-9s4.1-6 7.7-6c17.4 0 34.7 4.9 47.9 12.3c6.6 3.7 12.5 8.2 16.7 13.4zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"]
+};
+var faKiss = faFaceKiss;
+var faFaceGrinTongue = {
+  prefix: 'far',
+  iconName: 'face-grin-tongue',
+  icon: [512, 512, [128539, "grin-tongue"], "f589", "M464 256c0-114.9-93.1-208-208-208S48 141.1 48 256c0 81.7 47.1 152.4 115.7 186.4c-2.4-8.4-3.7-17.3-3.7-26.4V363.6c-8.9-8-16.7-17.1-23.1-27.1c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5c18.7-4.4 35.9 12 25.5 28.1c-6.4 9.9-14.2 19-23 27V416c0 9.2-1.3 18-3.7 26.4C416.9 408.4 464 337.7 464 256zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm176.4-80a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm128 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 416V378.6c0-14.7-11.9-26.6-26.6-26.6h-2c-11.3 0-21.1 7.9-23.6 18.9c-2.8 12.6-20.8 12.6-23.6 0c-2.5-11.1-12.3-18.9-23.6-18.9h-2c-14.7 0-26.6 11.9-26.6 26.6V416c0 35.3 28.7 64 64 64s64-28.7 64-64z"]
+};
+var faGrinTongue = faFaceGrinTongue;
+var faChessBishop = {
+  prefix: 'far',
+  iconName: 'chess-bishop',
+  icon: [320, 512, [9821], "f43a", "M104 0C90.7 0 80 10.7 80 24c0 11.2 7.6 20.6 18 23.2c-7.8 8-16.1 17-24.4 27C38.2 116.7 0 178.8 0 250.9c0 44.8 24.6 72.2 48 87.8V352H96V325c0-9-5-17.2-13-21.3c-18-9.3-35-24.7-35-52.7c0-55.5 29.8-106.8 62.4-145.9c16-19.2 32.1-34.8 44.2-45.5c1.9-1.7 3.7-3.2 5.3-4.6c1.7 1.4 3.4 3 5.3 4.6c12.1 10.7 28.2 26.3 44.2 45.5c5.3 6.3 10.5 13 15.5 20L159 191c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l57.8-57.8c12.8 25.9 21.2 54.3 21.2 83.8c0 28-17 43.4-35 52.7c-8 4.1-13 12.3-13 21.3v27h48V338.7c23.4-15.6 48-42.9 48-87.8c0-72.1-38.2-134.2-73.6-176.7c-8.3-9.9-16.6-19-24.4-27c10.3-2.7 18-12.1 18-23.2c0-13.3-10.7-24-24-24H160 104zM52.7 464l16.6-32H250.8l16.6 32H52.7zm207.9-80H59.5c-12 0-22.9 6.7-28.4 17.3L4.6 452.5c-3 5.8-4.6 12.2-4.6 18.7C0 493.8 18.2 512 40.8 512H279.2c22.5 0 40.8-18.2 40.8-40.8c0-6.5-1.6-12.9-4.6-18.7l-26.5-51.2c-5.5-10.6-16.5-17.3-28.4-17.3z"]
+};
+var faFaceGrinWink = {
+  prefix: 'far',
+  iconName: 'face-grin-wink',
+  icon: [512, 512, ["grin-wink"], "f58c", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm349.5 52.4c18.7-4.4 35.9 12 25.5 28.1C350.4 374.6 306.3 400 255.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm165.8 21.7c-7.6 8.1-20.2 8.5-28.3 .9s-8.5-20.2-.9-28.3c14.5-15.5 35.2-22.3 54.6-22.3s40.1 6.8 54.6 22.3c7.6 8.1 7.1 20.7-.9 28.3s-20.7 7.1-28.3-.9c-5.5-5.8-14.8-9.7-25.4-9.7s-19.9 3.8-25.4 9.7z"]
+};
+var faGrinWink = faFaceGrinWink;
+var faFaceGrinWide = {
+  prefix: 'far',
+  iconName: 'face-grin-wide',
+  icon: [512, 512, [128515, "grin-alt"], "f581", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm349.5 52.4c18.7-4.4 35.9 12 25.5 28.1C350.4 374.6 306.3 400 255.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5zM224 192c0 35.3-14.3 64-32 64s-32-28.7-32-64s14.3-64 32-64s32 28.7 32 64zm96 64c-17.7 0-32-28.7-32-64s14.3-64 32-64s32 28.7 32 64s-14.3 64-32 64z"]
+};
+var faGrinAlt = faFaceGrinWide;
+var faFaceFrownOpen = {
+  prefix: 'far',
+  iconName: 'face-frown-open',
+  icon: [512, 512, [128550, "frown-open"], "f57a", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM182.4 382.5c-12.4 5.2-26.5-4.1-21.1-16.4c16-36.6 52.4-62.1 94.8-62.1s78.8 25.6 94.8 62.1c5.4 12.3-8.7 21.6-21.1 16.4c-22.4-9.5-47.4-14.8-73.7-14.8s-51.3 5.3-73.7 14.8zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"]
+};
+var faFrownOpen = faFaceFrownOpen;
+var faHandPointUp = {
+  prefix: 'far',
+  iconName: 'hand-point-up',
+  icon: [384, 512, [9757], "f0a6", "M64 64V241.6c5.2-1 10.5-1.6 16-1.6H96V208 64c0-8.8-7.2-16-16-16s-16 7.2-16 16zM80 288c-17.7 0-32 14.3-32 32c0 0 0 0 0 0v24c0 66.3 53.7 120 120 120h48c52.5 0 97.1-33.7 113.4-80.7c-3.1 .5-6.2 .7-9.4 .7c-20 0-37.9-9.2-49.7-23.6c-9 4.9-19.4 7.6-30.3 7.6c-15.1 0-29-5.3-40-14c-11 8.8-24.9 14-40 14H120c-13.3 0-24-10.7-24-24s10.7-24 24-24h40c8.8 0 16-7.2 16-16s-7.2-16-16-16H120 80zM0 320s0 0 0 0c0-18 6-34.6 16-48V64C16 28.7 44.7 0 80 0s64 28.7 64 64v82c5.1-1.3 10.5-2 16-2c25.3 0 47.2 14.7 57.6 36c7-2.6 14.5-4 22.4-4c20 0 37.9 9.2 49.7 23.6c9-4.9 19.4-7.6 30.3-7.6c35.3 0 64 28.7 64 64v64 24c0 92.8-75.2 168-168 168H168C75.2 512 0 436.8 0 344V320zm336-64c0-8.8-7.2-16-16-16s-16 7.2-16 16v48 16c0 8.8 7.2 16 16 16s16-7.2 16-16V256zM160 240c5.5 0 10.9 .7 16 2v-2V208c0-8.8-7.2-16-16-16s-16 7.2-16 16v32h16zm64 24v40c0 8.8 7.2 16 16 16s16-7.2 16-16V256 240c0-8.8-7.2-16-16-16s-16 7.2-16 16v24z"]
+};
+var faBookmark = {
+  prefix: 'far',
+  iconName: 'bookmark',
+  icon: [384, 512, [128278, 61591], "f02e", "M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"]
+};
+var faHandPointDown = {
+  prefix: 'far',
+  iconName: 'hand-point-down',
+  icon: [384, 512, [], "f0a7", "M64 448l0-177.6c5.2 1 10.5 1.6 16 1.6l16 0 0 32 0 144c0 8.8-7.2 16-16 16s-16-7.2-16-16zM80 224c-17.7 0-32-14.3-32-32c0 0 0 0 0 0l0-24c0-66.3 53.7-120 120-120l48 0c52.5 0 97.1 33.7 113.4 80.7c-3.1-.5-6.2-.7-9.4-.7c-20 0-37.9 9.2-49.7 23.6c-9-4.9-19.4-7.6-30.3-7.6c-15.1 0-29 5.3-40 14c-11-8.8-24.9-14-40-14l-40 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l40 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-40 0-40 0zM0 192s0 0 0 0c0 18 6 34.6 16 48l0 208c0 35.3 28.7 64 64 64s64-28.7 64-64l0-82c5.1 1.3 10.5 2 16 2c25.3 0 47.2-14.7 57.6-36c7 2.6 14.5 4 22.4 4c20 0 37.9-9.2 49.7-23.6c9 4.9 19.4 7.6 30.3 7.6c35.3 0 64-28.7 64-64l0-64 0-24C384 75.2 308.8 0 216 0L168 0C75.2 0 0 75.2 0 168l0 24zm336 64c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-16c0-8.8 7.2-16 16-16s16 7.2 16 16l0 64zM160 272c5.5 0 10.9-.7 16-2l0 2 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-32 16 0zm64-24l0-40c0-8.8 7.2-16 16-16s16 7.2 16 16l0 48 0 16c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-24z"]
+};
+var faFolder = {
+  prefix: 'far',
+  iconName: 'folder',
+  icon: [512, 512, [128193, 128447, 61716, "folder-blank"], "f07b", "M0 96C0 60.7 28.7 32 64 32H196.1c19.1 0 37.4 7.6 50.9 21.1L289.9 96H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16H286.6c-10.6 0-20.8-4.2-28.3-11.7L213.1 87c-4.5-4.5-10.6-7-17-7H64z"]
+};
+var faFolderBlank = faFolder;
+var faUser = {
+  prefix: 'far',
+  iconName: 'user',
+  icon: [448, 512, [128100, 62144], "f007", "M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"]
+};
+var faSquareCaretLeft = {
+  prefix: 'far',
+  iconName: 'square-caret-left',
+  icon: [448, 512, ["caret-square-left"], "f191", "M48 416c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80c-8.8 0-16 7.2-16 16l0 320zm16 64c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480zm64-224c0-6.7 2.8-13 7.7-17.6l112-104c7-6.5 17.2-8.2 25.9-4.4s14.4 12.5 14.4 22l0 208c0 9.5-5.7 18.2-14.4 22s-18.9 2.1-25.9-4.4l-112-104c-4.9-4.5-7.7-10.9-7.7-17.6z"]
+};
+var faCaretSquareLeft = faSquareCaretLeft;
+var faStar = {
+  prefix: 'far',
+  iconName: 'star',
+  icon: [576, 512, [11088, 61446], "f005", "M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.6 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z"]
+};
+var faChessKnight = {
+  prefix: 'far',
+  iconName: 'chess-knight',
+  icon: [448, 512, [9822], "f441", "M226.6 48H117.3l17.1 12.8c6 4.5 9.6 11.6 9.6 19.2s-3.6 14.7-9.6 19.2l-6.5 4.9c-10 7.5-16 19.3-16 31.9l-.3 91c0 10.2 4.9 19.9 13.2 25.8l1.9 1.3c9.9 7.1 23.3 7 33.2-.1l49.9-36.3c10.7-7.8 25.7-5.4 33.5 5.3s5.4 25.7-5.3 33.5l-49.9 36.3-53.8 39.1c-7.3 5.3-13 12.2-16.9 20.1H66.8c5.3-22.1 17.8-41.9 35.9-56.3c-1.3-.8-2.6-1.7-3.8-2.6L97 291.8c-21-15-33.4-39.2-33.3-65l.3-91c.1-19.8 6.7-38.7 18.6-53.9l-.4-.3C70.7 73 64 59.6 64 45.3C64 20.3 84.3 0 109.3 0H226.6C331.2 0 416 84.8 416 189.4c0 11.1-1 22.2-2.9 33.2L390.1 352H341.3l24.5-137.8c1.5-8.2 2.2-16.5 2.2-24.8C368 111.3 304.7 48 226.6 48zM85.2 432L68.7 464H379.3l-16.6-32H85.2zm315.7-30.7l26.5 51.2c3 5.8 4.6 12.2 4.6 18.7c0 22.5-18.2 40.8-40.8 40.8H56.8C34.2 512 16 493.8 16 471.2c0-6.5 1.6-12.9 4.6-18.7l26.5-51.2C52.5 390.7 63.5 384 75.5 384h297c12 0 22.9 6.7 28.4 17.3zM172 128a20 20 0 1 1 0 40 20 20 0 1 1 0-40z"]
+};
+var faFaceLaughSquint = {
+  prefix: 'far',
+  iconName: 'face-laugh-squint',
+  icon: [512, 512, ["laugh-squint"], "f59b", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm130.7 57.9c-4.2-13.6 7.1-25.9 21.3-25.9H364.5c14.2 0 25.5 12.4 21.3 25.9C369 368.4 318.2 408 258.2 408s-110.8-39.6-127.5-94.1zm2.8-183.3l89.9 47.9c10.7 5.7 10.7 21.1 0 26.8l-89.9 47.9c-7.9 4.2-17.5-1.5-17.5-10.5c0-2.8 1-5.5 2.8-7.6l36-43.2-36-43.2c-1.8-2.1-2.8-4.8-2.8-7.6c0-9 9.6-14.7 17.5-10.5zM396 141.1c0 2.8-1 5.5-2.8 7.6l-36 43.2 36 43.2c1.8 2.1 2.8 4.8 2.8 7.6c0 9-9.6 14.7-17.5 10.5l-89.9-47.9c-10.7-5.7-10.7-21.1 0-26.8l89.9-47.9c7.9-4.2 17.5 1.5 17.5 10.5z"]
+};
+var faLaughSquint = faFaceLaughSquint;
+var faFaceLaugh = {
+  prefix: 'far',
+  iconName: 'face-laugh',
+  icon: [512, 512, ["laugh"], "f599", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm130.7 57.9c-4.2-13.6 7.1-25.9 21.3-25.9H364.5c14.2 0 25.5 12.4 21.3 25.9C369 368.4 318.2 408 258.2 408s-110.8-39.6-127.5-94.1zM144.4 192a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"]
+};
+var faLaugh = faFaceLaugh;
+var faFolderOpen = {
+  prefix: 'far',
+  iconName: 'folder-open',
+  icon: [576, 512, [128194, 128449, 61717], "f07c", "M384 480h48c11.4 0 21.9-6 27.6-15.9l112-192c5.8-9.9 5.8-22.1 .1-32.1S555.5 224 544 224H144c-11.4 0-21.9 6-27.6 15.9L48 357.1V96c0-8.8 7.2-16 16-16H181.5c4.2 0 8.3 1.7 11.3 4.7l26.5 26.5c21 21 49.5 32.8 79.2 32.8H416c8.8 0 16 7.2 16 16v32h48V160c0-35.3-28.7-64-64-64H298.5c-17 0-33.3-6.7-45.3-18.7L226.7 50.7c-12-12-28.3-18.7-45.3-18.7H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H87.7 384z"]
+};
+var faClipboard = {
+  prefix: 'far',
+  iconName: 'clipboard',
+  icon: [384, 512, [128203], "f328", "M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"]
+};
+var faChessQueen = {
+  prefix: 'far',
+  iconName: 'chess-queen',
+  icon: [512, 512, [9819], "f445", "M256 96a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm-95.2-8c-18.1 0-31.3 12.8-35.6 26.9c-8 26.2-32.4 45.2-61.2 45.2c-10 0-19.4-2.3-27.7-6.3c-7.6-3.7-16.7-3.3-24 1.2C.7 162.1-3.1 177.1 3.7 188.9L97.6 352H153l-83-144.1c40.5-2.2 75.3-25.9 93.1-59.8c22 26.8 55.4 43.9 92.8 43.9s70.8-17.1 92.8-43.9c17.8 34 52.6 57.7 93.1 59.8L359 352h55.4l93.9-163.1c6.8-11.7 3-26.7-8.6-33.8c-7.3-4.5-16.4-4.9-24-1.2c-8.4 4-17.7 6.3-27.7 6.3c-28.8 0-53.2-19-61.2-45.2C382.5 100.8 369.3 88 351.2 88c-14.5 0-26.3 8.5-32.4 19.3c-12.4 22-35.9 36.7-62.8 36.7s-50.4-14.8-62.8-36.7C187.1 96.5 175.4 88 160.8 88zM133.2 432H378.8l16.6 32H116.7l16.6-32zm283.7-30.7c-5.5-10.6-16.5-17.3-28.4-17.3h-265c-12 0-22.9 6.7-28.4 17.3L68.6 452.5c-3 5.8-4.6 12.2-4.6 18.7c0 22.5 18.2 40.8 40.8 40.8H407.2c22.5 0 40.8-18.2 40.8-40.8c0-6.5-1.6-12.9-4.6-18.7l-26.5-51.2z"]
+};
+var faHandBackFist = {
+  prefix: 'far',
+  iconName: 'hand-back-fist',
+  icon: [448, 512, ["hand-rock"], "f255", "M144 64c0-8.8 7.2-16 16-16s16 7.2 16 16c0 9.1 5.1 17.4 13.3 21.5s17.9 3.2 25.1-2.3c2.7-2 6-3.2 9.6-3.2c8.8 0 16 7.2 16 16c0 9.1 5.1 17.4 13.3 21.5s17.9 3.2 25.1-2.3c2.7-2 6-3.2 9.6-3.2c8.8 0 16 7.2 16 16c0 9.1 5.1 17.4 13.3 21.5s17.9 3.2 25.1-2.3c2.7-2 6-3.2 9.6-3.2c8.8 0 16 7.2 16 16V264c0 31.3-20 58-48 67.9c-9.6 3.4-16 12.5-16 22.6V488c0 13.3 10.7 24 24 24s24-10.7 24-24V370.2c38-20.1 64-60.1 64-106.2V160c0-35.3-28.7-64-64-64c-2.8 0-5.6 .2-8.3 .5C332.8 77.1 311.9 64 288 64c-2.8 0-5.6 .2-8.3 .5C268.8 45.1 247.9 32 224 32c-2.8 0-5.6 .2-8.3 .5C204.8 13.1 183.9 0 160 0C124.7 0 96 28.7 96 64v64.3c-11.7 7.4-22.5 16.4-32 26.9l17.8 16.1L64 155.2l-9.4 10.5C40 181.8 32 202.8 32 224.6v12.8c0 49.6 24.2 96.1 64.8 124.5l13.8-19.7L96.8 361.9l8.9 6.2c6.9 4.8 14.4 8.6 22.3 11.3V488c0 13.3 10.7 24 24 24s24-10.7 24-24V359.9c0-12.6-9.8-23.1-22.4-23.9c-7.3-.5-14.3-2.9-20.3-7.1l-13.1 18.7 13.1-18.7-8.9-6.2C96.6 303.1 80 271.3 80 237.4V224.6c0-9.9 3.7-19.4 10.3-26.8l9.4-10.5c3.8-4.2 7.9-8.1 12.3-11.6V208c0 8.8 7.2 16 16 16s16-7.2 16-16V142.3 128 64z"]
+};
+var faHandRock = faHandBackFist;
+var faSquareCaretUp = {
+  prefix: 'far',
+  iconName: 'square-caret-up',
+  icon: [448, 512, ["caret-square-up"], "f151", "M64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80zM0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zm224 64c6.7 0 13 2.8 17.6 7.7l104 112c6.5 7 8.2 17.2 4.4 25.9s-12.5 14.4-22 14.4l-208 0c-9.5 0-18.2-5.7-22-14.4s-2.1-18.9 4.4-25.9l104-112c4.5-4.9 10.9-7.7 17.6-7.7z"]
+};
+var faCaretSquareUp = faSquareCaretUp;
+var faChartBar = {
+  prefix: 'far',
+  iconName: 'chart-bar',
+  icon: [512, 512, ["bar-chart"], "f080", "M24 32c13.3 0 24 10.7 24 24V408c0 13.3 10.7 24 24 24H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H72c-39.8 0-72-32.2-72-72V56C0 42.7 10.7 32 24 32zM128 136c0-13.3 10.7-24 24-24l208 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-208 0c-13.3 0-24-10.7-24-24zm24 72H296c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24zm0 96H424c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24z"]
+};
+var faBarChart = faChartBar;
+var faWindowRestore = {
+  prefix: 'far',
+  iconName: 'window-restore',
+  icon: [512, 512, [], "f2d2", "M432 48H208c-17.7 0-32 14.3-32 32V96H128V80c0-44.2 35.8-80 80-80H432c44.2 0 80 35.8 80 80V304c0 44.2-35.8 80-80 80H416V336h16c17.7 0 32-14.3 32-32V80c0-17.7-14.3-32-32-32zM48 448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V256H48V448zM64 128H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192c0-35.3 28.7-64 64-64z"]
+};
+var faSquarePlus = {
+  prefix: 'far',
+  iconName: 'square-plus',
+  icon: [448, 512, [61846, "plus-square"], "f0fe", "M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM200 344V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"]
+};
+var faPlusSquare = faSquarePlus;
+var faImage = {
+  prefix: 'far',
+  iconName: 'image',
+  icon: [512, 512, [], "f03e", "M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"]
+};
+var faFolderClosed = {
+  prefix: 'far',
+  iconName: 'folder-closed',
+  icon: [512, 512, [], "e185", "M251.7 127.6l0 0c10.5 10.5 24.7 16.4 39.6 16.4H448c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H197.5c4.2 0 8.3 1.7 11.3 4.7l33.9-33.9L208.8 84.7l42.9 42.9zM48 240H464V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V240zM285.7 93.7L242.7 50.7c-12-12-28.3-18.7-45.3-18.7H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H291.3c-2.1 0-4.2-.8-5.7-2.3z"]
+};
+var faLemon = {
+  prefix: 'far',
+  iconName: 'lemon',
+  icon: [448, 512, [127819], "f094", "M368 80c-3.2 0-6.2 .4-8.9 1.3C340 86.8 313 91.9 284.8 84.6C227.4 69.7 160.2 92 110.1 142.1S37.7 259.4 52.6 316.8c7.3 28.2 2.2 55.2-3.3 74.3c-.8 2.8-1.3 5.8-1.3 8.9c0 17.7 14.3 32 32 32c3.2 0 6.2-.4 8.9-1.3c19.1-5.5 46.1-10.7 74.3-3.3c57.4 14.9 124.6-7.4 174.7-57.5s72.4-117.3 57.5-174.7c-7.3-28.2-2.2-55.2 3.3-74.3c.8-2.8 1.3-5.8 1.3-8.9c0-17.7-14.3-32-32-32zm0-48c44.2 0 80 35.8 80 80c0 7.7-1.1 15.2-3.1 22.3c-4.6 15.8-7.1 32.9-3 48.9c20.1 77.6-10.9 161.5-70 220.7s-143.1 90.2-220.7 70c-16-4.1-33-1.6-48.9 3c-7.1 2-14.6 3.1-22.3 3.1c-44.2 0-80-35.8-80-80c0-7.7 1.1-15.2 3.1-22.3c4.6-15.8 7.1-32.9 3-48.9C-14 251.3 17 167.3 76.2 108.2S219.3 18 296.8 38.1c16 4.1 33 1.6 48.9-3c7.1-2 14.6-3.1 22.3-3.1zM246.7 167c-52 15.2-96.5 59.7-111.7 111.7c-3.7 12.7-17.1 20-29.8 16.3s-20-17.1-16.3-29.8c19.8-67.7 76.6-124.5 144.3-144.3c12.7-3.7 26.1 3.6 29.8 16.3s-3.6 26.1-16.3 29.8z"]
+};
+var faHandshake = {
+  prefix: 'far',
+  iconName: 'handshake',
+  icon: [640, 512, [], "f2b5", "M272.2 64.6l-51.1 51.1c-15.3 4.2-29.5 11.9-41.5 22.5L153 161.9C142.8 171 129.5 176 115.8 176H96V304c20.4 .6 39.8 8.9 54.3 23.4l35.6 35.6 7 7 0 0L219.9 397c6.2 6.2 16.4 6.2 22.6 0c1.7-1.7 3-3.7 3.7-5.8c2.8-7.7 9.3-13.5 17.3-15.3s16.4 .6 22.2 6.5L296.5 393c11.6 11.6 30.4 11.6 41.9 0c5.4-5.4 8.3-12.3 8.6-19.4c.4-8.8 5.6-16.6 13.6-20.4s17.3-3 24.4 2.1c9.4 6.7 22.5 5.8 30.9-2.6c9.4-9.4 9.4-24.6 0-33.9L340.1 243l-35.8 33c-27.3 25.2-69.2 25.6-97 .9c-31.7-28.2-32.4-77.4-1.6-106.5l70.1-66.2C303.2 78.4 339.4 64 377.1 64c36.1 0 71 13.3 97.9 37.2L505.1 128H544h40 40c8.8 0 16 7.2 16 16V352c0 17.7-14.3 32-32 32H576c-11.8 0-22.2-6.4-27.7-16H463.4c-3.4 6.7-7.9 13.1-13.5 18.7c-17.1 17.1-40.8 23.8-63 20.1c-3.6 7.3-8.5 14.1-14.6 20.2c-27.3 27.3-70 30-100.4 8.1c-25.1 20.8-62.5 19.5-86-4.1L159 404l-7-7-35.6-35.6c-5.5-5.5-12.7-8.7-20.4-9.3C96 369.7 81.6 384 64 384H32c-17.7 0-32-14.3-32-32V144c0-8.8 7.2-16 16-16H56 96h19.8c2 0 3.9-.7 5.3-2l26.5-23.6C175.5 77.7 211.4 64 248.7 64H259c4.4 0 8.9 .2 13.2 .6zM544 320V176H496c-5.9 0-11.6-2.2-15.9-6.1l-36.9-32.8c-18.2-16.2-41.7-25.1-66.1-25.1c-25.4 0-49.8 9.7-68.3 27.1l-70.1 66.2c-10.3 9.8-10.1 26.3 .5 35.7c9.3 8.3 23.4 8.1 32.5-.3l71.9-66.4c9.7-9 24.9-8.4 33.9 1.4s8.4 24.9-1.4 33.9l-.8 .8 74.4 74.4c10 10 16.5 22.3 19.4 35.1H544zM64 336a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zm528 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32z"]
+};
+var faGem = {
+  prefix: 'far',
+  iconName: 'gem',
+  icon: [512, 512, [128142], "f3a5", "M168.5 72L256 165l87.5-93h-175zM383.9 99.1L311.5 176h129L383.9 99.1zm50 124.9H256 78.1L256 420.3 433.9 224zM71.5 176h129L128.1 99.1 71.5 176zm434.3 40.1l-232 256c-4.5 5-11 7.9-17.8 7.9s-13.2-2.9-17.8-7.9l-232-256c-7.7-8.5-8.3-21.2-1.5-30.4l112-152c4.5-6.1 11.7-9.8 19.3-9.8H376c7.6 0 14.8 3.6 19.3 9.8l112 152c6.8 9.2 6.1 21.9-1.5 30.4z"]
+};
+var faCirclePlay = {
+  prefix: 'far',
+  iconName: 'circle-play',
+  icon: [512, 512, [61469, "play-circle"], "f144", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c7.6-4.2 16.8-4.1 24.3 .5l144 88c7.1 4.4 11.5 12.1 11.5 20.5s-4.4 16.1-11.5 20.5l-144 88c-7.4 4.5-16.7 4.7-24.3 .5s-12.3-12.2-12.3-20.9V168c0-8.7 4.7-16.7 12.3-20.9z"]
+};
+var faPlayCircle = faCirclePlay;
+var faCircleCheck = {
+  prefix: 'far',
+  iconName: 'circle-check',
+  icon: [512, 512, [61533, "check-circle"], "f058", "M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"]
+};
+var faCheckCircle = faCircleCheck;
+var faCircleStop = {
+  prefix: 'far',
+  iconName: 'circle-stop',
+  icon: [512, 512, [62094, "stop-circle"], "f28d", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm192-96H320c17.7 0 32 14.3 32 32V320c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32V192c0-17.7 14.3-32 32-32z"]
+};
+var faStopCircle = faCircleStop;
+var faIdBadge = {
+  prefix: 'far',
+  iconName: 'id-badge',
+  icon: [384, 512, [], "f2c1", "M256 48V64c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H256zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM160 320h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z"]
+};
+var faFaceLaughBeam = {
+  prefix: 'far',
+  iconName: 'face-laugh-beam',
+  icon: [512, 512, [128513, "laugh-beam"], "f59a", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm130.7 57.9c-4.2-13.6 7.1-25.9 21.3-25.9H364.5c14.2 0 25.5 12.4 21.3 25.9C369 368.4 318.2 408 258.2 408s-110.8-39.6-127.5-94.1zm86.9-85.1l0 0 0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0zm160 0l0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0 0 0z"]
+};
+var faLaughBeam = faFaceLaughBeam;
+var faRegistered = {
+  prefix: 'far',
+  iconName: 'registered',
+  icon: [512, 512, [174], "f25d", "M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM160 152V264v96c0 13.3 10.7 24 24 24s24-10.7 24-24V288h60.9l37.2 81.9c5.5 12.1 19.7 17.4 31.8 11.9s17.4-19.7 11.9-31.8L315.7 275c21.8-14.3 36.3-39 36.3-67c0-44.2-35.8-80-80-80H184c-13.3 0-24 10.7-24 24zm48 88V176h64c17.7 0 32 14.3 32 32s-14.3 32-32 32H208z"]
+};
+var faAddressCard = {
+  prefix: 'far',
+  iconName: 'address-card',
+  icon: [576, 512, [62140, "contact-card", "vcard"], "f2bb", "M512 80c8.8 0 16 7.2 16 16V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16H512zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM208 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128zm-32 32c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16H304c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80H176zM376 144c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376z"]
+};
+var faContactCard = faAddressCard;
+var faVcard = faAddressCard;
+var faFaceTired = {
+  prefix: 'far',
+  iconName: 'face-tired',
+  icon: [512, 512, [128555, "tired"], "f5c8", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm176.5 64.3C196.1 302.1 223.8 288 256 288s59.9 14.1 79.5 32.3C354.5 338.1 368 362 368 384c0 5.4-2.7 10.4-7.2 13.4s-10.2 3.4-15.2 1.3l-17.2-7.5c-22.8-10-47.5-15.1-72.4-15.1s-49.6 5.2-72.4 15.1l-17.2 7.5c-4.9 2.2-10.7 1.7-15.2-1.3s-7.2-8-7.2-13.4c0-22 13.5-45.9 32.5-63.7zm-43-173.6l89.9 47.9c10.7 5.7 10.7 21.1 0 26.8l-89.9 47.9c-7.9 4.2-17.5-1.5-17.5-10.5c0-2.8 1-5.5 2.8-7.6l36-43.2-36-43.2c-1.8-2.1-2.8-4.8-2.8-7.6c0-9 9.6-14.7 17.5-10.5zM396 157.1c0 2.8-1 5.5-2.8 7.6l-36 43.2 36 43.2c1.8 2.1 2.8 4.8 2.8 7.6c0 9-9.6 14.7-17.5 10.5l-89.9-47.9c-10.7-5.7-10.7-21.1 0-26.8l89.9-47.9c7.9-4.2 17.5 1.5 17.5 10.5z"]
+};
+var faTired = faFaceTired;
+var faFontAwesome = {
+  prefix: 'far',
+  iconName: 'font-awesome',
+  icon: [448, 512, [62501, 62694, "font-awesome-flag", "font-awesome-logo-full"], "f2b4", "M48 56c0-13.3-10.7-24-24-24S0 42.7 0 56V456c0 13.3 10.7 24 24 24s24-10.7 24-24V124.2l12.5-2.4c16.7-3.2 31.5-8.5 44.2-13.1l0 0 0 0c3.7-1.3 7.1-2.6 10.4-3.7c15.2-5.2 30.4-9.1 51.2-9.1c25.6 0 43 6 63.5 13.3l.5 .2c20.9 7.4 44.8 15.9 79.1 15.9c32.4 0 53.7-6.8 90.5-19.6V342.9l-9.5 3.3c-41.5 14.4-55.2 19.2-81 19.2c-25.7 0-43.1-6-63.6-13.3l-.6-.2c-20.8-7.4-44.8-15.8-79-15.8c-16.8 0-31 2-43.9 5c-12.9 3-20.9 16-17.9 28.9s16 20.9 28.9 17.9c9.6-2.2 20.1-3.7 32.9-3.7c25.6 0 43 6 63.5 13.3l.5 .2c20.9 7.4 44.8 15.9 79.1 15.9c34.4 0 56.4-7.7 97.8-22.2c7.5-2.6 15.5-5.4 24.4-8.5l16.2-5.5V360 72 38.4L416.2 49.3c-9.7 3.3-18.2 6.3-25.7 8.9c-41.5 14.4-55.2 19.2-81 19.2c-25.7 0-43.1-6-63.6-13.3l-.6-.2c-20.8-7.4-44.8-15.8-79-15.8c-27.8 0-48.5 5.5-66.6 11.6c-4.9 1.7-9.3 3.3-13.6 4.8c-11.9 4.3-22 7.9-34.7 10.3L48 75.4V56z"]
+};
+var faFontAwesomeFlag = faFontAwesome;
+var faFontAwesomeLogoFull = faFontAwesome;
+var faFaceSmileWink = {
+  prefix: 'far',
+  iconName: 'face-smile-wink',
+  icon: [512, 512, [128521, "smile-wink"], "f4da", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm177.6 62.1C192.8 334.5 218.8 352 256 352s63.2-17.5 78.4-33.9c9-9.7 24.2-10.4 33.9-1.4s10.4 24.2 1.4 33.9c-22 23.8-60 49.4-113.6 49.4s-91.7-25.5-113.6-49.4c-9-9.7-8.4-24.9 1.4-33.9s24.9-8.4 33.9 1.4zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm165.8 21.7c-7.6 8.1-20.2 8.5-28.3 .9s-8.5-20.2-.9-28.3c14.5-15.5 35.2-22.3 54.6-22.3s40.1 6.8 54.6 22.3c7.6 8.1 7.1 20.7-.9 28.3s-20.7 7.1-28.3-.9c-5.5-5.8-14.8-9.7-25.4-9.7s-19.9 3.8-25.4 9.7z"]
+};
+var faSmileWink = faFaceSmileWink;
+var faFileWord = {
+  prefix: 'far',
+  iconName: 'file-word',
+  icon: [384, 512, [], "f1c2", "M48 448V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm55 241.1c-3.8-12.7-17.2-19.9-29.9-16.1s-19.9 17.2-16.1 29.9l48 160c3 10.2 12.4 17.1 23 17.1s19.9-7 23-17.1l25-83.4 25 83.4c3 10.2 12.4 17.1 23 17.1s19.9-7 23-17.1l48-160c3.8-12.7-3.4-26.1-16.1-29.9s-26.1 3.4-29.9 16.1l-25 83.4-25-83.4c-3-10.2-12.4-17.1-23-17.1s-19.9 7-23 17.1l-25 83.4-25-83.4z"]
+};
+var faFilePowerpoint = {
+  prefix: 'far',
+  iconName: 'file-powerpoint',
+  icon: [384, 512, [], "f1c4", "M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm72 208c-13.3 0-24 10.7-24 24V336v56c0 13.3 10.7 24 24 24s24-10.7 24-24V360h44c42 0 76-34 76-76s-34-76-76-76H136zm68 104H160V256h44c15.5 0 28 12.5 28 28s-12.5 28-28 28z"]
+};
+var faEnvelopeOpen = {
+  prefix: 'far',
+  iconName: 'envelope-open',
+  icon: [512, 512, [62135], "f2b6", "M255.4 48.2c.2-.1 .4-.2 .6-.2s.4 .1 .6 .2L460.6 194c2.1 1.5 3.4 3.9 3.4 6.5v13.6L291.5 355.7c-20.7 17-50.4 17-71.1 0L48 214.1V200.5c0-2.6 1.2-5 3.4-6.5L255.4 48.2zM48 276.2L190 392.8c38.4 31.5 93.7 31.5 132 0L464 276.2V456c0 4.4-3.6 8-8 8H56c-4.4 0-8-3.6-8-8V276.2zM256 0c-10.2 0-20.2 3.2-28.5 9.1L23.5 154.9C8.7 165.4 0 182.4 0 200.5V456c0 30.9 25.1 56 56 56H456c30.9 0 56-25.1 56-56V200.5c0-18.1-8.7-35.1-23.4-45.6L284.5 9.1C276.2 3.2 266.2 0 256 0z"]
+};
+var faFileZipper = {
+  prefix: 'far',
+  iconName: 'file-zipper',
+  icon: [384, 512, ["file-archive"], "f1c6", "M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16h48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16h48v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm48 112c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H128c-8.8 0-16 7.2-16 16zm0 64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H128c-8.8 0-16 7.2-16 16zm-6.3 71.8L82.1 335.9c-1.4 5.4-2.1 10.9-2.1 16.4c0 35.2 28.8 63.7 64 63.7s64-28.5 64-63.7c0-5.5-.7-11.1-2.1-16.4l-23.5-88.2c-3.7-14-16.4-23.8-30.9-23.8H136.6c-14.5 0-27.2 9.7-30.9 23.8zM128 336h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H128c-8.8 0-16-7.2-16-16s7.2-16 16-16z"]
+};
+var faFileArchive = faFileZipper;
+var faSquare = {
+  prefix: 'far',
+  iconName: 'square',
+  icon: [448, 512, [9632, 9723, 9724, 61590], "f0c8", "M384 80c8.8 0 16 7.2 16 16V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16H384zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"]
+};
+var faSnowflake = {
+  prefix: 'far',
+  iconName: 'snowflake',
+  icon: [448, 512, [10052, 10054], "f2dc", "M224 0c13.3 0 24 10.7 24 24V70.1l23-23c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-57 57v76.5l66.2-38.2 20.9-77.8c3.4-12.8 16.6-20.4 29.4-17s20.4 16.6 17 29.4L373 142.2l37.1-21.4c11.5-6.6 26.2-2.7 32.8 8.8s2.7 26.2-8.8 32.8L397 183.8l31.5 8.4c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4 17l-77.8-20.9L272 256l66.2 38.2 77.8-20.9c12.8-3.4 26 4.2 29.4 17s-4.2 26-17 29.4L397 328.2l37.1 21.4c11.5 6.6 15.4 21.3 8.8 32.8s-21.3 15.4-32.8 8.8L373 369.8l8.4 31.5c3.4 12.8-4.2 26-17 29.4s-26-4.2-29.4-17l-20.9-77.8L248 297.6v76.5l57 57c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-23-23V488c0 13.3-10.7 24-24 24s-24-10.7-24-24V441.9l-23 23c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l57-57V297.6l-66.2 38.2-20.9 77.8c-3.4 12.8-16.6 20.4-29.4 17s-20.4-16.6-17-29.4L75 369.8 37.9 391.2c-11.5 6.6-26.2 2.7-32.8-8.8s-2.7-26.2 8.8-32.8L51 328.2l-31.5-8.4c-12.8-3.4-20.4-16.6-17-29.4s16.6-20.4 29.4-17l77.8 20.9L176 256l-66.2-38.2L31.9 238.6c-12.8 3.4-26-4.2-29.4-17s4.2-26 17-29.4L51 183.8 13.9 162.4c-11.5-6.6-15.4-21.3-8.8-32.8s21.3-15.4 32.8-8.8L75 142.2l-8.4-31.5c-3.4-12.8 4.2-26 17-29.4s26 4.2 29.4 17l20.9 77.8L200 214.4V137.9L143 81c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l23 23V24c0-13.3 10.7-24 24-24z"]
+};
+var faNewspaper = {
+  prefix: 'far',
+  iconName: 'newspaper',
+  icon: [512, 512, [128240], "f1ea", "M168 80c-13.3 0-24 10.7-24 24V408c0 8.4-1.4 16.5-4.1 24H440c13.3 0 24-10.7 24-24V104c0-13.3-10.7-24-24-24H168zM72 480c-39.8 0-72-32.2-72-72V112C0 98.7 10.7 88 24 88s24 10.7 24 24V408c0 13.3 10.7 24 24 24s24-10.7 24-24V104c0-39.8 32.2-72 72-72H440c39.8 0 72 32.2 72 72V408c0 39.8-32.2 72-72 72H72zM176 136c0-13.3 10.7-24 24-24h96c13.3 0 24 10.7 24 24v80c0 13.3-10.7 24-24 24H200c-13.3 0-24-10.7-24-24V136zm200-24h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H376c-13.3 0-24-10.7-24-24s10.7-24 24-24zm0 80h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H376c-13.3 0-24-10.7-24-24s10.7-24 24-24zM200 272H408c13.3 0 24 10.7 24 24s-10.7 24-24 24H200c-13.3 0-24-10.7-24-24s10.7-24 24-24zm0 80H408c13.3 0 24 10.7 24 24s-10.7 24-24 24H200c-13.3 0-24-10.7-24-24s10.7-24 24-24z"]
+};
+var faFaceKissWinkHeart = {
+  prefix: 'far',
+  iconName: 'face-kiss-wink-heart',
+  icon: [512, 512, [128536, "kiss-wink-heart"], "f598", "M338.9 446.8c-25.4 11-53.4 17.2-82.9 17.2C141.1 464 48 370.9 48 256S141.1 48 256 48s208 93.1 208 208c0 22.4-3.5 43.9-10.1 64.1c3.1 4.5 5.7 9.4 7.8 14.6c12.7-1.6 25.1 .4 36.2 5c9.1-26.2 14-54.4 14-83.7C512 114.6 397.4 0 256 0S0 114.6 0 256S114.6 512 256 512c35.4 0 69.1-7.2 99.7-20.2c-4.8-5.5-8.5-12.2-10.4-19.7l-6.5-25.3zM296 316c0-6.9-3.1-13.2-7.3-18.3c-4.3-5.2-10.1-9.7-16.7-13.4C258.7 276.9 241.4 272 224 272c-3.6 0-6.8 2.5-7.7 6s.6 7.2 3.8 9l0 0 0 0 0 0 .2 .1c.2 .1 .5 .3 .9 .5c.8 .5 2 1.2 3.4 2.1c2.8 1.9 6.5 4.5 10.2 7.6c3.7 3.1 7.2 6.6 9.6 10.1c2.5 3.5 3.5 6.4 3.5 8.6s-1 5-3.5 8.6c-2.5 3.5-5.9 6.9-9.6 10.1c-3.7 3.1-7.4 5.7-10.2 7.6c-1.4 .9-2.6 1.6-3.4 2.1c-.4 .2-.7 .4-.9 .5l-.2 .1 0 0 0 0 0 0 0 0 0 0c-2.5 1.4-4.1 4.1-4.1 7s1.6 5.6 4.1 7l0 0 0 0 0 0 .2 .1c.2 .1 .5 .3 .9 .5c.8 .5 2 1.2 3.4 2.1c2.8 1.9 6.5 4.5 10.2 7.6c3.7 3.1 7.2 6.6 9.6 10.1c2.5 3.5 3.5 6.4 3.5 8.6s-1 5-3.5 8.6c-2.5 3.5-5.9 6.9-9.6 10.1c-3.7 3.1-7.4 5.7-10.2 7.6c-1.4 .9-2.6 1.6-3.4 2.1c-.4 .2-.7 .4-.9 .5l-.2 .1 0 0 0 0 0 0 0 0c-3.2 1.8-4.7 5.5-3.8 9s4.1 6 7.7 6c17.4 0 34.7-4.9 47.9-12.3c6.6-3.7 12.5-8.2 16.7-13.4c4.3-5.1 7.3-11.4 7.3-18.3s-3.1-13.2-7.3-18.3c-4.3-5.2-10.1-9.7-16.7-13.4c-2.7-1.5-5.7-3-8.7-4.3c3.1-1.3 6-2.7 8.7-4.3c6.6-3.7 12.5-8.2 16.7-13.4c4.3-5.1 7.3-11.4 7.3-18.3zM176.4 240a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm159.3-20c10.6 0 19.9 3.8 25.4 9.7c7.6 8.1 20.2 8.5 28.3 .9s8.5-20.2 .9-28.3C375.7 186.8 355 180 335.6 180s-40.1 6.8-54.6 22.3c-7.6 8.1-7.1 20.7 .9 28.3s20.7 7.1 28.3-.9c5.5-5.8 14.8-9.7 25.4-9.7zM434 352.3c-6-23.2-28.8-37-51.1-30.8s-35.4 30.1-29.5 53.4l22.9 89.3c2.2 8.7 11.2 13.9 19.8 11.4l84.9-23.8c22.2-6.2 35.4-30.1 29.5-53.4s-28.8-37-51.1-30.8l-20.2 5.6-5.4-21z"]
+};
+var faKissWinkHeart = faFaceKissWinkHeart;
+var faStarHalfStroke = {
+  prefix: 'far',
+  iconName: 'star-half-stroke',
+  icon: [640, 512, ["star-half-alt"], "f5c0", "M341.5 13.5C337.5 5.2 329.1 0 319.9 0s-17.6 5.2-21.6 13.5L229.7 154.8 76.5 177.5c-9 1.3-16.5 7.6-19.3 16.3s-.5 18.1 5.9 24.5L174.2 328.4 148 483.9c-1.5 9 2.2 18.1 9.7 23.5s17.3 6 25.3 1.7l137-73.2 137 73.2c8.1 4.3 17.9 3.7 25.3-1.7s11.2-14.5 9.7-23.5L465.6 328.4 576.8 218.2c6.5-6.4 8.7-15.9 5.9-24.5s-10.3-14.9-19.3-16.3L410.1 154.8 341.5 13.5zM320 384.7V79.1l52.5 108.1c3.5 7.1 10.2 12.1 18.1 13.3l118.3 17.5L423 303c-5.5 5.5-8.1 13.3-6.8 21l20.2 119.6L331.2 387.5c-3.5-1.9-7.4-2.8-11.2-2.8z"]
+};
+var faStarHalfAlt = faStarHalfStroke;
+var faFileExcel = {
+  prefix: 'far',
+  iconName: 'file-excel',
+  icon: [384, 512, [], "f1c3", "M48 448V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm90.9 233.3c-8.1-10.5-23.2-12.3-33.7-4.2s-12.3 23.2-4.2 33.7L161.6 320l-44.5 57.3c-8.1 10.5-6.3 25.5 4.2 33.7s25.5 6.3 33.7-4.2L192 359.1l37.1 47.6c8.1 10.5 23.2 12.3 33.7 4.2s12.3-23.2 4.2-33.7L222.4 320l44.5-57.3c8.1-10.5 6.3-25.5-4.2-33.7s-25.5-6.3-33.7 4.2L192 280.9l-37.1-47.6z"]
+};
+var faFaceGrinBeam = {
+  prefix: 'far',
+  iconName: 'face-grin-beam',
+  icon: [512, 512, [128516, "grin-beam"], "f582", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm349.5 52.4c18.7-4.4 35.9 12 25.5 28.1C350.4 374.6 306.3 400 255.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5zM217.6 228.8l0 0 0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0zm160 0l0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0 0 0z"]
+};
+var faGrinBeam = faFaceGrinBeam;
+var faObjectUngroup = {
+  prefix: 'far',
+  iconName: 'object-ungroup',
+  icon: [640, 512, [], "f248", "M48.2 66.8c-.1-.8-.2-1.7-.2-2.5c0-.1 0-.1 0-.2c0-8.8 7.2-16 16-16c.9 0 1.9 .1 2.8 .2C74.3 49.5 80 56.1 80 64c0 8.8-7.2 16-16 16c-7.9 0-14.5-5.7-15.8-13.2zM0 64c0 26.9 16.5 49.9 40 59.3V228.7C16.5 238.1 0 261.1 0 288c0 35.3 28.7 64 64 64c26.9 0 49.9-16.5 59.3-40H324.7c9.5 23.5 32.5 40 59.3 40c35.3 0 64-28.7 64-64c0-26.9-16.5-49.9-40-59.3V123.3c23.5-9.5 40-32.5 40-59.3c0-35.3-28.7-64-64-64c-26.9 0-49.9 16.5-59.3 40H123.3C113.9 16.5 90.9 0 64 0C28.7 0 0 28.7 0 64zm368 0a16 16 0 1 1 32 0 16 16 0 1 1 -32 0zM324.7 88c6.5 16 19.3 28.9 35.3 35.3V228.7c-16 6.5-28.9 19.3-35.3 35.3H123.3c-6.5-16-19.3-28.9-35.3-35.3V123.3c16-6.5 28.9-19.3 35.3-35.3H324.7zM384 272a16 16 0 1 1 0 32 16 16 0 1 1 0-32zM80 288c0 7.9-5.7 14.5-13.2 15.8c-.8 .1-1.7 .2-2.5 .2l-.2 0c-8.8 0-16-7.2-16-16c0-.9 .1-1.9 .2-2.8C49.5 277.7 56.1 272 64 272c8.8 0 16 7.2 16 16zm391.3-40h45.4c6.5 16 19.3 28.9 35.3 35.3V388.7c-16 6.5-28.9 19.3-35.3 35.3H315.3c-6.5-16-19.3-28.9-35.3-35.3V352H232v36.7c-23.5 9.5-40 32.5-40 59.3c0 35.3 28.7 64 64 64c26.9 0 49.9-16.5 59.3-40H516.7c9.5 23.5 32.5 40 59.3 40c35.3 0 64-28.7 64-64c0-26.9-16.5-49.9-40-59.3V283.3c23.5-9.5 40-32.5 40-59.3c0-35.3-28.7-64-64-64c-26.9 0-49.9 16.5-59.3 40H448v16.4c9.8 8.8 17.8 19.5 23.3 31.6zm88.9-26.7a16 16 0 1 1 31.5 5.5 16 16 0 1 1 -31.5-5.5zM271.8 450.7a16 16 0 1 1 -31.5-5.5 16 16 0 1 1 31.5 5.5zm301.5 13c-7.5-1.3-13.2-7.9-13.2-15.8c0-8.8 7.2-16 16-16c7.9 0 14.5 5.7 15.8 13.2l0 .1c.1 .9 .2 1.8 .2 2.7c0 8.8-7.2 16-16 16c-.9 0-1.9-.1-2.8-.2z"]
+};
+var faCircleRight = {
+  prefix: 'far',
+  iconName: 'circle-right',
+  icon: [512, 512, [61838, "arrow-alt-circle-right"], "f35a", "M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1c-4.2-4.5-10.1-7.1-16.3-7.1C266 128 256 138 256 150.3V208H160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h96v57.7c0 12.3 10 22.3 22.3 22.3c6.2 0 12.1-2.6 16.3-7.1l99.9-107.1c3.5-3.8 5.5-8.7 5.5-13.8s-2-10.1-5.5-13.8L294.6 135.1z"]
+};
+var faArrowAltCircleRight = faCircleRight;
+var faFaceRollingEyes = {
+  prefix: 'far',
+  iconName: 'face-rolling-eyes',
+  icon: [512, 512, [128580, "meh-rolling-eyes"], "f5a5", "M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM168 376c0 13.3 10.7 24 24 24H320c13.3 0 24-10.7 24-24s-10.7-24-24-24H192c-13.3 0-24 10.7-24 24zm-8-104c-26.5 0-48-21.5-48-48c0-14.3 6.3-27.2 16.2-36c-.2 1.3-.2 2.6-.2 4c0 17.7 14.3 32 32 32s32-14.3 32-32c0-1.4-.1-2.7-.2-4c10 8.8 16.2 21.7 16.2 36c0 26.5-21.5 48-48 48zm0 32a80 80 0 1 0 0-160 80 80 0 1 0 0 160zm192-32c-26.5 0-48-21.5-48-48c0-14.3 6.3-27.2 16.2-36c-.2 1.3-.2 2.6-.2 4c0 17.7 14.3 32 32 32s32-14.3 32-32c0-1.4-.1-2.7-.2-4c10 8.8 16.2 21.7 16.2 36c0 26.5-21.5 48-48 48zm0 32a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"]
+};
+var faMehRollingEyes = faFaceRollingEyes;
+var faObjectGroup = {
+  prefix: 'far',
+  iconName: 'object-group',
+  icon: [576, 512, [], "f247", "M48 115.8C38.2 107 32 94.2 32 80c0-26.5 21.5-48 48-48c14.2 0 27 6.2 35.8 16H460.2c8.8-9.8 21.6-16 35.8-16c26.5 0 48 21.5 48 48c0 14.2-6.2 27-16 35.8V396.2c9.8 8.8 16 21.6 16 35.8c0 26.5-21.5 48-48 48c-14.2 0-27-6.2-35.8-16H115.8c-8.8 9.8-21.6 16-35.8 16c-26.5 0-48-21.5-48-48c0-14.2 6.2-27 16-35.8V115.8zM125.3 96c-4.8 13.6-15.6 24.4-29.3 29.3V386.7c13.6 4.8 24.4 15.6 29.3 29.3H450.7c4.8-13.6 15.6-24.4 29.3-29.3V125.3c-13.6-4.8-24.4-15.6-29.3-29.3H125.3zm2.7 64c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V160zM256 320h32c35.3 0 64-28.7 64-64V224h64c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H288c-17.7 0-32-14.3-32-32V320z"]
+};
+var faHeart = {
+  prefix: 'far',
+  iconName: 'heart',
+  icon: [512, 512, [128153, 128154, 128155, 128156, 128420, 129293, 129294, 129505, 9829, 10084, 61578], "f004", "M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"]
+};
+var faFaceSurprise = {
+  prefix: 'far',
+  iconName: 'face-surprise',
+  icon: [512, 512, [128558, "surprise"], "f5c2", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm176.4-80a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm128 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM256 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"]
+};
+var faSurprise = faFaceSurprise;
+var faCirclePause = {
+  prefix: 'far',
+  iconName: 'circle-pause',
+  icon: [512, 512, [62092, "pause-circle"], "f28b", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm224-72V328c0 13.3-10.7 24-24 24s-24-10.7-24-24V184c0-13.3 10.7-24 24-24s24 10.7 24 24zm112 0V328c0 13.3-10.7 24-24 24s-24-10.7-24-24V184c0-13.3 10.7-24 24-24s24 10.7 24 24z"]
+};
+var faPauseCircle = faCirclePause;
+var faCircle = {
+  prefix: 'far',
+  iconName: 'circle',
+  icon: [512, 512, [128308, 128309, 128992, 128993, 128994, 128995, 128996, 9679, 9898, 9899, 11044, 61708, 61915], "f111", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"]
+};
+var faCircleUp = {
+  prefix: 'far',
+  iconName: 'circle-up',
+  icon: [512, 512, [61467, "arrow-alt-circle-up"], "f35b", "M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM135.1 217.4c-4.5 4.2-7.1 10.1-7.1 16.3c0 12.3 10 22.3 22.3 22.3H208v96c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V256h57.7c12.3 0 22.3-10 22.3-22.3c0-6.2-2.6-12.1-7.1-16.3L269.8 117.5c-3.8-3.5-8.7-5.5-13.8-5.5s-10.1 2-13.8 5.5L135.1 217.4z"]
+};
+var faArrowAltCircleUp = faCircleUp;
+var faFileAudio = {
+  prefix: 'far',
+  iconName: 'file-audio',
+  icon: [384, 512, [], "f1c7", "M64 464H320c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM192 272V400c0 6.5-3.9 12.3-9.9 14.8s-12.9 1.1-17.4-3.5L129.4 376H112c-8.8 0-16-7.2-16-16V312c0-8.8 7.2-16 16-16h17.4l35.3-35.3c4.6-4.6 11.5-5.9 17.4-3.5s9.9 8.3 9.9 14.8zm85.8-4c11.6 20 18.2 43.3 18.2 68s-6.6 48-18.2 68c-6.6 11.5-21.3 15.4-32.8 8.8s-15.4-21.3-8.8-32.8c7.5-12.9 11.8-27.9 11.8-44s-4.3-31.1-11.8-44c-6.6-11.5-2.7-26.2 8.8-32.8s26.2-2.7 32.8 8.8z"]
+};
+var faFileImage = {
+  prefix: 'far',
+  iconName: 'file-image',
+  icon: [384, 512, [128443], "f1c5", "M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm96 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm69.2 46.9c-3-4.3-7.9-6.9-13.2-6.9s-10.2 2.6-13.2 6.9l-41.3 59.7-11.9-19.1c-2.9-4.7-8.1-7.5-13.6-7.5s-10.6 2.8-13.6 7.5l-40 64c-3.1 4.9-3.2 11.1-.4 16.2s8.2 8.2 14 8.2h48 32 40 72c6 0 11.4-3.3 14.2-8.6s2.4-11.6-1-16.5l-72-104z"]
+};
+var faCircleQuestion = {
+  prefix: 'far',
+  iconName: 'circle-question',
+  icon: [512, 512, [62108, "question-circle"], "f059", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"]
+};
+var faQuestionCircle = faCircleQuestion;
+var faFaceMehBlank = {
+  prefix: 'far',
+  iconName: 'face-meh-blank',
+  icon: [512, 512, [128566, "meh-blank"], "f5a4", "M256 48a208 208 0 1 0 0 416 208 208 0 1 0 0-416zM512 256A256 256 0 1 1 0 256a256 256 0 1 1 512 0zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"]
+};
+var faMehBlank = faFaceMehBlank;
+var faEye = {
+  prefix: 'far',
+  iconName: 'eye',
+  icon: [576, 512, [128065], "f06e", "M288 80c-65.2 0-118.8 29.6-159.9 67.7C89.6 183.5 63 226 49.4 256c13.6 30 40.2 72.5 78.6 108.3C169.2 402.4 222.8 432 288 432s118.8-29.6 159.9-67.7C486.4 328.5 513 286 526.6 256c-13.6-30-40.2-72.5-78.6-108.3C406.8 109.6 353.2 80 288 80zM95.4 112.6C142.5 68.8 207.2 32 288 32s145.5 36.8 192.6 80.6c46.8 43.5 78.1 95.4 93 131.1c3.3 7.9 3.3 16.7 0 24.6c-14.9 35.7-46.2 87.7-93 131.1C433.5 443.2 368.8 480 288 480s-145.5-36.8-192.6-80.6C48.6 356 17.3 304 2.5 268.3c-3.3-7.9-3.3-16.7 0-24.6C17.3 208 48.6 156 95.4 112.6zM288 336c44.2 0 80-35.8 80-80s-35.8-80-80-80c-.7 0-1.3 0-2 0c1.3 5.1 2 10.5 2 16c0 35.3-28.7 64-64 64c-5.5 0-10.9-.7-16-2c0 .7 0 1.3 0 2c0 44.2 35.8 80 80 80zm0-208a128 128 0 1 1 0 256 128 128 0 1 1 0-256z"]
+};
+var faFaceSadCry = {
+  prefix: 'far',
+  iconName: 'face-sad-cry',
+  icon: [512, 512, [128557, "sad-cry"], "f5b3", "M400 406.1V288c0-13.3-10.7-24-24-24s-24 10.7-24 24V440.6c-28.7 15-61.4 23.4-96 23.4s-67.3-8.5-96-23.4V288c0-13.3-10.7-24-24-24s-24 10.7-24 24V406.1C72.6 368.2 48 315 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 59-24.6 112.2-64 150.1zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM159.6 220c10.6 0 19.9 3.8 25.4 9.7c7.6 8.1 20.2 8.5 28.3 .9s8.5-20.2 .9-28.3C199.7 186.8 179 180 159.6 180s-40.1 6.8-54.6 22.3c-7.6 8.1-7.1 20.7 .9 28.3s20.7 7.1 28.3-.9c5.5-5.8 14.8-9.7 25.4-9.7zm166.6 9.7c5.5-5.8 14.8-9.7 25.4-9.7s19.9 3.8 25.4 9.7c7.6 8.1 20.2 8.5 28.3 .9s8.5-20.2 .9-28.3C391.7 186.8 371 180 351.6 180s-40.1 6.8-54.6 22.3c-7.6 8.1-7.1 20.7 .9 28.3s20.7 7.1 28.3-.9zM208 320v32c0 26.5 21.5 48 48 48s48-21.5 48-48V320c0-26.5-21.5-48-48-48s-48 21.5-48 48z"]
+};
+var faSadCry = faFaceSadCry;
+var faFileCode = {
+  prefix: 'far',
+  iconName: 'file-code',
+  icon: [384, 512, [], "f1c9", "M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm97 289c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L79 303c-9.4 9.4-9.4 24.6 0 33.9l48 48c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-31-31 31-31zM257 255c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l31 31-31 31c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l48-48c9.4-9.4 9.4-24.6 0-33.9l-48-48z"]
+};
+var faWindowMaximize = {
+  prefix: 'far',
+  iconName: 'window-maximize',
+  icon: [512, 512, [128470], "f2d0", "M.3 89.5C.1 91.6 0 93.8 0 96V224 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64V224 96c0-35.3-28.7-64-64-64H64c-2.2 0-4.4 .1-6.5 .3c-9.2 .9-17.8 3.8-25.5 8.2C21.8 46.5 13.4 55.1 7.7 65.5c-3.9 7.3-6.5 15.4-7.4 24zM48 224H464l0 192c0 8.8-7.2 16-16 16L64 432c-8.8 0-16-7.2-16-16l0-192z"]
+};
+var faFaceFrown = {
+  prefix: 'far',
+  iconName: 'face-frown',
+  icon: [512, 512, [9785, "frown"], "f119", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM174.6 384.1c-4.5 12.5-18.2 18.9-30.7 14.4s-18.9-18.2-14.4-30.7C146.9 319.4 198.9 288 256 288s109.1 31.4 126.6 79.9c4.5 12.5-2 26.2-14.4 30.7s-26.2-2-30.7-14.4C328.2 358.5 297.2 336 256 336s-72.2 22.5-81.4 48.1zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"]
+};
+var faFrown = faFaceFrown;
+var faFloppyDisk = {
+  prefix: 'far',
+  iconName: 'floppy-disk',
+  icon: [448, 512, [128190, 128426, "save"], "f0c7", "M48 96V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V170.5c0-4.2-1.7-8.3-4.7-11.3l33.9-33.9c12 12 18.7 28.3 18.7 45.3V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H309.5c17 0 33.3 6.7 45.3 18.7l74.5 74.5-33.9 33.9L320.8 84.7c-.3-.3-.5-.5-.8-.8V184c0 13.3-10.7 24-24 24H104c-13.3 0-24-10.7-24-24V80H64c-8.8 0-16 7.2-16 16zm80-16v80H272V80H128zm32 240a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z"]
+};
+var faSave = faFloppyDisk;
+var faCommentDots = {
+  prefix: 'far',
+  iconName: 'comment-dots',
+  icon: [512, 512, [128172, 62075, "commenting"], "f4ad", "M168.2 384.9c-15-5.4-31.7-3.1-44.6 6.4c-8.2 6-22.3 14.8-39.4 22.7c5.6-14.7 9.9-31.3 11.3-49.4c1-12.9-3.3-25.7-11.8-35.5C60.4 302.8 48 272 48 240c0-79.5 83.3-160 208-160s208 80.5 208 160s-83.3 160-208 160c-31.6 0-61.3-5.5-87.8-15.1zM26.3 423.8c-1.6 2.7-3.3 5.4-5.1 8.1l-.3 .5c-1.6 2.3-3.2 4.6-4.8 6.9c-3.5 4.7-7.3 9.3-11.3 13.5c-4.6 4.6-5.9 11.4-3.4 17.4c2.5 6 8.3 9.9 14.8 9.9c5.1 0 10.2-.3 15.3-.8l.7-.1c4.4-.5 8.8-1.1 13.2-1.9c.8-.1 1.6-.3 2.4-.5c17.8-3.5 34.9-9.5 50.1-16.1c22.9-10 42.4-21.9 54.3-30.6c31.8 11.5 67 17.9 104.1 17.9c141.4 0 256-93.1 256-208S397.4 32 256 32S0 125.1 0 240c0 45.1 17.7 86.8 47.7 120.9c-1.9 24.5-11.4 46.3-21.4 62.9zM144 272a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm144-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm80 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"]
+};
+var faCommenting = faCommentDots;
+var faFaceGrinSquint = {
+  prefix: 'far',
+  iconName: 'face-grin-squint',
+  icon: [512, 512, [128518, "grin-squint"], "f585", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm349.5 52.4c18.7-4.4 35.9 12 25.5 28.1C350.4 374.6 306.3 400 255.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5zm-216-161.7l89.9 47.9c10.7 5.7 10.7 21.1 0 26.8l-89.9 47.9c-7.9 4.2-17.5-1.5-17.5-10.5c0-2.8 1-5.5 2.8-7.6l36-43.2-36-43.2c-1.8-2.1-2.8-4.8-2.8-7.6c0-9 9.6-14.7 17.5-10.5zM396 157.1c0 2.8-1 5.5-2.8 7.6l-36 43.2 36 43.2c1.8 2.1 2.8 4.8 2.8 7.6c0 9-9.6 14.7-17.5 10.5l-89.9-47.9c-10.7-5.7-10.7-21.1 0-26.8l89.9-47.9c7.9-4.2 17.5 1.5 17.5 10.5z"]
+};
+var faGrinSquint = faFaceGrinSquint;
+var faHandPointer = {
+  prefix: 'far',
+  iconName: 'hand-pointer',
+  icon: [448, 512, [], "f25a", "M160 64c0-8.8 7.2-16 16-16s16 7.2 16 16V200c0 10.3 6.6 19.5 16.4 22.8s20.6-.1 26.8-8.3c3-3.9 7.6-6.4 12.8-6.4c8.8 0 16 7.2 16 16c0 10.3 6.6 19.5 16.4 22.8s20.6-.1 26.8-8.3c3-3.9 7.6-6.4 12.8-6.4c7.8 0 14.3 5.6 15.7 13c1.6 8.2 7.3 15.1 15.1 18s16.7 1.6 23.3-3.6c2.7-2.1 6.1-3.4 9.9-3.4c8.8 0 16 7.2 16 16l0 16V392c0 39.8-32.2 72-72 72H272 212.3h-.9c-37.4 0-72.4-18.7-93.2-49.9L50.7 312.9c-4.9-7.4-2.9-17.3 4.4-22.2s17.3-2.9 22.2 4.4L116 353.2c5.9 8.8 16.8 12.7 26.9 9.7s17-12.4 17-23V320 64zM176 0c-35.3 0-64 28.7-64 64V261.7C91.2 238 55.5 232.8 28.5 250.7C-.9 270.4-8.9 310.1 10.8 339.5L78.3 440.8c29.7 44.5 79.6 71.2 133.1 71.2h.9H272h56c66.3 0 120-53.7 120-120V288l0-16c0-35.3-28.7-64-64-64c-4.5 0-8.8 .5-13 1.3c-11.7-15.4-30.2-25.3-51-25.3c-6.9 0-13.5 1.1-19.7 3.1C288.7 170.7 269.6 160 248 160c-2.7 0-5.4 .2-8 .5V64c0-35.3-28.7-64-64-64zm48 304c0-8.8-7.2-16-16-16s-16 7.2-16 16v96c0 8.8 7.2 16 16 16s16-7.2 16-16V304zm48-16c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16s16-7.2 16-16V304c0-8.8-7.2-16-16-16zm80 16c0-8.8-7.2-16-16-16s-16 7.2-16 16v96c0 8.8 7.2 16 16 16s16-7.2 16-16V304z"]
+};
+var faHandScissors = {
+  prefix: 'far',
+  iconName: 'hand-scissors',
+  icon: [512, 512, [], "f257", "M.2 276.3c-1.2-35.3 26.4-65 61.7-66.2l3.3-.1L57 208.1C22.5 200.5 .7 166.3 8.3 131.8S50.2 75.5 84.7 83.2l173 38.3c2.3-2.9 4.7-5.7 7.1-8.5l18.4-20.3C299.9 74.5 323.5 64 348.3 64l10.2 0c54.1 0 104.1 28.7 131.3 75.4l1.5 2.6c13.6 23.2 20.7 49.7 20.7 76.6L512 344c0 66.3-53.7 120-120 120l-8 0-96 0c-35.3 0-64-28.7-64-64c0-2.8 .2-5.6 .5-8.3c-19.4-11-32.5-31.8-32.5-55.7c0-.8 0-1.6 0-2.4L66.4 338c-35.3 1.2-65-26.4-66.2-61.7zm63.4-18.2c-8.8 .3-15.7 7.7-15.4 16.5s7.7 15.7 16.5 15.4l161.5-5.6c9.8-.3 18.7 5.3 22.7 14.2s2.2 19.3-4.5 26.4c-2.8 2.9-4.4 6.7-4.4 11c0 8.8 7.2 16 16 16c9.1 0 17.4 5.1 21.5 13.3s3.2 17.9-2.3 25.1c-2 2.7-3.2 6-3.2 9.6c0 8.8 7.2 16 16 16l96 0 8 0c39.8 0 72-32.2 72-72l0-125.4c0-18.4-4.9-36.5-14.2-52.4l-1.5-2.6c-18.6-32-52.8-51.6-89.8-51.6l-10.2 0c-11.3 0-22 4.8-29.6 13.1l-17.5-15.9 17.5 15.9-18.4 20.3c-.6 .6-1.1 1.3-1.7 1.9l57 13.2c8.6 2 14 10.6 12 19.2s-10.6 14-19.2 12l-85.6-19.7L74.3 130c-8.6-1.9-17.2 3.5-19.1 12.2s3.5 17.2 12.2 19.1l187.5 41.6c10.2 2.3 17.8 10.9 18.7 21.4l.1 1c.6 6.6-1.5 13.1-5.8 18.1s-10.6 7.9-17.2 8.2L63.6 258.1z"]
+};
+var faFaceGrinTears = {
+  prefix: 'far',
+  iconName: 'face-grin-tears',
+  icon: [640, 512, [128514, "grin-tears"], "f588", "M516.1 325.5c1 3 2.1 6 3.3 8.9c3.3 8.1 8.4 18.5 16.5 26.6c3.9 3.9 8.2 7.4 12.7 10.3C506.4 454.8 419.9 512 320 512s-186.4-57.2-228.6-140.6c4.5-2.9 8.7-6.3 12.7-10.3c8.1-8.1 13.2-18.6 16.5-26.6c1.2-2.9 2.3-5.9 3.3-8.9C152.5 406.2 229.5 464 320 464s167.5-57.8 196.1-138.5zM320 48c-101.4 0-185.8 72.5-204.3 168.5c-6.7-3.1-14.3-4.3-22.3-3.1c-6.8 .9-16.2 2.4-26.6 4.4C85.3 94.5 191.6 0 320 0S554.7 94.5 573.2 217.7c-10.3-2-19.8-3.5-26.6-4.4c-8-1.2-15.7 .1-22.3 3.1C505.8 120.5 421.4 48 320 48zM78.5 341.1C60 356.7 32 355.5 14.3 337.7c-18.7-18.7-19.1-48.8-.7-67.2c8.6-8.6 30.1-15.1 50.5-19.6c13-2.8 25.5-4.8 33.9-6c5.4-.8 9.9 3.7 9 9c-3.1 21.5-11.4 70.2-25.5 84.4c-.9 1-1.9 1.8-2.9 2.7zm483 0c-.8-.6-1.5-1.3-2.3-2c-.2-.2-.5-.4-.7-.7c-14.1-14.1-22.5-62.9-25.5-84.4c-.8-5.4 3.7-9.9 9-9c1 .1 2.2 .3 3.3 .5c8.2 1.2 19.2 3 30.6 5.5c20.4 4.4 41.9 10.9 50.5 19.6c18.4 18.4 18 48.5-.7 67.2c-17.7 17.7-45.7 19-64.2 3.4zM439 336.5C414.4 374.6 370.3 400 319.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5c18.7-4.4 35.9 12 25.5 28.1zM281.6 228.8l0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0 0 0zm160 0l0 0 0 0-.2-.2c-.2-.2-.4-.5-.7-.9c-.6-.8-1.6-2-2.8-3.4c-2.5-2.8-6-6.6-10.2-10.3c-8.8-7.8-18.8-14-27.7-14s-18.9 6.2-27.7 14c-4.2 3.7-7.7 7.5-10.2 10.3c-1.2 1.4-2.2 2.6-2.8 3.4c-.3 .4-.6 .7-.7 .9l-.2 .2 0 0 0 0 0 0c-2.1 2.8-5.7 3.9-8.9 2.8s-5.5-4.1-5.5-7.6c0-17.9 6.7-35.6 16.6-48.8c9.8-13 23.9-23.2 39.4-23.2s29.6 10.2 39.4 23.2c9.9 13.2 16.6 30.9 16.6 48.8c0 3.4-2.2 6.5-5.5 7.6s-6.9 0-8.9-2.8l0 0 0 0z"]
+};
+var faGrinTears = faFaceGrinTears;
+var faCalendarXmark = {
+  prefix: 'far',
+  iconName: 'calendar-xmark',
+  icon: [512, 512, ["calendar-times"], "f273", "M160 0c13.3 0 24 10.7 24 24V64H328V24c0-13.3 10.7-24 24-24s24 10.7 24 24V64h40c35.3 0 64 28.7 64 64v16 48V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V192 144 128c0-35.3 28.7-64 64-64h40V24c0-13.3 10.7-24 24-24zM432 192H80V448c0 8.8 7.2 16 16 16H416c8.8 0 16-7.2 16-16V192zm-95 89l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"]
+};
+var faCalendarTimes = faCalendarXmark;
+var faFileVideo = {
+  prefix: 'far',
+  iconName: 'file-video',
+  icon: [384, 512, [], "f1c8", "M320 464c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM80 288c0-17.7 14.3-32 32-32h96c17.7 0 32 14.3 32 32v16l44.9-29.9c2-1.3 4.4-2.1 6.8-2.1c6.8 0 12.3 5.5 12.3 12.3V387.7c0 6.8-5.5 12.3-12.3 12.3c-2.4 0-4.8-.7-6.8-2.1L240 368v16c0 17.7-14.3 32-32 32H112c-17.7 0-32-14.3-32-32V288z"]
+};
+var faFilePdf = {
+  prefix: 'far',
+  iconName: 'file-pdf',
+  icon: [512, 512, [], "f1c1", "M64 464H96v48H64c-35.3 0-64-28.7-64-64V64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V288H336V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16zM176 352h32c30.9 0 56 25.1 56 56s-25.1 56-56 56H192v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V448 368c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24H192v48h16zm96-80h32c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H304c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H320v96h16zm80-112c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16s-7.2 16-16 16H448v32h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H448v48c0 8.8-7.2 16-16 16s-16-7.2-16-16V432 368z"]
+};
+var faComment = {
+  prefix: 'far',
+  iconName: 'comment',
+  icon: [512, 512, [128489, 61669], "f075", "M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9c.1-.2 .2-.3 .3-.5z"]
+};
+var faEnvelope = {
+  prefix: 'far',
+  iconName: 'envelope',
+  icon: [512, 512, [128386, 9993, 61443], "f0e0", "M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"]
+};
+var faHourglass = {
+  prefix: 'far',
+  iconName: 'hourglass',
+  icon: [384, 512, [9203, 62032, "hourglass-empty"], "f254", "M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48h8V67c0 40.3 16 79 44.5 107.5L158.1 256 76.5 337.5C48 366 32 404.7 32 445v19H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24h-8V445c0-40.3-16-79-44.5-107.5L225.9 256l81.5-81.5C336 146 352 107.3 352 67V48h8c13.3 0 24-10.7 24-24s-10.7-24-24-24H24zM192 289.9l81.5 81.5C293 391 304 417.4 304 445v19H80V445c0-27.6 11-54 30.5-73.5L192 289.9zm0-67.9l-81.5-81.5C91 121 80 94.6 80 67V48H304V67c0 27.6-11 54-30.5 73.5L192 222.1z"]
+};
+var faHourglassEmpty = faHourglass;
+var faCalendarCheck = {
+  prefix: 'far',
+  iconName: 'calendar-check',
+  icon: [448, 512, [], "f274", "M128 0c13.3 0 24 10.7 24 24V64H296V24c0-13.3 10.7-24 24-24s24 10.7 24 24V64h40c35.3 0 64 28.7 64 64v16 48V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192 144 128C0 92.7 28.7 64 64 64h40V24c0-13.3 10.7-24 24-24zM400 192H48V448c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V192zM329 297L217 409c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47 95-95c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"]
+};
+var faHardDrive = {
+  prefix: 'far',
+  iconName: 'hard-drive',
+  icon: [512, 512, [128436, "hdd"], "f0a0", "M64 80c-8.8 0-16 7.2-16 16V258c5.1-1.3 10.5-2 16-2H448c5.5 0 10.9 .7 16 2V96c0-8.8-7.2-16-16-16H64zM48 320v96c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V320c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM0 320V96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V320v96c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320zm280 48a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm120-24a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"]
+};
+var faHdd = faHardDrive;
+var faFaceGrinSquintTears = {
+  prefix: 'far',
+  iconName: 'face-grin-squint-tears',
+  icon: [512, 512, [129315, "grin-squint-tears"], "f586", "M426.8 14.2C446-5 477.5-4.6 497.1 14.9s20 51 .7 70.3c-14.8 14.8-65.7 23.6-88.3 26.7c-5.6 .9-10.3-3.9-9.5-9.5C403.3 79.9 412 29 426.8 14.2zM75 75C158.2-8.3 284.5-22.2 382.2 33.2c-1.5 4.8-2.9 9.6-4.1 14.3c-3.1 12.2-5.5 24.6-7.3 35c-80.8-53.6-190.7-44.8-261.9 26.4C37.7 180.1 28.9 290 82.5 370.8c-10.5 1.8-22.9 4.2-35 7.3c-4.7 1.2-9.5 2.5-14.3 4.1C-22.2 284.5-8.2 158.2 75 75zm389.6 58.9c4.7-1.2 9.5-2.5 14.3-4.1C534.2 227.5 520.2 353.8 437 437c-83.2 83.2-209.5 97.2-307.2 41.8c1.5-4.8 2.8-9.6 4-14.3c3.1-12.2 5.5-24.6 7.3-35c80.8 53.6 190.7 44.8 261.9-26.4c71.2-71.2 80-181.1 26.4-261.9c10.5-1.8 22.9-4.2 35-7.3zm-105.4 93c10.1-16.3 33.9-16.9 37.9 1.9c9.5 44.4-3.7 93.5-39.3 129.1s-84.8 48.8-129.1 39.3c-18.7-4-18.2-27.8-1.9-37.9c25.2-15.7 50.2-35.4 73.6-58.8s43.1-48.4 58.8-73.6zM92 265.3l97.4-29.7c11.6-3.5 22.5 7.3 19 19l-29.7 97.4c-2.6 8.6-13.4 11.3-19.8 4.9c-2-2-3.2-4.6-3.4-7.3l-5.1-56.1-56.1-5.1c-2.8-.3-5.4-1.5-7.3-3.4c-6.3-6.3-3.6-17.2 4.9-19.8zm193-178.2c2 2 3.2 4.6 3.4 7.3l5.1 56.1 56.1 5.1c2.8 .3 5.4 1.5 7.3 3.4c6.3 6.3 3.6 17.2-4.9 19.8l-97.4 29.7c-11.6 3.5-22.5-7.3-19-19L265.3 92c2.6-8.6 13.4-11.3 19.8-4.9zM14.9 497.1c-19.6-19.6-20-51-.7-70.3C29 412 79.8 403.2 102.4 400.1c5.6-.9 10.3 3.9 9.5 9.5c-3.2 22.5-11.9 73.5-26.7 88.3C66 517 34.5 516.6 14.9 497.1z"]
+};
+var faGrinSquintTears = faFaceGrinSquintTears;
+var faRectangleList = {
+  prefix: 'far',
+  iconName: 'rectangle-list',
+  icon: [576, 512, ["list-alt"], "f022", "M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H512c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm96 64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm104 0c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24H448c13.3 0 24 10.7 24 24s-10.7 24-24 24H224c-13.3 0-24-10.7-24-24zm-72-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM96 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"]
+};
+var faListAlt = faRectangleList;
+var faCalendarPlus = {
+  prefix: 'far',
+  iconName: 'calendar-plus',
+  icon: [512, 512, [], "f271", "M184 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H96c-35.3 0-64 28.7-64 64v16 48V448c0 35.3 28.7 64 64 64H416c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H376V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H184V24zM80 192H432V448c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16V192zm176 40c-13.3 0-24 10.7-24 24v48H184c-13.3 0-24 10.7-24 24s10.7 24 24 24h48v48c0 13.3 10.7 24 24 24s24-10.7 24-24V352h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V256c0-13.3-10.7-24-24-24z"]
+};
+var faCircleLeft = {
+  prefix: 'far',
+  iconName: 'circle-left',
+  icon: [512, 512, [61840, "arrow-alt-circle-left"], "f359", "M48 256a208 208 0 1 1 416 0A208 208 0 1 1 48 256zm464 0A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM217.4 376.9c4.2 4.5 10.1 7.1 16.3 7.1c12.3 0 22.3-10 22.3-22.3V304h96c17.7 0 32-14.3 32-32V240c0-17.7-14.3-32-32-32H256V150.3c0-12.3-10-22.3-22.3-22.3c-6.2 0-12.1 2.6-16.3 7.1L117.5 242.2c-3.5 3.8-5.5 8.7-5.5 13.8s2 10.1 5.5 13.8l99.9 107.1z"]
+};
+var faArrowAltCircleLeft = faCircleLeft;
+var faMoneyBill1 = {
+  prefix: 'far',
+  iconName: 'money-bill-1',
+  icon: [576, 512, ["money-bill-alt"], "f3d1", "M112 112c0 35.3-28.7 64-64 64V336c35.3 0 64 28.7 64 64H464c0-35.3 28.7-64 64-64V176c-35.3 0-64-28.7-64-64H112zM0 128C0 92.7 28.7 64 64 64H512c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM176 256a112 112 0 1 1 224 0 112 112 0 1 1 -224 0zm80-48c0 8.8 7.2 16 16 16v64h-8c-8.8 0-16 7.2-16 16s7.2 16 16 16h24 24c8.8 0 16-7.2 16-16s-7.2-16-16-16h-8V208c0-8.8-7.2-16-16-16H272c-8.8 0-16 7.2-16 16z"]
+};
+var faMoneyBillAlt = faMoneyBill1;
+var faClock = {
+  prefix: 'far',
+  iconName: 'clock',
+  icon: [512, 512, [128339, "clock-four"], "f017", "M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"]
+};
+var faClockFour = faClock;
+var faKeyboard = {
+  prefix: 'far',
+  iconName: 'keyboard',
+  icon: [576, 512, [9000], "f11c", "M64 112c-8.8 0-16 7.2-16 16V384c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H64zM0 128C0 92.7 28.7 64 64 64H512c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM176 320H400c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V336c0-8.8 7.2-16 16-16zm-72-72c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H120c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H120c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H200c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H200c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H280c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H280c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H360c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H360c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H440c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H440c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16z"]
+};
+var faClosedCaptioning = {
+  prefix: 'far',
+  iconName: 'closed-captioning',
+  icon: [576, 512, [], "f20a", "M512 80c8.8 0 16 7.2 16 16V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16H512zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM200 208c14.2 0 27 6.1 35.8 16c8.8 9.9 24 10.7 33.9 1.9s10.7-24 1.9-33.9c-17.5-19.6-43.1-32-71.5-32c-53 0-96 43-96 96s43 96 96 96c28.4 0 54-12.4 71.5-32c8.8-9.9 8-25-1.9-33.9s-25-8-33.9 1.9c-8.8 9.9-21.6 16-35.8 16c-26.5 0-48-21.5-48-48s21.5-48 48-48zm144 48c0-26.5 21.5-48 48-48c14.2 0 27 6.1 35.8 16c8.8 9.9 24 10.7 33.9 1.9s10.7-24 1.9-33.9c-17.5-19.6-43.1-32-71.5-32c-53 0-96 43-96 96s43 96 96 96c28.4 0 54-12.4 71.5-32c8.8-9.9 8-25-1.9-33.9s-25-8-33.9 1.9c-8.8 9.9-21.6 16-35.8 16c-26.5 0-48-21.5-48-48z"]
+};
+var faImages = {
+  prefix: 'far',
+  iconName: 'images',
+  icon: [576, 512, [], "f302", "M160 80H512c8.8 0 16 7.2 16 16V320c0 8.8-7.2 16-16 16H490.8L388.1 178.9c-4.4-6.8-12-10.9-20.1-10.9s-15.7 4.1-20.1 10.9l-52.2 79.8-12.4-16.9c-4.5-6.2-11.7-9.8-19.4-9.8s-14.8 3.6-19.4 9.8L175.6 336H160c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16zM96 96V320c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160c-35.3 0-64 28.7-64 64zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120V344c0 75.1 60.9 136 136 136H456c13.3 0 24-10.7 24-24s-10.7-24-24-24H136c-48.6 0-88-39.4-88-88V120zm208 24a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"]
+};
+var faFaceGrin = {
+  prefix: 'far',
+  iconName: 'face-grin',
+  icon: [512, 512, [128512, "grin"], "f580", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm349.5 52.4c18.7-4.4 35.9 12 25.5 28.1C350.4 374.6 306.3 400 255.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"]
+};
+var faGrin = faFaceGrin;
+var faFaceMeh = {
+  prefix: 'far',
+  iconName: 'face-meh',
+  icon: [512, 512, [128528, "meh"], "f11a", "M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM176.4 240a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm192-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM184 328c-13.3 0-24 10.7-24 24s10.7 24 24 24H328c13.3 0 24-10.7 24-24s-10.7-24-24-24H184z"]
+};
+var faMeh = faFaceMeh;
+var faIdCard = {
+  prefix: 'far',
+  iconName: 'id-card',
+  icon: [576, 512, [62147, "drivers-license"], "f2c2", "M528 160V416c0 8.8-7.2 16-16 16H320c0-44.2-35.8-80-80-80H176c-44.2 0-80 35.8-80 80H64c-8.8 0-16-7.2-16-16V160H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM272 256a64 64 0 1 0 -128 0 64 64 0 1 0 128 0zm104-48c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376z"]
+};
+var faDriversLicense = faIdCard;
+var faSun = {
+  prefix: 'far',
+  iconName: 'sun',
+  icon: [512, 512, [9728], "f185", "M375.7 19.7c-1.5-8-6.9-14.7-14.4-17.8s-16.1-2.2-22.8 2.4L256 61.1 173.5 4.2c-6.7-4.6-15.3-5.5-22.8-2.4s-12.9 9.8-14.4 17.8l-18.1 98.5L19.7 136.3c-8 1.5-14.7 6.9-17.8 14.4s-2.2 16.1 2.4 22.8L61.1 256 4.2 338.5c-4.6 6.7-5.5 15.3-2.4 22.8s9.8 13 17.8 14.4l98.5 18.1 18.1 98.5c1.5 8 6.9 14.7 14.4 17.8s16.1 2.2 22.8-2.4L256 450.9l82.5 56.9c6.7 4.6 15.3 5.5 22.8 2.4s12.9-9.8 14.4-17.8l18.1-98.5 98.5-18.1c8-1.5 14.7-6.9 17.8-14.4s2.2-16.1-2.4-22.8L450.9 256l56.9-82.5c4.6-6.7 5.5-15.3 2.4-22.8s-9.8-12.9-17.8-14.4l-98.5-18.1L375.7 19.7zM269.6 110l65.6-45.2 14.4 78.3c1.8 9.8 9.5 17.5 19.3 19.3l78.3 14.4L402 242.4c-5.7 8.2-5.7 19 0 27.2l45.2 65.6-78.3 14.4c-9.8 1.8-17.5 9.5-19.3 19.3l-14.4 78.3L269.6 402c-8.2-5.7-19-5.7-27.2 0l-65.6 45.2-14.4-78.3c-1.8-9.8-9.5-17.5-19.3-19.3L64.8 335.2 110 269.6c5.7-8.2 5.7-19 0-27.2L64.8 176.8l78.3-14.4c9.8-1.8 17.5-9.5 19.3-19.3l14.4-78.3L242.4 110c8.2 5.7 19 5.7 27.2 0zM256 368a112 112 0 1 0 0-224 112 112 0 1 0 0 224zM192 256a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z"]
+};
+var faFaceLaughWink = {
+  prefix: 'far',
+  iconName: 'face-laugh-wink',
+  icon: [512, 512, ["laugh-wink"], "f59c", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm130.7 57.9c-4.2-13.6 7.1-25.9 21.3-25.9H364.5c14.2 0 25.5 12.4 21.3 25.9C369 368.4 318.2 408 258.2 408s-110.8-39.6-127.5-94.1zM144.4 192a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm165.8 21.7c-7.6 8.1-20.2 8.5-28.3 .9s-8.5-20.2-.9-28.3c14.5-15.5 35.2-22.3 54.6-22.3s40.1 6.8 54.6 22.3c7.6 8.1 7.1 20.7-.9 28.3s-20.7 7.1-28.3-.9c-5.5-5.8-14.8-9.7-25.4-9.7s-19.9 3.8-25.4 9.7z"]
+};
+var faLaughWink = faFaceLaughWink;
+var faCircleDown = {
+  prefix: 'far',
+  iconName: 'circle-down',
+  icon: [512, 512, [61466, "arrow-alt-circle-down"], "f358", "M256 464a208 208 0 1 1 0-416 208 208 0 1 1 0 416zM256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM376.9 294.6c4.5-4.2 7.1-10.1 7.1-16.3c0-12.3-10-22.3-22.3-22.3H304V160c0-17.7-14.3-32-32-32l-32 0c-17.7 0-32 14.3-32 32v96H150.3C138 256 128 266 128 278.3c0 6.2 2.6 12.1 7.1 16.3l107.1 99.9c3.8 3.5 8.7 5.5 13.8 5.5s10.1-2 13.8-5.5l107.1-99.9z"]
+};
+var faArrowAltCircleDown = faCircleDown;
+var faThumbsDown = {
+  prefix: 'far',
+  iconName: 'thumbs-down',
+  icon: [512, 512, [128078, 61576], "f165", "M323.8 477.2c-38.2 10.9-78.1-11.2-89-49.4l-5.7-20c-3.7-13-10.4-25-19.5-35l-51.3-56.4c-8.9-9.8-8.2-25 1.6-33.9s25-8.2 33.9 1.6l51.3 56.4c14.1 15.5 24.4 34 30.1 54.1l5.7 20c3.6 12.7 16.9 20.1 29.7 16.5s20.1-16.9 16.5-29.7l-5.7-20c-5.7-19.9-14.7-38.7-26.6-55.5c-5.2-7.3-5.8-16.9-1.7-24.9s12.3-13 21.3-13L448 288c8.8 0 16-7.2 16-16c0-6.8-4.3-12.7-10.4-15c-7.4-2.8-13-9-14.9-16.7s.1-15.8 5.3-21.7c2.5-2.8 4-6.5 4-10.6c0-7.8-5.6-14.3-13-15.7c-8.2-1.6-15.1-7.3-18-15.2s-1.6-16.7 3.6-23.3c2.1-2.7 3.4-6.1 3.4-9.9c0-6.7-4.2-12.6-10.2-14.9c-11.5-4.5-17.7-16.9-14.4-28.8c.4-1.3 .6-2.8 .6-4.3c0-8.8-7.2-16-16-16H286.5c-12.6 0-25 3.7-35.5 10.7l-61.7 41.1c-11 7.4-25.9 4.4-33.3-6.7s-4.4-25.9 6.7-33.3l61.7-41.1c18.4-12.3 40-18.8 62.1-18.8H384c34.7 0 62.9 27.6 64 62c14.6 11.7 24 29.7 24 50c0 4.5-.5 8.8-1.3 13c15.4 11.7 25.3 30.2 25.3 51c0 6.5-1 12.8-2.8 18.7C504.8 238.3 512 254.3 512 272c0 35.3-28.6 64-64 64l-92.3 0c4.7 10.4 8.7 21.2 11.8 32.2l5.7 20c10.9 38.2-11.2 78.1-49.4 89zM32 384c-17.7 0-32-14.3-32-32V128c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32H32z"]
+};
+var faChessPawn = {
+  prefix: 'far',
+  iconName: 'chess-pawn',
+  icon: [320, 512, [9823], "f443", "M232 152A72 72 0 1 0 88 152a72 72 0 1 0 144 0zm24 120H243.4l10.7 80H205.7L195 272H160 125l-10.7 80H65.9l10.7-80H64c-13.3 0-24-10.7-24-24s10.7-24 24-24c-15.1-20.1-24-45-24-72C40 85.7 93.7 32 160 32s120 53.7 120 120c0 27-8.9 51.9-24 72c13.3 0 24 10.7 24 24s-10.7 24-24 24zM52.7 464H267.3l-16.6-32H69.2L52.7 464zm207.9-80c12 0 22.9 6.7 28.4 17.3l26.5 51.2c3 5.8 4.6 12.2 4.6 18.7c0 22.5-18.2 40.8-40.8 40.8H40.8C18.2 512 0 493.8 0 471.2c0-6.5 1.6-12.9 4.6-18.7l26.5-51.2C36.5 390.7 47.5 384 59.5 384h201z"]
+};
+var faCreditCard = {
+  prefix: 'far',
+  iconName: 'credit-card',
+  icon: [576, 512, [128179, 62083, "credit-card-alt"], "f09d", "M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"]
+};
+var faCreditCardAlt = faCreditCard;
+var faBell = {
+  prefix: 'far',
+  iconName: 'bell',
+  icon: [448, 512, [128276, 61602], "f0f3", "M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"]
+};
+var faFile = {
+  prefix: 'far',
+  iconName: 'file',
+  icon: [384, 512, [128196, 128459, 61462], "f15b", "M320 464c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64z"]
+};
+var faHospital = {
+  prefix: 'far',
+  iconName: 'hospital',
+  icon: [640, 512, [127973, 62589, "hospital-alt", "hospital-wide"], "f0f8", "M232 0c-39.8 0-72 32.2-72 72v8H72C32.2 80 0 112.2 0 152V440c0 39.8 32.2 72 72 72h.2 .2 .2 .2 .2H73h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2H75h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2H77h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2H79h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2H82h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2H85h.2 .2 .2 .2H86h.2 .2 .2 .2H87h.2 .2 .2 .2H88h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2H98h.2 .2 .2 .2H99h.2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2 .2v0H456h8v0H568c39.8 0 72-32.2 72-72V152c0-39.8-32.2-72-72-72H480V72c0-39.8-32.2-72-72-72H232zM480 128h88c13.3 0 24 10.7 24 24v40H536c-13.3 0-24 10.7-24 24s10.7 24 24 24h56v48H536c-13.3 0-24 10.7-24 24s10.7 24 24 24h56V440c0 13.3-10.7 24-24 24H480V336 128zM72 128h88V464h-.1-.2-.2-.2H159h-.2-.2-.2H158h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H154h-.2-.2-.2H153h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H150h-.2-.2-.2H149h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H146h-.2-.2-.2H145h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H142h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H139h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H136h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H133h-.2-.2-.2-.2-.2-.2-.2-.2H131h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H128h-.2-.2-.2-.2-.2-.2-.2-.2H126h-.2-.2-.2-.2-.2-.2-.2-.2H124h-.2-.2-.2-.2-.2-.2-.2-.2H122h-.2-.2-.2-.2-.2-.2-.2-.2H120h-.2-.2-.2-.2-.2-.2-.2-.2H118h-.2-.2-.2-.2-.2-.2-.2-.2H116h-.2-.2-.2-.2-.2-.2-.2-.2H114h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H111h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H108h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H105h-.2-.2-.2-.2H104h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H100h-.2-.2-.2-.2H99h-.2-.2-.2-.2H98h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H88h-.2-.2-.2-.2H87h-.2-.2-.2-.2H86h-.2-.2-.2-.2H85h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H82h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H79h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H77h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H75h-.2-.2-.2-.2-.2-.2-.2-.2-.2-.2H73h-.2-.2-.2-.2-.2H72c-13.2 0-24-10.7-24-24V336h56c13.3 0 24-10.7 24-24s-10.7-24-24-24H48V240h56c13.3 0 24-10.7 24-24s-10.7-24-24-24H48V152c0-13.3 10.7-24 24-24zM208 72c0-13.3 10.7-24 24-24H408c13.3 0 24 10.7 24 24V336 464H368V400c0-26.5-21.5-48-48-48s-48 21.5-48 48v64H208V72zm88 24v24H272c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h24v24c0 8.8 7.2 16 16 16h16c8.8 0 16-7.2 16-16V168h24c8.8 0 16-7.2 16-16V136c0-8.8-7.2-16-16-16H344V96c0-8.8-7.2-16-16-16H312c-8.8 0-16 7.2-16 16z"]
+};
+var faHospitalAlt = faHospital;
+var faHospitalWide = faHospital;
+var faChessRook = {
+  prefix: 'far',
+  iconName: 'chess-rook',
+  icon: [448, 512, [9820], "f447", "M80 80V192c0 2.5 1.2 4.9 3.2 6.4l51.2 38.4c6.8 5.1 10.4 13.4 9.5 21.9L133.5 352H85.2l9.4-85L54.4 236.8C40.3 226.2 32 209.6 32 192V72c0-22.1 17.9-40 40-40H376c22.1 0 40 17.9 40 40V192c0 17.6-8.3 34.2-22.4 44.8L353.4 267l9.4 85H314.5l-10.4-93.3c-.9-8.4 2.7-16.8 9.5-21.9l51.2-38.4c2-1.5 3.2-3.9 3.2-6.4V80H304v24c0 13.3-10.7 24-24 24s-24-10.7-24-24V80H192v24c0 13.3-10.7 24-24 24s-24-10.7-24-24V80H80zm4.7 384H363.3l-16.6-32H101.2L84.7 464zm271.9-80c12 0 22.9 6.7 28.4 17.3l26.5 51.2c3 5.8 4.6 12.2 4.6 18.7c0 22.5-18.2 40.8-40.8 40.8H72.8C50.2 512 32 493.8 32 471.2c0-6.5 1.6-12.9 4.6-18.7l26.5-51.2C68.5 390.7 79.5 384 91.5 384h265zM208 288c-8.8 0-16-7.2-16-16V224c0-17.7 14.3-32 32-32s32 14.3 32 32v48c0 8.8-7.2 16-16 16H208z"]
+};
+var faStarHalf = {
+  prefix: 'far',
+  iconName: 'star-half',
+  icon: [576, 512, [61731], "f089", "M293.3 .6c10.9 2.5 18.6 12.2 18.6 23.4V408.7c0 8.9-4.9 17-12.7 21.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5c4.9-10.1 16.1-15.4 27-12.9zM263.9 128.4l-28.6 58.8c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l92.5-49.4V128.4z"]
+};
+var faChessKing = {
+  prefix: 'far',
+  iconName: 'chess-king',
+  icon: [448, 512, [9818], "f43f", "M248 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V56H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h32v40H59.6C26.7 144 0 170.7 0 203.6c0 8.2 1.7 16.3 4.9 23.8L59.1 352h52.3L49 208.2c-.6-1.5-1-3-1-4.6c0-6.4 5.2-11.6 11.6-11.6H224 388.4c6.4 0 11.6 5.2 11.6 11.6c0 1.6-.3 3.2-1 4.6L336.5 352h52.3l54.2-124.6c3.3-7.5 4.9-15.6 4.9-23.8c0-32.9-26.7-59.6-59.6-59.6H248V104h32c13.3 0 24-10.7 24-24s-10.7-24-24-24H248V24zM101.2 432H346.8l16.6 32H84.7l16.6-32zm283.7-30.7c-5.5-10.6-16.5-17.3-28.4-17.3H91.5c-12 0-22.9 6.7-28.4 17.3L36.6 452.5c-3 5.8-4.6 12.2-4.6 18.7C32 493.8 50.2 512 72.8 512H375.2c22.5 0 40.8-18.2 40.8-40.8c0-6.5-1.6-12.9-4.6-18.7l-26.5-51.2z"]
+};
+var faCircleUser = {
+  prefix: 'far',
+  iconName: 'circle-user',
+  icon: [512, 512, [62142, "user-circle"], "f2bd", "M406.5 399.6C387.4 352.9 341.5 320 288 320H224c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3h64c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z"]
+};
+var faUserCircle = faCircleUser;
+var faCopy = {
+  prefix: 'far',
+  iconName: 'copy',
+  icon: [448, 512, [], "f0c5", "M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H96V128H64z"]
+};
+var faShareFromSquare = {
+  prefix: 'far',
+  iconName: 'share-from-square',
+  icon: [576, 512, [61509, "share-square"], "f14d", "M400 255.4V240 208c0-8.8-7.2-16-16-16H352 336 289.5c-50.9 0-93.9 33.5-108.3 79.6c-3.3-9.4-5.2-19.8-5.2-31.6c0-61.9 50.1-112 112-112h48 16 32c8.8 0 16-7.2 16-16V80 64.6L506 160 400 255.4zM336 240h16v48c0 17.7 14.3 32 32 32h3.7c7.9 0 15.5-2.9 21.4-8.2l139-125.1c7.6-6.8 11.9-16.5 11.9-26.7s-4.3-19.9-11.9-26.7L409.9 8.9C403.5 3.2 395.3 0 386.7 0C367.5 0 352 15.5 352 34.7V80H336 304 288c-88.4 0-160 71.6-160 160c0 60.4 34.6 99.1 63.9 120.9c5.9 4.4 11.5 8.1 16.7 11.2c4.4 2.7 8.5 4.9 11.9 6.6c3.4 1.7 6.2 3 8.2 3.9c2.2 1 4.6 1.4 7.1 1.4h2.5c9.8 0 17.8-8 17.8-17.8c0-7.8-5.3-14.7-11.6-19.5l0 0c-.4-.3-.7-.5-1.1-.8c-1.7-1.1-3.4-2.5-5-4.1c-.8-.8-1.7-1.6-2.5-2.6s-1.6-1.9-2.4-2.9c-1.8-2.5-3.5-5.3-5-8.5c-2.6-6-4.3-13.3-4.3-22.4c0-36.1 29.3-65.5 65.5-65.5H304h32zM72 32C32.2 32 0 64.2 0 104V440c0 39.8 32.2 72 72 72H408c39.8 0 72-32.2 72-72V376c0-13.3-10.7-24-24-24s-24 10.7-24 24v64c0 13.3-10.7 24-24 24H72c-13.3 0-24-10.7-24-24V104c0-13.3 10.7-24 24-24h64c13.3 0 24-10.7 24-24s-10.7-24-24-24H72z"]
+};
+var faShareSquare = faShareFromSquare;
+var faCopyright = {
+  prefix: 'far',
+  iconName: 'copyright',
+  icon: [512, 512, [169], "f1f9", "M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM199.4 312.6c-31.2-31.2-31.2-81.9 0-113.1s81.9-31.2 113.1 0c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9c-50-50-131-50-181 0s-50 131 0 181s131 50 181 0c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0c-31.2 31.2-81.9 31.2-113.1 0z"]
+};
+var faMap = {
+  prefix: 'far',
+  iconName: 'map',
+  icon: [576, 512, [128506, 62072], "f279", "M565.6 36.2C572.1 40.7 576 48.1 576 56V392c0 10-6.2 18.9-15.5 22.4l-168 64c-5.2 2-10.9 2.1-16.1 .3L192.5 417.5l-160 61c-7.4 2.8-15.7 1.8-22.2-2.7S0 463.9 0 456V120c0-10 6.1-18.9 15.5-22.4l168-64c5.2-2 10.9-2.1 16.1-.3L383.5 94.5l160-61c7.4-2.8 15.7-1.8 22.2 2.7zM48 136.5V421.2l120-45.7V90.8L48 136.5zM360 422.7V137.3l-144-48V374.7l144 48zm48-1.5l120-45.7V90.8L408 136.5V421.2z"]
+};
+var faBellSlash = {
+  prefix: 'far',
+  iconName: 'bell-slash',
+  icon: [640, 512, [128277, 61943], "f1f6", "M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L542.6 400c2.7-7.8 1.3-16.5-3.9-23l-14.9-18.6C495.5 322.9 480 278.8 480 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V49.9c-43.9 7-81.5 32.7-104.4 68.7L38.8 5.1zM221.7 148.4C239.6 117.1 273.3 96 312 96h8 8c57.4 0 104 46.6 104 104v33.4c0 32.7 6.4 64.8 18.7 94.5L221.7 148.4zM406.2 416l-60.9-48H168.3c21.2-32.8 34.4-70.3 38.4-109.1L160 222.1v11.4c0 45.4-15.5 89.5-43.8 124.9L101.3 377c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6H406.2zM384 448H320 256c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"]
+};
+var faHandLizard = {
+  prefix: 'far',
+  iconName: 'hand-lizard',
+  icon: [512, 512, [], "f258", "M72 112c-13.3 0-24 10.7-24 24s10.7 24 24 24H240c35.3 0 64 28.7 64 64s-28.7 64-64 64H136c-13.3 0-24 10.7-24 24s10.7 24 24 24H288c4.5 0 8.9 1.3 12.7 3.6l64 40c7 4.4 11.3 12.1 11.3 20.4v24c0 13.3-10.7 24-24 24s-24-10.7-24-24V413.3L281.1 384H136c-39.8 0-72-32.2-72-72s32.2-72 72-72H240c8.8 0 16-7.2 16-16s-7.2-16-16-16H72c-39.8 0-72-32.2-72-72S32.2 64 72 64H281.6c46.7 0 90.9 21.5 119.7 58.3l78.4 100.1c20.9 26.7 32.3 59.7 32.3 93.7V424c0 13.3-10.7 24-24 24s-24-10.7-24-24V316.1c0-23.2-7.8-45.8-22.1-64.1L363.5 151.9c-19.7-25.2-49.9-39.9-81.9-39.9H72z"]
+};
+var faFaceSmile = {
+  prefix: 'far',
+  iconName: 'face-smile',
+  icon: [512, 512, [128578, "smile"], "f118", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm177.6 62.1C192.8 334.5 218.8 352 256 352s63.2-17.5 78.4-33.9c9-9.7 24.2-10.4 33.9-1.4s10.4 24.2 1.4 33.9c-22 23.8-60 49.4-113.6 49.4s-91.7-25.5-113.6-49.4c-9-9.7-8.4-24.9 1.4-33.9s24.9-8.4 33.9 1.4zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"]
+};
+var faSmile = faFaceSmile;
+var faHandPeace = {
+  prefix: 'far',
+  iconName: 'hand-peace',
+  icon: [512, 512, [9996], "f25b", "M250.8 1.4c-35.2-3.7-66.6 21.8-70.3 57L174 119 156.7 69.6C145 36.3 108.4 18.8 75.1 30.5S24.2 78.8 35.9 112.1L88.7 262.2C73.5 276.7 64 297.3 64 320v0 24c0 92.8 75.2 168 168 168h48c92.8 0 168-75.2 168-168V272 256 224c0-35.3-28.7-64-64-64c-7.9 0-15.4 1.4-22.4 4c-10.4-21.3-32.3-36-57.6-36c-.7 0-1.5 0-2.2 0l5.9-56.3c3.7-35.2-21.8-66.6-57-70.3zm-.2 155.4C243.9 166.9 240 179 240 192v48c0 .7 0 1.4 0 2c-5.1-1.3-10.5-2-16-2h-7.4l-5.4-15.3 17-161.3c.9-8.8 8.8-15.2 17.6-14.2s15.2 8.8 14.2 17.6l-9.5 90.1zM111.4 85.6L165.7 240H144c-4 0-8 .3-11.9 .9L81.2 96.2c-2.9-8.3 1.5-17.5 9.8-20.4s17.5 1.5 20.4 9.8zM288 192c0-8.8 7.2-16 16-16s16 7.2 16 16v32 16c0 8.8-7.2 16-16 16s-16-7.2-16-16V192zm38.4 108c10.4 21.3 32.3 36 57.6 36c5.5 0 10.9-.7 16-2v10c0 66.3-53.7 120-120 120H232c-66.3 0-120-53.7-120-120l0-24 0 0c0-17.7 14.3-32 32-32h80c8.8 0 16 7.2 16 16s-7.2 16-16 16H184c-13.3 0-24 10.7-24 24s10.7 24 24 24h40c35.3 0 64-28.7 64-64c0-.7 0-1.4 0-2c5.1 1.3 10.5 2 16 2c7.9 0 15.4-1.4 22.4-4zM400 272c0 8.8-7.2 16-16 16s-16-7.2-16-16V240 224c0-8.8 7.2-16 16-16s16 7.2 16 16v32 16z"]
+};
+var faFaceGrinHearts = {
+  prefix: 'far',
+  iconName: 'face-grin-hearts',
+  icon: [512, 512, [128525, "grin-hearts"], "f584", "M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm349.5 52.4c18.7-4.4 35.9 12 25.5 28.1C350.4 374.6 306.3 400 255.9 400s-94.5-25.4-119.1-63.5c-10.4-16.1 6.8-32.5 25.5-28.1c28.9 6.8 60.5 10.5 93.6 10.5s64.7-3.7 93.6-10.5zM215.3 137.1c17.8 4.8 28.4 23.1 23.6 40.8l-17.4 65c-2.3 8.5-11.1 13.6-19.6 11.3l-65.1-17.4c-17.8-4.8-28.4-23.1-23.6-40.8s23.1-28.4 40.8-23.6l16.1 4.3 4.3-16.1c4.8-17.8 23.1-28.4 40.8-23.6zm122.3 23.6l4.3 16.1 16.1-4.3c17.8-4.8 36.1 5.8 40.8 23.6s-5.8 36.1-23.6 40.8l-65.1 17.4c-8.5 2.3-17.3-2.8-19.6-11.3l-17.4-65c-4.8-17.8 5.8-36.1 23.6-40.8s36.1 5.8 40.9 23.6z"]
+};
+var faGrinHearts = faFaceGrinHearts;
+var faBuilding = {
+  prefix: 'far',
+  iconName: 'building',
+  icon: [384, 512, [127970, 61687], "f1ad", "M64 48c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16h80V400c0-26.5 21.5-48 48-48s48 21.5 48 48v64h80c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H64zM0 64C0 28.7 28.7 0 64 0H320c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm88 40c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16v48c0 8.8-7.2 16-16 16H104c-8.8 0-16-7.2-16-16V104zM232 88h48c8.8 0 16 7.2 16 16v48c0 8.8-7.2 16-16 16H232c-8.8 0-16-7.2-16-16V104c0-8.8 7.2-16 16-16zM88 232c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16v48c0 8.8-7.2 16-16 16H104c-8.8 0-16-7.2-16-16V232zm144-16h48c8.8 0 16 7.2 16 16v48c0 8.8-7.2 16-16 16H232c-8.8 0-16-7.2-16-16V232c0-8.8 7.2-16 16-16z"]
+};
+var faFaceGrinBeamSweat = {
+  prefix: 'far',
+  iconName: 'face-grin-beam-sweat',
+  icon: [512, 512, [128517, "grin-beam-sweat"], "f583", "M476.8 126.3C497.1 120.8 512 102.7 512 81c0-20-28.6-60.4-41.6-77.7c-3.2-4.4-9.6-4.4-12.8 0c-9.5 12.6-27.1 37.2-36 57.5c-.3 .7-.6 1.4-.9 2.1C417.8 69.7 416 76 416 81c0 26 21.5 47 48 47c4.4 0 8.7-.6 12.8-1.7zM395.4 41.2C355.3 15.2 307.4 0 256 0C114.6 0 0 114.6 0 256S114.6 512 256 512s256-114.6 256-256c0-35.8-7.3-69.9-20.6-100.8c-8.6 3.1-17.8 4.8-27.4 4.8c-8.9 0-17.6-1.5-25.7-4.2C454.7 185.5 464 219.7 464 256c0 114.9-93.1 208-208 208S48 370.9 48 256S141.1 48 256 48c48.7 0 93.4 16.7 128.9 44.7c-.6-3.8-.9-7.7-.9-11.7c0-11.4 3.8-22.4 7.1-30.5c1.3-3.1 2.7-6.2 4.3-9.3zM375 336.5c10.4-16.1-6.8-32.5-25.5-28.1c-28.9 6.8-60.5 10.5-93.6 10.5s-64.7-3.7-93.6-10.5c-18.7-4.4-35.9 12-25.5 28.1c24.6 38.1 68.7 63.5 119.1 63.5s94.5-25.4 119.1-63.5zM217.6 228.8l0 0 0 0 0 0c2.1 2.8 5.7 3.9 8.9 2.8s5.5-4.1 5.5-7.6c0-17.9-6.7-35.6-16.6-48.8c-9.8-13-23.9-23.2-39.4-23.2s-29.6 10.2-39.4 23.2C126.7 188.4 120 206.1 120 224c0 3.4 2.2 6.5 5.5 7.6s6.9 0 8.9-2.8l0 0 0 0 0 0 .2-.2c.2-.2 .4-.5 .7-.9c.6-.8 1.6-2 2.8-3.4c2.5-2.8 6-6.6 10.2-10.3c8.8-7.8 18.8-14 27.7-14s18.9 6.2 27.7 14c4.2 3.7 7.7 7.5 10.2 10.3c1.2 1.4 2.2 2.6 2.8 3.4c.3 .4 .6 .7 .7 .9l.2 .2 0 0zm160 0l0 0 0 0c2.1 2.8 5.7 3.9 8.9 2.8s5.5-4.1 5.5-7.6c0-17.9-6.7-35.6-16.6-48.8c-9.8-13-23.9-23.2-39.4-23.2s-29.6 10.2-39.4 23.2C286.7 188.4 280 206.1 280 224c0 3.4 2.2 6.5 5.5 7.6s6.9 0 8.9-2.8l0 0 0 0 0 0 .2-.2c.2-.2 .4-.5 .7-.9c.6-.8 1.6-2 2.8-3.4c2.5-2.8 6-6.6 10.2-10.3c8.8-7.8 18.8-14 27.7-14s18.9 6.2 27.7 14c4.2 3.7 7.7 7.5 10.2 10.3c1.2 1.4 2.2 2.6 2.8 3.4c.3 .4 .6 .7 .7 .9l.2 .2 0 0 0 0z"]
+};
+var faGrinBeamSweat = faFaceGrinBeamSweat;
+var faMoon = {
+  prefix: 'far',
+  iconName: 'moon',
+  icon: [384, 512, [127769, 9214], "f186", "M144.7 98.7c-21 34.1-33.1 74.3-33.1 117.3c0 98 62.8 181.4 150.4 211.7c-12.4 2.8-25.3 4.3-38.6 4.3C126.6 432 48 353.3 48 256c0-68.9 39.4-128.4 96.8-157.3zm62.1-66C91.1 41.2 0 137.9 0 256C0 379.7 100 480 223.5 480c47.8 0 92-15 128.4-40.6c1.9-1.3 3.7-2.7 5.5-4c4.8-3.6 9.4-7.4 13.9-11.4c2.7-2.4 5.3-4.8 7.9-7.3c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-3.7 .6-7.4 1.2-11.1 1.6c-5 .5-10.1 .9-15.3 1c-1.2 0-2.5 0-3.7 0c-.1 0-.2 0-.3 0c-96.8-.2-175.2-78.9-175.2-176c0-54.8 24.9-103.7 64.1-136c1-.9 2.1-1.7 3.2-2.6c4-3.2 8.2-6.2 12.5-9c3.1-2 6.3-4 9.6-5.8c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-3.6-.3-7.1-.5-10.7-.6c-2.7-.1-5.5-.1-8.2-.1c-3.3 0-6.5 .1-9.8 .2c-2.3 .1-4.6 .2-6.9 .4z"]
+};
+var faCalendar = {
+  prefix: 'far',
+  iconName: 'calendar',
+  icon: [448, 512, [128197, 128198], "f133", "M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z"]
+};
+var faFaceGrinTongueWink = {
+  prefix: 'far',
+  iconName: 'face-grin-tongue-wink',
+  icon: [512, 512, [128540, "grin-tongue-wink"], "f58b", "M348.3 442.4c2.4-8.4 3.7-17.3 3.7-26.4V363.5c8.8-8 16.6-17.1 23-27c10.4-16.1-6.8-32.5-25.5-28.1c-28.9 6.8-60.5 10.5-93.6 10.5s-64.7-3.7-93.6-10.5c-18.7-4.4-35.9 12-25.5 28.1c6.5 10 14.3 19.1 23.1 27.1V416c0 9.2 1.3 18 3.7 26.4C95.1 408.4 48 337.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 81.7-47.1 152.4-115.7 186.4zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM159.6 220c10.6 0 19.9 3.8 25.4 9.7c7.6 8.1 20.2 8.5 28.3 .9s8.5-20.2 .9-28.3C199.7 186.8 179 180 159.6 180s-40.1 6.8-54.6 22.3c-7.6 8.1-7.1 20.7 .9 28.3s20.7 7.1 28.3-.9c5.5-5.8 14.8-9.7 25.4-9.7zm176.7 12a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm-.4-72a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm0 128a80 80 0 1 0 0-160 80 80 0 1 0 0 160zM320 416c0 35.3-28.7 64-64 64s-64-28.7-64-64V378.6c0-14.7 11.9-26.6 26.6-26.6h2c11.3 0 21.1 7.9 23.6 18.9c2.8 12.6 20.8 12.6 23.6 0c2.5-11.1 12.3-18.9 23.6-18.9h2c14.7 0 26.6 11.9 26.6 26.6V416z"]
+};
+var faGrinTongueWink = faFaceGrinTongueWink;
+var faClone = {
+  prefix: 'far',
+  iconName: 'clone',
+  icon: [512, 512, [], "f24d", "M64 464H288c8.8 0 16-7.2 16-16V384h48v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h64v48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16zM224 304H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H224c-8.8 0-16 7.2-16 16V288c0 8.8 7.2 16 16 16zm-64-16V64c0-35.3 28.7-64 64-64H448c35.3 0 64 28.7 64 64V288c0 35.3-28.7 64-64 64H224c-35.3 0-64-28.7-64-64z"]
+};
+var faFaceAngry = {
+  prefix: 'far',
+  iconName: 'face-angry',
+  icon: [512, 512, [128544, "angry"], "f556", "M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm72.4-118.5c9.7-9 10.2-24.2 1.2-33.9C315.3 344.3 290.6 328 256 328s-59.3 16.3-73.5 31.6c-9 9.7-8.5 24.9 1.2 33.9s24.9 8.5 33.9-1.2c7.4-7.9 20-16.4 38.5-16.4s31.1 8.5 38.5 16.4c9 9.7 24.2 10.2 33.9 1.2zM176.4 272c17.7 0 32-14.3 32-32c0-1.5-.1-3-.3-4.4l10.9 3.6c8.4 2.8 17.4-1.7 20.2-10.1s-1.7-17.4-10.1-20.2l-96-32c-8.4-2.8-17.4 1.7-20.2 10.1s1.7 17.4 10.1 20.2l30.7 10.2c-5.8 5.8-9.3 13.8-9.3 22.6c0 17.7 14.3 32 32 32zm192-32c0-8.9-3.6-17-9.5-22.8l30.2-10.1c8.4-2.8 12.9-11.9 10.1-20.2s-11.9-12.9-20.2-10.1l-96 32c-8.4 2.8-12.9 11.9-10.1 20.2s11.9 12.9 20.2 10.1l11.7-3.9c-.2 1.5-.3 3.1-.3 4.7c0 17.7 14.3 32 32 32s32-14.3 32-32z"]
+};
+var faAngry = faFaceAngry;
+var faRectangleXmark = {
+  prefix: 'far',
+  iconName: 'rectangle-xmark',
+  icon: [512, 512, [62164, "rectangle-times", "times-rectangle", "window-close"], "f410", "M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16H64zM0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zm175 79c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"]
+};
+var faRectangleTimes = faRectangleXmark;
+var faTimesRectangle = faRectangleXmark;
+var faWindowClose = faRectangleXmark;
+var faPaperPlane = {
+  prefix: 'far',
+  iconName: 'paper-plane',
+  icon: [512, 512, [61913], "f1d8", "M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z"]
+};
+var faLifeRing = {
+  prefix: 'far',
+  iconName: 'life-ring',
+  icon: [512, 512, [], "f1cd", "M385.1 419.1C349.7 447.2 304.8 464 256 464s-93.7-16.8-129.1-44.9l80.4-80.4c14.3 8.4 31 13.3 48.8 13.3s34.5-4.8 48.8-13.3l80.4 80.4zm68.1 .2C489.9 374.9 512 318.1 512 256s-22.1-118.9-58.8-163.3L465 81c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L419.3 58.8C374.9 22.1 318.1 0 256 0S137.1 22.1 92.7 58.8L81 47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9L58.8 92.7C22.1 137.1 0 193.9 0 256s22.1 118.9 58.8 163.3L47 431c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l11.8-11.8C137.1 489.9 193.9 512 256 512s118.9-22.1 163.3-58.8L431 465c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-11.8-11.8zm-34.1-34.1l-80.4-80.4c8.4-14.3 13.3-31 13.3-48.8s-4.8-34.5-13.3-48.8l80.4-80.4C447.2 162.3 464 207.2 464 256s-16.8 93.7-44.9 129.1zM385.1 92.9l-80.4 80.4c-14.3-8.4-31-13.3-48.8-13.3s-34.5 4.8-48.8 13.3L126.9 92.9C162.3 64.8 207.2 48 256 48s93.7 16.8 129.1 44.9zM173.3 304.8L92.9 385.1C64.8 349.7 48 304.8 48 256s16.8-93.7 44.9-129.1l80.4 80.4c-8.4 14.3-13.3 31-13.3 48.8s4.8 34.5 13.3 48.8zM208 256a48 48 0 1 1 96 0 48 48 0 1 1 -96 0z"]
+};
+var faFaceGrimace = {
+  prefix: 'far',
+  iconName: 'face-grimace',
+  icon: [512, 512, [128556, "grimace"], "f57f", "M256 48a208 208 0 1 0 0 416 208 208 0 1 0 0-416zM512 256A256 256 0 1 1 0 256a256 256 0 1 1 512 0zM168 320c-13.3 0-24 10.7-24 24s10.7 24 24 24h8V320h-8zm40 48h32V320H208v48zm96 0V320H272v48h32zm32 0h8c13.3 0 24-10.7 24-24s-10.7-24-24-24h-8v48zM168 288H344c30.9 0 56 25.1 56 56s-25.1 56-56 56H168c-30.9 0-56-25.1-56-56s25.1-56 56-56zm-23.6-80a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"]
+};
+var faGrimace = faFaceGrimace;
+var faCalendarMinus = {
+  prefix: 'far',
+  iconName: 'calendar-minus',
+  icon: [512, 512, [], "f272", "M160 0c13.3 0 24 10.7 24 24V64H328V24c0-13.3 10.7-24 24-24s24 10.7 24 24V64h40c35.3 0 64 28.7 64 64v16 48V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V192 144 128c0-35.3 28.7-64 64-64h40V24c0-13.3 10.7-24 24-24zM432 192H80V448c0 8.8 7.2 16 16 16H416c8.8 0 16-7.2 16-16V192zM328 352H184c-13.3 0-24-10.7-24-24s10.7-24 24-24H328c13.3 0 24 10.7 24 24s-10.7 24-24 24z"]
+};
+var faCircleXmark = {
+  prefix: 'far',
+  iconName: 'circle-xmark',
+  icon: [512, 512, [61532, "times-circle", "xmark-circle"], "f057", "M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"]
+};
+var faTimesCircle = faCircleXmark;
+var faXmarkCircle = faCircleXmark;
+var faThumbsUp = {
+  prefix: 'far',
+  iconName: 'thumbs-up',
+  icon: [512, 512, [128077, 61575], "f164", "M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13L448 224c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3 .6 2.8 .6 4.3c0 8.8-7.2 16-16 16H286.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7C504.8 273.7 512 257.7 512 240c0-35.3-28.6-64-64-64l-92.3 0c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32V448c0 17.7 14.3 32 32 32H96c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z"]
+};
+var faWindowMinimize = {
+  prefix: 'far',
+  iconName: 'window-minimize',
+  icon: [512, 512, [128469], "f2d1", "M24 432c-13.3 0-24 10.7-24 24s10.7 24 24 24H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H24z"]
+};
+var faSquareFull = {
+  prefix: 'far',
+  iconName: 'square-full',
+  icon: [512, 512, [128997, 128998, 128999, 129000, 129001, 129002, 129003, 11035, 11036], "f45c", "M464 48V464H48V48H464zM48 0H0V48 464v48H48 464h48V464 48 0H464 48z"]
+};
+var faNoteSticky = {
+  prefix: 'far',
+  iconName: 'note-sticky',
+  icon: [448, 512, [62026, "sticky-note"], "f249", "M64 80c-8.8 0-16 7.2-16 16V416c0 8.8 7.2 16 16 16H288V352c0-17.7 14.3-32 32-32h80V96c0-8.8-7.2-16-16-16H64zM288 480H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V320v5.5c0 17-6.7 33.3-18.7 45.3l-90.5 90.5c-12 12-28.3 18.7-45.3 18.7H288z"]
+};
+var faStickyNote = faNoteSticky;
+var faFaceSadTear = {
+  prefix: 'far',
+  iconName: 'face-sad-tear',
+  icon: [512, 512, [128546, "sad-tear"], "f5b4", "M175.9 448c-35-.1-65.5-22.6-76-54.6C67.6 356.8 48 308.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208s-93.1 208-208 208c-28.4 0-55.5-5.7-80.1-16zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM128 369c0 26 21.5 47 48 47s48-21 48-47c0-20-28.4-60.4-41.6-77.7c-3.2-4.4-9.6-4.4-12.8 0C156.6 308.6 128 349 128 369zm128-65c-13.3 0-24 10.7-24 24s10.7 24 24 24c30.7 0 58.7 11.5 80 30.6c9.9 8.8 25 8 33.9-1.9s8-25-1.9-33.9C338.3 320.2 299 304 256 304zm47.6-96a32 32 0 1 0 64 0 32 32 0 1 0 -64 0zm-128 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"]
+};
+var faSadTear = faFaceSadTear;
+var faHandPointLeft = {
+  prefix: 'far',
+  iconName: 'hand-point-left',
+  icon: [512, 512, [], "f0a5", "M64 128l177.6 0c-1 5.2-1.6 10.5-1.6 16l0 16-32 0L64 160c-8.8 0-16-7.2-16-16s7.2-16 16-16zm224 16c0-17.7 14.3-32 32-32c0 0 0 0 0 0l24 0c66.3 0 120 53.7 120 120l0 48c0 52.5-33.7 97.1-80.7 113.4c.5-3.1 .7-6.2 .7-9.4c0-20-9.2-37.9-23.6-49.7c4.9-9 7.6-19.4 7.6-30.3c0-15.1-5.3-29-14-40c8.8-11 14-24.9 14-40l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-40 0-40zm32-80s0 0 0 0c-18 0-34.6 6-48 16L64 80C28.7 80 0 108.7 0 144s28.7 64 64 64l82 0c-1.3 5.1-2 10.5-2 16c0 25.3 14.7 47.2 36 57.6c-2.6 7-4 14.5-4 22.4c0 20 9.2 37.9 23.6 49.7c-4.9 9-7.6 19.4-7.6 30.3c0 35.3 28.7 64 64 64l64 0 24 0c92.8 0 168-75.2 168-168l0-48c0-92.8-75.2-168-168-168l-24 0zM256 400c-8.8 0-16-7.2-16-16s7.2-16 16-16l48 0 16 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0zM240 224c0 5.5 .7 10.9 2 16l-2 0-32 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l32 0 0 16zm24 64l40 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-48 0-16 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l24 0z"]
+};
+var icons = {
+  faTrashCan: faTrashCan,
+  faTrashAlt: faTrashAlt,
+  faMessage: faMessage,
+  faCommentAlt: faCommentAlt,
+  faFileLines: faFileLines,
+  faFileAlt: faFileAlt,
+  faFileText: faFileText,
+  faCalendarDays: faCalendarDays,
+  faCalendarAlt: faCalendarAlt,
+  faHandPointRight: faHandPointRight,
+  faFaceSmileBeam: faFaceSmileBeam,
+  faSmileBeam: faSmileBeam,
+  faFaceGrinStars: faFaceGrinStars,
+  faGrinStars: faGrinStars,
+  faAddressBook: faAddressBook,
+  faContactBook: faContactBook,
+  faComments: faComments,
+  faPaste: faPaste,
+  faFileClipboard: faFileClipboard,
+  faFaceGrinTongueSquint: faFaceGrinTongueSquint,
+  faGrinTongueSquint: faGrinTongueSquint,
+  faFaceFlushed: faFaceFlushed,
+  faFlushed: faFlushed,
+  faSquareCaretRight: faSquareCaretRight,
+  faCaretSquareRight: faCaretSquareRight,
+  faSquareMinus: faSquareMinus,
+  faMinusSquare: faMinusSquare,
+  faCompass: faCompass,
+  faSquareCaretDown: faSquareCaretDown,
+  faCaretSquareDown: faCaretSquareDown,
+  faFaceKissBeam: faFaceKissBeam,
+  faKissBeam: faKissBeam,
+  faLightbulb: faLightbulb,
+  faFlag: faFlag,
+  faSquareCheck: faSquareCheck,
+  faCheckSquare: faCheckSquare,
+  faCircleDot: faCircleDot,
+  faDotCircle: faDotCircle,
+  faFaceDizzy: faFaceDizzy,
+  faDizzy: faDizzy,
+  faFutbol: faFutbol,
+  faFutbolBall: faFutbolBall,
+  faSoccerBall: faSoccerBall,
+  faPenToSquare: faPenToSquare,
+  faEdit: faEdit,
+  faHourglassHalf: faHourglassHalf,
+  faHourglass2: faHourglass2,
+  faEyeSlash: faEyeSlash,
+  faHand: faHand,
+  faHandPaper: faHandPaper,
+  faHandSpock: faHandSpock,
+  faFaceKiss: faFaceKiss,
+  faKiss: faKiss,
+  faFaceGrinTongue: faFaceGrinTongue,
+  faGrinTongue: faGrinTongue,
+  faChessBishop: faChessBishop,
+  faFaceGrinWink: faFaceGrinWink,
+  faGrinWink: faGrinWink,
+  faFaceGrinWide: faFaceGrinWide,
+  faGrinAlt: faGrinAlt,
+  faFaceFrownOpen: faFaceFrownOpen,
+  faFrownOpen: faFrownOpen,
+  faHandPointUp: faHandPointUp,
+  faBookmark: faBookmark,
+  faHandPointDown: faHandPointDown,
+  faFolder: faFolder,
+  faFolderBlank: faFolderBlank,
+  faUser: faUser,
+  faSquareCaretLeft: faSquareCaretLeft,
+  faCaretSquareLeft: faCaretSquareLeft,
+  faStar: faStar,
+  faChessKnight: faChessKnight,
+  faFaceLaughSquint: faFaceLaughSquint,
+  faLaughSquint: faLaughSquint,
+  faFaceLaugh: faFaceLaugh,
+  faLaugh: faLaugh,
+  faFolderOpen: faFolderOpen,
+  faClipboard: faClipboard,
+  faChessQueen: faChessQueen,
+  faHandBackFist: faHandBackFist,
+  faHandRock: faHandRock,
+  faSquareCaretUp: faSquareCaretUp,
+  faCaretSquareUp: faCaretSquareUp,
+  faChartBar: faChartBar,
+  faBarChart: faBarChart,
+  faWindowRestore: faWindowRestore,
+  faSquarePlus: faSquarePlus,
+  faPlusSquare: faPlusSquare,
+  faImage: faImage,
+  faFolderClosed: faFolderClosed,
+  faLemon: faLemon,
+  faHandshake: faHandshake,
+  faGem: faGem,
+  faCirclePlay: faCirclePlay,
+  faPlayCircle: faPlayCircle,
+  faCircleCheck: faCircleCheck,
+  faCheckCircle: faCheckCircle,
+  faCircleStop: faCircleStop,
+  faStopCircle: faStopCircle,
+  faIdBadge: faIdBadge,
+  faFaceLaughBeam: faFaceLaughBeam,
+  faLaughBeam: faLaughBeam,
+  faRegistered: faRegistered,
+  faAddressCard: faAddressCard,
+  faContactCard: faContactCard,
+  faVcard: faVcard,
+  faFaceTired: faFaceTired,
+  faTired: faTired,
+  faFontAwesome: faFontAwesome,
+  faFontAwesomeFlag: faFontAwesomeFlag,
+  faFontAwesomeLogoFull: faFontAwesomeLogoFull,
+  faFaceSmileWink: faFaceSmileWink,
+  faSmileWink: faSmileWink,
+  faFileWord: faFileWord,
+  faFilePowerpoint: faFilePowerpoint,
+  faEnvelopeOpen: faEnvelopeOpen,
+  faFileZipper: faFileZipper,
+  faFileArchive: faFileArchive,
+  faSquare: faSquare,
+  faSnowflake: faSnowflake,
+  faNewspaper: faNewspaper,
+  faFaceKissWinkHeart: faFaceKissWinkHeart,
+  faKissWinkHeart: faKissWinkHeart,
+  faStarHalfStroke: faStarHalfStroke,
+  faStarHalfAlt: faStarHalfAlt,
+  faFileExcel: faFileExcel,
+  faFaceGrinBeam: faFaceGrinBeam,
+  faGrinBeam: faGrinBeam,
+  faObjectUngroup: faObjectUngroup,
+  faCircleRight: faCircleRight,
+  faArrowAltCircleRight: faArrowAltCircleRight,
+  faFaceRollingEyes: faFaceRollingEyes,
+  faMehRollingEyes: faMehRollingEyes,
+  faObjectGroup: faObjectGroup,
+  faHeart: faHeart,
+  faFaceSurprise: faFaceSurprise,
+  faSurprise: faSurprise,
+  faCirclePause: faCirclePause,
+  faPauseCircle: faPauseCircle,
+  faCircle: faCircle,
+  faCircleUp: faCircleUp,
+  faArrowAltCircleUp: faArrowAltCircleUp,
+  faFileAudio: faFileAudio,
+  faFileImage: faFileImage,
+  faCircleQuestion: faCircleQuestion,
+  faQuestionCircle: faQuestionCircle,
+  faFaceMehBlank: faFaceMehBlank,
+  faMehBlank: faMehBlank,
+  faEye: faEye,
+  faFaceSadCry: faFaceSadCry,
+  faSadCry: faSadCry,
+  faFileCode: faFileCode,
+  faWindowMaximize: faWindowMaximize,
+  faFaceFrown: faFaceFrown,
+  faFrown: faFrown,
+  faFloppyDisk: faFloppyDisk,
+  faSave: faSave,
+  faCommentDots: faCommentDots,
+  faCommenting: faCommenting,
+  faFaceGrinSquint: faFaceGrinSquint,
+  faGrinSquint: faGrinSquint,
+  faHandPointer: faHandPointer,
+  faHandScissors: faHandScissors,
+  faFaceGrinTears: faFaceGrinTears,
+  faGrinTears: faGrinTears,
+  faCalendarXmark: faCalendarXmark,
+  faCalendarTimes: faCalendarTimes,
+  faFileVideo: faFileVideo,
+  faFilePdf: faFilePdf,
+  faComment: faComment,
+  faEnvelope: faEnvelope,
+  faHourglass: faHourglass,
+  faHourglassEmpty: faHourglassEmpty,
+  faCalendarCheck: faCalendarCheck,
+  faHardDrive: faHardDrive,
+  faHdd: faHdd,
+  faFaceGrinSquintTears: faFaceGrinSquintTears,
+  faGrinSquintTears: faGrinSquintTears,
+  faRectangleList: faRectangleList,
+  faListAlt: faListAlt,
+  faCalendarPlus: faCalendarPlus,
+  faCircleLeft: faCircleLeft,
+  faArrowAltCircleLeft: faArrowAltCircleLeft,
+  faMoneyBill1: faMoneyBill1,
+  faMoneyBillAlt: faMoneyBillAlt,
+  faClock: faClock,
+  faClockFour: faClockFour,
+  faKeyboard: faKeyboard,
+  faClosedCaptioning: faClosedCaptioning,
+  faImages: faImages,
+  faFaceGrin: faFaceGrin,
+  faGrin: faGrin,
+  faFaceMeh: faFaceMeh,
+  faMeh: faMeh,
+  faIdCard: faIdCard,
+  faDriversLicense: faDriversLicense,
+  faSun: faSun,
+  faFaceLaughWink: faFaceLaughWink,
+  faLaughWink: faLaughWink,
+  faCircleDown: faCircleDown,
+  faArrowAltCircleDown: faArrowAltCircleDown,
+  faThumbsDown: faThumbsDown,
+  faChessPawn: faChessPawn,
+  faCreditCard: faCreditCard,
+  faCreditCardAlt: faCreditCardAlt,
+  faBell: faBell,
+  faFile: faFile,
+  faHospital: faHospital,
+  faHospitalAlt: faHospitalAlt,
+  faHospitalWide: faHospitalWide,
+  faChessRook: faChessRook,
+  faStarHalf: faStarHalf,
+  faChessKing: faChessKing,
+  faCircleUser: faCircleUser,
+  faUserCircle: faUserCircle,
+  faCopy: faCopy,
+  faShareFromSquare: faShareFromSquare,
+  faShareSquare: faShareSquare,
+  faCopyright: faCopyright,
+  faMap: faMap,
+  faBellSlash: faBellSlash,
+  faHandLizard: faHandLizard,
+  faFaceSmile: faFaceSmile,
+  faSmile: faSmile,
+  faHandPeace: faHandPeace,
+  faFaceGrinHearts: faFaceGrinHearts,
+  faGrinHearts: faGrinHearts,
+  faBuilding: faBuilding,
+  faFaceGrinBeamSweat: faFaceGrinBeamSweat,
+  faGrinBeamSweat: faGrinBeamSweat,
+  faMoon: faMoon,
+  faCalendar: faCalendar,
+  faFaceGrinTongueWink: faFaceGrinTongueWink,
+  faGrinTongueWink: faGrinTongueWink,
+  faClone: faClone,
+  faFaceAngry: faFaceAngry,
+  faAngry: faAngry,
+  faRectangleXmark: faRectangleXmark,
+  faRectangleTimes: faRectangleTimes,
+  faTimesRectangle: faTimesRectangle,
+  faWindowClose: faWindowClose,
+  faPaperPlane: faPaperPlane,
+  faLifeRing: faLifeRing,
+  faFaceGrimace: faFaceGrimace,
+  faGrimace: faGrimace,
+  faCalendarMinus: faCalendarMinus,
+  faCircleXmark: faCircleXmark,
+  faTimesCircle: faTimesCircle,
+  faXmarkCircle: faXmarkCircle,
+  faThumbsUp: faThumbsUp,
+  faWindowMinimize: faWindowMinimize,
+  faSquareFull: faSquareFull,
+  faNoteSticky: faNoteSticky,
+  faStickyNote: faStickyNote,
+  faFaceSadTear: faFaceSadTear,
+  faSadTear: faSadTear,
+  faHandPointLeft: faHandPointLeft
+};
+
+
+
+;// CONCATENATED MODULE: external "react-dom"
+const external_react_dom_namespaceObject = require("react-dom");
+;// CONCATENATED MODULE: ./node_modules/i18next/dist/esm/i18next.js
+const consoleLogger = {
+  type: 'logger',
+  log(args) {
+    this.output('log', args);
+  },
+  warn(args) {
+    this.output('warn', args);
+  },
+  error(args) {
+    this.output('error', args);
+  },
+  output(type, args) {
+    if (console && console[type]) console[type].apply(console, args);
+  }
+};
+class Logger {
+  constructor(concreteLogger) {
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    this.init(concreteLogger, options);
+  }
+  init(concreteLogger) {
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    this.prefix = options.prefix || 'i18next:';
+    this.logger = concreteLogger || consoleLogger;
+    this.options = options;
+    this.debug = options.debug;
+  }
+  log() {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    return this.forward(args, 'log', '', true);
+  }
+  warn() {
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+    return this.forward(args, 'warn', '', true);
+  }
+  error() {
+    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      args[_key3] = arguments[_key3];
+    }
+    return this.forward(args, 'error', '');
+  }
+  deprecate() {
+    for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+      args[_key4] = arguments[_key4];
+    }
+    return this.forward(args, 'warn', 'WARNING DEPRECATED: ', true);
+  }
+  forward(args, lvl, prefix, debugOnly) {
+    if (debugOnly && !this.debug) return null;
+    if (typeof args[0] === 'string') args[0] = `${prefix}${this.prefix} ${args[0]}`;
+    return this.logger[lvl](args);
+  }
+  create(moduleName) {
+    return new Logger(this.logger, {
+      ...{
+        prefix: `${this.prefix}:${moduleName}:`
+      },
+      ...this.options
+    });
+  }
+  clone(options) {
+    options = options || this.options;
+    options.prefix = options.prefix || this.prefix;
+    return new Logger(this.logger, options);
+  }
+}
+var baseLogger = new Logger();
+
+class EventEmitter {
+  constructor() {
+    this.observers = {};
+  }
+  on(events, listener) {
+    events.split(' ').forEach(event => {
+      this.observers[event] = this.observers[event] || [];
+      this.observers[event].push(listener);
+    });
+    return this;
+  }
+  off(event, listener) {
+    if (!this.observers[event]) return;
+    if (!listener) {
+      delete this.observers[event];
+      return;
+    }
+    this.observers[event] = this.observers[event].filter(l => l !== listener);
+  }
+  emit(event) {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+    if (this.observers[event]) {
+      const cloned = [].concat(this.observers[event]);
+      cloned.forEach(observer => {
+        observer(...args);
+      });
+    }
+    if (this.observers['*']) {
+      const cloned = [].concat(this.observers['*']);
+      cloned.forEach(observer => {
+        observer.apply(observer, [event, ...args]);
+      });
+    }
+  }
+}
+
+function defer() {
+  let res;
+  let rej;
+  const promise = new Promise((resolve, reject) => {
+    res = resolve;
+    rej = reject;
+  });
+  promise.resolve = res;
+  promise.reject = rej;
+  return promise;
+}
+function makeString(object) {
+  if (object == null) return '';
+  return '' + object;
+}
+function copy(a, s, t) {
+  a.forEach(m => {
+    if (s[m]) t[m] = s[m];
+  });
+}
+function getLastOfPath(object, path, Empty) {
+  function cleanKey(key) {
+    return key && key.indexOf('###') > -1 ? key.replace(/###/g, '.') : key;
+  }
+  function canNotTraverseDeeper() {
+    return !object || typeof object === 'string';
+  }
+  const stack = typeof path !== 'string' ? [].concat(path) : path.split('.');
+  while (stack.length > 1) {
+    if (canNotTraverseDeeper()) return {};
+    const key = cleanKey(stack.shift());
+    if (!object[key] && Empty) object[key] = new Empty();
+    if (Object.prototype.hasOwnProperty.call(object, key)) {
+      object = object[key];
+    } else {
+      object = {};
+    }
+  }
+  if (canNotTraverseDeeper()) return {};
+  return {
+    obj: object,
+    k: cleanKey(stack.shift())
+  };
+}
+function setPath(object, path, newValue) {
+  const {
+    obj,
+    k
+  } = getLastOfPath(object, path, Object);
+  obj[k] = newValue;
+}
+function pushPath(object, path, newValue, concat) {
+  const {
+    obj,
+    k
+  } = getLastOfPath(object, path, Object);
+  obj[k] = obj[k] || [];
+  if (concat) obj[k] = obj[k].concat(newValue);
+  if (!concat) obj[k].push(newValue);
+}
+function getPath(object, path) {
+  const {
+    obj,
+    k
+  } = getLastOfPath(object, path);
+  if (!obj) return undefined;
+  return obj[k];
+}
+function getPathWithDefaults(data, defaultData, key) {
+  const value = getPath(data, key);
+  if (value !== undefined) {
+    return value;
+  }
+  return getPath(defaultData, key);
+}
+function deepExtend(target, source, overwrite) {
+  for (const prop in source) {
+    if (prop !== '__proto__' && prop !== 'constructor') {
+      if (prop in target) {
+        if (typeof target[prop] === 'string' || target[prop] instanceof String || typeof source[prop] === 'string' || source[prop] instanceof String) {
+          if (overwrite) target[prop] = source[prop];
+        } else {
+          deepExtend(target[prop], source[prop], overwrite);
+        }
+      } else {
+        target[prop] = source[prop];
+      }
+    }
+  }
+  return target;
+}
+function regexEscape(str) {
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+}
+var _entityMap = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+  '/': '&#x2F;'
+};
+function i18next_escape(data) {
+  if (typeof data === 'string') {
+    return data.replace(/[&<>"'\/]/g, s => _entityMap[s]);
+  }
+  return data;
+}
+const chars = [' ', ',', '?', '!', ';'];
+function looksLikeObjectPath(key, nsSeparator, keySeparator) {
+  nsSeparator = nsSeparator || '';
+  keySeparator = keySeparator || '';
+  const possibleChars = chars.filter(c => nsSeparator.indexOf(c) < 0 && keySeparator.indexOf(c) < 0);
+  if (possibleChars.length === 0) return true;
+  const r = new RegExp(`(${possibleChars.map(c => c === '?' ? '\\?' : c).join('|')})`);
+  let matched = !r.test(key);
+  if (!matched) {
+    const ki = key.indexOf(keySeparator);
+    if (ki > 0 && !r.test(key.substring(0, ki))) {
+      matched = true;
+    }
+  }
+  return matched;
+}
+function deepFind(obj, path) {
+  let keySeparator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '.';
+  if (!obj) return undefined;
+  if (obj[path]) return obj[path];
+  const paths = path.split(keySeparator);
+  let current = obj;
+  for (let i = 0; i < paths.length; ++i) {
+    if (!current) return undefined;
+    if (typeof current[paths[i]] === 'string' && i + 1 < paths.length) {
+      return undefined;
+    }
+    if (current[paths[i]] === undefined) {
+      let j = 2;
+      let p = paths.slice(i, i + j).join(keySeparator);
+      let mix = current[p];
+      while (mix === undefined && paths.length > i + j) {
+        j++;
+        p = paths.slice(i, i + j).join(keySeparator);
+        mix = current[p];
+      }
+      if (mix === undefined) return undefined;
+      if (mix === null) return null;
+      if (path.endsWith(p)) {
+        if (typeof mix === 'string') return mix;
+        if (p && typeof mix[p] === 'string') return mix[p];
+      }
+      const joinedPath = paths.slice(i + j).join(keySeparator);
+      if (joinedPath) return deepFind(mix, joinedPath, keySeparator);
+      return undefined;
+    }
+    current = current[paths[i]];
+  }
+  return current;
+}
+function getCleanedCode(code) {
+  if (code && code.indexOf('_') > 0) return code.replace('_', '-');
+  return code;
+}
+
+class ResourceStore extends EventEmitter {
+  constructor(data) {
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+      ns: ['translation'],
+      defaultNS: 'translation'
+    };
+    super();
+    this.data = data || {};
+    this.options = options;
+    if (this.options.keySeparator === undefined) {
+      this.options.keySeparator = '.';
+    }
+    if (this.options.ignoreJSONStructure === undefined) {
+      this.options.ignoreJSONStructure = true;
+    }
+  }
+  addNamespaces(ns) {
+    if (this.options.ns.indexOf(ns) < 0) {
+      this.options.ns.push(ns);
+    }
+  }
+  removeNamespaces(ns) {
+    const index = this.options.ns.indexOf(ns);
+    if (index > -1) {
+      this.options.ns.splice(index, 1);
+    }
+  }
+  getResource(lng, ns, key) {
+    let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+    const keySeparator = options.keySeparator !== undefined ? options.keySeparator : this.options.keySeparator;
+    const ignoreJSONStructure = options.ignoreJSONStructure !== undefined ? options.ignoreJSONStructure : this.options.ignoreJSONStructure;
+    let path = [lng, ns];
+    if (key && typeof key !== 'string') path = path.concat(key);
+    if (key && typeof key === 'string') path = path.concat(keySeparator ? key.split(keySeparator) : key);
+    if (lng.indexOf('.') > -1) {
+      path = lng.split('.');
+    }
+    const result = getPath(this.data, path);
+    if (result || !ignoreJSONStructure || typeof key !== 'string') return result;
+    return deepFind(this.data && this.data[lng] && this.data[lng][ns], key, keySeparator);
+  }
+  addResource(lng, ns, key, value) {
+    let options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {
+      silent: false
+    };
+    const keySeparator = options.keySeparator !== undefined ? options.keySeparator : this.options.keySeparator;
+    let path = [lng, ns];
+    if (key) path = path.concat(keySeparator ? key.split(keySeparator) : key);
+    if (lng.indexOf('.') > -1) {
+      path = lng.split('.');
+      value = ns;
+      ns = path[1];
+    }
+    this.addNamespaces(ns);
+    setPath(this.data, path, value);
+    if (!options.silent) this.emit('added', lng, ns, key, value);
+  }
+  addResources(lng, ns, resources) {
+    let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {
+      silent: false
+    };
+    for (const m in resources) {
+      if (typeof resources[m] === 'string' || Object.prototype.toString.apply(resources[m]) === '[object Array]') this.addResource(lng, ns, m, resources[m], {
+        silent: true
+      });
+    }
+    if (!options.silent) this.emit('added', lng, ns, resources);
+  }
+  addResourceBundle(lng, ns, resources, deep, overwrite) {
+    let options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {
+      silent: false
+    };
+    let path = [lng, ns];
+    if (lng.indexOf('.') > -1) {
+      path = lng.split('.');
+      deep = resources;
+      resources = ns;
+      ns = path[1];
+    }
+    this.addNamespaces(ns);
+    let pack = getPath(this.data, path) || {};
+    if (deep) {
+      deepExtend(pack, resources, overwrite);
+    } else {
+      pack = {
+        ...pack,
+        ...resources
+      };
+    }
+    setPath(this.data, path, pack);
+    if (!options.silent) this.emit('added', lng, ns, resources);
+  }
+  removeResourceBundle(lng, ns) {
+    if (this.hasResourceBundle(lng, ns)) {
+      delete this.data[lng][ns];
+    }
+    this.removeNamespaces(ns);
+    this.emit('removed', lng, ns);
+  }
+  hasResourceBundle(lng, ns) {
+    return this.getResource(lng, ns) !== undefined;
+  }
+  getResourceBundle(lng, ns) {
+    if (!ns) ns = this.options.defaultNS;
+    if (this.options.compatibilityAPI === 'v1') return {
+      ...{},
+      ...this.getResource(lng, ns)
+    };
+    return this.getResource(lng, ns);
+  }
+  getDataByLanguage(lng) {
+    return this.data[lng];
+  }
+  hasLanguageSomeTranslations(lng) {
+    const data = this.getDataByLanguage(lng);
+    const n = data && Object.keys(data) || [];
+    return !!n.find(v => data[v] && Object.keys(data[v]).length > 0);
+  }
+  toJSON() {
+    return this.data;
+  }
+}
+
+var postProcessor = {
+  processors: {},
+  addPostProcessor(module) {
+    this.processors[module.name] = module;
+  },
+  handle(processors, value, key, options, translator) {
+    processors.forEach(processor => {
+      if (this.processors[processor]) value = this.processors[processor].process(value, key, options, translator);
+    });
+    return value;
+  }
+};
+
+const checkedLoadedFor = {};
+class Translator extends EventEmitter {
+  constructor(services) {
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    super();
+    copy(['resourceStore', 'languageUtils', 'pluralResolver', 'interpolator', 'backendConnector', 'i18nFormat', 'utils'], services, this);
+    this.options = options;
+    if (this.options.keySeparator === undefined) {
+      this.options.keySeparator = '.';
+    }
+    this.logger = baseLogger.create('translator');
+  }
+  changeLanguage(lng) {
+    if (lng) this.language = lng;
+  }
+  exists(key) {
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+      interpolation: {}
+    };
+    if (key === undefined || key === null) {
+      return false;
+    }
+    const resolved = this.resolve(key, options);
+    return resolved && resolved.res !== undefined;
+  }
+  extractFromKey(key, options) {
+    let nsSeparator = options.nsSeparator !== undefined ? options.nsSeparator : this.options.nsSeparator;
+    if (nsSeparator === undefined) nsSeparator = ':';
+    const keySeparator = options.keySeparator !== undefined ? options.keySeparator : this.options.keySeparator;
+    let namespaces = options.ns || this.options.defaultNS || [];
+    const wouldCheckForNsInKey = nsSeparator && key.indexOf(nsSeparator) > -1;
+    const seemsNaturalLanguage = !this.options.userDefinedKeySeparator && !options.keySeparator && !this.options.userDefinedNsSeparator && !options.nsSeparator && !looksLikeObjectPath(key, nsSeparator, keySeparator);
+    if (wouldCheckForNsInKey && !seemsNaturalLanguage) {
+      const m = key.match(this.interpolator.nestingRegexp);
+      if (m && m.length > 0) {
+        return {
+          key,
+          namespaces
+        };
+      }
+      const parts = key.split(nsSeparator);
+      if (nsSeparator !== keySeparator || nsSeparator === keySeparator && this.options.ns.indexOf(parts[0]) > -1) namespaces = parts.shift();
+      key = parts.join(keySeparator);
+    }
+    if (typeof namespaces === 'string') namespaces = [namespaces];
+    return {
+      key,
+      namespaces
+    };
+  }
+  translate(keys, options, lastKey) {
+    if (typeof options !== 'object' && this.options.overloadTranslationOptionHandler) {
+      options = this.options.overloadTranslationOptionHandler(arguments);
+    }
+    if (typeof options === 'object') options = {
+      ...options
+    };
+    if (!options) options = {};
+    if (keys === undefined || keys === null) return '';
+    if (!Array.isArray(keys)) keys = [String(keys)];
+    const returnDetails = options.returnDetails !== undefined ? options.returnDetails : this.options.returnDetails;
+    const keySeparator = options.keySeparator !== undefined ? options.keySeparator : this.options.keySeparator;
+    const {
+      key,
+      namespaces
+    } = this.extractFromKey(keys[keys.length - 1], options);
+    const namespace = namespaces[namespaces.length - 1];
+    const lng = options.lng || this.language;
+    const appendNamespaceToCIMode = options.appendNamespaceToCIMode || this.options.appendNamespaceToCIMode;
+    if (lng && lng.toLowerCase() === 'cimode') {
+      if (appendNamespaceToCIMode) {
+        const nsSeparator = options.nsSeparator || this.options.nsSeparator;
+        if (returnDetails) {
+          return {
+            res: `${namespace}${nsSeparator}${key}`,
+            usedKey: key,
+            exactUsedKey: key,
+            usedLng: lng,
+            usedNS: namespace
+          };
+        }
+        return `${namespace}${nsSeparator}${key}`;
+      }
+      if (returnDetails) {
+        return {
+          res: key,
+          usedKey: key,
+          exactUsedKey: key,
+          usedLng: lng,
+          usedNS: namespace
+        };
+      }
+      return key;
+    }
+    const resolved = this.resolve(keys, options);
+    let res = resolved && resolved.res;
+    const resUsedKey = resolved && resolved.usedKey || key;
+    const resExactUsedKey = resolved && resolved.exactUsedKey || key;
+    const resType = Object.prototype.toString.apply(res);
+    const noObject = ['[object Number]', '[object Function]', '[object RegExp]'];
+    const joinArrays = options.joinArrays !== undefined ? options.joinArrays : this.options.joinArrays;
+    const handleAsObjectInI18nFormat = !this.i18nFormat || this.i18nFormat.handleAsObject;
+    const handleAsObject = typeof res !== 'string' && typeof res !== 'boolean' && typeof res !== 'number';
+    if (handleAsObjectInI18nFormat && res && handleAsObject && noObject.indexOf(resType) < 0 && !(typeof joinArrays === 'string' && resType === '[object Array]')) {
+      if (!options.returnObjects && !this.options.returnObjects) {
+        if (!this.options.returnedObjectHandler) {
+          this.logger.warn('accessing an object - but returnObjects options is not enabled!');
+        }
+        const r = this.options.returnedObjectHandler ? this.options.returnedObjectHandler(resUsedKey, res, {
+          ...options,
+          ns: namespaces
+        }) : `key '${key} (${this.language})' returned an object instead of string.`;
+        if (returnDetails) {
+          resolved.res = r;
+          return resolved;
+        }
+        return r;
+      }
+      if (keySeparator) {
+        const resTypeIsArray = resType === '[object Array]';
+        const copy = resTypeIsArray ? [] : {};
+        const newKeyToUse = resTypeIsArray ? resExactUsedKey : resUsedKey;
+        for (const m in res) {
+          if (Object.prototype.hasOwnProperty.call(res, m)) {
+            const deepKey = `${newKeyToUse}${keySeparator}${m}`;
+            copy[m] = this.translate(deepKey, {
+              ...options,
+              ...{
+                joinArrays: false,
+                ns: namespaces
+              }
+            });
+            if (copy[m] === deepKey) copy[m] = res[m];
+          }
+        }
+        res = copy;
+      }
+    } else if (handleAsObjectInI18nFormat && typeof joinArrays === 'string' && resType === '[object Array]') {
+      res = res.join(joinArrays);
+      if (res) res = this.extendTranslation(res, keys, options, lastKey);
+    } else {
+      let usedDefault = false;
+      let usedKey = false;
+      const needsPluralHandling = options.count !== undefined && typeof options.count !== 'string';
+      const hasDefaultValue = Translator.hasDefaultValue(options);
+      const defaultValueSuffix = needsPluralHandling ? this.pluralResolver.getSuffix(lng, options.count, options) : '';
+      const defaultValueSuffixOrdinalFallback = options.ordinal && needsPluralHandling ? this.pluralResolver.getSuffix(lng, options.count, {
+        ordinal: false
+      }) : '';
+      const defaultValue = options[`defaultValue${defaultValueSuffix}`] || options[`defaultValue${defaultValueSuffixOrdinalFallback}`] || options.defaultValue;
+      if (!this.isValidLookup(res) && hasDefaultValue) {
+        usedDefault = true;
+        res = defaultValue;
+      }
+      if (!this.isValidLookup(res)) {
+        usedKey = true;
+        res = key;
+      }
+      const missingKeyNoValueFallbackToKey = options.missingKeyNoValueFallbackToKey || this.options.missingKeyNoValueFallbackToKey;
+      const resForMissing = missingKeyNoValueFallbackToKey && usedKey ? undefined : res;
+      const updateMissing = hasDefaultValue && defaultValue !== res && this.options.updateMissing;
+      if (usedKey || usedDefault || updateMissing) {
+        this.logger.log(updateMissing ? 'updateKey' : 'missingKey', lng, namespace, key, updateMissing ? defaultValue : res);
+        if (keySeparator) {
+          const fk = this.resolve(key, {
+            ...options,
+            keySeparator: false
+          });
+          if (fk && fk.res) this.logger.warn('Seems the loaded translations were in flat JSON format instead of nested. Either set keySeparator: false on init or make sure your translations are published in nested format.');
+        }
+        let lngs = [];
+        const fallbackLngs = this.languageUtils.getFallbackCodes(this.options.fallbackLng, options.lng || this.language);
+        if (this.options.saveMissingTo === 'fallback' && fallbackLngs && fallbackLngs[0]) {
+          for (let i = 0; i < fallbackLngs.length; i++) {
+            lngs.push(fallbackLngs[i]);
+          }
+        } else if (this.options.saveMissingTo === 'all') {
+          lngs = this.languageUtils.toResolveHierarchy(options.lng || this.language);
+        } else {
+          lngs.push(options.lng || this.language);
+        }
+        const send = (l, k, specificDefaultValue) => {
+          const defaultForMissing = hasDefaultValue && specificDefaultValue !== res ? specificDefaultValue : resForMissing;
+          if (this.options.missingKeyHandler) {
+            this.options.missingKeyHandler(l, namespace, k, defaultForMissing, updateMissing, options);
+          } else if (this.backendConnector && this.backendConnector.saveMissing) {
+            this.backendConnector.saveMissing(l, namespace, k, defaultForMissing, updateMissing, options);
+          }
+          this.emit('missingKey', l, namespace, k, res);
+        };
+        if (this.options.saveMissing) {
+          if (this.options.saveMissingPlurals && needsPluralHandling) {
+            lngs.forEach(language => {
+              this.pluralResolver.getSuffixes(language, options).forEach(suffix => {
+                send([language], key + suffix, options[`defaultValue${suffix}`] || defaultValue);
+              });
+            });
+          } else {
+            send(lngs, key, defaultValue);
+          }
+        }
+      }
+      res = this.extendTranslation(res, keys, options, resolved, lastKey);
+      if (usedKey && res === key && this.options.appendNamespaceToMissingKey) res = `${namespace}:${key}`;
+      if ((usedKey || usedDefault) && this.options.parseMissingKeyHandler) {
+        if (this.options.compatibilityAPI !== 'v1') {
+          res = this.options.parseMissingKeyHandler(this.options.appendNamespaceToMissingKey ? `${namespace}:${key}` : key, usedDefault ? res : undefined);
+        } else {
+          res = this.options.parseMissingKeyHandler(res);
+        }
+      }
+    }
+    if (returnDetails) {
+      resolved.res = res;
+      return resolved;
+    }
+    return res;
+  }
+  extendTranslation(res, key, options, resolved, lastKey) {
+    var _this = this;
+    if (this.i18nFormat && this.i18nFormat.parse) {
+      res = this.i18nFormat.parse(res, {
+        ...this.options.interpolation.defaultVariables,
+        ...options
+      }, resolved.usedLng, resolved.usedNS, resolved.usedKey, {
+        resolved
+      });
+    } else if (!options.skipInterpolation) {
+      if (options.interpolation) this.interpolator.init({
+        ...options,
+        ...{
+          interpolation: {
+            ...this.options.interpolation,
+            ...options.interpolation
+          }
+        }
+      });
+      const skipOnVariables = typeof res === 'string' && (options && options.interpolation && options.interpolation.skipOnVariables !== undefined ? options.interpolation.skipOnVariables : this.options.interpolation.skipOnVariables);
+      let nestBef;
+      if (skipOnVariables) {
+        const nb = res.match(this.interpolator.nestingRegexp);
+        nestBef = nb && nb.length;
+      }
+      let data = options.replace && typeof options.replace !== 'string' ? options.replace : options;
+      if (this.options.interpolation.defaultVariables) data = {
+        ...this.options.interpolation.defaultVariables,
+        ...data
+      };
+      res = this.interpolator.interpolate(res, data, options.lng || this.language, options);
+      if (skipOnVariables) {
+        const na = res.match(this.interpolator.nestingRegexp);
+        const nestAft = na && na.length;
+        if (nestBef < nestAft) options.nest = false;
+      }
+      if (!options.lng && this.options.compatibilityAPI !== 'v1' && resolved && resolved.res) options.lng = resolved.usedLng;
+      if (options.nest !== false) res = this.interpolator.nest(res, function () {
+        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+        if (lastKey && lastKey[0] === args[0] && !options.context) {
+          _this.logger.warn(`It seems you are nesting recursively key: ${args[0]} in key: ${key[0]}`);
+          return null;
+        }
+        return _this.translate(...args, key);
+      }, options);
+      if (options.interpolation) this.interpolator.reset();
+    }
+    const postProcess = options.postProcess || this.options.postProcess;
+    const postProcessorNames = typeof postProcess === 'string' ? [postProcess] : postProcess;
+    if (res !== undefined && res !== null && postProcessorNames && postProcessorNames.length && options.applyPostProcessor !== false) {
+      res = postProcessor.handle(postProcessorNames, res, key, this.options && this.options.postProcessPassResolved ? {
+        i18nResolved: resolved,
+        ...options
+      } : options, this);
+    }
+    return res;
+  }
+  resolve(keys) {
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    let found;
+    let usedKey;
+    let exactUsedKey;
+    let usedLng;
+    let usedNS;
+    if (typeof keys === 'string') keys = [keys];
+    keys.forEach(k => {
+      if (this.isValidLookup(found)) return;
+      const extracted = this.extractFromKey(k, options);
+      const key = extracted.key;
+      usedKey = key;
+      let namespaces = extracted.namespaces;
+      if (this.options.fallbackNS) namespaces = namespaces.concat(this.options.fallbackNS);
+      const needsPluralHandling = options.count !== undefined && typeof options.count !== 'string';
+      const needsZeroSuffixLookup = needsPluralHandling && !options.ordinal && options.count === 0 && this.pluralResolver.shouldUseIntlApi();
+      const needsContextHandling = options.context !== undefined && (typeof options.context === 'string' || typeof options.context === 'number') && options.context !== '';
+      const codes = options.lngs ? options.lngs : this.languageUtils.toResolveHierarchy(options.lng || this.language, options.fallbackLng);
+      namespaces.forEach(ns => {
+        if (this.isValidLookup(found)) return;
+        usedNS = ns;
+        if (!checkedLoadedFor[`${codes[0]}-${ns}`] && this.utils && this.utils.hasLoadedNamespace && !this.utils.hasLoadedNamespace(usedNS)) {
+          checkedLoadedFor[`${codes[0]}-${ns}`] = true;
+          this.logger.warn(`key "${usedKey}" for languages "${codes.join(', ')}" won't get resolved as namespace "${usedNS}" was not yet loaded`, 'This means something IS WRONG in your setup. You access the t function before i18next.init / i18next.loadNamespace / i18next.changeLanguage was done. Wait for the callback or Promise to resolve before accessing it!!!');
+        }
+        codes.forEach(code => {
+          if (this.isValidLookup(found)) return;
+          usedLng = code;
+          const finalKeys = [key];
+          if (this.i18nFormat && this.i18nFormat.addLookupKeys) {
+            this.i18nFormat.addLookupKeys(finalKeys, key, code, ns, options);
+          } else {
+            let pluralSuffix;
+            if (needsPluralHandling) pluralSuffix = this.pluralResolver.getSuffix(code, options.count, options);
+            const zeroSuffix = `${this.options.pluralSeparator}zero`;
+            const ordinalPrefix = `${this.options.pluralSeparator}ordinal${this.options.pluralSeparator}`;
+            if (needsPluralHandling) {
+              finalKeys.push(key + pluralSuffix);
+              if (options.ordinal && pluralSuffix.indexOf(ordinalPrefix) === 0) {
+                finalKeys.push(key + pluralSuffix.replace(ordinalPrefix, this.options.pluralSeparator));
+              }
+              if (needsZeroSuffixLookup) {
+                finalKeys.push(key + zeroSuffix);
+              }
+            }
+            if (needsContextHandling) {
+              const contextKey = `${key}${this.options.contextSeparator}${options.context}`;
+              finalKeys.push(contextKey);
+              if (needsPluralHandling) {
+                finalKeys.push(contextKey + pluralSuffix);
+                if (options.ordinal && pluralSuffix.indexOf(ordinalPrefix) === 0) {
+                  finalKeys.push(contextKey + pluralSuffix.replace(ordinalPrefix, this.options.pluralSeparator));
+                }
+                if (needsZeroSuffixLookup) {
+                  finalKeys.push(contextKey + zeroSuffix);
+                }
+              }
+            }
+          }
+          let possibleKey;
+          while (possibleKey = finalKeys.pop()) {
+            if (!this.isValidLookup(found)) {
+              exactUsedKey = possibleKey;
+              found = this.getResource(code, ns, possibleKey, options);
+            }
+          }
+        });
+      });
+    });
+    return {
+      res: found,
+      usedKey,
+      exactUsedKey,
+      usedLng,
+      usedNS
+    };
+  }
+  isValidLookup(res) {
+    return res !== undefined && !(!this.options.returnNull && res === null) && !(!this.options.returnEmptyString && res === '');
+  }
+  getResource(code, ns, key) {
+    let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+    if (this.i18nFormat && this.i18nFormat.getResource) return this.i18nFormat.getResource(code, ns, key, options);
+    return this.resourceStore.getResource(code, ns, key, options);
+  }
+  static hasDefaultValue(options) {
+    const prefix = 'defaultValue';
+    for (const option in options) {
+      if (Object.prototype.hasOwnProperty.call(options, option) && prefix === option.substring(0, prefix.length) && undefined !== options[option]) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
+
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+class LanguageUtil {
+  constructor(options) {
+    this.options = options;
+    this.supportedLngs = this.options.supportedLngs || false;
+    this.logger = baseLogger.create('languageUtils');
+  }
+  getScriptPartFromCode(code) {
+    code = getCleanedCode(code);
+    if (!code || code.indexOf('-') < 0) return null;
+    const p = code.split('-');
+    if (p.length === 2) return null;
+    p.pop();
+    if (p[p.length - 1].toLowerCase() === 'x') return null;
+    return this.formatLanguageCode(p.join('-'));
+  }
+  getLanguagePartFromCode(code) {
+    code = getCleanedCode(code);
+    if (!code || code.indexOf('-') < 0) return code;
+    const p = code.split('-');
+    return this.formatLanguageCode(p[0]);
+  }
+  formatLanguageCode(code) {
+    if (typeof code === 'string' && code.indexOf('-') > -1) {
+      const specialCases = ['hans', 'hant', 'latn', 'cyrl', 'cans', 'mong', 'arab'];
+      let p = code.split('-');
+      if (this.options.lowerCaseLng) {
+        p = p.map(part => part.toLowerCase());
+      } else if (p.length === 2) {
+        p[0] = p[0].toLowerCase();
+        p[1] = p[1].toUpperCase();
+        if (specialCases.indexOf(p[1].toLowerCase()) > -1) p[1] = capitalize(p[1].toLowerCase());
+      } else if (p.length === 3) {
+        p[0] = p[0].toLowerCase();
+        if (p[1].length === 2) p[1] = p[1].toUpperCase();
+        if (p[0] !== 'sgn' && p[2].length === 2) p[2] = p[2].toUpperCase();
+        if (specialCases.indexOf(p[1].toLowerCase()) > -1) p[1] = capitalize(p[1].toLowerCase());
+        if (specialCases.indexOf(p[2].toLowerCase()) > -1) p[2] = capitalize(p[2].toLowerCase());
+      }
+      return p.join('-');
+    }
+    return this.options.cleanCode || this.options.lowerCaseLng ? code.toLowerCase() : code;
+  }
+  isSupportedCode(code) {
+    if (this.options.load === 'languageOnly' || this.options.nonExplicitSupportedLngs) {
+      code = this.getLanguagePartFromCode(code);
+    }
+    return !this.supportedLngs || !this.supportedLngs.length || this.supportedLngs.indexOf(code) > -1;
+  }
+  getBestMatchFromCodes(codes) {
+    if (!codes) return null;
+    let found;
+    codes.forEach(code => {
+      if (found) return;
+      const cleanedLng = this.formatLanguageCode(code);
+      if (!this.options.supportedLngs || this.isSupportedCode(cleanedLng)) found = cleanedLng;
+    });
+    if (!found && this.options.supportedLngs) {
+      codes.forEach(code => {
+        if (found) return;
+        const lngOnly = this.getLanguagePartFromCode(code);
+        if (this.isSupportedCode(lngOnly)) return found = lngOnly;
+        found = this.options.supportedLngs.find(supportedLng => {
+          if (supportedLng === lngOnly) return supportedLng;
+          if (supportedLng.indexOf('-') < 0 && lngOnly.indexOf('-') < 0) return;
+          if (supportedLng.indexOf(lngOnly) === 0) return supportedLng;
+        });
+      });
+    }
+    if (!found) found = this.getFallbackCodes(this.options.fallbackLng)[0];
+    return found;
+  }
+  getFallbackCodes(fallbacks, code) {
+    if (!fallbacks) return [];
+    if (typeof fallbacks === 'function') fallbacks = fallbacks(code);
+    if (typeof fallbacks === 'string') fallbacks = [fallbacks];
+    if (Object.prototype.toString.apply(fallbacks) === '[object Array]') return fallbacks;
+    if (!code) return fallbacks.default || [];
+    let found = fallbacks[code];
+    if (!found) found = fallbacks[this.getScriptPartFromCode(code)];
+    if (!found) found = fallbacks[this.formatLanguageCode(code)];
+    if (!found) found = fallbacks[this.getLanguagePartFromCode(code)];
+    if (!found) found = fallbacks.default;
+    return found || [];
+  }
+  toResolveHierarchy(code, fallbackCode) {
+    const fallbackCodes = this.getFallbackCodes(fallbackCode || this.options.fallbackLng || [], code);
+    const codes = [];
+    const addCode = c => {
+      if (!c) return;
+      if (this.isSupportedCode(c)) {
+        codes.push(c);
+      } else {
+        this.logger.warn(`rejecting language code not found in supportedLngs: ${c}`);
+      }
+    };
+    if (typeof code === 'string' && (code.indexOf('-') > -1 || code.indexOf('_') > -1)) {
+      if (this.options.load !== 'languageOnly') addCode(this.formatLanguageCode(code));
+      if (this.options.load !== 'languageOnly' && this.options.load !== 'currentOnly') addCode(this.getScriptPartFromCode(code));
+      if (this.options.load !== 'currentOnly') addCode(this.getLanguagePartFromCode(code));
+    } else if (typeof code === 'string') {
+      addCode(this.formatLanguageCode(code));
+    }
+    fallbackCodes.forEach(fc => {
+      if (codes.indexOf(fc) < 0) addCode(this.formatLanguageCode(fc));
+    });
+    return codes;
+  }
+}
+
+let sets = [{
+  lngs: ['ach', 'ak', 'am', 'arn', 'br', 'fil', 'gun', 'ln', 'mfe', 'mg', 'mi', 'oc', 'pt', 'pt-BR', 'tg', 'tl', 'ti', 'tr', 'uz', 'wa'],
+  nr: [1, 2],
+  fc: 1
+}, {
+  lngs: ['af', 'an', 'ast', 'az', 'bg', 'bn', 'ca', 'da', 'de', 'dev', 'el', 'en', 'eo', 'es', 'et', 'eu', 'fi', 'fo', 'fur', 'fy', 'gl', 'gu', 'ha', 'hi', 'hu', 'hy', 'ia', 'it', 'kk', 'kn', 'ku', 'lb', 'mai', 'ml', 'mn', 'mr', 'nah', 'nap', 'nb', 'ne', 'nl', 'nn', 'no', 'nso', 'pa', 'pap', 'pms', 'ps', 'pt-PT', 'rm', 'sco', 'se', 'si', 'so', 'son', 'sq', 'sv', 'sw', 'ta', 'te', 'tk', 'ur', 'yo'],
+  nr: [1, 2],
+  fc: 2
+}, {
+  lngs: ['ay', 'bo', 'cgg', 'fa', 'ht', 'id', 'ja', 'jbo', 'ka', 'km', 'ko', 'ky', 'lo', 'ms', 'sah', 'su', 'th', 'tt', 'ug', 'vi', 'wo', 'zh'],
+  nr: [1],
+  fc: 3
+}, {
+  lngs: ['be', 'bs', 'cnr', 'dz', 'hr', 'ru', 'sr', 'uk'],
+  nr: [1, 2, 5],
+  fc: 4
+}, {
+  lngs: ['ar'],
+  nr: [0, 1, 2, 3, 11, 100],
+  fc: 5
+}, {
+  lngs: ['cs', 'sk'],
+  nr: [1, 2, 5],
+  fc: 6
+}, {
+  lngs: ['csb', 'pl'],
+  nr: [1, 2, 5],
+  fc: 7
+}, {
+  lngs: ['cy'],
+  nr: [1, 2, 3, 8],
+  fc: 8
+}, {
+  lngs: ['fr'],
+  nr: [1, 2],
+  fc: 9
+}, {
+  lngs: ['ga'],
+  nr: [1, 2, 3, 7, 11],
+  fc: 10
+}, {
+  lngs: ['gd'],
+  nr: [1, 2, 3, 20],
+  fc: 11
+}, {
+  lngs: ['is'],
+  nr: [1, 2],
+  fc: 12
+}, {
+  lngs: ['jv'],
+  nr: [0, 1],
+  fc: 13
+}, {
+  lngs: ['kw'],
+  nr: [1, 2, 3, 4],
+  fc: 14
+}, {
+  lngs: ['lt'],
+  nr: [1, 2, 10],
+  fc: 15
+}, {
+  lngs: ['lv'],
+  nr: [1, 2, 0],
+  fc: 16
+}, {
+  lngs: ['mk'],
+  nr: [1, 2],
+  fc: 17
+}, {
+  lngs: ['mnk'],
+  nr: [0, 1, 2],
+  fc: 18
+}, {
+  lngs: ['mt'],
+  nr: [1, 2, 11, 20],
+  fc: 19
+}, {
+  lngs: ['or'],
+  nr: [2, 1],
+  fc: 2
+}, {
+  lngs: ['ro'],
+  nr: [1, 2, 20],
+  fc: 20
+}, {
+  lngs: ['sl'],
+  nr: [5, 1, 2, 3],
+  fc: 21
+}, {
+  lngs: ['he', 'iw'],
+  nr: [1, 2, 20, 21],
+  fc: 22
+}];
+let _rulesPluralsTypes = {
+  1: function (n) {
+    return Number(n > 1);
+  },
+  2: function (n) {
+    return Number(n != 1);
+  },
+  3: function (n) {
+    return 0;
+  },
+  4: function (n) {
+    return Number(n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);
+  },
+  5: function (n) {
+    return Number(n == 0 ? 0 : n == 1 ? 1 : n == 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5);
+  },
+  6: function (n) {
+    return Number(n == 1 ? 0 : n >= 2 && n <= 4 ? 1 : 2);
+  },
+  7: function (n) {
+    return Number(n == 1 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);
+  },
+  8: function (n) {
+    return Number(n == 1 ? 0 : n == 2 ? 1 : n != 8 && n != 11 ? 2 : 3);
+  },
+  9: function (n) {
+    return Number(n >= 2);
+  },
+  10: function (n) {
+    return Number(n == 1 ? 0 : n == 2 ? 1 : n < 7 ? 2 : n < 11 ? 3 : 4);
+  },
+  11: function (n) {
+    return Number(n == 1 || n == 11 ? 0 : n == 2 || n == 12 ? 1 : n > 2 && n < 20 ? 2 : 3);
+  },
+  12: function (n) {
+    return Number(n % 10 != 1 || n % 100 == 11);
+  },
+  13: function (n) {
+    return Number(n !== 0);
+  },
+  14: function (n) {
+    return Number(n == 1 ? 0 : n == 2 ? 1 : n == 3 ? 2 : 3);
+  },
+  15: function (n) {
+    return Number(n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 >= 2 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);
+  },
+  16: function (n) {
+    return Number(n % 10 == 1 && n % 100 != 11 ? 0 : n !== 0 ? 1 : 2);
+  },
+  17: function (n) {
+    return Number(n == 1 || n % 10 == 1 && n % 100 != 11 ? 0 : 1);
+  },
+  18: function (n) {
+    return Number(n == 0 ? 0 : n == 1 ? 1 : 2);
+  },
+  19: function (n) {
+    return Number(n == 1 ? 0 : n == 0 || n % 100 > 1 && n % 100 < 11 ? 1 : n % 100 > 10 && n % 100 < 20 ? 2 : 3);
+  },
+  20: function (n) {
+    return Number(n == 1 ? 0 : n == 0 || n % 100 > 0 && n % 100 < 20 ? 1 : 2);
+  },
+  21: function (n) {
+    return Number(n % 100 == 1 ? 1 : n % 100 == 2 ? 2 : n % 100 == 3 || n % 100 == 4 ? 3 : 0);
+  },
+  22: function (n) {
+    return Number(n == 1 ? 0 : n == 2 ? 1 : (n < 0 || n > 10) && n % 10 == 0 ? 2 : 3);
+  }
+};
+const nonIntlVersions = ['v1', 'v2', 'v3'];
+const intlVersions = ['v4'];
+const suffixesOrder = {
+  zero: 0,
+  one: 1,
+  two: 2,
+  few: 3,
+  many: 4,
+  other: 5
+};
+function createRules() {
+  const rules = {};
+  sets.forEach(set => {
+    set.lngs.forEach(l => {
+      rules[l] = {
+        numbers: set.nr,
+        plurals: _rulesPluralsTypes[set.fc]
+      };
+    });
+  });
+  return rules;
+}
+class PluralResolver {
+  constructor(languageUtils) {
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    this.languageUtils = languageUtils;
+    this.options = options;
+    this.logger = baseLogger.create('pluralResolver');
+    if ((!this.options.compatibilityJSON || intlVersions.includes(this.options.compatibilityJSON)) && (typeof Intl === 'undefined' || !Intl.PluralRules)) {
+      this.options.compatibilityJSON = 'v3';
+      this.logger.error('Your environment seems not to be Intl API compatible, use an Intl.PluralRules polyfill. Will fallback to the compatibilityJSON v3 format handling.');
+    }
+    this.rules = createRules();
+  }
+  addRule(lng, obj) {
+    this.rules[lng] = obj;
+  }
+  getRule(code) {
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    if (this.shouldUseIntlApi()) {
+      try {
+        return new Intl.PluralRules(getCleanedCode(code), {
+          type: options.ordinal ? 'ordinal' : 'cardinal'
+        });
+      } catch {
+        return;
+      }
+    }
+    return this.rules[code] || this.rules[this.languageUtils.getLanguagePartFromCode(code)];
+  }
+  needsPlural(code) {
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    const rule = this.getRule(code, options);
+    if (this.shouldUseIntlApi()) {
+      return rule && rule.resolvedOptions().pluralCategories.length > 1;
+    }
+    return rule && rule.numbers.length > 1;
+  }
+  getPluralFormsOfKey(code, key) {
+    let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    return this.getSuffixes(code, options).map(suffix => `${key}${suffix}`);
+  }
+  getSuffixes(code) {
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    const rule = this.getRule(code, options);
+    if (!rule) {
+      return [];
+    }
+    if (this.shouldUseIntlApi()) {
+      return rule.resolvedOptions().pluralCategories.sort((pluralCategory1, pluralCategory2) => suffixesOrder[pluralCategory1] - suffixesOrder[pluralCategory2]).map(pluralCategory => `${this.options.prepend}${options.ordinal ? `ordinal${this.options.prepend}` : ''}${pluralCategory}`);
+    }
+    return rule.numbers.map(number => this.getSuffix(code, number, options));
+  }
+  getSuffix(code, count) {
+    let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    const rule = this.getRule(code, options);
+    if (rule) {
+      if (this.shouldUseIntlApi()) {
+        return `${this.options.prepend}${options.ordinal ? `ordinal${this.options.prepend}` : ''}${rule.select(count)}`;
+      }
+      return this.getSuffixRetroCompatible(rule, count);
+    }
+    this.logger.warn(`no plural rule found for: ${code}`);
+    return '';
+  }
+  getSuffixRetroCompatible(rule, count) {
+    const idx = rule.noAbs ? rule.plurals(count) : rule.plurals(Math.abs(count));
+    let suffix = rule.numbers[idx];
+    if (this.options.simplifyPluralSuffix && rule.numbers.length === 2 && rule.numbers[0] === 1) {
+      if (suffix === 2) {
+        suffix = 'plural';
+      } else if (suffix === 1) {
+        suffix = '';
+      }
+    }
+    const returnSuffix = () => this.options.prepend && suffix.toString() ? this.options.prepend + suffix.toString() : suffix.toString();
+    if (this.options.compatibilityJSON === 'v1') {
+      if (suffix === 1) return '';
+      if (typeof suffix === 'number') return `_plural_${suffix.toString()}`;
+      return returnSuffix();
+    } else if (this.options.compatibilityJSON === 'v2') {
+      return returnSuffix();
+    } else if (this.options.simplifyPluralSuffix && rule.numbers.length === 2 && rule.numbers[0] === 1) {
+      return returnSuffix();
+    }
+    return this.options.prepend && idx.toString() ? this.options.prepend + idx.toString() : idx.toString();
+  }
+  shouldUseIntlApi() {
+    return !nonIntlVersions.includes(this.options.compatibilityJSON);
+  }
+}
+
+function deepFindWithDefaults(data, defaultData, key) {
+  let keySeparator = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '.';
+  let ignoreJSONStructure = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
+  let path = getPathWithDefaults(data, defaultData, key);
+  if (!path && ignoreJSONStructure && typeof key === 'string') {
+    path = deepFind(data, key, keySeparator);
+    if (path === undefined) path = deepFind(defaultData, key, keySeparator);
+  }
+  return path;
+}
+class Interpolator {
+  constructor() {
+    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    this.logger = baseLogger.create('interpolator');
+    this.options = options;
+    this.format = options.interpolation && options.interpolation.format || (value => value);
+    this.init(options);
+  }
+  init() {
+    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    if (!options.interpolation) options.interpolation = {
+      escapeValue: true
+    };
+    const iOpts = options.interpolation;
+    this.escape = iOpts.escape !== undefined ? iOpts.escape : i18next_escape;
+    this.escapeValue = iOpts.escapeValue !== undefined ? iOpts.escapeValue : true;
+    this.useRawValueToEscape = iOpts.useRawValueToEscape !== undefined ? iOpts.useRawValueToEscape : false;
+    this.prefix = iOpts.prefix ? regexEscape(iOpts.prefix) : iOpts.prefixEscaped || '{{';
+    this.suffix = iOpts.suffix ? regexEscape(iOpts.suffix) : iOpts.suffixEscaped || '}}';
+    this.formatSeparator = iOpts.formatSeparator ? iOpts.formatSeparator : iOpts.formatSeparator || ',';
+    this.unescapePrefix = iOpts.unescapeSuffix ? '' : iOpts.unescapePrefix || '-';
+    this.unescapeSuffix = this.unescapePrefix ? '' : iOpts.unescapeSuffix || '';
+    this.nestingPrefix = iOpts.nestingPrefix ? regexEscape(iOpts.nestingPrefix) : iOpts.nestingPrefixEscaped || regexEscape('$t(');
+    this.nestingSuffix = iOpts.nestingSuffix ? regexEscape(iOpts.nestingSuffix) : iOpts.nestingSuffixEscaped || regexEscape(')');
+    this.nestingOptionsSeparator = iOpts.nestingOptionsSeparator ? iOpts.nestingOptionsSeparator : iOpts.nestingOptionsSeparator || ',';
+    this.maxReplaces = iOpts.maxReplaces ? iOpts.maxReplaces : 1000;
+    this.alwaysFormat = iOpts.alwaysFormat !== undefined ? iOpts.alwaysFormat : false;
+    this.resetRegExp();
+  }
+  reset() {
+    if (this.options) this.init(this.options);
+  }
+  resetRegExp() {
+    const regexpStr = `${this.prefix}(.+?)${this.suffix}`;
+    this.regexp = new RegExp(regexpStr, 'g');
+    const regexpUnescapeStr = `${this.prefix}${this.unescapePrefix}(.+?)${this.unescapeSuffix}${this.suffix}`;
+    this.regexpUnescape = new RegExp(regexpUnescapeStr, 'g');
+    const nestingRegexpStr = `${this.nestingPrefix}(.+?)${this.nestingSuffix}`;
+    this.nestingRegexp = new RegExp(nestingRegexpStr, 'g');
+  }
+  interpolate(str, data, lng, options) {
+    let match;
+    let value;
+    let replaces;
+    const defaultData = this.options && this.options.interpolation && this.options.interpolation.defaultVariables || {};
+    function regexSafe(val) {
+      return val.replace(/\$/g, '$$$$');
+    }
+    const handleFormat = key => {
+      if (key.indexOf(this.formatSeparator) < 0) {
+        const path = deepFindWithDefaults(data, defaultData, key, this.options.keySeparator, this.options.ignoreJSONStructure);
+        return this.alwaysFormat ? this.format(path, undefined, lng, {
+          ...options,
+          ...data,
+          interpolationkey: key
+        }) : path;
+      }
+      const p = key.split(this.formatSeparator);
+      const k = p.shift().trim();
+      const f = p.join(this.formatSeparator).trim();
+      return this.format(deepFindWithDefaults(data, defaultData, k, this.options.keySeparator, this.options.ignoreJSONStructure), f, lng, {
+        ...options,
+        ...data,
+        interpolationkey: k
+      });
+    };
+    this.resetRegExp();
+    const missingInterpolationHandler = options && options.missingInterpolationHandler || this.options.missingInterpolationHandler;
+    const skipOnVariables = options && options.interpolation && options.interpolation.skipOnVariables !== undefined ? options.interpolation.skipOnVariables : this.options.interpolation.skipOnVariables;
+    const todos = [{
+      regex: this.regexpUnescape,
+      safeValue: val => regexSafe(val)
+    }, {
+      regex: this.regexp,
+      safeValue: val => this.escapeValue ? regexSafe(this.escape(val)) : regexSafe(val)
+    }];
+    todos.forEach(todo => {
+      replaces = 0;
+      while (match = todo.regex.exec(str)) {
+        const matchedVar = match[1].trim();
+        value = handleFormat(matchedVar);
+        if (value === undefined) {
+          if (typeof missingInterpolationHandler === 'function') {
+            const temp = missingInterpolationHandler(str, match, options);
+            value = typeof temp === 'string' ? temp : '';
+          } else if (options && Object.prototype.hasOwnProperty.call(options, matchedVar)) {
+            value = '';
+          } else if (skipOnVariables) {
+            value = match[0];
+            continue;
+          } else {
+            this.logger.warn(`missed to pass in variable ${matchedVar} for interpolating ${str}`);
+            value = '';
+          }
+        } else if (typeof value !== 'string' && !this.useRawValueToEscape) {
+          value = makeString(value);
+        }
+        const safeValue = todo.safeValue(value);
+        str = str.replace(match[0], safeValue);
+        if (skipOnVariables) {
+          todo.regex.lastIndex += value.length;
+          todo.regex.lastIndex -= match[0].length;
+        } else {
+          todo.regex.lastIndex = 0;
+        }
+        replaces++;
+        if (replaces >= this.maxReplaces) {
+          break;
+        }
+      }
+    });
+    return str;
+  }
+  nest(str, fc) {
+    let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    let match;
+    let value;
+    let clonedOptions;
+    function handleHasOptions(key, inheritedOptions) {
+      const sep = this.nestingOptionsSeparator;
+      if (key.indexOf(sep) < 0) return key;
+      const c = key.split(new RegExp(`${sep}[ ]*{`));
+      let optionsString = `{${c[1]}`;
+      key = c[0];
+      optionsString = this.interpolate(optionsString, clonedOptions);
+      const matchedSingleQuotes = optionsString.match(/'/g);
+      const matchedDoubleQuotes = optionsString.match(/"/g);
+      if (matchedSingleQuotes && matchedSingleQuotes.length % 2 === 0 && !matchedDoubleQuotes || matchedDoubleQuotes.length % 2 !== 0) {
+        optionsString = optionsString.replace(/'/g, '"');
+      }
+      try {
+        clonedOptions = JSON.parse(optionsString);
+        if (inheritedOptions) clonedOptions = {
+          ...inheritedOptions,
+          ...clonedOptions
+        };
+      } catch (e) {
+        this.logger.warn(`failed parsing options string in nesting for key ${key}`, e);
+        return `${key}${sep}${optionsString}`;
+      }
+      delete clonedOptions.defaultValue;
+      return key;
+    }
+    while (match = this.nestingRegexp.exec(str)) {
+      let formatters = [];
+      clonedOptions = {
+        ...options
+      };
+      clonedOptions = clonedOptions.replace && typeof clonedOptions.replace !== 'string' ? clonedOptions.replace : clonedOptions;
+      clonedOptions.applyPostProcessor = false;
+      delete clonedOptions.defaultValue;
+      let doReduce = false;
+      if (match[0].indexOf(this.formatSeparator) !== -1 && !/{.*}/.test(match[1])) {
+        const r = match[1].split(this.formatSeparator).map(elem => elem.trim());
+        match[1] = r.shift();
+        formatters = r;
+        doReduce = true;
+      }
+      value = fc(handleHasOptions.call(this, match[1].trim(), clonedOptions), clonedOptions);
+      if (value && match[0] === str && typeof value !== 'string') return value;
+      if (typeof value !== 'string') value = makeString(value);
+      if (!value) {
+        this.logger.warn(`missed to resolve ${match[1]} for nesting ${str}`);
+        value = '';
+      }
+      if (doReduce) {
+        value = formatters.reduce((v, f) => this.format(v, f, options.lng, {
+          ...options,
+          interpolationkey: match[1].trim()
+        }), value.trim());
+      }
+      str = str.replace(match[0], value);
+      this.regexp.lastIndex = 0;
+    }
+    return str;
+  }
+}
+
+function parseFormatStr(formatStr) {
+  let formatName = formatStr.toLowerCase().trim();
+  const formatOptions = {};
+  if (formatStr.indexOf('(') > -1) {
+    const p = formatStr.split('(');
+    formatName = p[0].toLowerCase().trim();
+    const optStr = p[1].substring(0, p[1].length - 1);
+    if (formatName === 'currency' && optStr.indexOf(':') < 0) {
+      if (!formatOptions.currency) formatOptions.currency = optStr.trim();
+    } else if (formatName === 'relativetime' && optStr.indexOf(':') < 0) {
+      if (!formatOptions.range) formatOptions.range = optStr.trim();
+    } else {
+      const opts = optStr.split(';');
+      opts.forEach(opt => {
+        if (!opt) return;
+        const [key, ...rest] = opt.split(':');
+        const val = rest.join(':').trim().replace(/^'+|'+$/g, '');
+        if (!formatOptions[key.trim()]) formatOptions[key.trim()] = val;
+        if (val === 'false') formatOptions[key.trim()] = false;
+        if (val === 'true') formatOptions[key.trim()] = true;
+        if (!isNaN(val)) formatOptions[key.trim()] = parseInt(val, 10);
+      });
+    }
+  }
+  return {
+    formatName,
+    formatOptions
+  };
+}
+function createCachedFormatter(fn) {
+  const cache = {};
+  return function invokeFormatter(val, lng, options) {
+    const key = lng + JSON.stringify(options);
+    let formatter = cache[key];
+    if (!formatter) {
+      formatter = fn(getCleanedCode(lng), options);
+      cache[key] = formatter;
+    }
+    return formatter(val);
+  };
+}
+class Formatter {
+  constructor() {
+    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    this.logger = baseLogger.create('formatter');
+    this.options = options;
+    this.formats = {
+      number: createCachedFormatter((lng, opt) => {
+        const formatter = new Intl.NumberFormat(lng, {
+          ...opt
+        });
+        return val => formatter.format(val);
+      }),
+      currency: createCachedFormatter((lng, opt) => {
+        const formatter = new Intl.NumberFormat(lng, {
+          ...opt,
+          style: 'currency'
+        });
+        return val => formatter.format(val);
+      }),
+      datetime: createCachedFormatter((lng, opt) => {
+        const formatter = new Intl.DateTimeFormat(lng, {
+          ...opt
+        });
+        return val => formatter.format(val);
+      }),
+      relativetime: createCachedFormatter((lng, opt) => {
+        const formatter = new Intl.RelativeTimeFormat(lng, {
+          ...opt
+        });
+        return val => formatter.format(val, opt.range || 'day');
+      }),
+      list: createCachedFormatter((lng, opt) => {
+        const formatter = new Intl.ListFormat(lng, {
+          ...opt
+        });
+        return val => formatter.format(val);
+      })
+    };
+    this.init(options);
+  }
+  init(services) {
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+      interpolation: {}
+    };
+    const iOpts = options.interpolation;
+    this.formatSeparator = iOpts.formatSeparator ? iOpts.formatSeparator : iOpts.formatSeparator || ',';
+  }
+  add(name, fc) {
+    this.formats[name.toLowerCase().trim()] = fc;
+  }
+  addCached(name, fc) {
+    this.formats[name.toLowerCase().trim()] = createCachedFormatter(fc);
+  }
+  format(value, format, lng) {
+    let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+    const formats = format.split(this.formatSeparator);
+    const result = formats.reduce((mem, f) => {
+      const {
+        formatName,
+        formatOptions
+      } = parseFormatStr(f);
+      if (this.formats[formatName]) {
+        let formatted = mem;
+        try {
+          const valOptions = options && options.formatParams && options.formatParams[options.interpolationkey] || {};
+          const l = valOptions.locale || valOptions.lng || options.locale || options.lng || lng;
+          formatted = this.formats[formatName](mem, l, {
+            ...formatOptions,
+            ...options,
+            ...valOptions
+          });
+        } catch (error) {
+          this.logger.warn(error);
+        }
+        return formatted;
+      } else {
+        this.logger.warn(`there was no format function for ${formatName}`);
+      }
+      return mem;
+    }, value);
+    return result;
+  }
+}
+
+function removePending(q, name) {
+  if (q.pending[name] !== undefined) {
+    delete q.pending[name];
+    q.pendingCount--;
+  }
+}
+class Connector extends EventEmitter {
+  constructor(backend, store, services) {
+    let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+    super();
+    this.backend = backend;
+    this.store = store;
+    this.services = services;
+    this.languageUtils = services.languageUtils;
+    this.options = options;
+    this.logger = baseLogger.create('backendConnector');
+    this.waitingReads = [];
+    this.maxParallelReads = options.maxParallelReads || 10;
+    this.readingCalls = 0;
+    this.maxRetries = options.maxRetries >= 0 ? options.maxRetries : 5;
+    this.retryTimeout = options.retryTimeout >= 1 ? options.retryTimeout : 350;
+    this.state = {};
+    this.queue = [];
+    if (this.backend && this.backend.init) {
+      this.backend.init(services, options.backend, options);
+    }
+  }
+  queueLoad(languages, namespaces, options, callback) {
+    const toLoad = {};
+    const pending = {};
+    const toLoadLanguages = {};
+    const toLoadNamespaces = {};
+    languages.forEach(lng => {
+      let hasAllNamespaces = true;
+      namespaces.forEach(ns => {
+        const name = `${lng}|${ns}`;
+        if (!options.reload && this.store.hasResourceBundle(lng, ns)) {
+          this.state[name] = 2;
+        } else if (this.state[name] < 0) ; else if (this.state[name] === 1) {
+          if (pending[name] === undefined) pending[name] = true;
+        } else {
+          this.state[name] = 1;
+          hasAllNamespaces = false;
+          if (pending[name] === undefined) pending[name] = true;
+          if (toLoad[name] === undefined) toLoad[name] = true;
+          if (toLoadNamespaces[ns] === undefined) toLoadNamespaces[ns] = true;
+        }
+      });
+      if (!hasAllNamespaces) toLoadLanguages[lng] = true;
+    });
+    if (Object.keys(toLoad).length || Object.keys(pending).length) {
+      this.queue.push({
+        pending,
+        pendingCount: Object.keys(pending).length,
+        loaded: {},
+        errors: [],
+        callback
+      });
+    }
+    return {
+      toLoad: Object.keys(toLoad),
+      pending: Object.keys(pending),
+      toLoadLanguages: Object.keys(toLoadLanguages),
+      toLoadNamespaces: Object.keys(toLoadNamespaces)
+    };
+  }
+  loaded(name, err, data) {
+    const s = name.split('|');
+    const lng = s[0];
+    const ns = s[1];
+    if (err) this.emit('failedLoading', lng, ns, err);
+    if (data) {
+      this.store.addResourceBundle(lng, ns, data);
+    }
+    this.state[name] = err ? -1 : 2;
+    const loaded = {};
+    this.queue.forEach(q => {
+      pushPath(q.loaded, [lng], ns);
+      removePending(q, name);
+      if (err) q.errors.push(err);
+      if (q.pendingCount === 0 && !q.done) {
+        Object.keys(q.loaded).forEach(l => {
+          if (!loaded[l]) loaded[l] = {};
+          const loadedKeys = q.loaded[l];
+          if (loadedKeys.length) {
+            loadedKeys.forEach(n => {
+              if (loaded[l][n] === undefined) loaded[l][n] = true;
+            });
+          }
+        });
+        q.done = true;
+        if (q.errors.length) {
+          q.callback(q.errors);
+        } else {
+          q.callback();
+        }
+      }
+    });
+    this.emit('loaded', loaded);
+    this.queue = this.queue.filter(q => !q.done);
+  }
+  read(lng, ns, fcName) {
+    let tried = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+    let wait = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : this.retryTimeout;
+    let callback = arguments.length > 5 ? arguments[5] : undefined;
+    if (!lng.length) return callback(null, {});
+    if (this.readingCalls >= this.maxParallelReads) {
+      this.waitingReads.push({
+        lng,
+        ns,
+        fcName,
+        tried,
+        wait,
+        callback
+      });
+      return;
+    }
+    this.readingCalls++;
+    const resolver = (err, data) => {
+      this.readingCalls--;
+      if (this.waitingReads.length > 0) {
+        const next = this.waitingReads.shift();
+        this.read(next.lng, next.ns, next.fcName, next.tried, next.wait, next.callback);
+      }
+      if (err && data && tried < this.maxRetries) {
+        setTimeout(() => {
+          this.read.call(this, lng, ns, fcName, tried + 1, wait * 2, callback);
+        }, wait);
+        return;
+      }
+      callback(err, data);
+    };
+    const fc = this.backend[fcName].bind(this.backend);
+    if (fc.length === 2) {
+      try {
+        const r = fc(lng, ns);
+        if (r && typeof r.then === 'function') {
+          r.then(data => resolver(null, data)).catch(resolver);
+        } else {
+          resolver(null, r);
+        }
+      } catch (err) {
+        resolver(err);
+      }
+      return;
+    }
+    return fc(lng, ns, resolver);
+  }
+  prepareLoading(languages, namespaces) {
+    let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    let callback = arguments.length > 3 ? arguments[3] : undefined;
+    if (!this.backend) {
+      this.logger.warn('No backend was added via i18next.use. Will not load resources.');
+      return callback && callback();
+    }
+    if (typeof languages === 'string') languages = this.languageUtils.toResolveHierarchy(languages);
+    if (typeof namespaces === 'string') namespaces = [namespaces];
+    const toLoad = this.queueLoad(languages, namespaces, options, callback);
+    if (!toLoad.toLoad.length) {
+      if (!toLoad.pending.length) callback();
+      return null;
+    }
+    toLoad.toLoad.forEach(name => {
+      this.loadOne(name);
+    });
+  }
+  load(languages, namespaces, callback) {
+    this.prepareLoading(languages, namespaces, {}, callback);
+  }
+  reload(languages, namespaces, callback) {
+    this.prepareLoading(languages, namespaces, {
+      reload: true
+    }, callback);
+  }
+  loadOne(name) {
+    let prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+    const s = name.split('|');
+    const lng = s[0];
+    const ns = s[1];
+    this.read(lng, ns, 'read', undefined, undefined, (err, data) => {
+      if (err) this.logger.warn(`${prefix}loading namespace ${ns} for language ${lng} failed`, err);
+      if (!err && data) this.logger.log(`${prefix}loaded namespace ${ns} for language ${lng}`, data);
+      this.loaded(name, err, data);
+    });
+  }
+  saveMissing(languages, namespace, key, fallbackValue, isUpdate) {
+    let options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
+    let clb = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : () => {};
+    if (this.services.utils && this.services.utils.hasLoadedNamespace && !this.services.utils.hasLoadedNamespace(namespace)) {
+      this.logger.warn(`did not save key "${key}" as the namespace "${namespace}" was not yet loaded`, 'This means something IS WRONG in your setup. You access the t function before i18next.init / i18next.loadNamespace / i18next.changeLanguage was done. Wait for the callback or Promise to resolve before accessing it!!!');
+      return;
+    }
+    if (key === undefined || key === null || key === '') return;
+    if (this.backend && this.backend.create) {
+      const opts = {
+        ...options,
+        isUpdate
+      };
+      const fc = this.backend.create.bind(this.backend);
+      if (fc.length < 6) {
+        try {
+          let r;
+          if (fc.length === 5) {
+            r = fc(languages, namespace, key, fallbackValue, opts);
+          } else {
+            r = fc(languages, namespace, key, fallbackValue);
+          }
+          if (r && typeof r.then === 'function') {
+            r.then(data => clb(null, data)).catch(clb);
+          } else {
+            clb(null, r);
+          }
+        } catch (err) {
+          clb(err);
+        }
+      } else {
+        fc(languages, namespace, key, fallbackValue, clb, opts);
+      }
+    }
+    if (!languages || !languages[0]) return;
+    this.store.addResource(languages[0], namespace, key, fallbackValue);
+  }
+}
+
+function get() {
+  return {
+    debug: false,
+    initImmediate: true,
+    ns: ['translation'],
+    defaultNS: ['translation'],
+    fallbackLng: ['dev'],
+    fallbackNS: false,
+    supportedLngs: false,
+    nonExplicitSupportedLngs: false,
+    load: 'all',
+    preload: false,
+    simplifyPluralSuffix: true,
+    keySeparator: '.',
+    nsSeparator: ':',
+    pluralSeparator: '_',
+    contextSeparator: '_',
+    partialBundledLanguages: false,
+    saveMissing: false,
+    updateMissing: false,
+    saveMissingTo: 'fallback',
+    saveMissingPlurals: true,
+    missingKeyHandler: false,
+    missingInterpolationHandler: false,
+    postProcess: false,
+    postProcessPassResolved: false,
+    returnNull: false,
+    returnEmptyString: true,
+    returnObjects: false,
+    joinArrays: false,
+    returnedObjectHandler: false,
+    parseMissingKeyHandler: false,
+    appendNamespaceToMissingKey: false,
+    appendNamespaceToCIMode: false,
+    overloadTranslationOptionHandler: function handle(args) {
+      let ret = {};
+      if (typeof args[1] === 'object') ret = args[1];
+      if (typeof args[1] === 'string') ret.defaultValue = args[1];
+      if (typeof args[2] === 'string') ret.tDescription = args[2];
+      if (typeof args[2] === 'object' || typeof args[3] === 'object') {
+        const options = args[3] || args[2];
+        Object.keys(options).forEach(key => {
+          ret[key] = options[key];
+        });
+      }
+      return ret;
+    },
+    interpolation: {
+      escapeValue: true,
+      format: (value, format, lng, options) => value,
+      prefix: '{{',
+      suffix: '}}',
+      formatSeparator: ',',
+      unescapePrefix: '-',
+      nestingPrefix: '$t(',
+      nestingSuffix: ')',
+      nestingOptionsSeparator: ',',
+      maxReplaces: 1000,
+      skipOnVariables: true
+    }
+  };
+}
+function transformOptions(options) {
+  if (typeof options.ns === 'string') options.ns = [options.ns];
+  if (typeof options.fallbackLng === 'string') options.fallbackLng = [options.fallbackLng];
+  if (typeof options.fallbackNS === 'string') options.fallbackNS = [options.fallbackNS];
+  if (options.supportedLngs && options.supportedLngs.indexOf('cimode') < 0) {
+    options.supportedLngs = options.supportedLngs.concat(['cimode']);
+  }
+  return options;
+}
+
+function noop() {}
+function bindMemberFunctions(inst) {
+  const mems = Object.getOwnPropertyNames(Object.getPrototypeOf(inst));
+  mems.forEach(mem => {
+    if (typeof inst[mem] === 'function') {
+      inst[mem] = inst[mem].bind(inst);
+    }
+  });
+}
+class I18n extends EventEmitter {
+  constructor() {
+    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    let callback = arguments.length > 1 ? arguments[1] : undefined;
+    super();
+    this.options = transformOptions(options);
+    this.services = {};
+    this.logger = baseLogger;
+    this.modules = {
+      external: []
+    };
+    bindMemberFunctions(this);
+    if (callback && !this.isInitialized && !options.isClone) {
+      if (!this.options.initImmediate) {
+        this.init(options, callback);
+        return this;
+      }
+      setTimeout(() => {
+        this.init(options, callback);
+      }, 0);
+    }
+  }
+  init() {
+    var _this = this;
+    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    let callback = arguments.length > 1 ? arguments[1] : undefined;
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (!options.defaultNS && options.defaultNS !== false && options.ns) {
+      if (typeof options.ns === 'string') {
+        options.defaultNS = options.ns;
+      } else if (options.ns.indexOf('translation') < 0) {
+        options.defaultNS = options.ns[0];
+      }
+    }
+    const defOpts = get();
+    this.options = {
+      ...defOpts,
+      ...this.options,
+      ...transformOptions(options)
+    };
+    if (this.options.compatibilityAPI !== 'v1') {
+      this.options.interpolation = {
+        ...defOpts.interpolation,
+        ...this.options.interpolation
+      };
+    }
+    if (options.keySeparator !== undefined) {
+      this.options.userDefinedKeySeparator = options.keySeparator;
+    }
+    if (options.nsSeparator !== undefined) {
+      this.options.userDefinedNsSeparator = options.nsSeparator;
+    }
+    function createClassOnDemand(ClassOrObject) {
+      if (!ClassOrObject) return null;
+      if (typeof ClassOrObject === 'function') return new ClassOrObject();
+      return ClassOrObject;
+    }
+    if (!this.options.isClone) {
+      if (this.modules.logger) {
+        baseLogger.init(createClassOnDemand(this.modules.logger), this.options);
+      } else {
+        baseLogger.init(null, this.options);
+      }
+      let formatter;
+      if (this.modules.formatter) {
+        formatter = this.modules.formatter;
+      } else if (typeof Intl !== 'undefined') {
+        formatter = Formatter;
+      }
+      const lu = new LanguageUtil(this.options);
+      this.store = new ResourceStore(this.options.resources, this.options);
+      const s = this.services;
+      s.logger = baseLogger;
+      s.resourceStore = this.store;
+      s.languageUtils = lu;
+      s.pluralResolver = new PluralResolver(lu, {
+        prepend: this.options.pluralSeparator,
+        compatibilityJSON: this.options.compatibilityJSON,
+        simplifyPluralSuffix: this.options.simplifyPluralSuffix
+      });
+      if (formatter && (!this.options.interpolation.format || this.options.interpolation.format === defOpts.interpolation.format)) {
+        s.formatter = createClassOnDemand(formatter);
+        s.formatter.init(s, this.options);
+        this.options.interpolation.format = s.formatter.format.bind(s.formatter);
+      }
+      s.interpolator = new Interpolator(this.options);
+      s.utils = {
+        hasLoadedNamespace: this.hasLoadedNamespace.bind(this)
+      };
+      s.backendConnector = new Connector(createClassOnDemand(this.modules.backend), s.resourceStore, s, this.options);
+      s.backendConnector.on('*', function (event) {
+        for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+          args[_key - 1] = arguments[_key];
+        }
+        _this.emit(event, ...args);
+      });
+      if (this.modules.languageDetector) {
+        s.languageDetector = createClassOnDemand(this.modules.languageDetector);
+        if (s.languageDetector.init) s.languageDetector.init(s, this.options.detection, this.options);
+      }
+      if (this.modules.i18nFormat) {
+        s.i18nFormat = createClassOnDemand(this.modules.i18nFormat);
+        if (s.i18nFormat.init) s.i18nFormat.init(this);
+      }
+      this.translator = new Translator(this.services, this.options);
+      this.translator.on('*', function (event) {
+        for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+          args[_key2 - 1] = arguments[_key2];
+        }
+        _this.emit(event, ...args);
+      });
+      this.modules.external.forEach(m => {
+        if (m.init) m.init(this);
+      });
+    }
+    this.format = this.options.interpolation.format;
+    if (!callback) callback = noop;
+    if (this.options.fallbackLng && !this.services.languageDetector && !this.options.lng) {
+      const codes = this.services.languageUtils.getFallbackCodes(this.options.fallbackLng);
+      if (codes.length > 0 && codes[0] !== 'dev') this.options.lng = codes[0];
+    }
+    if (!this.services.languageDetector && !this.options.lng) {
+      this.logger.warn('init: no languageDetector is used and no lng is defined');
+    }
+    const storeApi = ['getResource', 'hasResourceBundle', 'getResourceBundle', 'getDataByLanguage'];
+    storeApi.forEach(fcName => {
+      this[fcName] = function () {
+        return _this.store[fcName](...arguments);
+      };
+    });
+    const storeApiChained = ['addResource', 'addResources', 'addResourceBundle', 'removeResourceBundle'];
+    storeApiChained.forEach(fcName => {
+      this[fcName] = function () {
+        _this.store[fcName](...arguments);
+        return _this;
+      };
+    });
+    const deferred = defer();
+    const load = () => {
+      const finish = (err, t) => {
+        if (this.isInitialized && !this.initializedStoreOnce) this.logger.warn('init: i18next is already initialized. You should call init just once!');
+        this.isInitialized = true;
+        if (!this.options.isClone) this.logger.log('initialized', this.options);
+        this.emit('initialized', this.options);
+        deferred.resolve(t);
+        callback(err, t);
+      };
+      if (this.languages && this.options.compatibilityAPI !== 'v1' && !this.isInitialized) return finish(null, this.t.bind(this));
+      this.changeLanguage(this.options.lng, finish);
+    };
+    if (this.options.resources || !this.options.initImmediate) {
+      load();
+    } else {
+      setTimeout(load, 0);
+    }
+    return deferred;
+  }
+  loadResources(language) {
+    let callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : noop;
+    let usedCallback = callback;
+    const usedLng = typeof language === 'string' ? language : this.language;
+    if (typeof language === 'function') usedCallback = language;
+    if (!this.options.resources || this.options.partialBundledLanguages) {
+      if (usedLng && usedLng.toLowerCase() === 'cimode') return usedCallback();
+      const toLoad = [];
+      const append = lng => {
+        if (!lng) return;
+        const lngs = this.services.languageUtils.toResolveHierarchy(lng);
+        lngs.forEach(l => {
+          if (toLoad.indexOf(l) < 0) toLoad.push(l);
+        });
+      };
+      if (!usedLng) {
+        const fallbacks = this.services.languageUtils.getFallbackCodes(this.options.fallbackLng);
+        fallbacks.forEach(l => append(l));
+      } else {
+        append(usedLng);
+      }
+      if (this.options.preload) {
+        this.options.preload.forEach(l => append(l));
+      }
+      this.services.backendConnector.load(toLoad, this.options.ns, e => {
+        if (!e && !this.resolvedLanguage && this.language) this.setResolvedLanguage(this.language);
+        usedCallback(e);
+      });
+    } else {
+      usedCallback(null);
+    }
+  }
+  reloadResources(lngs, ns, callback) {
+    const deferred = defer();
+    if (!lngs) lngs = this.languages;
+    if (!ns) ns = this.options.ns;
+    if (!callback) callback = noop;
+    this.services.backendConnector.reload(lngs, ns, err => {
+      deferred.resolve();
+      callback(err);
+    });
+    return deferred;
+  }
+  use(module) {
+    if (!module) throw new Error('You are passing an undefined module! Please check the object you are passing to i18next.use()');
+    if (!module.type) throw new Error('You are passing a wrong module! Please check the object you are passing to i18next.use()');
+    if (module.type === 'backend') {
+      this.modules.backend = module;
+    }
+    if (module.type === 'logger' || module.log && module.warn && module.error) {
+      this.modules.logger = module;
+    }
+    if (module.type === 'languageDetector') {
+      this.modules.languageDetector = module;
+    }
+    if (module.type === 'i18nFormat') {
+      this.modules.i18nFormat = module;
+    }
+    if (module.type === 'postProcessor') {
+      postProcessor.addPostProcessor(module);
+    }
+    if (module.type === 'formatter') {
+      this.modules.formatter = module;
+    }
+    if (module.type === '3rdParty') {
+      this.modules.external.push(module);
+    }
+    return this;
+  }
+  setResolvedLanguage(l) {
+    if (!l || !this.languages) return;
+    if (['cimode', 'dev'].indexOf(l) > -1) return;
+    for (let li = 0; li < this.languages.length; li++) {
+      const lngInLngs = this.languages[li];
+      if (['cimode', 'dev'].indexOf(lngInLngs) > -1) continue;
+      if (this.store.hasLanguageSomeTranslations(lngInLngs)) {
+        this.resolvedLanguage = lngInLngs;
+        break;
+      }
+    }
+  }
+  changeLanguage(lng, callback) {
+    var _this2 = this;
+    this.isLanguageChangingTo = lng;
+    const deferred = defer();
+    this.emit('languageChanging', lng);
+    const setLngProps = l => {
+      this.language = l;
+      this.languages = this.services.languageUtils.toResolveHierarchy(l);
+      this.resolvedLanguage = undefined;
+      this.setResolvedLanguage(l);
+    };
+    const done = (err, l) => {
+      if (l) {
+        setLngProps(l);
+        this.translator.changeLanguage(l);
+        this.isLanguageChangingTo = undefined;
+        this.emit('languageChanged', l);
+        this.logger.log('languageChanged', l);
+      } else {
+        this.isLanguageChangingTo = undefined;
+      }
+      deferred.resolve(function () {
+        return _this2.t(...arguments);
+      });
+      if (callback) callback(err, function () {
+        return _this2.t(...arguments);
+      });
+    };
+    const setLng = lngs => {
+      if (!lng && !lngs && this.services.languageDetector) lngs = [];
+      const l = typeof lngs === 'string' ? lngs : this.services.languageUtils.getBestMatchFromCodes(lngs);
+      if (l) {
+        if (!this.language) {
+          setLngProps(l);
+        }
+        if (!this.translator.language) this.translator.changeLanguage(l);
+        if (this.services.languageDetector && this.services.languageDetector.cacheUserLanguage) this.services.languageDetector.cacheUserLanguage(l);
+      }
+      this.loadResources(l, err => {
+        done(err, l);
+      });
+    };
+    if (!lng && this.services.languageDetector && !this.services.languageDetector.async) {
+      setLng(this.services.languageDetector.detect());
+    } else if (!lng && this.services.languageDetector && this.services.languageDetector.async) {
+      if (this.services.languageDetector.detect.length === 0) {
+        this.services.languageDetector.detect().then(setLng);
+      } else {
+        this.services.languageDetector.detect(setLng);
+      }
+    } else {
+      setLng(lng);
+    }
+    return deferred;
+  }
+  getFixedT(lng, ns, keyPrefix) {
+    var _this3 = this;
+    const fixedT = function (key, opts) {
+      let options;
+      if (typeof opts !== 'object') {
+        for (var _len3 = arguments.length, rest = new Array(_len3 > 2 ? _len3 - 2 : 0), _key3 = 2; _key3 < _len3; _key3++) {
+          rest[_key3 - 2] = arguments[_key3];
+        }
+        options = _this3.options.overloadTranslationOptionHandler([key, opts].concat(rest));
+      } else {
+        options = {
+          ...opts
+        };
+      }
+      options.lng = options.lng || fixedT.lng;
+      options.lngs = options.lngs || fixedT.lngs;
+      options.ns = options.ns || fixedT.ns;
+      options.keyPrefix = options.keyPrefix || keyPrefix || fixedT.keyPrefix;
+      const keySeparator = _this3.options.keySeparator || '.';
+      let resultKey;
+      if (options.keyPrefix && Array.isArray(key)) {
+        resultKey = key.map(k => `${options.keyPrefix}${keySeparator}${k}`);
+      } else {
+        resultKey = options.keyPrefix ? `${options.keyPrefix}${keySeparator}${key}` : key;
+      }
+      return _this3.t(resultKey, options);
+    };
+    if (typeof lng === 'string') {
+      fixedT.lng = lng;
+    } else {
+      fixedT.lngs = lng;
+    }
+    fixedT.ns = ns;
+    fixedT.keyPrefix = keyPrefix;
+    return fixedT;
+  }
+  t() {
+    return this.translator && this.translator.translate(...arguments);
+  }
+  exists() {
+    return this.translator && this.translator.exists(...arguments);
+  }
+  setDefaultNamespace(ns) {
+    this.options.defaultNS = ns;
+  }
+  hasLoadedNamespace(ns) {
+    let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    if (!this.isInitialized) {
+      this.logger.warn('hasLoadedNamespace: i18next was not initialized', this.languages);
+      return false;
+    }
+    if (!this.languages || !this.languages.length) {
+      this.logger.warn('hasLoadedNamespace: i18n.languages were undefined or empty', this.languages);
+      return false;
+    }
+    const lng = options.lng || this.resolvedLanguage || this.languages[0];
+    const fallbackLng = this.options ? this.options.fallbackLng : false;
+    const lastLng = this.languages[this.languages.length - 1];
+    if (lng.toLowerCase() === 'cimode') return true;
+    const loadNotPending = (l, n) => {
+      const loadState = this.services.backendConnector.state[`${l}|${n}`];
+      return loadState === -1 || loadState === 2;
+    };
+    if (options.precheck) {
+      const preResult = options.precheck(this, loadNotPending);
+      if (preResult !== undefined) return preResult;
+    }
+    if (this.hasResourceBundle(lng, ns)) return true;
+    if (!this.services.backendConnector.backend || this.options.resources && !this.options.partialBundledLanguages) return true;
+    if (loadNotPending(lng, ns) && (!fallbackLng || loadNotPending(lastLng, ns))) return true;
+    return false;
+  }
+  loadNamespaces(ns, callback) {
+    const deferred = defer();
+    if (!this.options.ns) {
+      if (callback) callback();
+      return Promise.resolve();
+    }
+    if (typeof ns === 'string') ns = [ns];
+    ns.forEach(n => {
+      if (this.options.ns.indexOf(n) < 0) this.options.ns.push(n);
+    });
+    this.loadResources(err => {
+      deferred.resolve();
+      if (callback) callback(err);
+    });
+    return deferred;
+  }
+  loadLanguages(lngs, callback) {
+    const deferred = defer();
+    if (typeof lngs === 'string') lngs = [lngs];
+    const preloaded = this.options.preload || [];
+    const newLngs = lngs.filter(lng => preloaded.indexOf(lng) < 0);
+    if (!newLngs.length) {
+      if (callback) callback();
+      return Promise.resolve();
+    }
+    this.options.preload = preloaded.concat(newLngs);
+    this.loadResources(err => {
+      deferred.resolve();
+      if (callback) callback(err);
+    });
+    return deferred;
+  }
+  dir(lng) {
+    if (!lng) lng = this.resolvedLanguage || (this.languages && this.languages.length > 0 ? this.languages[0] : this.language);
+    if (!lng) return 'rtl';
+    const rtlLngs = ['ar', 'shu', 'sqr', 'ssh', 'xaa', 'yhd', 'yud', 'aao', 'abh', 'abv', 'acm', 'acq', 'acw', 'acx', 'acy', 'adf', 'ads', 'aeb', 'aec', 'afb', 'ajp', 'apc', 'apd', 'arb', 'arq', 'ars', 'ary', 'arz', 'auz', 'avl', 'ayh', 'ayl', 'ayn', 'ayp', 'bbz', 'pga', 'he', 'iw', 'ps', 'pbt', 'pbu', 'pst', 'prp', 'prd', 'ug', 'ur', 'ydd', 'yds', 'yih', 'ji', 'yi', 'hbo', 'men', 'xmn', 'fa', 'jpr', 'peo', 'pes', 'prs', 'dv', 'sam', 'ckb'];
+    const languageUtils = this.services && this.services.languageUtils || new LanguageUtil(get());
+    return rtlLngs.indexOf(languageUtils.getLanguagePartFromCode(lng)) > -1 || lng.toLowerCase().indexOf('-arab') > 1 ? 'rtl' : 'ltr';
+  }
+  static createInstance() {
+    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    let callback = arguments.length > 1 ? arguments[1] : undefined;
+    return new I18n(options, callback);
+  }
+  cloneInstance() {
+    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    let callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : noop;
+    const forkResourceStore = options.forkResourceStore;
+    if (forkResourceStore) delete options.forkResourceStore;
+    const mergedOptions = {
+      ...this.options,
+      ...options,
+      ...{
+        isClone: true
+      }
+    };
+    const clone = new I18n(mergedOptions);
+    if (options.debug !== undefined || options.prefix !== undefined) {
+      clone.logger = clone.logger.clone(options);
+    }
+    const membersToCopy = ['store', 'services', 'language'];
+    membersToCopy.forEach(m => {
+      clone[m] = this[m];
+    });
+    clone.services = {
+      ...this.services
+    };
+    clone.services.utils = {
+      hasLoadedNamespace: clone.hasLoadedNamespace.bind(clone)
+    };
+    if (forkResourceStore) {
+      clone.store = new ResourceStore(this.store.data, mergedOptions);
+      clone.services.resourceStore = clone.store;
+    }
+    clone.translator = new Translator(clone.services, mergedOptions);
+    clone.translator.on('*', function (event) {
+      for (var _len4 = arguments.length, args = new Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
+        args[_key4 - 1] = arguments[_key4];
+      }
+      clone.emit(event, ...args);
+    });
+    clone.init(mergedOptions, callback);
+    clone.translator.options = mergedOptions;
+    clone.translator.backendConnector.services.utils = {
+      hasLoadedNamespace: clone.hasLoadedNamespace.bind(clone)
+    };
+    return clone;
+  }
+  toJSON() {
+    return {
+      options: this.options,
+      store: this.store,
+      language: this.language,
+      languages: this.languages,
+      resolvedLanguage: this.resolvedLanguage
+    };
+  }
+}
+const instance = I18n.createInstance();
+instance.createInstance = I18n.createInstance;
+
+const createInstance = instance.createInstance;
+const dir = instance.dir;
+const init = instance.init;
+const loadResources = instance.loadResources;
+const reloadResources = instance.reloadResources;
+const use = instance.use;
+const changeLanguage = instance.changeLanguage;
+const getFixedT = instance.getFixedT;
+const i18next_t = instance.t;
+const exists = instance.exists;
+const setDefaultNamespace = instance.setDefaultNamespace;
+const i18next_hasLoadedNamespace = instance.hasLoadedNamespace;
+const i18next_loadNamespaces = instance.loadNamespaces;
+const i18next_loadLanguages = instance.loadLanguages;
+
+
+
+;// CONCATENATED MODULE: ./locales/en/common.json
+const common_namespaceObject = JSON.parse('{"window":{"button":{"close":"Close","maximize":"Maximize","minimize":"Minimize","restore":"Restore","unlock":"Unlock"},"menu-item":{"open-window":"Open in new Window","resize":"Fit to content","lock":"Fix Window"}}}');
+;// CONCATENATED MODULE: ./locales/de/common.json
+const de_common_namespaceObject = JSON.parse('{"window":{"button":{"close":"Schließen","maximize":"Maxmieren","minimize":"Minimieren","restore":"Wiederherstellen","unlock":"Fenster lösen"},"menu-item":{"open-window":"In neuem Fenster öffnen","resize":"An Inhalt anpassen","lock":"Fenster fixieren"}}}');
+;// CONCATENATED MODULE: ./src/i18n/i18n.ts
+
+
+
+
+instance.use(initReactI18next).init({
+  resources: {
+    en: {
+      common: common_namespaceObject
+    },
+    de: {
+      common: de_common_namespaceObject
+    }
+  },
+  defaultNS: "common",
+  lng: "en",
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false
+  }
+});
+
+;// CONCATENATED MODULE: ./src/Components/WindowContainer/WindowContainerRefContext.ts
+
+const WindowContainerRefContext = /*#__PURE__*/external_react_default().createContext(undefined);
+const useWindowContainerRef = () => external_react_default().useContext(WindowContainerRefContext);
+;// CONCATENATED MODULE: ./src/Components/WindowContainer/WindowContainer.tsx
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const WindowContainer = (0,react_bootstrap_mobile_namespaceObject.withForwardRef)(function WindowContainer({
+  initialTop = 200,
+  initialLeft = 200,
+  id,
+  store = 'default',
+  containerData,
+  windowData,
+  titleInfos,
+  isActive,
+  disabled,
+  className
+}, ref) {
+  var _a;
+  // Variables
+  const {
+    t
+  } = useTranslation_useTranslation();
+  // Refs
+  const [portalContainer] = (0,external_react_.useState)(() => {
+    return document.createElement('div');
+  });
+  // Open in new window refs
+  const windowContainerRef = (0,external_react_.useRef)(null);
+  const containerRef = (0,external_react_.useRef)();
+  const [windowObject, setWindowObject] = (0,external_react_.useState)(undefined);
+  // Resize to content-refs
+  const titleRef = (0,external_react_.useRef)(null);
+  const contentRef = (0,external_react_.useRef)(null);
+  const windowRef = (0,external_react_.useRef)(null);
+  // States
+  const useStore = getWindowStore(store);
+  const [setActiveContainer, updateContainerDimension, updateContainerState, setContainerButtonWidth, setContainerIsMoving, setContainerIsLocked, setShouldResizeToContent] = useStore(s => [s.setActiveContainer, s.updateContainerDimension, s.updateContainerState, s.setButtonWidth, s.setContainerIsMoving, s.setContainerIsLocked, s.setShouldResizeToContent], shallow);
+  const buttonWidth = useStore(s => s.containers[id].buttonWidth);
+  const draggingWindowId = useStore(s => s.draggingWindowId);
+  const {
+    defaultWidth
+  } = windowData !== null && windowData !== void 0 ? windowData : {};
+  const {
+    dimension,
+    state,
+    shouldResizeToContent
+  } = containerData;
+  const [isMenuOpen, setIsMenuOpen] = (0,external_react_.useState)(false);
+  const [menuX, setMenuX] = (0,external_react_.useState)(0);
+  const [menuY, setMenuY] = (0,external_react_.useState)(0);
+  const [isClient, setIsClient] = (0,external_react_.useState)(false);
+  const [resizeDirection, setResizeDirection] = (0,external_react_.useState)();
+  const [resizeStartDimension, setResizeStartDimension] = (0,external_react_.useState)(dimension);
+  const {
+    isMoving
+  } = containerData;
+  // Selectors
+  // Callbacks
+  const setIsMoving = (0,external_react_.useCallback)(newIsMoving => setContainerIsMoving(id, newIsMoving), [id, setContainerIsMoving]);
+  const unlock = (0,external_react_.useCallback)(() => setContainerIsLocked(id, false), [id, setContainerIsLocked]);
+  const lock = (0,external_react_.useCallback)(() => setContainerIsLocked(id, true), [id, setContainerIsLocked]);
+  const setButtonWidth = (0,external_react_.useCallback)(newButtonWidth => setContainerButtonWidth(id, newButtonWidth), [id, setContainerButtonWidth]);
+  const setContainerState = (0,external_react_.useCallback)(newState => {
+    updateContainerState(id, newState);
+  }, [id, updateContainerState]);
+  const setDimension = (0,external_react_.useCallback)(newDimension => updateContainerDimension(id, newDimension), [id, updateContainerDimension]);
+  const setActive = (0,external_react_.useCallback)(() => setActiveContainer(id), [id, setActiveContainer]);
+  const closeMenu = (0,external_react_.useCallback)(() => setIsMenuOpen(false), []);
+  const openMenu = (0,external_react_.useCallback)(ev => {
+    setIsMenuOpen(true);
+    setMenuX(ev.clientX);
+    setMenuY(ev.clientY);
+  }, []);
+  const getDimensions = (0,external_react_.useCallback)(() => {
+    if (windowContainerRef.current) {
+      const computedStyles = window.getComputedStyle(windowContainerRef.current);
+      return {
+        top: parseFloat(computedStyles.getPropertyValue('top')),
+        bottom: parseFloat(computedStyles.getPropertyValue('bottom')),
+        left: parseFloat(computedStyles.getPropertyValue('left')),
+        right: parseFloat(computedStyles.getPropertyValue('right'))
+      };
+    }
+    return undefined;
+  }, []);
+  const resizeToContent = (0,external_react_.useCallback)((resizeWidth = true, resizeHeight = true) => {
+    if (!windowRef.current || !titleRef.current || !contentRef.current) {
+      return;
+    }
+    const classesBefore = contentRef.current.className;
+    contentRef.current.classList.remove((windowContainer_default()).fillHeight);
+    contentRef.current.classList.add("resizing");
+    const realDimension = getDimensions();
+    if (!realDimension) {
+      return;
+    }
+    if (defaultWidth && windowContainerRef.current && resizeWidth) {
+      const currentWidth = window.innerWidth - realDimension.left - realDimension.right;
+      if (currentWidth !== defaultWidth) {
+        changeDimensionWidth(realDimension, defaultWidth - currentWidth);
+        windowContainerRef.current.style.right = `${realDimension.right}px`;
+        windowContainerRef.current.style.left = `${realDimension.left}px`;
+      }
+    }
+    let diffY = contentRef.current.scrollHeight - contentRef.current.clientHeight;
+    const diffX = !resizeWidth ? 0 : contentRef.current.scrollWidth - contentRef.current.clientWidth;
+    if (diffY === 0) {
+      diffY = titleRef.current.clientHeight + contentRef.current.clientHeight - windowRef.current.clientHeight;
+    }
+    if (!resizeHeight) {
+      diffY = 0;
+    }
+    if (resizeHeight) {
+      setShouldResizeToContent(id, resizeWidth ? ResizeToContentEnum.RESIZE : ResizeToContentEnum.HEIGHT_ONLY);
+    } else if (resizeWidth) {
+      setShouldResizeToContent(id, ResizeToContentEnum.WIDTH_ONLY);
+    } else {
+      setShouldResizeToContent(id, ResizeToContentEnum.NONE);
+    }
+    contentRef.current.className = classesBefore;
+    changeDimension(realDimension, diffX, diffY);
+    setDimension(checkWindowDimension(realDimension));
+  }, [defaultWidth, getDimensions, id, setDimension, setShouldResizeToContent]);
+  const toggleMinimized = (0,external_react_.useCallback)(() => setContainerState(old => old === ContainerState.MINIMIZED ? ContainerState.NORMAL : ContainerState.MINIMIZED), [setContainerState]);
+  const toggleMaximized = (0,external_react_.useCallback)(() => setContainerState(old => old === ContainerState.MAXIMIZED ? ContainerState.NORMAL : ContainerState.MAXIMIZED), [setContainerState]);
+  const onMouseDown = (0,external_react_.useCallback)(() => {
+    if (!containerData.isLocked) {
+      setIsMoving(true);
+    }
+  }, [containerData.isLocked, setIsMoving]);
+  const onMouseMove = (0,external_react_.useCallback)(diff => {
+    var _a, _b, _c, _d;
+    if (!resizeStartDimension) {
+      return;
+    }
+    const newDimension = Object.assign({}, resizeStartDimension);
+    if (resizeDirection === 'top' || resizeDirection === 'tl' || resizeDirection === 'tr') {
+      newDimension.top = Math.min(window.innerHeight - ((_a = resizeStartDimension.bottom) !== null && _a !== void 0 ? _a : 0) - WINDOW_CONTAINER_MIN_HEIGHT, resizeStartDimension.top + diff.y);
+    }
+    if (resizeDirection === 'bottom' || resizeDirection === 'bl' || resizeDirection === 'br') {
+      newDimension.bottom = Math.min(window.innerHeight - resizeStartDimension.top - WINDOW_CONTAINER_MIN_HEIGHT, ((_b = resizeStartDimension.bottom) !== null && _b !== void 0 ? _b : 0) - diff.y);
+    }
+    if (resizeDirection === 'left' || resizeDirection === 'bl' || resizeDirection === 'tl') {
+      newDimension.left = Math.min(window.innerWidth - ((_c = resizeStartDimension.right) !== null && _c !== void 0 ? _c : 0) - WINDOW_CONTAINER_MIN_WIDTH, resizeStartDimension.left + diff.x);
+    }
+    if (resizeDirection === 'right' || resizeDirection === 'br' || resizeDirection === 'tr') {
+      newDimension.right = Math.min(window.innerWidth - resizeStartDimension.left - WINDOW_CONTAINER_MIN_WIDTH, ((_d = resizeStartDimension.right) !== null && _d !== void 0 ? _d : 0) - diff.x);
+    }
+    const changedHeight = resizeStartDimension.bottom !== newDimension.bottom || resizeStartDimension.top !== newDimension.top;
+    const changedWidth = resizeStartDimension.left !== newDimension.left || resizeStartDimension.right !== newDimension.right;
+    if (shouldResizeToContent !== ResizeToContentEnum.NONE) {
+      if (changedWidth && changedHeight || shouldResizeToContent === ResizeToContentEnum.WIDTH_ONLY && changedWidth || shouldResizeToContent === ResizeToContentEnum.HEIGHT_ONLY && changedHeight) {
+        setShouldResizeToContent(id, ResizeToContentEnum.NONE);
+      } else if (shouldResizeToContent === ResizeToContentEnum.RESIZE) {
+        if (changedHeight) {
+          setShouldResizeToContent(id, ResizeToContentEnum.WIDTH_ONLY);
+        } else if (changedWidth) {
+          setShouldResizeToContent(id, ResizeToContentEnum.HEIGHT_ONLY);
+        }
+      }
+    }
+    setActive();
+    setDimension(newDimension);
+  }, [id, resizeDirection, resizeStartDimension, setActive, setDimension, setShouldResizeToContent, shouldResizeToContent]);
+  const onMouseUp = (0,external_react_.useCallback)(() => {
+    setIsMoving(false);
+  }, [setIsMoving]);
+  const onDragDown = useOnMouseDrag({
+    onMouseMove,
+    onMouseDown,
+    onMouseUp
+  });
+  const onResizeStart = (0,external_react_.useCallback)((e, direction) => {
+    setResizeDirection(direction);
+    onDragDown(e);
+    setResizeStartDimension(dimension);
+  }, [dimension, onDragDown]);
+  const openInNewWindow = (0,external_react_.useCallback)((force = false) => {
+    var _a;
+    if (!force && state === ContainerState.POPUP || !containerRef.current) {
+      return;
+    }
+    const windowProxy = window.open('', '', 'modal=yes');
+    if (windowProxy === null) {
+      // showToast('cannot open popup :(');
+      if (state === ContainerState.POPUP) {
+        setContainerState(ContainerState.NORMAL);
+      }
+      return;
+    }
+    setContainerState(ContainerState.POPUP);
+    const baseElement = document.createElement('base');
+    baseElement.href = window.location.href;
+    windowProxy.document.head.appendChild(baseElement);
+    const titleElement = document.createElement('title');
+    titleElement.innerText = (_a = windowData === null || windowData === void 0 ? void 0 : windowData.title) !== null && _a !== void 0 ? _a : '';
+    windowProxy.document.head.appendChild(titleElement);
+    document.querySelectorAll("link[rel='stylesheet']").forEach(styleElem => {
+      windowProxy.document.head.appendChild(styleElem.cloneNode());
+    });
+    document.querySelectorAll('style').forEach(styleElem => {
+      windowProxy.document.head.appendChild(styleElem.cloneNode(true));
+    });
+    document.body.classList.forEach(bodyClass => {
+      windowProxy.document.body.classList.add(bodyClass);
+    });
+    // TODO Theme-Checker?
+    windowProxy.document.body.classList.add('flat-design');
+    portalContainer.remove();
+    windowProxy.document.body.appendChild(portalContainer);
+    setWindowObject(windowProxy.window);
+    windowProxy.addEventListener('beforeunload', () => {
+      var _a;
+      setContainerState(ContainerState.NORMAL);
+      portalContainer.remove();
+      (_a = containerRef.current) === null || _a === void 0 ? void 0 : _a.append(portalContainer);
+      setWindowObject(undefined);
+    });
+  }, [portalContainer, setContainerState, state, windowData === null || windowData === void 0 ? void 0 : windowData.title]);
+  const checkResizeToContent = (0,external_react_.useCallback)(() => {
+    if (shouldResizeToContent !== ResizeToContentEnum.NONE && (windowData === null || windowData === void 0 ? void 0 : windowData.id) !== draggingWindowId) {
+      resizeToContent(shouldResizeToContent === ResizeToContentEnum.WIDTH_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE, shouldResizeToContent === ResizeToContentEnum.HEIGHT_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE);
+    }
+  }, [draggingWindowId, resizeToContent, shouldResizeToContent, windowData === null || windowData === void 0 ? void 0 : windowData.id]);
+  const realRef = (0,external_react_.useMemo)(() => ({
+    toggleMaximize: () => {
+      if (!disabled) {
+        toggleMaximized();
+      }
+    },
+    toggleMinimize: () => {
+      if (!disabled) {
+        toggleMinimized();
+      }
+    },
+    maximize() {
+      if (!disabled && state !== ContainerState.POPUP && state !== ContainerState.MAXIMIZED) {
+        toggleMaximized();
+      }
+    },
+    minimize() {
+      if (!disabled && state !== ContainerState.POPUP && state !== ContainerState.MINIMIZED) {
+        toggleMinimized();
+      }
+    },
+    openInNewWindow() {
+      if (!disabled && state !== ContainerState.POPUP) {
+        openInNewWindow();
+      }
+    },
+    resizeToContent() {
+      if (!disabled && state !== ContainerState.POPUP) {
+        resizeToContent();
+      }
+    },
+    checkResizeToContent() {
+      if (!disabled && state !== ContainerState.POPUP) {
+        checkResizeToContent();
+      }
+    }
+  }), [checkResizeToContent, disabled, openInNewWindow, resizeToContent, state, toggleMaximized, toggleMinimized]);
+  (0,external_react_.useImperativeHandle)(ref, () => realRef, [realRef]);
+  const updateContainerRef = (0,external_react_.useCallback)(element => {
+    containerRef.current = element !== null && element !== void 0 ? element : undefined;
+    if (element && state !== ContainerState.POPUP) {
+      element.appendChild(portalContainer);
+    }
+  }, [portalContainer, state]);
+  const resizeInBothDirections = (0,external_react_.useCallback)(() => resizeToContent(true, true), [resizeToContent]);
+  const resizeToWidth = (0,external_react_.useCallback)(() => {
+    console.log("LOG-d resiize to width");
+    resizeToContent(true, false);
+  }, [resizeToContent]);
+  const resizeToHeight = (0,external_react_.useCallback)(() => resizeToContent(false, true), [resizeToContent]);
+  // Effects
+  (0,external_react_.useEffect)(() => {
+    if (disabled) {
+      return;
+    }
+    if (!dimension) {
+      setDimension(getDimensions());
+    }
+  }, [dimension, disabled, getDimensions, setDimension]);
+  (0,external_react_.useEffect)(() => setIsClient(true), []);
+  (0,external_react_.useEffect)(() => {
+    if (!contentRef.current) {
+      return undefined;
+    }
+    const observer = new ResizeObserver(entries => {
+      const [entry] = entries;
+      if (!entry || shouldResizeToContent === ResizeToContentEnum.NONE) {
+        return;
+      }
+      checkResizeToContent();
+    });
+    observer.observe(contentRef.current);
+    return () => {
+      observer.disconnect();
+    };
+  }, [checkResizeToContent, shouldResizeToContent, windowData]);
+  (0,react_bootstrap_mobile_namespaceObject.useOnce)(() => {
+    if (disabled) {
+      return;
+    }
+    if (state === ContainerState.POPUP) {
+      openInNewWindow(true);
+    }
+  }, !!windowData);
+  // Other
+  const realButtons = (0,external_react_.useMemo)(() => {
+    var _a;
+    const defaultButtons = [{
+      key: 'minimize-button',
+      icon: state === ContainerState.MINIMIZED ? faWindowRestore : faWindowMinimize,
+      onClick: toggleMinimized,
+      title: state === ContainerState.MINIMIZED ? t('window.button.restore') : t('window.button.minimize'),
+      order: 10
+    }, {
+      key: 'maximize-button',
+      icon: state === ContainerState.MAXIMIZED ? faWindowRestore : faWindowMaximize,
+      onClick: toggleMaximized,
+      title: state === ContainerState.MAXIMIZED ? t('window.button.restore') : t('window.button.maximize'),
+      order: 20
+    }];
+    if (containerData.isLocked) {
+      defaultButtons.push({
+        key: 'unlock-button',
+        icon: free_solid_svg_icons_namespaceObject.faThumbtack,
+        onClick: unlock,
+        title: t("window.button.unlock"),
+        order: 5
+      });
+    }
+    const newButtons = (_a = windowData === null || windowData === void 0 ? void 0 : windowData.buttons(state, defaultButtons)) !== null && _a !== void 0 ? _a : defaultButtons;
+    return newButtons.sort((a, b) => {
+      var _a, _b;
+      return ((_a = a.order) !== null && _a !== void 0 ? _a : 0) - ((_b = b.order) !== null && _b !== void 0 ? _b : 0);
+    });
+  }, [state, toggleMinimized, t, toggleMaximized, containerData.isLocked, windowData, unlock]);
+  const menuItems = (0,external_react_.useMemo)(() => {
+    const items = [];
+    if (state !== ContainerState.POPUP && !containerData.isLocked) {
+      items.push({
+        key: "lock",
+        label: t("window.menu-item.lock"),
+        callback: lock
+      });
+    }
+    if (state === ContainerState.NORMAL) {
+      items.push({
+        key: 'resize',
+        label: t("window.menu-item.resize"),
+        callback: resizeToContent
+      });
+    }
+    items.push({
+      key: 'openInWindow',
+      label: t('window.menu-item.open-window'),
+      callback: openInNewWindow
+    });
+    return items;
+  }, [state, containerData.isLocked, t, openInNewWindow, lock, resizeToContent]);
+  const renderTitle = () => /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Inline, {
+    className: classnames_default()(className, (windowContainer_default()).fullWidth),
+    ref: titleRef
+  }, /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Flex, {
+    horizontal: true,
+    className: classnames_default()((windowContainer_default()).title)
+  }, /*#__PURE__*/external_react_.createElement(TitleTabBar, {
+    storeId: store,
+    containerId: id,
+    style: {
+      width: `calc(100% - ${buttonWidth}px)`
+    },
+    titleInfos: titleInfos,
+    isLocked: containerData.isLocked,
+    onMoveUpdate: setIsMoving
+  }), /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.SizeCalculator, {
+    onSize: setButtonWidth
+  }, /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.InlineBlock, {
+    className: (windowContainer_default()).titleButtons
+  }, realButtons === null || realButtons === void 0 ? void 0 : realButtons.map(b => /*#__PURE__*/external_react_.createElement(WindowButton, _extends({}, b, {
+    containerState: state
+  }))), /*#__PURE__*/external_react_.createElement(WindowButton, {
+    icon: free_solid_svg_icons_namespaceObject.faEllipsisV,
+    onClick: openMenu,
+    containerState: state
+  }), /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Menu, {
+    items: menuItems,
+    x: menuX,
+    y: menuY,
+    isOpen: isMenuOpen,
+    onClose: closeMenu
+  })))));
+  // Render Functions
+  if (!windowData) {
+    return null;
+  }
+  return /*#__PURE__*/external_react_.createElement(external_react_.Fragment, null, /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Clickable, {
+    onClick: setActive,
+    onClickData: id,
+    ref: updateContainerRef
+  }, /*#__PURE__*/(0,external_react_dom_namespaceObject.createPortal)( /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.WindowContext.Provider, {
+    value: windowObject
+  }, /*#__PURE__*/external_react_.createElement(WindowContainerRefContext.Provider, {
+    value: realRef
+  }, /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Flex, {
+    className: classnames_default()((windowContainer_default()).windowContainer, windowData === null || windowData === void 0 ? void 0 : windowData.className, {
+      [(windowContainer_default()).minimized]: state === ContainerState.MINIMIZED,
+      [(windowContainer_default()).maximized]: state === ContainerState.MAXIMIZED,
+      [(windowContainer_default()).popup]: state === ContainerState.POPUP,
+      [(windowContainer_default()).moving]: isMoving,
+      [(windowContainer_default()).active]: isActive,
+      [(windowContainer_default()).disabled]: disabled
+    }),
+    style: Object.assign(Object.assign(Object.assign(Object.assign({}, (_a = windowData === null || windowData === void 0 ? void 0 : windowData.style) !== null && _a !== void 0 ? _a : {}), {
+      top: initialTop,
+      left: initialLeft,
+      right: defaultWidth && isClient ? window.innerWidth - initialLeft - defaultWidth : undefined
+    }), dimension !== null && dimension !== void 0 ? dimension : {}), {
+      minWidth: WINDOW_CONTAINER_MIN_WIDTH,
+      minHeight: WINDOW_CONTAINER_MIN_HEIGHT
+    }),
+    ref: windowContainerRef
+  }, /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Flex, {
+    horizontal: true,
+    className: (windowContainer_default()).fullWidth
+  }, /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Clickable, {
+    className: classnames_default()((windowContainer_default()).resize, (windowContainer_default()).edge, (windowContainer_default()).nw),
+    onMouseDown: onResizeStart,
+    onMouseDownData: "tl",
+    onDoubleClick: resizeInBothDirections
+  }), /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Clickable, {
+    className: classnames_default()((windowContainer_default()).resize, (windowContainer_default()).y),
+    onMouseDown: onResizeStart,
+    onMouseDownData: "top",
+    onDoubleClick: resizeToHeight
+  }), /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Clickable, {
+    className: classnames_default()((windowContainer_default()).resize, (windowContainer_default()).edge, (windowContainer_default()).ne),
+    onMouseDown: onResizeStart,
+    onMouseDownData: "tr",
+    onDoubleClick: resizeInBothDirections
+  })), /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Grow, {
+    className: classnames_default()((windowContainer_default()).fullWidth, (windowContainer_default()).overflowHidden)
+  }, /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Flex, {
+    horizontal: true,
+    className: classnames_default()((windowContainer_default()).stretchItems, (windowContainer_default()).fullHeight)
+  }, /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Clickable, {
+    className: classnames_default()((windowContainer_default()).resize, (windowContainer_default()).x),
+    onMouseDown: onResizeStart,
+    onMouseDownData: "left",
+    onDoubleClick: resizeToWidth
+  }), /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Grow, {
+    className: (windowContainer_default()).overflowXAuto
+  }, /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Block, {
+    className: (windowContainer_default()).window,
+    ref: windowRef
+  }, renderTitle(), /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Block, {
+    className: classnames_default()((windowContainer_default()).content, {
+      [(windowContainer_default()).fillHeight]: windowData === null || windowData === void 0 ? void 0 : windowData.fillHeight
+    }),
+    __allowChildren: "all",
+    ref: contentRef
+  }, windowData === null || windowData === void 0 ? void 0 : windowData.children))), /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Clickable, {
+    className: classnames_default()((windowContainer_default()).resize, (windowContainer_default()).x),
+    onMouseDown: onResizeStart,
+    onMouseDownData: "right",
+    onDoubleClick: resizeToWidth
+  }))), /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Flex, {
+    horizontal: true,
+    className: (windowContainer_default()).fullWidth
+  }, /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Clickable, {
+    className: classnames_default()((windowContainer_default()).resize, (windowContainer_default()).edge, (windowContainer_default()).sw),
+    onMouseDown: onResizeStart,
+    onMouseDownData: "bl",
+    onDoubleClick: resizeInBothDirections
+  }), /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Clickable, {
+    className: classnames_default()((windowContainer_default()).resize, (windowContainer_default()).y),
+    onMouseDown: onResizeStart,
+    onMouseDownData: "bottom",
+    onDoubleClick: resizeToHeight
+  }), /*#__PURE__*/external_react_.createElement(react_bootstrap_mobile_namespaceObject.Clickable, {
+    className: classnames_default()((windowContainer_default()).resize, (windowContainer_default()).edge, (windowContainer_default()).se),
+    onMouseDown: onResizeStart,
+    onMouseDownData: "br",
+    onDoubleClick: resizeInBothDirections
+  }))))), portalContainer)));
+}, (windowContainer_default()), 'html');
+;// CONCATENATED MODULE: ./src/Components/store/selectActiveWindowForContainers.ts
+
+function selectActiveWindowForContainer(state, containerId) {
+  const activeWindowId = selectActiveWindowIdForContainer(state, containerId);
+  if (activeWindowId) {
+    return state.windows[activeWindowId];
+  }
+  return undefined;
+}
+;// CONCATENATED MODULE: ./src/Components/store/selectTitleInfos.ts
+function selectTitleInfos({
+  containers,
+  windows
+}, containerId) {
+  const container = containers[containerId];
+  if (!container) {
+    return [];
+  }
+  const titleInfos = [];
+  container.windowIds.forEach(id => {
+    const window = windows[id];
+    if (!window) {
+      return;
+    }
+    titleInfos.push({
+      id,
+      title: window.title
+    });
+  });
+  return titleInfos;
+}
+;// CONCATENATED MODULE: ./src/Components/WindowContainer/WindowContainerFromStore.tsx
+
+
+
+
+
+
+
+const WindowContainerFromStore = (0,react_bootstrap_mobile_namespaceObject.withMemo)(function WindowContainerFromStore({
+  id,
+  store = 'default',
+  initialTop,
+  initialLeft
+}) {
+  // Variables
+  // Refs
+  // States
+  // Selectors
+  const useStore = getWindowStore(store);
+  const containerData = useStore(s => s.containers[id]);
+  const windowData = useStore(s => selectActiveWindowForContainer(s, id));
+  const isActive = useStore(s => s.activeContainerId === id);
+  const titleInfos = useStore(s => selectTitleInfos(s, id));
+  // Dragging
+  // Callbacks
+  // Effects
+  // Other
+  // Render Functions
+  if (!windowData) {
+    return null;
+  }
+  return /*#__PURE__*/external_react_default().createElement(WindowContainer, {
+    id: id,
+    store: store,
+    initialTop: initialTop,
+    initialLeft: initialLeft,
+    containerData: containerData,
+    windowData: windowData,
+    isActive: isActive,
+    titleInfos: titleInfos
+  });
+}, (windowContainer_default()));
+;// CONCATENATED MODULE: ./src/Components/WindowList/WindowList.tsx
+
+
+
+
+const WindowList = (0,react_bootstrap_mobile_namespaceObject.withMemo)(function WindowList({
+  storeId = 'default'
+}) {
+  // Variables
+  // Refs
+  // States
+  // Selectors
+  const useStore = getWindowStore(storeId);
+  const containers = useStore(s => s.containers);
+  const setWindowSize = useStore(s => s.setWindowSize);
+  // Callbacks
+  // Effects
+  (0,external_react_.useLayoutEffect)(() => {
+    setWindowSize(window.innerWidth, window.innerHeight);
+    const listener = () => {
+      setWindowSize(window.innerWidth, window.innerHeight);
+    };
+    window.addEventListener('resize', listener);
+    return () => window.removeEventListener('resize', listener);
+  }, [setWindowSize]);
+  // Other
+  // Render Functions
+  return /*#__PURE__*/external_react_default().createElement((external_react_default()).Fragment, null, Object.keys(containers).map((_, index, arr) => /*#__PURE__*/external_react_default().createElement(WindowContainerFromStore, {
+    id: arr[arr.length - 1 - index],
+    key: arr[arr.length - 1 - index],
+    store: storeId
+  })));
+});
+;// CONCATENATED MODULE: ./reactWindows.ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+})();
+
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;

@@ -52,7 +52,7 @@ declare const actionsGenerator: (set: SetState, get: GetState) => {
     setContainerIsMoving(containerId: string, isMoving: boolean): void;
     setContainerIsLocked(containerId: string, isLocked: boolean): void;
     setShouldResizeToContent(containerId: string, shouldResizeToContent: ResizeToContentEnum): void;
-    setDefaultContainerData(containerId: string, defaultContainerData: Partial<Omit<WindowContainerData, "windowIds" | "id" | "buttonWidth">>): void;
+    setDefaultContainerData(containerId: string, defaultContainerData: Partial<Omit<WindowContainerData, "windowIds" | "id" | "buttonWidth" | "isMoving">>): void;
     updateDragging(windowId: string, mousePosition: Position, dimension: WindowContainerDimension, ignoredContainer?: string): string | undefined;
     clearDraggingWindow(): void;
 };
