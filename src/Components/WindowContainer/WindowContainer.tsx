@@ -46,6 +46,7 @@ import {useTranslation} from "react-i18next";
 
 import "../../i18n/i18n";
 import {WindowContainerRefContext} from "./WindowContainerRefContext";
+import {ResizeToContentEnum} from "./ResizeToContentEnum";
 
 type ResizeDirection = 'top' | 'left' | 'right' | 'bottom' | 'tl' | 'tr' | 'bl' | 'br';
 export type WindowButtonData = WindowButtonProps<any> & { key: string };
@@ -102,7 +103,6 @@ export const WindowContainer = withForwardRef(
         const [windowObject, setWindowObject] = useState<Window | undefined>(undefined);
 
         // Resize to content-refs
-        const shouldResizeToContent = useRef<boolean>(true);
         const titleRef = useRef<HTMLDivElement>(null);
         const contentRef = useRef<HTMLDivElement>(null);
         const windowRef = useRef<HTMLDivElement>(null);
@@ -116,6 +116,7 @@ export const WindowContainer = withForwardRef(
             setContainerButtonWidth,
             setContainerIsMoving,
             setContainerIsLocked,
+            setShouldResizeToContent,
         ] = useStore(
             (s) => [
                 s.setActiveContainer,
@@ -123,7 +124,8 @@ export const WindowContainer = withForwardRef(
                 s.updateContainerState,
                 s.setButtonWidth,
                 s.setContainerIsMoving,
-                s.setContainerIsLocked
+                s.setContainerIsLocked,
+                s.setShouldResizeToContent
             ],
             shallow
         );
@@ -131,7 +133,7 @@ export const WindowContainer = withForwardRef(
         const draggingWindowId = useStore((s) => s.draggingWindowId);
 
         const {defaultWidth} = windowData ?? {};
-        const {dimension, state} = containerData;
+        const {dimension, state, shouldResizeToContent} = containerData;
 
         const [isMenuOpen, setIsMenuOpen] = useState(false);
         const [menuX, setMenuX] = useState(0);
@@ -191,16 +193,21 @@ export const WindowContainer = withForwardRef(
             return undefined;
         }, []);
 
-        const resizeToContent = useCallback(() => {
+        const resizeToContent = useCallback((resizeWidth = true, resizeHeight = true) => {
             if (!windowRef.current || !titleRef.current || !contentRef.current) {
                 return;
             }
+
+            const classesBefore = contentRef.current.className;
+            contentRef.current.classList.remove(styles.fillHeight);
+            contentRef.current.classList.add("resizing");
+
             const realDimension = getDimensions();
             if (!realDimension) {
                 return;
             }
 
-            if (defaultWidth && windowContainerRef.current) {
+            if (defaultWidth && windowContainerRef.current && resizeWidth) {
                 const currentWidth = window.innerWidth - realDimension.left - realDimension.right;
                 if (currentWidth !== defaultWidth) {
                     changeDimensionWidth(realDimension, defaultWidth - currentWidth);
@@ -210,17 +217,29 @@ export const WindowContainer = withForwardRef(
             }
 
             let diffY = contentRef.current.scrollHeight - contentRef.current.clientHeight;
-            const diffX = contentRef.current.scrollWidth - contentRef.current.clientWidth;
+            const diffX = !resizeWidth ? 0 : contentRef.current.scrollWidth - contentRef.current.clientWidth;
 
             if (diffY === 0) {
                 diffY =
                     titleRef.current.clientHeight + contentRef.current.clientHeight - windowRef.current.clientHeight;
             }
 
-            shouldResizeToContent.current = true;
+            if (!resizeHeight) {
+                diffY = 0;
+            }
+
+            if (resizeHeight) {
+                setShouldResizeToContent(id, resizeWidth ? ResizeToContentEnum.RESIZE : ResizeToContentEnum.HEIGHT_ONLY);
+            } else if (resizeWidth) {
+                setShouldResizeToContent(id, ResizeToContentEnum.WIDTH_ONLY);
+            } else {
+                setShouldResizeToContent(id, ResizeToContentEnum.NONE);
+            }
+            contentRef.current.className = classesBefore;
+
             changeDimension(realDimension, diffX, diffY);
             setDimension(checkWindowDimension(realDimension));
-        }, [defaultWidth, getDimensions, setDimension]);
+        }, [defaultWidth, getDimensions, id, setDimension, setShouldResizeToContent]);
 
         const toggleMinimized = useCallback(
             () =>
@@ -275,11 +294,25 @@ export const WindowContainer = withForwardRef(
                     );
                 }
 
-                shouldResizeToContent.current = false;
+                const changedHeight = resizeStartDimension.bottom !== newDimension.bottom || resizeStartDimension.top !== newDimension.top;
+                const changedWidth = resizeStartDimension.left !== newDimension.left || resizeStartDimension.right !== newDimension.right;
+
+                if (shouldResizeToContent !== ResizeToContentEnum.NONE) {
+                    if ((changedWidth && changedHeight) || (shouldResizeToContent === ResizeToContentEnum.WIDTH_ONLY && changedWidth) || (shouldResizeToContent === ResizeToContentEnum.HEIGHT_ONLY && changedHeight)) {
+                        setShouldResizeToContent(id, ResizeToContentEnum.NONE);
+                    } else if (shouldResizeToContent === ResizeToContentEnum.RESIZE) {
+                        if (changedHeight) {
+                            setShouldResizeToContent(id, ResizeToContentEnum.WIDTH_ONLY);
+                        } else if (changedWidth){
+                            setShouldResizeToContent(id, ResizeToContentEnum.HEIGHT_ONLY);
+                        }
+                    }
+                }
+
                 setActive();
                 setDimension(newDimension);
             },
-            [resizeDirection, resizeStartDimension, setActive, setDimension]
+            [id, resizeDirection, resizeStartDimension, setActive, setDimension, setShouldResizeToContent, shouldResizeToContent]
         );
 
         const onMouseUp = useCallback(() => {
@@ -349,10 +382,10 @@ export const WindowContainer = withForwardRef(
         );
 
         const checkResizeToContent = useCallback(() => {
-            if (shouldResizeToContent.current && windowData?.id !== draggingWindowId) {
-                resizeToContent();
+            if (shouldResizeToContent !== ResizeToContentEnum.NONE && windowData?.id !== draggingWindowId) {
+                resizeToContent(shouldResizeToContent === ResizeToContentEnum.WIDTH_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE, shouldResizeToContent === ResizeToContentEnum.HEIGHT_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE);
             }
-        }, [draggingWindowId, resizeToContent, windowData?.id]);
+        }, [draggingWindowId, resizeToContent, shouldResizeToContent, windowData?.id]);
 
         const realRef = useMemo(() => ({
             toggleMaximize: () => {
@@ -404,6 +437,13 @@ export const WindowContainer = withForwardRef(
             [portalContainer, state]
         );
 
+        const resizeInBothDirections = useCallback(() => resizeToContent(true, true), [resizeToContent]);
+        const resizeToWidth = useCallback(() => {
+            console.log("LOG-d resiize to width")
+            resizeToContent(true, false)
+        }, [resizeToContent]);
+        const resizeToHeight = useCallback(() => resizeToContent(false, true), [resizeToContent]);
+
         // Effects
         useEffect(() => {
             if (disabled) {
@@ -424,7 +464,7 @@ export const WindowContainer = withForwardRef(
 
             const observer = new ResizeObserver((entries) => {
                 const [entry] = entries;
-                if (!entry || !shouldResizeToContent.current) {
+                if (!entry || shouldResizeToContent === ResizeToContentEnum.NONE) {
                     return;
                 }
                 checkResizeToContent();
@@ -434,7 +474,7 @@ export const WindowContainer = withForwardRef(
             return () => {
                 observer.disconnect();
             };
-        }, [checkResizeToContent, windowData]);
+        }, [checkResizeToContent, shouldResizeToContent, windowData]);
 
         useOnce(() => {
             if (disabled) {
@@ -569,16 +609,19 @@ export const WindowContainer = withForwardRef(
                                             className={classNames(styles.resize, styles.edge, styles.nw)}
                                             onMouseDown={onResizeStart}
                                             onMouseDownData="tl"
+                                            onDoubleClick={resizeInBothDirections}
                                         />
                                         <Clickable
                                             className={classNames(styles.resize, styles.y)}
                                             onMouseDown={onResizeStart}
                                             onMouseDownData="top"
+                                            onDoubleClick={resizeToHeight}
                                         />
                                         <Clickable
                                             className={classNames(styles.resize, styles.edge, styles.ne)}
                                             onMouseDown={onResizeStart}
                                             onMouseDownData="tr"
+                                            onDoubleClick={resizeInBothDirections}
                                         />
                                     </Flex>
                                     <Grow className={classNames(styles.fullWidth, styles.overflowHidden)}>
@@ -590,6 +633,7 @@ export const WindowContainer = withForwardRef(
                                                 className={classNames(styles.resize, styles.x)}
                                                 onMouseDown={onResizeStart}
                                                 onMouseDownData="left"
+                                                onDoubleClick={resizeToWidth}
                                             />
                                             <Grow className={styles.overflowXAuto}>
                                                 <Block className={styles.window} ref={windowRef}>
@@ -609,6 +653,7 @@ export const WindowContainer = withForwardRef(
                                                 className={classNames(styles.resize, styles.x)}
                                                 onMouseDown={onResizeStart}
                                                 onMouseDownData="right"
+                                                onDoubleClick={resizeToWidth}
                                             />
                                         </Flex>
                                     </Grow>
@@ -617,16 +662,19 @@ export const WindowContainer = withForwardRef(
                                             className={classNames(styles.resize, styles.edge, styles.sw)}
                                             onMouseDown={onResizeStart}
                                             onMouseDownData="bl"
+                                            onDoubleClick={resizeInBothDirections}
                                         />
                                         <Clickable
                                             className={classNames(styles.resize, styles.y)}
                                             onMouseDown={onResizeStart}
                                             onMouseDownData="bottom"
+                                            onDoubleClick={resizeToHeight}
                                         />
                                         <Clickable
                                             className={classNames(styles.resize, styles.edge, styles.se)}
                                             onMouseDown={onResizeStart}
                                             onMouseDownData="br"
+                                            onDoubleClick={resizeInBothDirections}
                                         />
                                     </Flex>
                                 </Flex>

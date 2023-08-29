@@ -3,15 +3,17 @@ import type { WindowButtonData } from '../WindowContainer/WindowContainer';
 import { CSSProperties, ReactNode } from 'react';
 import { ContainerState } from '../types/ContainerState';
 import { Position } from 'react-beautiful-dnd';
+import { ResizeToContentEnum } from "../WindowContainer/ResizeToContentEnum";
 export type WindowContainerData = {
-    activeWindowId: string;
     buttonWidth: number;
-    dimension?: WindowContainerDimension;
     id: string;
-    isLocked: boolean;
-    isMoving: boolean;
-    state: ContainerState;
     windowIds: string[];
+    activeWindowId: string;
+    isMoving: boolean;
+    shouldResizeToContent: ResizeToContentEnum;
+    isLocked: boolean;
+    state: ContainerState;
+    dimension?: WindowContainerDimension;
 };
 export type WindowData = {
     buttons: (state: ContainerState, defaultButtons: WindowButtonData[]) => WindowButtonData[];
@@ -39,7 +41,7 @@ type SetState = (newState: WindowStoreState | Partial<WindowStoreState> | ((stat
 type GetState = () => Readonly<WindowStoreState>;
 declare const actionsGenerator: (set: SetState, get: GetState) => {
     clear(): void;
-    setWindow(window: WindowData, defaultContainerId?: string): void;
+    setWindow(window: WindowData, defaultContainerId?: string, isActiveOnOpen?: boolean): void;
     removeWindow(windowId: string): void;
     updateContainerDimension(id: string, dimension: WindowContainerDimension | undefined): void;
     updateContainerState(id: string, state: ContainerState | ((old: ContainerState) => ContainerState)): void;
@@ -49,6 +51,8 @@ declare const actionsGenerator: (set: SetState, get: GetState) => {
     setButtonWidth(containerId: string, buttonWidth: number): void;
     setContainerIsMoving(containerId: string, isMoving: boolean): void;
     setContainerIsLocked(containerId: string, isLocked: boolean): void;
+    setShouldResizeToContent(containerId: string, shouldResizeToContent: ResizeToContentEnum): void;
+    setDefaultContainerData(containerId: string, defaultContainerData: Partial<Omit<WindowContainerData, "windowIds" | "id" | "buttonWidth">>): void;
     updateDragging(windowId: string, mousePosition: Position, dimension: WindowContainerDimension, ignoredContainer?: string): string | undefined;
     clearDraggingWindow(): void;
 };

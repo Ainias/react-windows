@@ -1,3 +1,5 @@
+@use 'sass:selector';
+
 :root {
   --react-windows-transition-duration: 32ms;
 }
@@ -144,6 +146,11 @@
     &.fillHeight {
       flex: 1;
     }
+
+    #{selector.nest(':global(.resizing)', &)}{
+      flex: initial !important;
+    }
+
   }
 
   &.minimized {

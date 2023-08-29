@@ -1,5 +1,6 @@
 export * from './src/Components/Window/Window';
 export * from './src/Components/WindowButton/WindowButton';
+export * from './src/Components/WindowContainer/ResizeToContentEnum';
 export * from './src/Components/WindowContainer/TitleTab';
 export * from './src/Components/WindowContainer/TitleTabBar';
 export * from './src/Components/WindowContainer/WindowContainer';

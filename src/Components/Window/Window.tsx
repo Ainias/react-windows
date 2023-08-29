@@ -22,6 +22,7 @@ export type WindowProps = RbmComponentProps<
         defaultWidth?: number;
         storeId?: string;
         onClose?: () => any;
+        isActiveOnOpen?: boolean;
     },
     WithNoStringAndChildrenProps
 >;
@@ -39,6 +40,7 @@ export const Window = withMemo(function Window({
     onClose,
     className,
     style,
+    isActiveOnOpen = true,
 }: WindowProps) {
     // Variables
     const useStore = getWindowStore(storeId);
@@ -82,22 +84,10 @@ export const Window = withMemo(function Window({
                 className,
                 style,
             },
-            defaultContainerId
+            defaultContainerId,
+            isActiveOnOpen
         );
-    }, [
-        id,
-        defaultContainerId,
-        title,
-        fillHeight,
-        defaultWidth,
-        buttons,
-        children,
-        onCloseButton,
-        onClose,
-        setWindow,
-        className,
-        style,
-    ]);
+    }, [id, defaultContainerId, title, fillHeight, defaultWidth, buttons, children, onCloseButton, onClose, setWindow, className, style, isActiveOnOpen]);
 
     // remove window only if id changes or component is unmounted
     useOnMount(() => {

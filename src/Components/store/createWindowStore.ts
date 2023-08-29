@@ -9,16 +9,18 @@ import { ContainerState } from '../types/ContainerState';
 import { checkWindowDimension } from '../WindowContainer/checkWindowDimension';
 import { Position } from 'react-beautiful-dnd';
 import { checkOverContainerAndTabPosition } from '../helper/checkOverContainerAndTabPosition';
+import {ResizeToContentEnum} from "../WindowContainer/ResizeToContentEnum";
 
 export type WindowContainerData = {
-    activeWindowId: string;
     buttonWidth: number;
-    dimension?: WindowContainerDimension;
     id: string;
-    isLocked: boolean;
-    isMoving: boolean;
-    state: ContainerState;
     windowIds: string[];
+    activeWindowId: string;
+    isMoving: boolean;
+    shouldResizeToContent: ResizeToContentEnum;
+    isLocked: boolean;
+    state: ContainerState;
+    dimension?: WindowContainerDimension;
 };
 
 export type WindowData = {
@@ -55,6 +57,19 @@ type SetState = (
 type GetState = () => Readonly<WindowStoreState>;
 
 const actionsGenerator = (set: SetState, get: GetState) => {
+
+    function generateDefaultContainer() {
+        return {
+            state: ContainerState.NORMAL,
+            windowIds: [],
+            activeWindowId: "",
+            buttonWidth: 0,
+            isLocked: false,
+            isMoving: false,
+            shouldResizeToContent: ResizeToContentEnum.RESIZE
+        };
+    }
+
     function generateUnusedContainerId() {
         const { containers } = get();
         for (let i = 0; i < 50; i++) {
@@ -86,24 +101,26 @@ const actionsGenerator = (set: SetState, get: GetState) => {
         set({ containers: newContainers, windowContainerMapping: newMapping });
     }
 
-    function setWindow(window: WindowData, defaultContainerId?: string) {
+    function setWindow(window: WindowData, defaultContainerId?: string, isActiveOnOpen?: boolean) {
         const { containers, windows, windowContainerMapping } = get();
         const containerId = windowContainerMapping[window.id] ?? defaultContainerId ?? generateUnusedContainerId();
         let container = containers[containerId];
         if (!container) {
             container = {
-                state: ContainerState.NORMAL,
-                windowIds: [],
+                ...generateDefaultContainer(),
                 activeWindowId: window.id,
                 id: containerId,
-                buttonWidth: 0,
-                isLocked: false,
-                isMoving: false,
             };
         }
         if (windowContainerMapping[window.id] !== containerId) {
             container.windowIds = [...container.windowIds, window.id];
         }
+
+        if (!windows[window.id] && isActiveOnOpen) {
+            container.activeWindowId = window.id;
+            set({ activeContainerId: container.id });
+        }
+
         set({
             containers: { ...containers, [containerId]: container },
             windows: { ...windows, [window.id]: window as WindowData },
@@ -170,8 +187,8 @@ const actionsGenerator = (set: SetState, get: GetState) => {
         clear() {
             set({ ...actionsGenerator(set, get) }, true);
         },
-        setWindow(window: WindowData, defaultContainerId?: string) {
-            setWindow(window, defaultContainerId);
+        setWindow(window: WindowData, defaultContainerId?: string, isActiveOnOpen?: boolean) {
+            setWindow(window, defaultContainerId, isActiveOnOpen);
         },
         removeWindow(windowId: string) {
             const { windows } = get();
@@ -243,6 +260,28 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             }
             container.isLocked = isLocked;
             set({ containers: { ...containers, [containerId]: { ...container } } });
+        },
+        setShouldResizeToContent(containerId: string, shouldResizeToContent: ResizeToContentEnum) {
+            const { containers } = get();
+            const container = containers[containerId];
+            if (!container) {
+                return;
+            }
+            container.shouldResizeToContent = shouldResizeToContent;
+            set({ containers: { ...containers, [containerId]: { ...container } } });
+        },
+        setDefaultContainerData(containerId: string, defaultContainerData: Partial<Omit<WindowContainerData, "windowIds"|"id"|"buttonWidth"|"isMoving">>) {
+            const { containers } = get();
+            let container = containers[containerId];
+            if (container) {
+                return;
+            }
+            container = {
+                ...generateDefaultContainer(),
+                ...defaultContainerData,
+                id: containerId,
+            };
+            set({ containers: { ...containers, [containerId]: container } });
         },
         updateDragging(
             windowId: string,

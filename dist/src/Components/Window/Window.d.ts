@@ -10,5 +10,6 @@ export type WindowProps = RbmComponentProps<{
     defaultWidth?: number;
     storeId?: string;
     onClose?: () => any;
+    isActiveOnOpen?: boolean;
 }, WithNoStringAndChildrenProps>;
-export declare const Window: ({ storeId, fillHeight, buttons, id, defaultContainerId, title, defaultWidth, children, onClose, className, style, }: WindowProps) => null;
+export declare const Window: ({ storeId, fillHeight, buttons, id, defaultContainerId, title, defaultWidth, children, onClose, className, style, isActiveOnOpen, }: WindowProps) => null;
