@@ -9,4 +9,4 @@ export type WindowButtonProps<OnClickData> = RbmComponentProps<{
     hideWhenMinimized?: boolean;
     order?: number;
 } & Listener<'onClick', OnClickData, MouseEvent>, WithNoChildren>;
-export declare const WindowButton: <OnClickData>({ icon, title, containerState, hideWhenMaximized, hideWhenMinimized, ...listenerProps }: WindowButtonProps<OnClickData>) => JSX.Element | null;
+export declare const WindowButton: <OnClickData>({ icon, title, containerState, hideWhenMaximized, hideWhenMinimized, className, style, ...listenerProps }: WindowButtonProps<OnClickData>) => JSX.Element | null;
