@@ -1,5 +1,4 @@
 import { WindowContainerDimension } from '../WindowContainer/WindowContainerDimension';
-import type { WindowButtonData } from '../WindowContainer/WindowContainer';
 import { CSSProperties, ReactNode } from 'react';
 import { ContainerState } from '../types/ContainerState';
 import { Position } from 'react-beautiful-dnd';
@@ -16,7 +15,7 @@ export type WindowContainerData = {
     dimension?: WindowContainerDimension;
 };
 export type WindowData = {
-    buttons: (state: ContainerState, defaultButtons: WindowButtonData[]) => WindowButtonData[];
+    onClose?: () => any;
     children: ReactNode;
     className?: string;
     defaultWidth?: number;
@@ -47,6 +46,7 @@ declare const actionsGenerator: (set: SetState, get: GetState) => {
     updateContainerState(id: string, state: ContainerState | ((old: ContainerState) => ContainerState)): void;
     updateContainerActiveWindow(id: string, activeWindowId: string): void;
     setActiveContainer(id: string): void;
+    setActiveWindow(windowId: string): void;
     setWindowSize(x: number, y: number): void;
     setButtonWidth(containerId: string, buttonWidth: number): void;
     setContainerIsMoving(containerId: string, isMoving: boolean): void;
@@ -54,6 +54,7 @@ declare const actionsGenerator: (set: SetState, get: GetState) => {
     setShouldResizeToContent(containerId: string, shouldResizeToContent: ResizeToContentEnum): void;
     setDefaultContainerData(containerId: string, defaultContainerData: Partial<Omit<WindowContainerData, "windowIds" | "id" | "buttonWidth" | "isMoving">>): void;
     updateDragging(windowId: string, mousePosition: Position, dimension: WindowContainerDimension, ignoredContainer?: string): string | undefined;
+    closeContainer(containerId: string): void;
     clearDraggingWindow(): void;
 };
 export declare function getWindowStore(name?: string): import("zustand").UseBoundStore<Omit<import("zustand").StoreApi<WindowStoreState>, "persist"> & {

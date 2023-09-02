@@ -13,6 +13,7 @@ import {
     WithNoChildren,
 } from '@ainias42/react-bootstrap-mobile';
 import { ContainerState } from '../types/ContainerState';
+import classNames from "classnames";
 
 export type WindowButtonProps<OnClickData> = RbmComponentProps<
     {
@@ -32,6 +33,8 @@ export const WindowButton = withMemo(function WindowButton<OnClickData>({
     containerState,
     hideWhenMaximized,
     hideWhenMinimized,
+    className,
+    style,
     ...listenerProps
 }: WindowButtonProps<OnClickData>) {
     // Variables
@@ -58,7 +61,7 @@ export const WindowButton = withMemo(function WindowButton<OnClickData>({
     }
 
     return (
-        <Clickable onClick={onClick} className={styles.windowButton}>
+        <Clickable onClick={onClick} className={classNames(className, styles.windowButton)} style={style}>
             <Icon icon={icon} title={title} />
         </Clickable>
     );

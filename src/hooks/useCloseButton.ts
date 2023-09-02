@@ -2,10 +2,10 @@ import { useMemo } from 'react';
 import { WindowButtonData } from '../Components/WindowContainer/WindowContainer';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { getWindowStore } from '../Components/store/createWindowStore';
-import {useTranslation} from "react-i18next";
+import {useT} from "../i18n/useT";
 
 export function useCloseButton(windowId: string, storeId = 'default', onClose?: () => any) {
-    const {t} = useTranslation();
+    const {t} = useT();
     return useMemo(
         () =>
             ({

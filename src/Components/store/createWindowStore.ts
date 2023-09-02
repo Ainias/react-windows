@@ -24,7 +24,7 @@ export type WindowContainerData = {
 };
 
 export type WindowData = {
-    buttons: (state: ContainerState, defaultButtons: WindowButtonData[]) => WindowButtonData[];
+    onClose?: () => any;
     children: ReactNode;
     className?: string;
     defaultWidth?: number;
@@ -228,6 +228,23 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             }
             set({ activeContainerId: id });
         },
+        setActiveWindow(windowId: string){
+            const {containers, windows, windowContainerMapping, activeContainerId} = get();
+            if (!windows[windowId]) {
+                return;
+            }
+            const containerId = windowContainerMapping[windowId];
+            const container = containers[containerId];
+            if (!container){
+                return;
+            }
+            if (container.state === ContainerState.MINIMIZED) {
+                container.state = ContainerState.NORMAL;
+            }
+            container.activeWindowId = windowId;
+
+            set({ activeContainerId: containerId, containers: {...containers, [containerId]: {...container}} });
+        },
         setWindowSize(x: number, y: number) {
             const { containers, windowSize } = get();
             const newWindowSize = { x, y };
@@ -314,6 +331,15 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             }
             set({ activeContainerId: newId });
             return newId;
+        },
+        closeContainer(containerId: string){
+            const {containers: {[containerId]: container}, windows} = get();
+            if (!container){
+                return;
+            }
+            container.windowIds.forEach(id => {
+                windows[id]?.onClose?.();
+            });
         },
         clearDraggingWindow(){
             set({ draggingWindowId: '' });

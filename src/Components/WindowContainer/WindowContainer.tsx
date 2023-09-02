@@ -13,7 +13,7 @@ import {
 import styles from './windowContainer.scss';
 import classNames from 'classnames';
 import {faWindowMaximize, faWindowMinimize, faWindowRestore} from '@fortawesome/free-regular-svg-icons';
-import {faEllipsisV, faThumbtack} from '@fortawesome/free-solid-svg-icons';
+import {faClose, faCross, faEllipsisV, faThumbtack} from '@fortawesome/free-solid-svg-icons';
 import {checkWindowDimension} from './checkWindowDimension';
 import {changeDimension, changeDimensionWidth} from './changeDimension';
 import {
@@ -42,11 +42,12 @@ import {ContainerState} from '../types/ContainerState';
 import {TitleTabBar} from './TitleTabBar';
 import {createPortal} from 'react-dom';
 import {Position, useOnMouseDrag} from '../hooks/useOnMouseDrag';
-import {useTranslation} from "react-i18next";
 
 import "../../i18n/i18n";
 import {WindowContainerRefContext} from "./WindowContainerRefContext";
 import {ResizeToContentEnum} from "./ResizeToContentEnum";
+import {selectCanCloseContainer} from "../store/selectCanCloseContainer";
+import {useT} from "../../i18n/useT";
 
 type ResizeDirection = 'top' | 'left' | 'right' | 'bottom' | 'tl' | 'tr' | 'bl' | 'br';
 export type WindowButtonData = WindowButtonProps<any> & { key: string };
@@ -90,12 +91,13 @@ export const WindowContainer = withForwardRef(
         ref?: ForwardedRef<WindowContainerRef>
     ) {
         // Variables
-        const {t} = useTranslation();
+        const {t} = useT();
 
         // Refs
         const [portalContainer] = useState<HTMLDivElement>(() => {
             return document.createElement('div');
         });
+        const isResizing = useRef(false);
 
         // Open in new window refs
         const windowContainerRef = useRef<HTMLDivElement>(null);
@@ -117,6 +119,7 @@ export const WindowContainer = withForwardRef(
             setContainerIsMoving,
             setContainerIsLocked,
             setShouldResizeToContent,
+            closeContainer
         ] = useStore(
             (s) => [
                 s.setActiveContainer,
@@ -125,10 +128,14 @@ export const WindowContainer = withForwardRef(
                 s.setButtonWidth,
                 s.setContainerIsMoving,
                 s.setContainerIsLocked,
-                s.setShouldResizeToContent
+                s.setShouldResizeToContent,
+                s.closeContainer
             ],
             shallow
         );
+
+        const canCloseContainer = useStore(s => selectCanCloseContainer(s, id));
+
         const buttonWidth = useStore((s) => s.containers[id].buttonWidth);
         const draggingWindowId = useStore((s) => s.draggingWindowId);
 
@@ -149,7 +156,9 @@ export const WindowContainer = withForwardRef(
 
         // Callbacks
         const setIsMoving = useCallback(
-            (newIsMoving: boolean) => setContainerIsMoving(id, newIsMoving),
+            (newIsMoving: boolean) => {
+                setContainerIsMoving(id, newIsMoving)
+            },
             [id, setContainerIsMoving]
         );
         const unlock = useCallback(() => setContainerIsLocked(id, false), [id, setContainerIsLocked]);
@@ -184,17 +193,17 @@ export const WindowContainer = withForwardRef(
             if (windowContainerRef.current) {
                 const computedStyles = window.getComputedStyle(windowContainerRef.current);
                 return {
-                    top: parseFloat(computedStyles.getPropertyValue('top')),
-                    bottom: parseFloat(computedStyles.getPropertyValue('bottom')),
-                    left: parseFloat(computedStyles.getPropertyValue('left')),
-                    right: parseFloat(computedStyles.getPropertyValue('right')),
+                    top: Math.floor(parseFloat(computedStyles.getPropertyValue('top'))),
+                    bottom: Math.floor(parseFloat(computedStyles.getPropertyValue('bottom'))),
+                    left: Math.floor(parseFloat(computedStyles.getPropertyValue('left'))),
+                    right: Math.floor(parseFloat(computedStyles.getPropertyValue('right'))),
                 };
             }
             return undefined;
         }, []);
 
         const resizeToContent = useCallback((resizeWidth = true, resizeHeight = true) => {
-            if (!windowRef.current || !titleRef.current || !contentRef.current) {
+            if (!windowRef.current || !titleRef.current || !contentRef.current || containerData.state !== ContainerState.NORMAL) {
                 return;
             }
 
@@ -203,7 +212,9 @@ export const WindowContainer = withForwardRef(
             contentRef.current.classList.add("resizing");
 
             const realDimension = getDimensions();
+
             if (!realDimension) {
+                contentRef.current.className = classesBefore;
                 return;
             }
 
@@ -238,8 +249,9 @@ export const WindowContainer = withForwardRef(
             contentRef.current.className = classesBefore;
 
             changeDimension(realDimension, diffX, diffY);
+            checkWindowDimension(realDimension)
             setDimension(checkWindowDimension(realDimension));
-        }, [defaultWidth, getDimensions, id, setDimension, setShouldResizeToContent]);
+        }, [defaultWidth, getDimensions, id, setDimension, setShouldResizeToContent, containerData.state]);
 
         const toggleMinimized = useCallback(
             () =>
@@ -303,7 +315,7 @@ export const WindowContainer = withForwardRef(
                     } else if (shouldResizeToContent === ResizeToContentEnum.RESIZE) {
                         if (changedHeight) {
                             setShouldResizeToContent(id, ResizeToContentEnum.WIDTH_ONLY);
-                        } else if (changedWidth){
+                        } else if (changedWidth) {
                             setShouldResizeToContent(id, ResizeToContentEnum.HEIGHT_ONLY);
                         }
                     }
@@ -382,7 +394,7 @@ export const WindowContainer = withForwardRef(
         );
 
         const checkResizeToContent = useCallback(() => {
-            if (shouldResizeToContent !== ResizeToContentEnum.NONE && windowData?.id !== draggingWindowId) {
+            if (shouldResizeToContent !== ResizeToContentEnum.NONE && windowData?.id !== draggingWindowId && containerData.state === ContainerState.NORMAL) {
                 resizeToContent(shouldResizeToContent === ResizeToContentEnum.WIDTH_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE, shouldResizeToContent === ResizeToContentEnum.HEIGHT_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE);
             }
         }, [draggingWindowId, resizeToContent, shouldResizeToContent, windowData?.id]);
@@ -439,7 +451,6 @@ export const WindowContainer = withForwardRef(
 
         const resizeInBothDirections = useCallback(() => resizeToContent(true, true), [resizeToContent]);
         const resizeToWidth = useCallback(() => {
-            console.log("LOG-d resiize to width")
             resizeToContent(true, false)
         }, [resizeToContent]);
         const resizeToHeight = useCallback(() => resizeToContent(false, true), [resizeToContent]);
@@ -488,7 +499,7 @@ export const WindowContainer = withForwardRef(
 
         // Other
         const realButtons = useMemo(() => {
-            const defaultButtons: WindowButtonData[] = [
+            const newButtons: WindowButtonData[] = [
                 {
                     key: 'minimize-button',
                     icon: state === ContainerState.MINIMIZED ? faWindowRestore : faWindowMinimize,
@@ -506,16 +517,26 @@ export const WindowContainer = withForwardRef(
             ];
 
             if (containerData.isLocked) {
-                defaultButtons.push({
+                newButtons.push({
                     key: 'unlock-button',
                     icon: faThumbtack,
                     onClick: unlock,
                     title: t("window.button.unlock"),
-                    order: 5
+                    order: 5,
+                    className: styles.lockedIcon
                 });
             }
 
-            const newButtons = windowData?.buttons(state, defaultButtons) ?? defaultButtons;
+            if (canCloseContainer) {
+                newButtons.push({
+                    key: 'close-button',
+                    icon: faClose,
+                    onClick: () => closeContainer(id),
+                    title: t("window.button.close"),
+                    order: 30
+                });
+            }
+
             return newButtons.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
         }, [state, toggleMinimized, t, toggleMaximized, containerData.isLocked, windowData, unlock]);
 

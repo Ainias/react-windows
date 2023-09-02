@@ -93,6 +93,15 @@
             background: white;
           }
 
+          &.closeable.titleTabActive {
+            .closeButton {
+              display: none;
+            }
+            .titleText {
+              width: 100%;
+            }
+          }
+
           max-width: fit-content;
           cursor: move;
           border: 0;
@@ -119,19 +128,39 @@
         &.titleTabHidden {
           display: none;
 
-          .titleText {
+          .titleText, .closeButton {
             visibility: hidden;
           }
         }
+
+
+        $widthCloseButton: 18px;
+
+        .titleText {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 100%;
+          display: inline-block;
+        }
+
+        .closeButton {
+          vertical-align: top;
+          margin-top: 4px;
+          width: $widthCloseButton;
+          display: none;
+        }
+
+        // Only close is only possible for active tab
+        &.closeable.titleTabActive {
+          .closeButton {
+            display: inline-block;
+          }
+
+          .titleText {
+            width: calc(100% - #{$widthCloseButton});
+          }
+        }
       }
-
-    }
-
-    .titleText {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      width: 100%;
-      display: inline-block;
     }
   }
 
@@ -147,7 +176,7 @@
       flex: 1;
     }
 
-    #{selector.nest(':global(.resizing)', &)}{
+    #{selector.nest(':global(.resizing)', &)} {
       flex: initial !important;
     }
 
@@ -256,4 +285,13 @@
       width: $resizeWidth;
     }
   }
+}
+
+.lockedIcon {
+  svg {
+    transform: rotate(16deg);
+  }
+  padding-left: 5px !important;
+  margin-left: 3px;
+  border-bottom: solid 1px;
 }

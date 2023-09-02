@@ -9,10 +9,10 @@ export function checkWindowDimension(
     minWidth = WINDOW_CONTAINER_MIN_WIDTH,
     minHeight = WINDOW_CONTAINER_MIN_HEIGHT
 ) {
-    dimension.top = Math.max(dimension.top, 0);
-    dimension.left = Math.max(dimension.left, 0);
-    dimension.right = Math.max(dimension.right, 0);
-    dimension.bottom = Math.max(dimension.bottom, 0);
+    dimension.top = Math.floor(Math.max(dimension.top, 0));
+    dimension.left = Math.floor(Math.max(dimension.left, 0));
+    dimension.right = Math.floor(Math.max(dimension.right, 0));
+    dimension.bottom = Math.floor(Math.max(dimension.bottom, 0));
 
     if (window.innerWidth < minWidth + dimension.left + dimension.right) {
         if (dimension.right >= dimension.left) {

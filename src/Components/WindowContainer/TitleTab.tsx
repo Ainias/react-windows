@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import {
-    Clickable,
+    Clickable, Flex, Grow, Icon,
     InlineBlock,
     RbmComponentProps,
     Text,
@@ -15,6 +15,7 @@ import { Position, useOnMouseDrag } from '../hooks/useOnMouseDrag';
 import { getWindowStore } from '../store/createWindowStore';
 import { shallow } from 'zustand/shallow';
 import { ContainerState } from '../types/ContainerState';
+import {faClose} from "@fortawesome/free-solid-svg-icons";
 
 export type TitleTabProps = RbmComponentProps<
     {
@@ -36,6 +37,7 @@ export const TitleTab = withMemo(
         const useStore = getWindowStore(storeId);
         const dimension = useStore((s) => s.containers[s.windowContainerMapping[id]]?.dimension);
         const canDrag = useStore((s) => s.containers[s.windowContainerMapping[id]]?.state !== ContainerState.POPUP);
+        const onClose = useStore(s => s.windows[id]?.onClose);
         const singleTabContainerId = useStore((s) => {
             if (s.containers[s.windowContainerMapping[id]]?.windowIds.length === 1) {
                 return s.windowContainerMapping[id];
@@ -143,13 +145,15 @@ export const TitleTab = withMemo(
                     {
                         [styles.titleTabActive]: isActive,
                         [styles.titleTabHidden]: isHidden,
+                        [styles.closeable]: !!onClose,
                     },
                     className
                 )}
                 style={style}
             >
                 <Clickable onClick={onClickInner} onMouseDown={onMouseDown} preventDefault={false}>
-                    <Text className={styles.titleText}>{children}</Text>
+                        <Text className={styles.titleText}>{children}</Text>
+                        <Clickable onClick={onClose} className={styles.closeButton}><Icon icon={faClose}/></Clickable>
                 </Clickable>
             </InlineBlock>
         );

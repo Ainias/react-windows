@@ -16,9 +16,6 @@ export type WindowProps = RbmComponentProps<
         title: string;
         defaultContainerId?: string;
         fillHeight?: boolean;
-        buttons?:
-            | WindowButtonData[]
-            | ((state: ContainerState, defaultButtons: WindowButtonData[]) => WindowButtonData[]);
         defaultWidth?: number;
         storeId?: string;
         onClose?: () => any;
@@ -27,11 +24,9 @@ export type WindowProps = RbmComponentProps<
     WithNoStringAndChildrenProps
 >;
 
-const emptyButtons: WindowButtonData[] = [];
 export const Window = withMemo(function Window({
     storeId = 'default',
     fillHeight = false,
-    buttons = emptyButtons,
     id,
     defaultContainerId,
     title,
@@ -58,28 +53,13 @@ export const Window = withMemo(function Window({
 
     // Effects
     useLayoutEffect(() => {
-        let buttonFunction: (state: ContainerState, defaultButtons: WindowButtonData[]) => WindowButtonData[];
-        if (Array.isArray(buttons)) {
-            buttonFunction = (_, defaultButtons) => [...defaultButtons, ...buttons];
-        } else {
-            buttonFunction = buttons;
-        }
-
-        if (onClose) {
-            const oldButtons = buttonFunction;
-            buttonFunction = (containerState, defaultButtons) => [
-                onCloseButton,
-                ...oldButtons(containerState, defaultButtons),
-            ];
-        }
-
         setWindow(
             {
                 id,
                 title,
                 fillHeight,
                 defaultWidth,
-                buttons: buttonFunction,
+                onClose,
                 children,
                 className,
                 style,
@@ -87,7 +67,7 @@ export const Window = withMemo(function Window({
             defaultContainerId,
             isActiveOnOpen
         );
-    }, [id, defaultContainerId, title, fillHeight, defaultWidth, buttons, children, onCloseButton, onClose, setWindow, className, style, isActiveOnOpen]);
+    }, [id, defaultContainerId, title, fillHeight, defaultWidth, children, onCloseButton, onClose, setWindow, className, style, isActiveOnOpen]);
 
     // remove window only if id changes or component is unmounted
     useOnMount(() => {
