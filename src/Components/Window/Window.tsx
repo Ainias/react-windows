@@ -1,14 +1,13 @@
-import { useLayoutEffect } from 'react';
+import {useLayoutEffect, useRef} from 'react';
 import {
     RbmComponentProps,
     useOnMount,
     withMemo,
     WithNoStringAndChildrenProps,
 } from '@ainias42/react-bootstrap-mobile';
-import { WindowButtonData } from '../WindowContainer/WindowContainer';
-import { getWindowStore } from '../store/createWindowStore';
-import { ContainerState } from '../types/ContainerState';
-import { useCloseButton } from '../../hooks/useCloseButton';
+import {getWindowStore} from '../store/createWindowStore';
+import {useCloseButton} from '../../hooks/useCloseButton';
+import {Random} from "@ainias42/js-helper";
 
 export type WindowProps = RbmComponentProps<
     {
@@ -25,18 +24,18 @@ export type WindowProps = RbmComponentProps<
 >;
 
 export const Window = withMemo(function Window({
-    storeId = 'default',
-    fillHeight = false,
-    id,
-    defaultContainerId,
-    title,
-    defaultWidth,
-    children,
-    onClose,
-    className,
-    style,
-    isActiveOnOpen = true,
-}: WindowProps) {
+                                                   storeId = 'default',
+                                                   fillHeight = false,
+                                                   id,
+                                                   defaultContainerId,
+                                                   title,
+                                                   defaultWidth,
+                                                   children,
+                                                   onClose,
+                                                   className,
+                                                   style,
+                                                   isActiveOnOpen = true,
+                                               }: WindowProps) {
     // Variables
     const useStore = getWindowStore(storeId);
     const setWindow = useStore((s) => s.setWindow);
@@ -44,6 +43,7 @@ export const Window = withMemo(function Window({
     const onCloseButton = useCloseButton(id, storeId, onClose);
 
     // Refs
+    const nonce = useRef(Random.getStringRandom(5));
 
     // States
 
@@ -63,6 +63,7 @@ export const Window = withMemo(function Window({
                 children,
                 className,
                 style,
+                nonce: nonce.current
             },
             defaultContainerId,
             isActiveOnOpen
@@ -72,8 +73,9 @@ export const Window = withMemo(function Window({
     // remove window only if id changes or component is unmounted
     useOnMount(() => {
         return () => {
-            removeWindow(id);
-            onClose?.();
+            if (removeWindow(id, nonce.current)) {
+                onClose?.();
+            }
         };
     });
 

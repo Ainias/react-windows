@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { WindowContainerDimension } from '../WindowContainer/WindowContainerDimension';
-import type { WindowButtonData } from '../WindowContainer/WindowContainer';
 import { Random } from '@ainias42/js-helper';
 import { CSSProperties, ReactNode } from 'react';
 import { updateDimensions } from '../helper/updateDimensions';
@@ -32,6 +31,7 @@ export type WindowData = {
     id: string;
     style?: CSSProperties;
     title: string;
+    nonce: string;
 };
 
 const initialState = {
@@ -190,11 +190,15 @@ const actionsGenerator = (set: SetState, get: GetState) => {
         setWindow(window: WindowData, defaultContainerId?: string, isActiveOnOpen?: boolean) {
             setWindow(window, defaultContainerId, isActiveOnOpen);
         },
-        removeWindow(windowId: string) {
+        removeWindow(windowId: string, nonce?: string) {
             const { windows } = get();
             const newWindows = { ...windows };
+            if (nonce && newWindows[windowId]?.nonce !== nonce) {
+                return false;
+            }
             delete newWindows[windowId];
             set({ windows: newWindows });
+            return true;
         },
         updateContainerDimension(id: string, dimension: WindowContainerDimension | undefined) {
             updateContainerDimension(id, dimension);
@@ -229,7 +233,7 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             set({ activeContainerId: id });
         },
         setActiveWindow(windowId: string){
-            const {containers, windows, windowContainerMapping, activeContainerId} = get();
+            const {containers, windows, windowContainerMapping} = get();
             if (!windows[windowId]) {
                 return;
             }

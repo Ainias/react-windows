@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import {
-    Clickable, Flex, Grow, Icon,
+    Clickable, Icon,
     InlineBlock,
     RbmComponentProps,
     Text,

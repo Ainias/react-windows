@@ -6,6 +6,7 @@ import { WindowContainer } from './WindowContainer';
 import { selectTitleInfos } from '../store/selectTitleInfos';
 
 import styles from './windowContainer.scss';
+import { JsonHelper } from "@ainias42/js-helper";
 
 export type WindowContainerFromStoreProps = {
     id: string;
@@ -32,7 +33,7 @@ export const WindowContainerFromStore = withMemo(function WindowContainerFromSto
     const containerData = useStore((s) => s.containers[id]);
     const windowData = useStore((s) => selectActiveWindowForContainer(s, id));
     const isActive = useStore((s) => s.activeContainerId === id);
-    const titleInfos = useStore((s) => selectTitleInfos(s, id));
+    const titleInfos = useStore((s) => selectTitleInfos(s, id), (a,b) => JsonHelper.deepEqual(a,b));
 
     // Dragging
 

@@ -12,16 +12,16 @@ import {
 
 import styles from './windowContainer.scss';
 import classNames from 'classnames';
-import {faWindowMaximize, faWindowMinimize, faWindowRestore} from '@fortawesome/free-regular-svg-icons';
-import {faClose, faCross, faEllipsisV, faThumbtack} from '@fortawesome/free-solid-svg-icons';
-import {checkWindowDimension} from './checkWindowDimension';
-import {changeDimension, changeDimensionWidth} from './changeDimension';
+import { faWindowMaximize, faWindowMinimize, faWindowRestore } from '@fortawesome/free-regular-svg-icons';
+import { faClose, faEllipsisV, faThumbtack } from '@fortawesome/free-solid-svg-icons';
+import { checkWindowDimension } from './checkWindowDimension';
+import { changeDimension, changeDimensionWidth } from './changeDimension';
 import {
     WINDOW_CONTAINER_MIN_HEIGHT,
     WINDOW_CONTAINER_MIN_WIDTH,
     WindowContainerDimension,
 } from './WindowContainerDimension';
-import {WindowButton, WindowButtonProps} from '../WindowButton/WindowButton';
+import { WindowButton, WindowButtonProps } from '../WindowButton/WindowButton';
 import {
     Block,
     Clickable,
@@ -36,18 +36,18 @@ import {
     WindowContext,
     withForwardRef,
 } from '@ainias42/react-bootstrap-mobile';
-import {getWindowStore, WindowContainerData, WindowData} from '../store/createWindowStore';
-import {shallow} from 'zustand/shallow';
-import {ContainerState} from '../types/ContainerState';
-import {TitleTabBar} from './TitleTabBar';
-import {createPortal} from 'react-dom';
-import {Position, useOnMouseDrag} from '../hooks/useOnMouseDrag';
+import { getWindowStore, WindowContainerData, WindowData } from '../store/createWindowStore';
+import { shallow } from 'zustand/shallow';
+import { ContainerState } from '../types/ContainerState';
+import { TitleTabBar } from './TitleTabBar';
+import { createPortal } from 'react-dom';
+import { Position, useOnMouseDrag } from '../hooks/useOnMouseDrag';
 
 import "../../i18n/i18n";
-import {WindowContainerRefContext} from "./WindowContainerRefContext";
-import {ResizeToContentEnum} from "./ResizeToContentEnum";
-import {selectCanCloseContainer} from "../store/selectCanCloseContainer";
-import {useT} from "../../i18n/useT";
+import { WindowContainerRefContext } from "./WindowContainerRefContext";
+import { ResizeToContentEnum } from "./ResizeToContentEnum";
+import { selectCanCloseContainer } from "../store/selectCanCloseContainer";
+import { useT } from "../../i18n/useT";
 
 type ResizeDirection = 'top' | 'left' | 'right' | 'bottom' | 'tl' | 'tr' | 'bl' | 'br';
 export type WindowButtonData = WindowButtonProps<any> & { key: string };
@@ -97,7 +97,6 @@ export const WindowContainer = withForwardRef(
         const [portalContainer] = useState<HTMLDivElement>(() => {
             return document.createElement('div');
         });
-        const isResizing = useRef(false);
 
         // Open in new window refs
         const windowContainerRef = useRef<HTMLDivElement>(null);
@@ -108,6 +107,7 @@ export const WindowContainer = withForwardRef(
         const titleRef = useRef<HTMLDivElement>(null);
         const contentRef = useRef<HTMLDivElement>(null);
         const windowRef = useRef<HTMLDivElement>(null);
+        const userIsResizing = useRef(false);
 
         // States
         const useStore = getWindowStore(store);
@@ -157,7 +157,7 @@ export const WindowContainer = withForwardRef(
         // Callbacks
         const setIsMoving = useCallback(
             (newIsMoving: boolean) => {
-                setContainerIsMoving(id, newIsMoving)
+                setContainerIsMoving(id, newIsMoving);
             },
             [id, setContainerIsMoving]
         );
@@ -249,7 +249,7 @@ export const WindowContainer = withForwardRef(
             contentRef.current.className = classesBefore;
 
             changeDimension(realDimension, diffX, diffY);
-            checkWindowDimension(realDimension)
+            checkWindowDimension(realDimension);
             setDimension(checkWindowDimension(realDimension));
         }, [defaultWidth, getDimensions, id, setDimension, setShouldResizeToContent, containerData.state]);
 
@@ -267,6 +267,12 @@ export const WindowContainer = withForwardRef(
                 ),
             [setContainerState]
         );
+
+        const checkResizeToContent = useCallback(() => {
+            if (!userIsResizing.current && shouldResizeToContent !== ResizeToContentEnum.NONE && windowData?.id !== draggingWindowId && containerData.state === ContainerState.NORMAL) {
+                resizeToContent(shouldResizeToContent === ResizeToContentEnum.WIDTH_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE, shouldResizeToContent === ResizeToContentEnum.HEIGHT_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE);
+            }
+        }, [containerData.state, draggingWindowId, resizeToContent, shouldResizeToContent, windowData?.id]);
 
         const onMouseDown = useCallback(() => {
             if (!containerData.isLocked) {
@@ -329,12 +335,15 @@ export const WindowContainer = withForwardRef(
 
         const onMouseUp = useCallback(() => {
             setIsMoving(false);
-        }, [setIsMoving]);
+            userIsResizing.current = false;
+            checkResizeToContent();
+        }, [setIsMoving, checkResizeToContent]);
 
         const onDragDown = useOnMouseDrag({onMouseMove, onMouseDown, onMouseUp});
 
         const onResizeStart = useCallback(
             (e: ReactMouseEvent, direction: ResizeDirection) => {
+                userIsResizing.current = true;
                 setResizeDirection(direction);
                 onDragDown(e);
                 setResizeStartDimension(dimension);
@@ -393,12 +402,6 @@ export const WindowContainer = withForwardRef(
             [portalContainer, setContainerState, state, windowData?.title]
         );
 
-        const checkResizeToContent = useCallback(() => {
-            if (shouldResizeToContent !== ResizeToContentEnum.NONE && windowData?.id !== draggingWindowId && containerData.state === ContainerState.NORMAL) {
-                resizeToContent(shouldResizeToContent === ResizeToContentEnum.WIDTH_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE, shouldResizeToContent === ResizeToContentEnum.HEIGHT_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE);
-            }
-        }, [draggingWindowId, resizeToContent, shouldResizeToContent, windowData?.id]);
-
         const realRef = useMemo(() => ({
             toggleMaximize: () => {
                 if (!disabled) {
@@ -451,7 +454,7 @@ export const WindowContainer = withForwardRef(
 
         const resizeInBothDirections = useCallback(() => resizeToContent(true, true), [resizeToContent]);
         const resizeToWidth = useCallback(() => {
-            resizeToContent(true, false)
+            resizeToContent(true, false);
         }, [resizeToContent]);
         const resizeToHeight = useCallback(() => resizeToContent(false, true), [resizeToContent]);
 
@@ -538,7 +541,7 @@ export const WindowContainer = withForwardRef(
             }
 
             return newButtons.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-        }, [state, toggleMinimized, t, toggleMaximized, containerData.isLocked, windowData, unlock]);
+        }, [id, canCloseContainer, closeContainer, state, toggleMinimized, t, toggleMaximized, containerData.isLocked, unlock]);
 
         const menuItems = useMemo(() => {
             const items: MenuItemType[] = [];
@@ -597,114 +600,112 @@ export const WindowContainer = withForwardRef(
         }
 
         return (
-            <>
-                <Clickable onClick={setActive} onClickData={id} ref={updateContainerRef}>
-                    {createPortal(
-                        <WindowContext.Provider value={windowObject}>
-                            <WindowContainerRefContext.Provider value={realRef}>
-                                <Flex
-                                    className={classNames(styles.windowContainer, windowData?.className, {
-                                        [styles.minimized]: state === ContainerState.MINIMIZED,
-                                        [styles.maximized]: state === ContainerState.MAXIMIZED,
-                                        [styles.popup]: state === ContainerState.POPUP,
-                                        [styles.moving]: isMoving,
-                                        [styles.active]: isActive,
-                                        [styles.disabled]: disabled,
-                                    })}
-                                    style={{
-                                        ...(windowData?.style ?? {}),
-                                        top: initialTop,
-                                        left: initialLeft,
-                                        right:
-                                            defaultWidth && isClient
-                                                ? window.innerWidth - initialLeft - defaultWidth
-                                                : undefined,
-                                        ...(dimension ?? {}),
-                                        minWidth: WINDOW_CONTAINER_MIN_WIDTH,
-                                        minHeight: WINDOW_CONTAINER_MIN_HEIGHT,
-                                    }}
-                                    ref={windowContainerRef}
-                                >
-                                    <Flex horizontal={true} className={styles.fullWidth}>
-                                        <Clickable
-                                            className={classNames(styles.resize, styles.edge, styles.nw)}
-                                            onMouseDown={onResizeStart}
-                                            onMouseDownData="tl"
-                                            onDoubleClick={resizeInBothDirections}
-                                        />
-                                        <Clickable
-                                            className={classNames(styles.resize, styles.y)}
-                                            onMouseDown={onResizeStart}
-                                            onMouseDownData="top"
-                                            onDoubleClick={resizeToHeight}
-                                        />
-                                        <Clickable
-                                            className={classNames(styles.resize, styles.edge, styles.ne)}
-                                            onMouseDown={onResizeStart}
-                                            onMouseDownData="tr"
-                                            onDoubleClick={resizeInBothDirections}
-                                        />
-                                    </Flex>
-                                    <Grow className={classNames(styles.fullWidth, styles.overflowHidden)}>
-                                        <Flex
-                                            horizontal={true}
-                                            className={classNames(styles.stretchItems, styles.fullHeight)}
-                                        >
-                                            <Clickable
-                                                className={classNames(styles.resize, styles.x)}
-                                                onMouseDown={onResizeStart}
-                                                onMouseDownData="left"
-                                                onDoubleClick={resizeToWidth}
-                                            />
-                                            <Grow className={styles.overflowXAuto}>
-                                                <Block className={styles.window} ref={windowRef}>
-                                                    {renderTitle()}
-                                                    <Block
-                                                        className={classNames(styles.content, {
-                                                            [styles.fillHeight]: windowData?.fillHeight,
-                                                        })}
-                                                        __allowChildren="all"
-                                                        ref={contentRef}
-                                                    >
-                                                        {windowData?.children}
-                                                    </Block>
-                                                </Block>
-                                            </Grow>
-                                            <Clickable
-                                                className={classNames(styles.resize, styles.x)}
-                                                onMouseDown={onResizeStart}
-                                                onMouseDownData="right"
-                                                onDoubleClick={resizeToWidth}
-                                            />
-                                        </Flex>
-                                    </Grow>
-                                    <Flex horizontal={true} className={styles.fullWidth}>
-                                        <Clickable
-                                            className={classNames(styles.resize, styles.edge, styles.sw)}
-                                            onMouseDown={onResizeStart}
-                                            onMouseDownData="bl"
-                                            onDoubleClick={resizeInBothDirections}
-                                        />
-                                        <Clickable
-                                            className={classNames(styles.resize, styles.y)}
-                                            onMouseDown={onResizeStart}
-                                            onMouseDownData="bottom"
-                                            onDoubleClick={resizeToHeight}
-                                        />
-                                        <Clickable
-                                            className={classNames(styles.resize, styles.edge, styles.se)}
-                                            onMouseDown={onResizeStart}
-                                            onMouseDownData="br"
-                                            onDoubleClick={resizeInBothDirections}
-                                        />
-                                    </Flex>
+            <Clickable onClick={setActive} onClickData={id} ref={updateContainerRef}>
+                {createPortal(
+                    <WindowContext.Provider value={windowObject}>
+                        <WindowContainerRefContext.Provider value={realRef}>
+                            <Flex
+                                className={classNames(styles.windowContainer, windowData?.className, {
+                                    [styles.minimized]: state === ContainerState.MINIMIZED,
+                                    [styles.maximized]: state === ContainerState.MAXIMIZED,
+                                    [styles.popup]: state === ContainerState.POPUP,
+                                    [styles.moving]: isMoving,
+                                    [styles.active]: isActive,
+                                    [styles.disabled]: disabled,
+                                })}
+                                style={{
+                                    ...(windowData?.style ?? {}),
+                                    top: initialTop,
+                                    left: initialLeft,
+                                    right:
+                                        defaultWidth && isClient
+                                            ? window.innerWidth - initialLeft - defaultWidth
+                                            : undefined,
+                                    ...(dimension ?? {}),
+                                    minWidth: WINDOW_CONTAINER_MIN_WIDTH,
+                                    minHeight: WINDOW_CONTAINER_MIN_HEIGHT,
+                                }}
+                                ref={windowContainerRef}
+                            >
+                                <Flex horizontal={true} className={styles.fullWidth}>
+                                    <Clickable
+                                        className={classNames(styles.resize, styles.edge, styles.nw)}
+                                        onMouseDown={onResizeStart}
+                                        onMouseDownData="tl"
+                                        onDoubleClick={resizeInBothDirections}
+                                    />
+                                    <Clickable
+                                        className={classNames(styles.resize, styles.y)}
+                                        onMouseDown={onResizeStart}
+                                        onMouseDownData="top"
+                                        onDoubleClick={resizeToHeight}
+                                    />
+                                    <Clickable
+                                        className={classNames(styles.resize, styles.edge, styles.ne)}
+                                        onMouseDown={onResizeStart}
+                                        onMouseDownData="tr"
+                                        onDoubleClick={resizeInBothDirections}
+                                    />
                                 </Flex>
-                            </WindowContainerRefContext.Provider>
-                        </WindowContext.Provider>,
-                        portalContainer
-                    )}
-                </Clickable>
-            </>
+                                <Grow className={classNames(styles.fullWidth, styles.overflowHidden)}>
+                                    <Flex
+                                        horizontal={true}
+                                        className={classNames(styles.stretchItems, styles.fullHeight)}
+                                    >
+                                        <Clickable
+                                            className={classNames(styles.resize, styles.x)}
+                                            onMouseDown={onResizeStart}
+                                            onMouseDownData="left"
+                                            onDoubleClick={resizeToWidth}
+                                        />
+                                        <Grow className={styles.overflowXAuto}>
+                                            <Block className={styles.window} ref={windowRef}>
+                                                {renderTitle()}
+                                                <Block
+                                                    className={classNames(styles.content, {
+                                                        [styles.fillHeight]: windowData?.fillHeight,
+                                                    })}
+                                                    __allowChildren="all"
+                                                    ref={contentRef}
+                                                >
+                                                    {windowData?.children}
+                                                </Block>
+                                            </Block>
+                                        </Grow>
+                                        <Clickable
+                                            className={classNames(styles.resize, styles.x)}
+                                            onMouseDown={onResizeStart}
+                                            onMouseDownData="right"
+                                            onDoubleClick={resizeToWidth}
+                                        />
+                                    </Flex>
+                                </Grow>
+                                <Flex horizontal={true} className={styles.fullWidth}>
+                                    <Clickable
+                                        className={classNames(styles.resize, styles.edge, styles.sw)}
+                                        onMouseDown={onResizeStart}
+                                        onMouseDownData="bl"
+                                        onDoubleClick={resizeInBothDirections}
+                                    />
+                                    <Clickable
+                                        className={classNames(styles.resize, styles.y)}
+                                        onMouseDown={onResizeStart}
+                                        onMouseDownData="bottom"
+                                        onDoubleClick={resizeToHeight}
+                                    />
+                                    <Clickable
+                                        className={classNames(styles.resize, styles.edge, styles.se)}
+                                        onMouseDown={onResizeStart}
+                                        onMouseDownData="br"
+                                        onDoubleClick={resizeInBothDirections}
+                                    />
+                                </Flex>
+                            </Flex>
+                        </WindowContainerRefContext.Provider>
+                    </WindowContext.Provider>,
+                    portalContainer
+                )}
+            </Clickable>
         );
     },
     styles,

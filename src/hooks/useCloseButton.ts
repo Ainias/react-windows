@@ -4,7 +4,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { getWindowStore } from '../Components/store/createWindowStore';
 import {useT} from "../i18n/useT";
 
-export function useCloseButton(windowId: string, storeId = 'default', onClose?: () => any) {
+export function useCloseButton(windowId: string, storeId = 'default', onClose: (() => any)|undefined = undefined) {
     const {t} = useT();
     return useMemo(
         () =>
