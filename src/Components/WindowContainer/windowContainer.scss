@@ -176,6 +176,10 @@
       flex: 1;
     }
 
+    &.hidden {
+      display: none !important;
+    }
+
     #{selector.nest(':global(.resizing)', &)} {
       flex: initial !important;
     }

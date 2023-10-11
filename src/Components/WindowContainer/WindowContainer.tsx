@@ -36,7 +36,7 @@ import {
     WindowContext,
     withForwardRef,
 } from '@ainias42/react-bootstrap-mobile';
-import { getWindowStore, WindowContainerData, WindowData } from '../store/createWindowStore';
+import { getWindowStore } from '../store/createWindowStore';
 import { shallow } from 'zustand/shallow';
 import { ContainerState } from '../types/ContainerState';
 import { TitleTabBar } from './TitleTabBar';
@@ -48,6 +48,10 @@ import { WindowContainerRefContext } from "./WindowContainerRefContext";
 import { ResizeToContentEnum } from "./ResizeToContentEnum";
 import { selectCanCloseContainer } from "../store/selectCanCloseContainer";
 import { useT } from "../../i18n/useT";
+import { selectTitleInfos } from "../store/selectTitleInfos";
+import { JsonHelper, ObjectHelper } from "@ainias42/js-helper";
+import { selectWindowsForContainer } from "../store/selectWindowsForContainer";
+import { selectActiveWindowIdForContainer } from "../store/selectAvticeWindowIdForContainer";
 
 type ResizeDirection = 'top' | 'left' | 'right' | 'bottom' | 'tl' | 'tr' | 'bl' | 'br';
 export type WindowButtonData = WindowButtonProps<any> & { key: string };
@@ -57,10 +61,6 @@ export type WindowContainerProps = {
     store?: string;
     initialTop?: number;
     initialLeft?: number;
-    containerData: WindowContainerData;
-    titleInfos: { id: string; title: string }[];
-    windowData?: WindowData;
-    isActive: boolean;
     disabled?: boolean;
     className?: string;
 };
@@ -81,10 +81,6 @@ export const WindowContainer = withForwardRef(
             initialLeft = 200,
             id,
             store = 'default',
-            containerData,
-            windowData,
-            titleInfos,
-            isActive,
             disabled,
             className,
         }: WindowContainerProps,
@@ -111,6 +107,13 @@ export const WindowContainer = withForwardRef(
 
         // States
         const useStore = getWindowStore(store);
+        const containerData = useStore((s) => s.containers[id]);
+        const windowDatas = useStore((s) => selectWindowsForContainer(s, id)) ?? {};
+        const activeWindowId = useStore(s => selectActiveWindowIdForContainer(s, id)) ?? "";
+        const activeWindowData = windowDatas[activeWindowId];
+        const isActive = useStore((s) => s.activeContainerId === id);
+        const titleInfos = useStore((s) => selectTitleInfos(s, id), (a, b) => JsonHelper.deepEqual(a, b));
+
         const [
             setActiveContainer,
             updateContainerDimension,
@@ -139,7 +142,7 @@ export const WindowContainer = withForwardRef(
         const buttonWidth = useStore((s) => s.containers[id].buttonWidth);
         const draggingWindowId = useStore((s) => s.draggingWindowId);
 
-        const {defaultWidth} = windowData ?? {};
+        const {defaultWidth} = activeWindowData ?? {};
         const {dimension, state, shouldResizeToContent} = containerData;
 
         const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -269,10 +272,10 @@ export const WindowContainer = withForwardRef(
         );
 
         const checkResizeToContent = useCallback(() => {
-            if (!userIsResizing.current && shouldResizeToContent !== ResizeToContentEnum.NONE && windowData?.id !== draggingWindowId && containerData.state === ContainerState.NORMAL) {
+            if (!userIsResizing.current && shouldResizeToContent !== ResizeToContentEnum.NONE && activeWindowId !== draggingWindowId && containerData.state === ContainerState.NORMAL) {
                 resizeToContent(shouldResizeToContent === ResizeToContentEnum.WIDTH_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE, shouldResizeToContent === ResizeToContentEnum.HEIGHT_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE);
             }
-        }, [containerData.state, draggingWindowId, resizeToContent, shouldResizeToContent, windowData?.id]);
+        }, [containerData.state, draggingWindowId, resizeToContent, shouldResizeToContent, activeWindowId]);
 
         const onMouseDown = useCallback(() => {
             if (!containerData.isLocked) {
@@ -371,7 +374,7 @@ export const WindowContainer = withForwardRef(
                 windowProxy.document.head.appendChild(baseElement);
 
                 const titleElement = document.createElement('title');
-                titleElement.innerText = windowData?.title ?? '';
+                titleElement.innerText = activeWindowData?.title ?? '';
                 windowProxy.document.head.appendChild(titleElement);
 
                 document.querySelectorAll("link[rel='stylesheet']").forEach((styleElem) => {
@@ -399,7 +402,7 @@ export const WindowContainer = withForwardRef(
                     setWindowObject(undefined);
                 });
             },
-            [portalContainer, setContainerState, state, windowData?.title]
+            [portalContainer, setContainerState, state, activeWindowData?.title]
         );
 
         const realRef = useMemo(() => ({
@@ -488,7 +491,8 @@ export const WindowContainer = withForwardRef(
             return () => {
                 observer.disconnect();
             };
-        }, [checkResizeToContent, shouldResizeToContent, windowData]);
+            // ActiveWindowId change changes ref
+        }, [checkResizeToContent, shouldResizeToContent, activeWindowId]);
 
         useOnce(() => {
             if (disabled) {
@@ -498,7 +502,7 @@ export const WindowContainer = withForwardRef(
             if (state === ContainerState.POPUP) {
                 openInNewWindow(true);
             }
-        }, !!windowData);
+        }, !!activeWindowData);
 
         // Other
         const realButtons = useMemo(() => {
@@ -595,7 +599,7 @@ export const WindowContainer = withForwardRef(
 
         // Render Functions
 
-        if (!windowData) {
+        if (!activeWindowData) {
             return null;
         }
 
@@ -605,7 +609,7 @@ export const WindowContainer = withForwardRef(
                     <WindowContext.Provider value={windowObject}>
                         <WindowContainerRefContext.Provider value={realRef}>
                             <Flex
-                                className={classNames(styles.windowContainer, windowData?.className, {
+                                className={classNames(styles.windowContainer, activeWindowData?.className, {
                                     [styles.minimized]: state === ContainerState.MINIMIZED,
                                     [styles.maximized]: state === ContainerState.MAXIMIZED,
                                     [styles.popup]: state === ContainerState.POPUP,
@@ -614,7 +618,7 @@ export const WindowContainer = withForwardRef(
                                     [styles.disabled]: disabled,
                                 })}
                                 style={{
-                                    ...(windowData?.style ?? {}),
+                                    ...(activeWindowData?.style ?? {}),
                                     top: initialTop,
                                     left: initialLeft,
                                     right:
@@ -661,15 +665,19 @@ export const WindowContainer = withForwardRef(
                                         <Grow className={styles.overflowXAuto}>
                                             <Block className={styles.window} ref={windowRef}>
                                                 {renderTitle()}
-                                                <Block
-                                                    className={classNames(styles.content, {
-                                                        [styles.fillHeight]: windowData?.fillHeight,
-                                                    })}
-                                                    __allowChildren="all"
-                                                    ref={contentRef}
-                                                >
-                                                    {windowData?.children}
-                                                </Block>
+                                                {ObjectHelper.values(windowDatas).map((windowData) => {
+                                                    return <Block
+                                                        key={windowData.id}
+                                                        className={classNames(styles.content, {
+                                                            [styles.fillHeight]: activeWindowData?.fillHeight,
+                                                            [styles.hidden]: windowData?.id !== activeWindowId,
+                                                        })}
+                                                        __allowChildren="all"
+                                                        ref={activeWindowId === windowData.id ? contentRef : undefined}
+                                                    >
+                                                        {windowData?.children}
+                                                    </Block>;
+                                                })}
                                             </Block>
                                         </Grow>
                                         <Clickable

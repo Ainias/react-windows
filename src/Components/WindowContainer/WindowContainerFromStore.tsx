@@ -30,10 +30,7 @@ export const WindowContainerFromStore = withMemo(function WindowContainerFromSto
     // Selectors
 
     const useStore = getWindowStore(store);
-    const containerData = useStore((s) => s.containers[id]);
     const windowData = useStore((s) => selectActiveWindowForContainer(s, id));
-    const isActive = useStore((s) => s.activeContainerId === id);
-    const titleInfos = useStore((s) => selectTitleInfos(s, id), (a,b) => JsonHelper.deepEqual(a,b));
 
     // Dragging
 
@@ -54,10 +51,6 @@ export const WindowContainerFromStore = withMemo(function WindowContainerFromSto
             store={store}
             initialTop={initialTop}
             initialLeft={initialLeft}
-            containerData={containerData}
-            windowData={windowData}
-            isActive={isActive}
-            titleInfos={titleInfos}
         />
     );
 },
