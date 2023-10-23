@@ -159,7 +159,7 @@ const actionsGenerator = (set: SetState, get: GetState) => {
         const { containers, windowContainerMapping } = get();
         const newContainer = containers[newContainerId];
         const container = containers[windowContainerMapping[windowId]];
-        if (!newContainer || (newContainer.id === container.id && container.windowIds.indexOf(windowId) === newIndex)) {
+        if (!newContainer || (newContainer.id === container?.id && container?.windowIds.indexOf(windowId) === newIndex)) {
             return;
         }
 
@@ -347,7 +347,8 @@ const actionsGenerator = (set: SetState, get: GetState) => {
         },
         clearDraggingWindow(){
             set({ draggingWindowId: '' });
-        }
+        },
+        moveWindow,
     };
 };
 
