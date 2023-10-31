@@ -103,7 +103,7 @@ export const TitleTabBar = withMemo(function TitleTabBar({
     const tabLength = titleInfos.length;
     return (
         <Clickable
-            onMouseDown={onMoveStart}
+            onPointerDown={onMoveStart}
             style={style}
             className={classNames(className, styles.titleTabBar, { [styles.singleTab]: tabLength === 1 })}
         >

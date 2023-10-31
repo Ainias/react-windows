@@ -3,10 +3,7 @@ import { withMemo } from '@ainias42/react-bootstrap-mobile';
 import { getWindowStore } from '../store/createWindowStore';
 import { selectActiveWindowForContainer } from '../store/selectActiveWindowForContainers';
 import { WindowContainer } from './WindowContainer';
-import { selectTitleInfos } from '../store/selectTitleInfos';
-
 import styles from './windowContainer.scss';
-import { JsonHelper } from "@ainias42/js-helper";
 
 export type WindowContainerFromStoreProps = {
     id: string;

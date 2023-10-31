@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
     ForwardedRef,
-    MouseEvent as ReactMouseEvent,
+    PointerEvent as ReactPointerEvent,
     useCallback,
     useEffect,
     useImperativeHandle,
@@ -186,7 +186,7 @@ export const WindowContainer = withForwardRef(
         const setActive = useCallback(() => setActiveContainer(id), [id, setActiveContainer]);
 
         const closeMenu = useCallback(() => setIsMenuOpen(false), []);
-        const openMenu = useCallback((ev: ReactMouseEvent) => {
+        const openMenu = useCallback((ev: ReactPointerEvent) => {
             setIsMenuOpen(true);
             setMenuX(ev.clientX);
             setMenuY(ev.clientY);
@@ -345,7 +345,7 @@ export const WindowContainer = withForwardRef(
         const onDragDown = useOnMouseDrag({onMouseMove, onMouseDown, onMouseUp});
 
         const onResizeStart = useCallback(
-            (e: ReactMouseEvent, direction: ResizeDirection) => {
+            (e: ReactPointerEvent, direction: ResizeDirection) => {
                 userIsResizing.current = true;
                 setResizeDirection(direction);
                 onDragDown(e);
@@ -634,20 +634,20 @@ export const WindowContainer = withForwardRef(
                                 <Flex horizontal={true} className={styles.fullWidth}>
                                     <Clickable
                                         className={classNames(styles.resize, styles.edge, styles.nw)}
-                                        onMouseDown={onResizeStart}
-                                        onMouseDownData="tl"
+                                        onPointerDown={onResizeStart}
+                                        onPointerDownData="tl"
                                         onDoubleClick={resizeInBothDirections}
                                     />
                                     <Clickable
                                         className={classNames(styles.resize, styles.y)}
-                                        onMouseDown={onResizeStart}
-                                        onMouseDownData="top"
+                                        onPointerDown={onResizeStart}
+                                        onPointerDownData="top"
                                         onDoubleClick={resizeToHeight}
                                     />
                                     <Clickable
                                         className={classNames(styles.resize, styles.edge, styles.ne)}
-                                        onMouseDown={onResizeStart}
-                                        onMouseDownData="tr"
+                                        onPointerDown={onResizeStart}
+                                        onPointerDownData="tr"
                                         onDoubleClick={resizeInBothDirections}
                                     />
                                 </Flex>
@@ -658,8 +658,8 @@ export const WindowContainer = withForwardRef(
                                     >
                                         <Clickable
                                             className={classNames(styles.resize, styles.x)}
-                                            onMouseDown={onResizeStart}
-                                            onMouseDownData="left"
+                                            onPointerDown={onResizeStart}
+                                            onPointerDownData="left"
                                             onDoubleClick={resizeToWidth}
                                         />
                                         <Grow className={styles.overflowXAuto}>
@@ -682,8 +682,8 @@ export const WindowContainer = withForwardRef(
                                         </Grow>
                                         <Clickable
                                             className={classNames(styles.resize, styles.x)}
-                                            onMouseDown={onResizeStart}
-                                            onMouseDownData="right"
+                                            onPointerDown={onResizeStart}
+                                            onPointerDownData="right"
                                             onDoubleClick={resizeToWidth}
                                         />
                                     </Flex>
@@ -691,20 +691,20 @@ export const WindowContainer = withForwardRef(
                                 <Flex horizontal={true} className={styles.fullWidth}>
                                     <Clickable
                                         className={classNames(styles.resize, styles.edge, styles.sw)}
-                                        onMouseDown={onResizeStart}
-                                        onMouseDownData="bl"
+                                        onPointerDown={onResizeStart}
+                                        onPointerDownData="bl"
                                         onDoubleClick={resizeInBothDirections}
                                     />
                                     <Clickable
                                         className={classNames(styles.resize, styles.y)}
-                                        onMouseDown={onResizeStart}
-                                        onMouseDownData="bottom"
+                                        onPointerDown={onResizeStart}
+                                        onPointerDownData="bottom"
                                         onDoubleClick={resizeToHeight}
                                     />
                                     <Clickable
                                         className={classNames(styles.resize, styles.edge, styles.se)}
-                                        onMouseDown={onResizeStart}
-                                        onMouseDownData="br"
+                                        onPointerDown={onResizeStart}
+                                        onPointerDownData="br"
                                         onDoubleClick={resizeInBothDirections}
                                     />
                                 </Flex>

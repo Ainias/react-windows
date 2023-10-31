@@ -1,4 +1,4 @@
-import { MouseEvent as ReactMouseEvent, useCallback, useEffect, useRef } from 'react';
+import { PointerEvent as ReactPointerEvent, useCallback, useEffect, useRef } from 'react';
 import { useDelayed, useWindow } from '@ainias42/react-bootstrap-mobile';
 
 export type Position = { x: number; y: number };
@@ -8,15 +8,15 @@ export function useOnMouseDrag<ReturnValue = void>({
     onMouseUp,
     onMouseMove,
 }: {
-    onMouseDown?: (startPosition: Position, event: ReactMouseEvent) => ReturnValue;
-    onMouseMove?: (mouseDiff: Position, currentPosition: Position, event: MouseEvent) => void;
-    onMouseUp?: (mouseDiff: Position, endPosition: Position, event: MouseEvent) => void;
+    onMouseDown?: (startPosition: Position, event: ReactPointerEvent) => ReturnValue;
+    onMouseMove?: (mouseDiff: Position, currentPosition: Position, event: PointerEvent) => void;
+    onMouseUp?: (mouseDiff: Position, endPosition: Position, event: PointerEvent) => void;
 }) {
     const mouseDownPos = useRef<undefined | { x: number; y: number }>(undefined);
     const window = useWindow();
 
     const onMoveStart = useCallback(
-        (e: ReactMouseEvent) => {
+        (e: ReactPointerEvent) => {
             mouseDownPos.current = { x: e.clientX, y: e.clientY };
             return onMouseDown?.(mouseDownPos.current, e);
         },
@@ -24,7 +24,7 @@ export function useOnMouseDrag<ReturnValue = void>({
     );
 
     const onMove = useDelayed(
-        (e: MouseEvent) => {
+        (e: PointerEvent) => {
             if (!mouseDownPos.current) {
                 return;
             }
@@ -42,7 +42,7 @@ export function useOnMouseDrag<ReturnValue = void>({
     );
 
     const onMoveStop = useCallback(
-        (e: MouseEvent) => {
+        (e: PointerEvent) => {
             if (!mouseDownPos.current) {
                 return;
             }
@@ -59,13 +59,13 @@ export function useOnMouseDrag<ReturnValue = void>({
     );
 
     useEffect(() => {
-        window?.addEventListener('mousemove', onMove);
-        return () => window?.removeEventListener('mousemove', onMove);
+        window?.addEventListener('pointermove', onMove);
+        return () => window?.removeEventListener('pointermove', onMove);
     }, [onMove, window]);
 
     useEffect(() => {
-        window?.addEventListener('mouseup', onMoveStop);
-        return () => window?.removeEventListener('mouseup', onMoveStop);
+        window?.addEventListener('pointerup', onMoveStop);
+        return () => window?.removeEventListener('pointerup', onMoveStop);
     }, [onMoveStop, window]);
 
     return onMoveStart;

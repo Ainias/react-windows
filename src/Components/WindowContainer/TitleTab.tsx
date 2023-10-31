@@ -95,8 +95,8 @@ export const TitleTab = withMemo(
 
             dragStartPosition.current = undefined;
             ignoredContainerId.current = undefined;
-            window?.removeEventListener('mousemove', onDrag);
-            window?.removeEventListener('mouseup', onDragStop);
+            window?.removeEventListener('pointermove', onDrag);
+            window?.removeEventListener('pointerup', onDragStop);
             window?.document.body.classList.remove(styles.noSelect);
             clearDragging();
         }, [clearDragging, onDrag, setContainerIsMoving, window]);
@@ -107,11 +107,12 @@ export const TitleTab = withMemo(
                     return;
                 }
 
+
                 dragStartPosition.current = startPosition;
                 ignoredContainerId.current = singleTabContainerId;
                 onDrag(e);
-                window?.addEventListener('mousemove', onDrag);
-                window?.addEventListener('mouseup', onDragStop);
+                window?.addEventListener('pointermove', onDrag);
+                window?.addEventListener('pointerup', onDragStop);
                 window?.document.body.classList.add(styles.noSelect);
             },
             [disableDrag, onDrag, onDragStop, singleTabContainerId, window]
@@ -151,7 +152,7 @@ export const TitleTab = withMemo(
                 )}
                 style={style}
             >
-                <Clickable onClick={onClickInner} onMouseDown={onMouseDown} preventDefault={false}>
+                <Clickable onClick={onClickInner} onPointerDown={onMouseDown} preventDefault={false}>
                         <Text className={styles.titleText}>{children}</Text>
                         <Clickable onClick={onClose} className={styles.closeButton}><Icon icon={faClose}/></Clickable>
                 </Clickable>
