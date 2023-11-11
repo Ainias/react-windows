@@ -230,12 +230,17 @@ export const WindowContainer = withForwardRef(
                 }
             }
 
-            let diffY = contentRef.current.scrollHeight - contentRef.current.clientHeight;
+            // element.clientHeight is rounded, use unrounded values
+            const contentClientHeight = parseFloat(getComputedStyle(contentRef.current).height);
+
+            let diffY = contentRef.current.scrollHeight - Math.round(contentClientHeight);
             const diffX = !resizeWidth ? 0 : contentRef.current.scrollWidth - contentRef.current.clientWidth;
 
             if (diffY === 0) {
+            const windowClientHeight = parseFloat(getComputedStyle(windowRef.current).height);
+            const titleClientHeight = parseFloat(getComputedStyle(titleRef.current).height);
                 diffY =
-                    titleRef.current.clientHeight + contentRef.current.clientHeight - windowRef.current.clientHeight;
+                    titleClientHeight + contentClientHeight - windowClientHeight;
             }
 
             if (!resizeHeight) {
@@ -272,6 +277,7 @@ export const WindowContainer = withForwardRef(
         );
 
         const checkResizeToContent = useCallback(() => {
+            console.log("LOG-d check ResizeToContent");
             if (!userIsResizing.current && shouldResizeToContent !== ResizeToContentEnum.NONE && activeWindowId !== draggingWindowId && containerData.state === ContainerState.NORMAL) {
                 resizeToContent(shouldResizeToContent === ResizeToContentEnum.WIDTH_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE, shouldResizeToContent === ResizeToContentEnum.HEIGHT_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE);
             }
