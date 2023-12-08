@@ -180,7 +180,7 @@ export const WindowContainer = withForwardRef(
         );
 
         const setDimension = useCallback(
-            (newDimension: WindowContainerDimension | undefined) => updateContainerDimension(id, newDimension),
+            (newDimension: WindowContainerDimension | undefined, resizeNeighbours = true) => updateContainerDimension(id, newDimension, resizeNeighbours),
             [id, updateContainerDimension]
         );
         const setActive = useCallback(() => setActiveContainer(id), [id, setActiveContainer]);
@@ -206,7 +206,7 @@ export const WindowContainer = withForwardRef(
         }, []);
 
         const resizeToContent = useCallback((resizeWidth = true, resizeHeight = true) => {
-            if (!windowRef.current || !titleRef.current || !contentRef.current || containerData.state !== ContainerState.NORMAL) {
+            if (!windowRef.current || !titleRef.current || !contentRef.current || containerData.state !== ContainerState.NORMAL || containerData.isMoving) {
                 return;
             }
 
@@ -258,8 +258,8 @@ export const WindowContainer = withForwardRef(
 
             changeDimension(realDimension, diffX, diffY);
             checkWindowDimension(realDimension);
-            setDimension(checkWindowDimension(realDimension));
-        }, [defaultWidth, getDimensions, id, setDimension, setShouldResizeToContent, containerData.state]);
+            setDimension(checkWindowDimension(realDimension), true);
+        }, [containerData.state, containerData.isMoving, getDimensions, defaultWidth, setDimension, setShouldResizeToContent, id]);
 
         const toggleMinimized = useCallback(
             () =>
@@ -277,7 +277,6 @@ export const WindowContainer = withForwardRef(
         );
 
         const checkResizeToContent = useCallback(() => {
-            console.log("LOG-d check ResizeToContent");
             if (!userIsResizing.current && shouldResizeToContent !== ResizeToContentEnum.NONE && activeWindowId !== draggingWindowId && containerData.state === ContainerState.NORMAL) {
                 resizeToContent(shouldResizeToContent === ResizeToContentEnum.WIDTH_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE, shouldResizeToContent === ResizeToContentEnum.HEIGHT_ONLY || shouldResizeToContent === ResizeToContentEnum.RESIZE);
             }

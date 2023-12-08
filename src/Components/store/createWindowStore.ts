@@ -1,14 +1,14 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { WindowContainerDimension } from '../WindowContainer/WindowContainerDimension';
-import { Random } from '@ainias42/js-helper';
+import { ObjectHelper, Random } from '@ainias42/js-helper';
 import { CSSProperties, ReactNode } from 'react';
 import { updateDimensions } from '../helper/updateDimensions';
 import { ContainerState } from '../types/ContainerState';
 import { checkWindowDimension } from '../WindowContainer/checkWindowDimension';
 import { Position } from 'react-beautiful-dnd';
 import { checkOverContainerAndTabPosition } from '../helper/checkOverContainerAndTabPosition';
-import {ResizeToContentEnum} from "../WindowContainer/ResizeToContentEnum";
+import { ResizeToContentEnum } from "../WindowContainer/ResizeToContentEnum";
 
 export type WindowContainerData = {
     buttonWidth: number;
@@ -71,7 +71,7 @@ const actionsGenerator = (set: SetState, get: GetState) => {
     }
 
     function generateUnusedContainerId() {
-        const { containers } = get();
+        const {containers} = get();
         for (let i = 0; i < 50; i++) {
             const id = Random.getStringRandom(16);
             if (!containers[id]) {
@@ -82,7 +82,7 @@ const actionsGenerator = (set: SetState, get: GetState) => {
     }
 
     function removeWindowFromContainer(windowId: string) {
-        const { windowContainerMapping, containers } = get();
+        const {windowContainerMapping, containers} = get();
         const container = containers[windowContainerMapping[windowId]];
         if (!container) {
             return;
@@ -91,18 +91,18 @@ const actionsGenerator = (set: SetState, get: GetState) => {
         if (container.activeWindowId === windowId) {
             container.activeWindowId = '';
         }
-        const newMapping = { ...windowContainerMapping };
+        const newMapping = {...windowContainerMapping};
         delete newMapping[windowId];
 
-        const newContainers = { ...containers, [container.id]: container };
+        const newContainers = {...containers, [container.id]: container};
         if (container.windowIds.length === 0) {
             delete newContainers[container.id];
         }
-        set({ containers: newContainers, windowContainerMapping: newMapping });
+        set({containers: newContainers, windowContainerMapping: newMapping});
     }
 
     function setWindow(window: WindowData, defaultContainerId?: string, isActiveOnOpen?: boolean) {
-        const { containers, windows, windowContainerMapping } = get();
+        const {containers, windows, windowContainerMapping} = get();
         const containerId = windowContainerMapping[window.id] ?? defaultContainerId ?? generateUnusedContainerId();
         let container = containers[containerId];
         if (!container) {
@@ -118,29 +118,29 @@ const actionsGenerator = (set: SetState, get: GetState) => {
 
         if (!windows[window.id] && isActiveOnOpen) {
             container.activeWindowId = window.id;
-            set({ activeContainerId: container.id });
+            set({activeContainerId: container.id});
         }
 
         set({
-            containers: { ...containers, [containerId]: container },
-            windows: { ...windows, [window.id]: window as WindowData },
-            windowContainerMapping: { ...windowContainerMapping, [window.id]: containerId },
+            containers: {...containers, [containerId]: container},
+            windows: {...windows, [window.id]: window as WindowData},
+            windowContainerMapping: {...windowContainerMapping, [window.id]: containerId},
         });
     }
 
     function moveWindowToOwnContainer(windowId: string, position: { x: number; y: number } | null) {
-        const { windows, containers, windowContainerMapping } = get();
+        const {windows, containers, windowContainerMapping} = get();
         const window = windows[windowId];
         const container = containers[windowContainerMapping[windowId]];
         if (!window || !container) {
             return;
         }
-        const dimension = container.dimension ? { ...container.dimension } : undefined;
+        const dimension = container.dimension ? {...container.dimension} : undefined;
 
         removeWindowFromContainer(windowId);
         setWindow(window);
         if (dimension && position) {
-            const { windowContainerMapping: newMapping, containers: newContainers } = get();
+            const {windowContainerMapping: newMapping, containers: newContainers} = get();
             const newContainer = newContainers[newMapping[windowId]];
             dimension.right += dimension.left - position.x;
             dimension.bottom += dimension.top - position.y;
@@ -149,14 +149,14 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             newContainer.dimension = checkWindowDimension(dimension);
             newContainer.buttonWidth = container.buttonWidth;
             set({
-                containers: { ...containers, [newContainer.id]: newContainer },
+                containers: {...containers, [newContainer.id]: newContainer},
                 activeContainerId: newContainer.id,
             });
         }
     }
 
     function moveWindow(windowId: string, newContainerId: string, newIndex: number) {
-        const { containers, windowContainerMapping } = get();
+        const {containers, windowContainerMapping} = get();
         const newContainer = containers[newContainerId];
         const container = containers[windowContainerMapping[windowId]];
         if (!newContainer || (newContainer.id === container?.id && container?.windowIds.indexOf(windowId) === newIndex)) {
@@ -169,39 +169,130 @@ const actionsGenerator = (set: SetState, get: GetState) => {
         newContainer.windowIds.splice(newIndex, 0, windowId);
         newContainer.activeWindowId = windowId;
         set({
-            containers: { ...containers, [newContainerId]: newContainer },
-            windowContainerMapping: { ...windowContainerMapping, [windowId]: newContainerId },
+            containers: {...containers, [newContainerId]: newContainer},
+            windowContainerMapping: {...windowContainerMapping, [windowId]: newContainerId},
             activeContainerId: newContainerId,
         });
     }
 
-    function updateContainerDimension(id: string, dimension: WindowContainerDimension | undefined) {
-        const container = get().containers[id];
+    function updateContainerDimension(id: string, dimension: WindowContainerDimension | undefined, resizeNeighbours = false) {
+        const {containers: currentContainers, windowSize} = get();
+        const container = currentContainers[id];
         if (!container) {
             return;
         }
-        set(({ containers }) => ({ containers: { ...containers, [id]: { ...container, dimension } } }));
+
+        const currentDimension = container.dimension;
+
+        if (dimension && currentDimension && resizeNeighbours) {
+            const sitesToCheck = {
+                top: windowSize.y - currentDimension.bottom,
+                bottom: windowSize.y - currentDimension.top,
+                left: windowSize.x - currentDimension.right,
+                right: windowSize.x - currentDimension.left,
+            };
+
+            const containersToChange: {
+                top: string[];
+                bottom: string[];
+                left: string[];
+                right: string[];
+            } = {
+                top: [],
+                bottom: [],
+                left: [],
+                right: [],
+            };
+
+            const diff = 5;
+            ObjectHelper.values(currentContainers).forEach(c => {
+                if (c.id === id || !c.dimension) {
+                    return;
+                }
+
+                if (Math.abs(c.dimension.top - sitesToCheck.top) < diff
+                    && c.dimension.left < windowSize.x - currentDimension.right
+                    && c.dimension.right < windowSize.x - currentDimension.left) {
+                    containersToChange.top.push(c.id);
+                } else if (Math.abs(c.dimension.bottom - sitesToCheck.bottom) < diff
+                    && c.dimension.left < windowSize.x - currentDimension.right
+                    && c.dimension.right < windowSize.x - currentDimension.left) {
+                    containersToChange.bottom.push(c.id);
+                } else if (Math.abs(c.dimension.left - sitesToCheck.left) < diff
+                    && c.dimension.top < windowSize.y - currentDimension.bottom
+                    && c.dimension.bottom < windowSize.y - currentDimension.top) {
+                    containersToChange.left.push(c.id);
+                } else if (Math.abs(c.dimension.right - sitesToCheck.right) < diff
+                    && c.dimension.top < windowSize.y - currentDimension.bottom
+                    && c.dimension.bottom < windowSize.y - currentDimension.top) {
+                    containersToChange.right.push(c.id);
+                }
+            });
+
+            const diffDimension = {
+                top: currentDimension.bottom - dimension.bottom,
+                bottom: currentDimension.top - dimension.top,
+                left: currentDimension.right - dimension.right,
+                right: currentDimension.left - dimension.left,
+            };
+
+            const changedContainers: Record<string, WindowContainerData> = {};
+            ObjectHelper.entries(containersToChange).forEach(([direction, containerIds]) => {
+                containerIds.forEach(containerId => {
+                    const currentContainer = currentContainers[containerId];
+                    if (!currentContainer.dimension) {
+                        return;
+                    }
+
+                    const newDimension = {...currentContainer.dimension, [direction]: currentContainer.dimension[direction] + diffDimension[direction]};
+                    let newResizeToContent = currentContainer.shouldResizeToContent;
+                    if ((direction === "top" || direction === "bottom") && newResizeToContent !== ResizeToContentEnum.WIDTH_ONLY) {
+                        if (newResizeToContent === ResizeToContentEnum.RESIZE) {
+                            newResizeToContent = ResizeToContentEnum.WIDTH_ONLY;
+                        } else {
+                            newResizeToContent = ResizeToContentEnum.NONE;
+                        }
+                    } else if ((direction === "left" || direction === "right") && newResizeToContent !== ResizeToContentEnum.HEIGHT_ONLY) {
+                        if (newResizeToContent === ResizeToContentEnum.RESIZE) {
+                            newResizeToContent = ResizeToContentEnum.HEIGHT_ONLY;
+                        } else {
+                            newResizeToContent = ResizeToContentEnum.NONE;
+                        }
+                    }
+
+                    changedContainers[currentContainer.id] = {
+                        ...currentContainer,
+                        dimension: newDimension,
+                        shouldResizeToContent: newResizeToContent,
+                    };
+                });
+            });
+
+            set(({containers}) => ({containers: {...containers, ...changedContainers}}));
+        }
+
+        set(({containers}) => ({containers: {...containers, [id]: {...container, dimension}}}));
     }
 
     return {
         clear() {
-            set({ ...actionsGenerator(set, get) }, true);
+            set({...actionsGenerator(set, get)}, true);
         },
         setWindow(window: WindowData, defaultContainerId?: string, isActiveOnOpen?: boolean) {
             setWindow(window, defaultContainerId, isActiveOnOpen);
         },
         removeWindow(windowId: string, nonce?: string) {
-            const { windows } = get();
-            const newWindows = { ...windows };
+            const {windows} = get();
+            const newWindows = {...windows};
             if (nonce && newWindows[windowId]?.nonce !== nonce) {
                 return false;
             }
             delete newWindows[windowId];
-            set({ windows: newWindows });
+            set({windows: newWindows});
             return true;
         },
-        updateContainerDimension(id: string, dimension: WindowContainerDimension | undefined) {
-            updateContainerDimension(id, dimension);
+        updateContainerDimension(id: string, dimension: WindowContainerDimension | undefined, resizeNeighbours = true) {
+            updateContainerDimension(id, dimension, resizeNeighbours);
         },
         updateContainerState(id: string, state: ContainerState | ((old: ContainerState) => ContainerState)) {
             const container = get().containers[id];
@@ -209,7 +300,7 @@ const actionsGenerator = (set: SetState, get: GetState) => {
                 return;
             }
             const newState = typeof state === 'function' ? state(container.state) : state;
-            set(({ containers }) => ({ containers: { ...containers, [id]: { ...container, state: newState } } }));
+            set(({containers}) => ({containers: {...containers, [id]: {...container, state: newState}}}));
         },
         updateContainerActiveWindow(id: string, activeWindowId: string) {
             const container = get().containers[id];
@@ -220,8 +311,8 @@ const actionsGenerator = (set: SetState, get: GetState) => {
                 container.state = ContainerState.NORMAL;
             }
 
-            set(({ containers }) => ({
-                containers: { ...containers, [id]: { ...container, activeWindowId } },
+            set(({containers}) => ({
+                containers: {...containers, [id]: {...container, activeWindowId}},
                 activeContainerId: id,
             }));
         },
@@ -230,16 +321,16 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             if (!container) {
                 return;
             }
-            set({ activeContainerId: id });
+            set({activeContainerId: id});
         },
-        setActiveWindow(windowId: string){
+        setActiveWindow(windowId: string) {
             const {containers, windows, windowContainerMapping} = get();
             if (!windows[windowId]) {
                 return;
             }
             const containerId = windowContainerMapping[windowId];
             const container = containers[containerId];
-            if (!container){
+            if (!container) {
                 return;
             }
             if (container.state === ContainerState.MINIMIZED) {
@@ -247,52 +338,52 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             }
             container.activeWindowId = windowId;
 
-            set({ activeContainerId: containerId, containers: {...containers, [containerId]: {...container}} });
+            set({activeContainerId: containerId, containers: {...containers, [containerId]: {...container}}});
         },
         setWindowSize(x: number, y: number) {
-            const { containers, windowSize } = get();
-            const newWindowSize = { x, y };
+            const {containers, windowSize} = get();
+            const newWindowSize = {x, y};
             const newContainers = updateDimensions(containers, windowSize, newWindowSize);
-            set({ containers: newContainers, windowSize: newWindowSize });
+            set({containers: newContainers, windowSize: newWindowSize});
         },
         setButtonWidth(containerId: string, buttonWidth: number) {
-            const { containers } = get();
+            const {containers} = get();
             const container = containers[containerId];
             if (!container) {
                 return;
             }
             container.buttonWidth = buttonWidth;
-            set({ containers: { ...containers, [containerId]: { ...container } } });
+            set({containers: {...containers, [containerId]: {...container}}});
         },
         setContainerIsMoving(containerId: string, isMoving: boolean) {
-            const { containers } = get();
+            const {containers} = get();
             const container = containers[containerId];
             if (!container) {
                 return;
             }
             container.isMoving = isMoving;
-            set({ containers: { ...containers, [containerId]: { ...container } } });
+            set({containers: {...containers, [containerId]: {...container}}});
         },
         setContainerIsLocked(containerId: string, isLocked: boolean) {
-            const { containers } = get();
+            const {containers} = get();
             const container = containers[containerId];
             if (!container) {
                 return;
             }
             container.isLocked = isLocked;
-            set({ containers: { ...containers, [containerId]: { ...container } } });
+            set({containers: {...containers, [containerId]: {...container}}});
         },
         setShouldResizeToContent(containerId: string, shouldResizeToContent: ResizeToContentEnum) {
-            const { containers } = get();
+            const {containers} = get();
             const container = containers[containerId];
             if (!container) {
                 return;
             }
             container.shouldResizeToContent = shouldResizeToContent;
-            set({ containers: { ...containers, [containerId]: { ...container } } });
+            set({containers: {...containers, [containerId]: {...container}}});
         },
-        setDefaultContainerData(containerId: string, defaultContainerData: Partial<Omit<WindowContainerData, "windowIds"|"id"|"buttonWidth"|"isMoving">>) {
-            const { containers } = get();
+        setDefaultContainerData(containerId: string, defaultContainerData: Partial<Omit<WindowContainerData, "windowIds" | "id" | "buttonWidth" | "isMoving">>) {
+            const {containers} = get();
             let container = containers[containerId];
             if (container) {
                 return;
@@ -302,7 +393,7 @@ const actionsGenerator = (set: SetState, get: GetState) => {
                 ...defaultContainerData,
                 id: containerId,
             };
-            set({ containers: { ...containers, [containerId]: container } });
+            set({containers: {...containers, [containerId]: container}});
         },
         updateDragging(
             windowId: string,
@@ -311,7 +402,7 @@ const actionsGenerator = (set: SetState, get: GetState) => {
             ignoredContainer?: string
         ) {
             set({draggingWindowId: windowId});
-            const { containers,windows, windowContainerMapping } = get();
+            const {containers, windows, windowContainerMapping} = get();
             const newContainerData = checkOverContainerAndTabPosition(
                 Object.values(containers),
                 mousePosition,
@@ -325,28 +416,28 @@ const actionsGenerator = (set: SetState, get: GetState) => {
 
             const currentContainerId = windowContainerMapping[windowId];
             if (ignoredContainer !== currentContainerId) {
-                moveWindowToOwnContainer(windowId, { x: dimension.left, y: dimension.top });
+                moveWindowToOwnContainer(windowId, {x: dimension.left, y: dimension.top});
             }
-            const { windowContainerMapping: newWindowContainerMapping, containers: newContainers } = get();
+            const {windowContainerMapping: newWindowContainerMapping, containers: newContainers} = get();
             const newId = newWindowContainerMapping[windowId];
-            updateContainerDimension(newId, dimension);
+            updateContainerDimension(newId, dimension, false);
             if (!newContainers[newId].isMoving) {
-                set({ containers: { ...newContainers, [newId]: { ...newContainers[newId], isMoving: true } } });
+                set({containers: {...newContainers, [newId]: {...newContainers[newId], isMoving: true}}});
             }
-            set({ activeContainerId: newId });
+            set({activeContainerId: newId});
             return newId;
         },
-        closeContainer(containerId: string){
+        closeContainer(containerId: string) {
             const {containers: {[containerId]: container}, windows} = get();
-            if (!container){
+            if (!container) {
                 return;
             }
             container.windowIds.forEach(id => {
                 windows[id]?.onClose?.();
             });
         },
-        clearDraggingWindow(){
-            set({ draggingWindowId: '' });
+        clearDraggingWindow() {
+            set({draggingWindowId: ''});
         },
         moveWindow,
     };
@@ -364,7 +455,7 @@ function createWindowStore(name: string) {
             {
                 name: `window-store-${name}`,
                 version: 0,
-                partialize: ({ containers, windowContainerMapping, windowSize }) => ({
+                partialize: ({containers, windowContainerMapping, windowSize}) => ({
                     containers,
                     windowContainerMapping,
                     windowSize,
@@ -373,7 +464,7 @@ function createWindowStore(name: string) {
                     return (state) => {
                         // can change state directly here
                         if (state) {
-                            const newWindowSize = { x: window.innerWidth, y: window.innerHeight };
+                            const newWindowSize = {x: window.innerWidth, y: window.innerHeight};
                             state.containers = updateDimensions(state.containers, state.windowSize, newWindowSize);
 
                             // remove duplicates

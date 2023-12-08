@@ -45,7 +45,7 @@ export const TitleTabBar = withMemo(function TitleTabBar({
     // Callbacks
     const setActive = useCallback(() => setActiveContainer(containerId), [containerId, setActiveContainer]);
     const setDimension = useCallback(
-        (newDimension: WindowContainerDimension | undefined) => updateContainerDimension(containerId, newDimension),
+        (newDimension: WindowContainerDimension | undefined) => updateContainerDimension(containerId, newDimension, false),
         [containerId, updateContainerDimension]
     );
 
