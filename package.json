@@ -38,7 +38,7 @@
     "react-beautiful-dnd": ">=13.1.1"
   },
   "devDependencies": {
-    "@ainias42/js-helper": ">=0.8.10",
+    "@ainias42/js-helper": ">=0.8.15",
     "@babel/core": "^7.24.6",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-transform-typescript": "^7.24.6",
