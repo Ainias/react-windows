@@ -13,9 +13,9 @@ import classNames from 'classnames';
 import styles from './windowContainer.scss';
 import { Position, useOnMouseDrag } from '../hooks/useOnMouseDrag';
 import { getWindowStore } from '../store/createWindowStore';
-import { shallow } from 'zustand/shallow';
 import { ContainerState } from '../types/ContainerState';
 import {faClose} from "@fortawesome/free-solid-svg-icons";
+import { useShallow } from "zustand/react/shallow";
 
 export type TitleTabProps = RbmComponentProps<
     {
@@ -45,8 +45,9 @@ export const TitleTab = withMemo(
             return undefined;
         });
         const [updateDragging, setContainerIsMoving, clearDragging] = useStore(
+            useShallow(
             (s) => [s.updateDragging, s.setContainerIsMoving, s.clearDraggingWindow],
-            shallow
+            )
         );
         const window = useWindow();
 
@@ -123,7 +124,7 @@ export const TitleTab = withMemo(
         }, [id, onClick]);
 
         const onMouseMove = useCallback(
-            (diff, currentPosition: Position, event) => {
+            (diff: Position, currentPosition: Position, event: PointerEvent) => {
                 if (!canDrag || dragStartPosition.current || (Math.abs(diff.x) < 5 && Math.abs(diff.y) < 5)) {
                     return;
                 }

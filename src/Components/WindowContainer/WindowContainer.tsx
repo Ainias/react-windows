@@ -37,12 +37,10 @@ import {
     withForwardRef,
 } from '@ainias42/react-bootstrap-mobile';
 import { getWindowStore } from '../store/createWindowStore';
-import { shallow } from 'zustand/shallow';
 import { ContainerState } from '../types/ContainerState';
 import { TitleTabBar } from './TitleTabBar';
 import { createPortal } from 'react-dom';
 import { Position, useOnMouseDrag } from '../hooks/useOnMouseDrag';
-
 import "../../i18n/i18n";
 import { WindowContainerRefContext } from "./WindowContainerRefContext";
 import { ResizeToContentEnum } from "./ResizeToContentEnum";
@@ -52,6 +50,7 @@ import { selectTitleInfos } from "../store/selectTitleInfos";
 import { JsonHelper, ObjectHelper } from "@ainias42/js-helper";
 import { selectWindowsForContainer } from "../store/selectWindowsForContainer";
 import { selectActiveWindowIdForContainer } from "../store/selectAvticeWindowIdForContainer";
+import { useShallow } from "zustand/react/shallow";
 
 type ResizeDirection = 'top' | 'left' | 'right' | 'bottom' | 'tl' | 'tr' | 'bl' | 'br';
 export type WindowButtonData = WindowButtonProps<any> & { key: string };
@@ -124,17 +123,18 @@ export const WindowContainer = withForwardRef(
             setShouldResizeToContent,
             closeContainer
         ] = useStore(
-            (s) => [
-                s.setActiveContainer,
-                s.updateContainerDimension,
-                s.updateContainerState,
-                s.setButtonWidth,
-                s.setContainerIsMoving,
-                s.setContainerIsLocked,
-                s.setShouldResizeToContent,
-                s.closeContainer
-            ],
-            shallow
+            useShallow(
+                (s) => [
+                    s.setActiveContainer,
+                    s.updateContainerDimension,
+                    s.updateContainerState,
+                    s.setButtonWidth,
+                    s.setContainerIsMoving,
+                    s.setContainerIsLocked,
+                    s.setShouldResizeToContent,
+                    s.closeContainer
+                ],
+            )
         );
 
         const canCloseContainer = useStore(s => selectCanCloseContainer(s, id));
@@ -237,8 +237,8 @@ export const WindowContainer = withForwardRef(
             const diffX = !resizeWidth ? 0 : contentRef.current.scrollWidth - contentRef.current.clientWidth;
 
             if (diffY === 0) {
-            const windowClientHeight = parseFloat(getComputedStyle(windowRef.current).height);
-            const titleClientHeight = parseFloat(getComputedStyle(titleRef.current).height);
+                const windowClientHeight = parseFloat(getComputedStyle(windowRef.current).height);
+                const titleClientHeight = parseFloat(getComputedStyle(titleRef.current).height);
                 diffY =
                     titleClientHeight + contentClientHeight - windowClientHeight;
             }
@@ -336,7 +336,7 @@ export const WindowContainer = withForwardRef(
                 }
 
                 setActive();
-                setDimension(newDimension);
+                setDimension(checkWindowDimension(newDimension));
             },
             [id, resizeDirection, resizeStartDimension, setActive, setDimension, setShouldResizeToContent, shouldResizeToContent]
         );

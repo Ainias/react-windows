@@ -6,8 +6,8 @@ import { selectActiveWindowIdForContainer } from '../store/selectAvticeWindowIdF
 import styles from './windowContainer.scss';
 import classNames from 'classnames';
 import { WindowContainerDimension } from './WindowContainerDimension';
-import { shallow } from 'zustand/shallow';
 import { Position, useOnMouseDrag } from '../hooks/useOnMouseDrag';
+import { useShallow } from "zustand/react/shallow";
 
 export type TitleTabBarProps = RbmComponentProps<{
     storeId: string;
@@ -33,8 +33,9 @@ export const TitleTabBar = withMemo(function TitleTabBar({
     const activeWindowId = useStore((s) => selectActiveWindowIdForContainer(s, containerId));
     const dimension = useStore((s) => s.containers[containerId]?.dimension);
     const [updateContainerActiveWindow, setActiveContainer, updateContainerDimension] = useStore(
+        useShallow(
         (s) => [s.updateContainerActiveWindow, s.setActiveContainer, s.updateContainerDimension],
-        shallow
+        )
     );
     const moveStartDimension = useRef<WindowContainerDimension|undefined>(undefined);
 
