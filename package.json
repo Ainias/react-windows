@@ -1,6 +1,6 @@
 {
   "name": "@ainias42/react-windows",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Window Management using react",
   "main": "dist/reactWindows",
   "scripts": {
