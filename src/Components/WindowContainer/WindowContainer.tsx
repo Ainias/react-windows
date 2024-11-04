@@ -231,10 +231,12 @@ export const WindowContainer = withForwardRef(
             }
 
             // element.clientHeight is rounded, use unrounded values
-            const contentClientHeight = parseFloat(getComputedStyle(contentRef.current).height);
+            const contentComputedtStyle = getComputedStyle(contentRef.current)
+            const contentClientHeight = parseFloat(contentComputedtStyle.height);
+            const contentMaxHeight = parseFloat(contentComputedtStyle.maxHeight);
+            const scrollHeight = Number.isNaN(contentMaxHeight) ? contentRef.current.scrollHeight : Math.min(contentMaxHeight, contentRef.current.scrollHeight);
 
-            let diffY = contentRef.current.scrollHeight - Math.round(contentClientHeight);
-            const diffX = !resizeWidth ? 0 : contentRef.current.scrollWidth - contentRef.current.clientWidth;
+            let diffY = scrollHeight - Math.round(contentClientHeight);
 
             if (diffY === 0) {
                 const windowClientHeight = parseFloat(getComputedStyle(windowRef.current).height);
@@ -242,6 +244,7 @@ export const WindowContainer = withForwardRef(
                 diffY =
                     titleClientHeight + contentClientHeight - windowClientHeight;
             }
+            const diffX = !resizeWidth ? 0 : contentRef.current.scrollWidth - contentRef.current.clientWidth;
 
             if (!resizeHeight) {
                 diffY = 0;
@@ -609,7 +612,7 @@ export const WindowContainer = withForwardRef(
         }
 
         return (
-            <Clickable onClick={setActive} onClickData={id} ref={updateContainerRef}>
+            <Clickable onClickCapture={setActive} onClickCaptureData={id} stopPropagation={false} preventDefault={false} ref={updateContainerRef}>
                 {createPortal(
                     <WindowContext.Provider value={windowObject}>
                         <WindowContainerRefContext.Provider value={realRef}>
