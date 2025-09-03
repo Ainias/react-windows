@@ -34,7 +34,7 @@ import {
     SizeCalculator,
     useOnce,
     WindowContext,
-    withForwardRef,
+    withMemo,
 } from '@ainias42/react-bootstrap-mobile';
 import { getWindowStore } from '../store/createWindowStore';
 import { ContainerState } from '../types/ContainerState';
@@ -62,6 +62,7 @@ export type WindowContainerProps = {
     initialLeft?: number;
     disabled?: boolean;
     className?: string;
+    ref?: ForwardedRef<WindowContainerRef>
 };
 
 export type WindowContainerRef = {
@@ -73,7 +74,7 @@ export type WindowContainerRef = {
     openInNewWindow(): void;
 };
 
-export const WindowContainer = withForwardRef(
+export const WindowContainer = withMemo(
     function WindowContainer(
         {
             initialTop = 200,
@@ -81,9 +82,9 @@ export const WindowContainer = withForwardRef(
             id,
             store = 'default',
             disabled,
+            ref,
             className,
-        }: WindowContainerProps,
-        ref?: ForwardedRef<WindowContainerRef>
+        }: WindowContainerProps
     ) {
         // Variables
         const {t} = useT();
@@ -95,7 +96,7 @@ export const WindowContainer = withForwardRef(
 
         // Open in new window refs
         const windowContainerRef = useRef<HTMLDivElement>(null);
-        const containerRef = useRef<HTMLSpanElement>();
+        const containerRef = useRef<HTMLSpanElement>(null);
         const [windowObject, setWindowObject] = useState<Window | undefined>(undefined);
 
         // Resize to content-refs
@@ -455,7 +456,7 @@ export const WindowContainer = withForwardRef(
 
         const updateContainerRef = useCallback(
             (element: HTMLSpanElement | null) => {
-                containerRef.current = element ?? undefined;
+                containerRef.current = element;
                 if (element && state !== ContainerState.POPUP) {
                     element.appendChild(portalContainer);
                 }
